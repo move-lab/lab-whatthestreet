@@ -1,0 +1,106 @@
+body {
+    background: #FFCAD4;
+}
+
+#viewWrapper {
+    width: 800px;
+    height: 800px;
+    background: white;
+    margin: auto;
+    position: relative;
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+
+/* div .mapboxgl-ctrl-attrib{
+            background: white !important;
+        }
+
+        div .mapbox-improve-map{
+            display: none;
+        }*/
+
+
+/* ---------------------- */
+
+
+/*       Interface        */
+
+
+/* ---------------------- */
+
+#interface {
+    width: 800px;
+    margin: auto;
+    padding: 40px 25px;
+    box-sizing: border-box;
+    font-size: 1.2rem;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: bold;
+}
+
+#interface input,
+#interface button {
+    background: none;
+    padding: 7px 10px;
+    color: black;
+    font-weight: bold;
+    font-size: 0.7rem;
+}
+
+#interface button {
+    margin-right: 7px;
+    border: 2px solid black;
+}
+
+#interface button:hover,
+#interface input:hover {
+    cursor: pointer;
+    background: white;
+}
+
+#interface::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.2);
+}
+
+#interface input {
+    border-bottom: 2px solid black;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    margin-left: 20px;
+    width: 70px;
+}
+
+#interface .labelHighlight,
+#interface .label,
+#interface .label-noMargin,
+#interface .labelHighlight-noMargin {
+    font-size: 0.8rem;
+}
+
+#interface .label-noMargin {
+    opacity: 0.2;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+#interface .label {
+    opacity: 0.2;
+    margin-left: 12px;
+    margin-right: 5px;
+}
+
+#interface .labelHighlight {
+    margin-right: 20px;
+}
+
+#interface #streetInformation {
+    margin-top: 20px;
+}

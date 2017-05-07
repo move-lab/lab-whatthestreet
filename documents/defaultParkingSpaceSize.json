@@ -1,0 +1,6 @@
+{
+    "car": 12,
+    "bike": 1.6,
+    "rail": 30,
+    "explanation": "The values show the average area one car/bike/wagon take up in m2"
+}
