@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="762px" height="203px" viewBox="0 0 762 203" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>Illustration_Eyes</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Illustration_Eyes">
+            <g id="eyes">
+                <path d="M583.888,0.4 C709.064,0.4 761.8,101.6 761.8,101.6 C761.8,101.6 711.6,202.8 583.888,202.8 C456.176,202.8 405.968,101.6 405.968,101.6 C405.968,101.6 458.7088,0.4 583.888,0.4 Z" id="Ellipse_8_copy_2-2" fill="#FFFFFF" fill-rule="nonzero"></path>
+                <path d="M178.1144,0.4 C303.2904,0.4 356.0288,101.6 356.0288,101.6 C356.0288,101.6 305.832,202.8 178.1144,202.8 C50.3968,202.8 0.2,101.6 0.2,101.6 C0.2,101.6 52.9384,0.4 178.1144,0.4 Z" id="Shape" fill="#FFFFFF"></path>
+                <path d="M249.695643,190.890872 C213.088654,179.916659 186.4248,146.098055 186.4248,106.08 C186.4248,61.1786782 219.99309,24.0821167 263.510511,18.3024271 C327.765518,47.3654364 356.0288,101.6 356.0288,101.6 C356.0288,101.6 325.008957,164.138013 249.695643,190.890872 Z" id="Combined-Shape" fill="#CC6699" fill-rule="nonzero"></path>
+                <circle id="Oval" fill="#FFFFFF" fill-rule="nonzero" cx="275.4" cy="106.12" r="38.1248"></circle>
+                <ellipse id="Ellipse_8_copy" fill="#6666CC" fill-rule="nonzero" cx="275.4" cy="106.08" rx="27.3248" ry="27.2"></ellipse>
+                <path d="M506.422476,14.9211879 C546.019056,23.8757677 575.5728,59.1051632 575.5728,101.28 C575.5728,144.03998 545.091324,179.698289 504.569126,187.957168 C434.862707,159.840607 405.968,101.6 405.968,101.6 C405.968,101.6 436.553217,42.9125332 506.422476,14.9211879 Z" id="Combined-Shape" fill="#CC6699"></path>
+                <ellipse id="Ellipse_8_copy_2" fill="#FFFFFF" fill-rule="nonzero" cx="486.6" cy="101.24" rx="38.1248" ry="38.1248"></ellipse>
+                <ellipse id="Ellipse_8_copy_2-2" fill="#6666CC" cx="486.6" cy="101.28" rx="27.3248" ry="27.2"></ellipse>
+            </g>
+        </g>
+    </g>
+</svg>

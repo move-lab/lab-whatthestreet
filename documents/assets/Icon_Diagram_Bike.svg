@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="70px" height="60px" viewBox="0 0 70 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon_Diagram_Bike</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Icon_Diagram_Bike" stroke="#A6C4FF" stroke-width="2">
+            <g id="Icon---Bike" transform="translate(15.000000, 10.000000)">
+                <ellipse id="Oval" cx="7.76284585" cy="31.3249012" rx="7.76284585" ry="7.85928854"></ellipse>
+                <ellipse id="Oval" cx="32.1960474" cy="31.3249012" rx="7.76284585" ry="7.85928854"></ellipse>
+                <polygon id="Shape" points="10.116996 21.5573123 5.40711462 21.5573123 3.91778656 16.5343874 11.6063241 16.5343874"></polygon>
+                <path d="M32.1960474,31.3249012 C21.2869565,30.1328063 15.6774704,24.1818182 14.6213439,19.3881423" id="Shape"></path>
+                <path d="M7.23794466,31.5051383 C12.6719368,27.4592885 14.5612648,21.8608696 14.8679842,17.0608696" id="Shape"></path>
+                <ellipse id="Oval" cx="26.8743083" cy="3.1256917" rx="3.08774704" ry="3.1256917"></ellipse>
+                <path d="M24.6118577,9.83083004 C26.055336,7.62687747 28.683004,8.0916996 29.1968379,10.1849802 L29.4750988,18.1944664 C29.4750988,19.5636364 27.7359684,20.6418972 27.7359684,20.6418972" id="Shape"></path>
+                <path d="M14.8695652,17.0608696 L21.2948617,14.8774704" id="Shape"></path>
+                <path d="M19.2679842,26.3494071 L27.7296443,20.6403162" id="Shape"></path>
+                <path d="M21.2948617,14.8774704 L24.6118577,9.83083004" id="Shape"></path>
+                <path d="M21.2679842,35.1035573 L19.2679842,26.3494071" id="Shape"></path>
+                <polyline id="Shape" points="25.3375494 9.01027668 25.3375494 17.7660079 16.6671937 23.6505929"></polyline>
+                <ellipse id="Oval" cx="7.76284585" cy="31.3249012" rx="7.76284585" ry="7.85928854"></ellipse>
+                <ellipse id="Oval" cx="32.1960474" cy="31.3249012" rx="7.76284585" ry="7.85928854"></ellipse>
+                <polygon id="Shape" points="10.116996 21.5573123 5.40711462 21.5573123 3.91778656 16.5343874 11.6063241 16.5343874"></polygon>
+                <path d="M32.1960474,31.3249012 C21.2869565,30.1328063 15.6774704,24.1818182 14.6213439,19.3881423" id="Shape"></path>
+                <path d="M7.23794466,31.5051383 C12.6719368,27.4592885 14.5612648,21.8608696 14.8679842,17.0608696" id="Shape"></path>
+                <ellipse id="Oval" cx="26.8743083" cy="3.1256917" rx="3.08774704" ry="3.1256917"></ellipse>
+                <path d="M24.6118577,9.83083004 C26.055336,7.62687747 28.683004,8.0916996 29.1968379,10.1849802 L29.4750988,18.1944664 C29.4750988,19.5636364 27.7359684,20.6418972 27.7359684,20.6418972" id="Shape"></path>
+                <path d="M14.8695652,17.0608696 L21.2948617,14.8774704" id="Shape"></path>
+                <path d="M19.2679842,26.3494071 L27.7296443,20.6403162" id="Shape"></path>
+                <path d="M21.2948617,14.8774704 L24.6118577,9.83083004" id="Shape"></path>
+                <path d="M21.2679842,35.1035573 L19.2679842,26.3494071" id="Shape"></path>
+                <polyline id="Shape" points="25.3375494 9.01027668 25.3375494 17.7660079 16.6671937 23.6505929"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>

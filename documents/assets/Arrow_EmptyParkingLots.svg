@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="194px" height="87px" viewBox="0 0 194 87" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>Arrow_EmptyParkingLots</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Arrow_EmptyParkingLots" stroke-width="1.5" stroke="#FF6819">
+            <g id="d1" transform="translate(1.000000, 11.000000)">
+                <g>
+                    <path d="M146,36 C102,76 41.2407151,75.275419 5.11444693,46.3379888" id="Shape"></path>
+                    <path d="M21.6965698,46.4955307 C13.0261788,47.1458101 6.63176536,46.1703911 4.03064804,45.0865922 C4.03064804,45.0865922 6.96665922,57.2251397 0.823687151,62.752514" id="Shape_5_copy_3" stroke-linecap="round"></path>
+                    <path d="M162.542945,3.33055731 C152.018869,1.66394123 142.06137,8.61935921 140.004196,19.0741111 C139.06649,24.0484154 140.192802,29.1901538 143.124127,33.3169357 C146.055453,37.4437176 150.539517,40.2003864 155.545167,40.9530204 C166.062093,42.6894418 177.314103,39.9111676 178.97528,23.530926 C180.636456,7.15068434 170.854616,-2.80479821 151.84659,1.99930093" id="Ellipse_8_copy_4"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
