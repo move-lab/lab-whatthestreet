@@ -6,16 +6,21 @@
   },
   "dependencies": {
     "axios": "^0.16.1",
+    "body-parser": "^1.17.1",
     "express": "^4.14.0",
+    "geoip-lite": "^1.2.1",
     "immutable": "^3.8.1",
+    "mongodb": "^2.2.26",
     "next": "latest",
     "next-redux-wrapper": "^1.1.2",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.4",
+    "redis": "^2.7.1",
     "redux": "^3.6.0",
     "redux-saga": "^0.15.3",
-    "reselect": "^3.0.0"
+    "reselect": "^3.0.0",
+    "sha1": "^1.1.1"
   }
 }

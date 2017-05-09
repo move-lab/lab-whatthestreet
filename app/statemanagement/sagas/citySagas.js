@@ -11,7 +11,7 @@ export function* getCities() {
 
   try {
     const cities = yield call(axios.get, requestURL);
-    yield put(CityActions.onLoadCitiesSuccess(cities));
+    yield put(CityActions.onLoadCitiesSuccess(cities.data));
     yield put(CityActions.selectCity(0));
   } catch (error) {
     yield put(CityActions.onLoadCitiesFailure(error));
@@ -26,7 +26,7 @@ export function* getCitiesbyIp() {
 
   try {
     const city = yield call(axios.get, requestURL);
-    yield put(CityActions.setNearestCity(city));
+    yield put(CityActions.setNearestCity(city.data));
   } catch (error) {
     // Do nothing
   }

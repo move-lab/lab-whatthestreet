@@ -14,8 +14,8 @@ export function* getGuesses() {
   const requestURL = `/api/v1/cities/${currentCity.slug}/guess`;
 
   try {
-    const guesses = yield call(request, requestURL);
-    yield put(GuessActions.onLoadGuessesSuccess(guesses));
+    const guesses = yield call(axios.get, requestURL);
+    yield put(GuessActions.onLoadGuessesSuccess(guesses.data));
   } catch (error) {
     yield put(GuessActions.onLoadGuessesFailure(error));
   }

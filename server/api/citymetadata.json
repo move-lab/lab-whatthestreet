@@ -1,0 +1,144 @@
+{
+    "amsterdam": {},
+    "barcelona": {},
+    "beijing": {},
+    "berlin": {
+        "name": "Berlin",
+        "country": "Germany",
+        "boundingBox": [52.33812, 13.0884, 52.675499, 13.76134],
+        "modalsplit": {
+            "foot": 0.29,
+            "bike": 0.15,
+            "public": 0.26,
+            "car": 0.30
+        },
+        "streets": {
+            "longestNames": [
+                "Hohenschönhausener Rhinstraßenbrücke",
+                "Anneliese-und-Georg-Groscurth-Platz",
+                "Marie-Elisabeth-von-Humboldt-Straße"
+            ],
+            "longestStreets": [{
+                    "length": 29593.14,
+                    "name": "Landsberger Allee",
+                    "id": 4601
+                },
+                {
+                    "length": 23145.32,
+                    "name": "Heerstraße",
+                    "id": 3309
+                },
+                {
+                    "length": 21556.43,
+                    "name": "Adlergestell",
+                    "id": 30
+                },
+                {
+                    "length": 20238.37,
+                    "name": "Märkische Allee",
+                    "id": 5399
+                },
+                {
+                    "length": 15555.58,
+                    "name": "Potsdamer Chaussee",
+                    "id": 6096
+                },
+                {
+                    "length": 15442.08,
+                    "name": "Blumberger Damm",
+                    "id": 1118
+                },
+                {
+                    "length": 14271.46,
+                    "name": "Köpenicker Straße",
+                    "id": 4534
+                },
+                {
+                    "length": 13701.49,
+                    "name": "Allee der Kosmonauten",
+                    "id": 110
+                },
+                {
+                    "length": 13059.1,
+                    "name": "Rhinstraße",
+                    "id": 6375
+                },
+                {
+                    "length": 10752.81,
+                    "name": "Havelchaussee",
+                    "id": 3284
+                }
+            ],
+            "staffpicks": [
+                "Adlergestell",
+                "Havelchaussee",
+                "Kurfürstendamm"
+            ]
+        },
+        "population": 3502000,
+        "cars": 12000000,
+        "landmark": {
+            "name": "Tempelhofer Feld",
+            "area": 2412477
+        },
+        "sources": {
+            "cars": "http://www.visitberlin.de/en/article/facts-and-figures",
+            "onStreetParkingSpots": "http://www.stadtentwicklung.berlin.de/verkehr/politik_planung/strassen_kfz/parkraum/"
+        },
+        "space": {
+            "rail": 10987669.15,
+            "car": 39581773.06,
+            "bike": 4669893.8
+        },
+        "moving": {
+            "rail": {
+                "area": 8290310.62,
+                "length": 1781530.59
+            },
+            "car": {
+                "area": 30187155,
+                "length": 3830307.55
+            },
+            "bike": {
+                "area": 4623361.1,
+                "length": 1263986.18
+            }
+        },
+        "parking": {
+            "car": {
+                "onStreet": {
+                    "number": 103210
+                },
+                "offStreet": {
+                    "number": 4917,
+                    "area": 8156098.06,
+                    "svgHeight": 20584
+                }
+            },
+            "bike": {
+                "number": 1653,
+                "area": 46532.7,
+                "svgHeight": 233
+            }
+        }
+    },
+    "boston": {},
+    "budapest": {},
+    "chicago": {},
+    "copenhagen": {},
+    "helsinki": {},
+    "hongkong": {},
+    "jakarta": {},
+    "johannesburg": {},
+    "london": {},
+    "losangeles": {},
+    "moscow": {},
+    "newyork": {},
+    "portland": {},
+    "rome": {},
+    "sanfrancisco": {},
+    "singapore": {},
+    "stuttgart": {},
+    "tokyo": {},
+    "vienna": {}
+}
