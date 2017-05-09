@@ -5,6 +5,7 @@
     "start": "NODE_ENV=production node server/server.js"
   },
   "dependencies": {
+    "axios": "^0.16.1",
     "express": "^4.14.0",
     "immutable": "^3.8.1",
     "next": "latest",
@@ -14,7 +15,7 @@
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",
-    "redux-thunk": "^2.2.0",
+    "redux-saga": "^0.15.3",
     "reselect": "^3.0.0"
   }
 }

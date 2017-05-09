@@ -1,23 +1,8 @@
-/**
- * CityMetaSagas
- */
-
-// Libraries
 import { select, take, call, put, cancel, takeLatest } from 'redux-saga/effects';
-
-// Actions
-import { CityMetaActions } from 'data/actions';
-
-// Selectors
-import { CitySelectors } from 'data/selectors';
-
-// Constants
-import { LOCATION_CHANGE } from 'react-router-redux';
-import { CITY } from 'data/constants';
-
-// Utils
-import request from 'utils/request';
-
+import axios from 'axios';
+import { CityMetaActions } from '../actions';
+import { CitySelectors } from '../selectors';
+import { CITY } from '../constants';
 
 /**
  * CityMetaData handler
@@ -28,7 +13,7 @@ export function* getCityMetaData() {
   const requestURL = `/api/v1/cities/${currentCity.slug}`;
 
   try {
-    const data = yield call(request, requestURL);
+    const data = yield call(axios.get, requestURL);
     yield put(CityMetaActions.loadCityMetaDataSuccess(data));
   } catch (error) {
     yield put(CityMetaActions.loadCityMetaDataFailure(error));
@@ -42,8 +27,8 @@ export function* cityMetaData() {
   const watcher = yield takeLatest(CITY.SELECT_CITY, getCityMetaData);
 
   // Suspend execution until location changes
-  yield take(LOCATION_CHANGE);
-  yield cancel(watcher);
+  // yield take(LOCATION_CHANGE);
+  // yield cancel(watcher);
 }
 
 // Bootstrap sagas

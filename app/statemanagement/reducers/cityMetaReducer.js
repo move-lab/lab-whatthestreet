@@ -1,6 +1,5 @@
 import { fromJS } from 'immutable';
-
-import { CITY_META } from 'data/constants';
+import { CITY_META } from '../constants';
 
 const initialState = fromJS({
   loading: false,

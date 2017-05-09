@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-export const selectCityMeta = (state) => state.get('cityMeta');
+export const selectCityMeta = (state) => state.cityMeta;
 
 export const makeSelectCityMetaData = () => createSelector(
   selectCityMeta,

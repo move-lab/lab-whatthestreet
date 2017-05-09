@@ -1,19 +1,8 @@
-// Lib
 import { select, take, call, put, cancel, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
-
-// Actions
-import { GuessActions } from 'data/actions';
-
-// Constants
-import { LOCATION_CHANGE } from 'react-router-redux';
-import { CITY, CITY_META, GUESS } from 'data/constants';
-
-// Selectors
-import { CitySelectors, CityMetaSelectors, GuessSelectors } from 'data/selectors';
-
-// Utils
-import request from 'utils/request';
+import { GuessActions } from '../actions';
+import { CITY, CITY_META, GUESS } from '../constants';
+import { CitySelectors, CityMetaSelectors, GuessSelectors } from '../selectors';
 
 
 /**
@@ -71,10 +60,10 @@ export function* guessData() {
   const saveWatcher = yield takeLatest(GUESS.SAVE_GUESS, saveGuess);
 
   // Suspend execution until location changes
-  yield take(LOCATION_CHANGE);
-  yield cancel(watcher);
-  yield cancel(actualWatcher);
-  yield cancel(saveWatcher);
+  // yield take(LOCATION_CHANGE);
+  // yield cancel(watcher);
+  // yield cancel(actualWatcher);
+  // yield cancel(saveWatcher);
 }
 
 // Bootstrap sagas

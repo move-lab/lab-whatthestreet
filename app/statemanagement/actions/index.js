@@ -15,7 +15,7 @@ export {
   // VehicleActions,
   // ScrollActions,
   // ParkingActions,
-  // CityMetaActions,
+  CityMetaActions,
   // VersusActions,
   // LaneActions,
   GuessActions,

@@ -1,15 +1,7 @@
-// Lib
 import { take, call, put, cancel, takeLatest } from 'redux-saga/effects';
-
-// Actions
-import { CityActions } from 'data/actions';
-
-// Constants
-import { LOCATION_CHANGE } from 'react-router-redux';
-import { CITY } from 'data/constants';
-
-// Utils
-import request from 'utils/request';
+import axios from 'axios';
+import { CityActions } from '../actions';
+import { CITY } from '../constants';
 
 /**
  * Cities Handler
@@ -18,7 +10,7 @@ export function* getCities() {
   const requestURL = '/api/v1/cities';
 
   try {
-    const cities = yield call(request, requestURL);
+    const cities = yield call(axios.get, requestURL);
     yield put(CityActions.onLoadCitiesSuccess(cities));
     yield put(CityActions.selectCity(0));
   } catch (error) {
@@ -33,7 +25,7 @@ export function* getCitiesbyIp() {
   const requestURL = '/api/v1/cities/nearest';
 
   try {
-    const city = yield call(request, requestURL);
+    const city = yield call(axios.get, requestURL);
     yield put(CityActions.setNearestCity(city));
   } catch (error) {
     // Do nothing
@@ -49,9 +41,9 @@ export function* cityData() {
   yield put(CityActions.loadCities());
 
   // Suspend execution until location changes
-  yield take(LOCATION_CHANGE);
-  yield cancel(watcher);
-  yield cancel(ipWatcher);
+  // yield take(LOCATION_CHANGE);
+  // yield cancel(watcher);
+  // yield cancel(ipWatcher);
 }
 
 // Bootstrap sagas

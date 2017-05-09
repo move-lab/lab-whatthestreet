@@ -6,7 +6,7 @@ import cityReducer from'./reducers/cityReducer';
 // import parkingReducer from './reducers/parkingReducer';
 import guessReducer from './reducers/guessReducer';
 // import mapReducer from './reducers/mapReducer';
-// import cityMetaReducer from './reducers/cityMetaReducer';
+import cityMetaReducer from './reducers/cityMetaReducer';
 // import versusReducer from './reducers/versusReducer';
 // import laneReducer from './reducers/laneReducer';
 // import pageReducer from './reducers/pageReducer';
@@ -22,7 +22,7 @@ export default combineReducers({
   // lanes: laneReducer,
   guess: guessReducer,
   // map: mapReducer,
-  // cityMeta: cityMetaReducer,
+  cityMeta: cityMetaReducer,
   // versus: versusReducer,
   // street: streetReducer,
   // search: searchReducer
