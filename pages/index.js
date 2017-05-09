@@ -11,7 +11,11 @@ import { CityActions } from '../app/statemanagement/actions';
 class Index extends Component {
 
   static getInitialProps ({ store, isServer }) {
-    store.dispatch(CityActions.loadCities());
+    // TODO MAKE SAGAS WORK SERVER SIDE
+    // https://gist.github.com/jgautheron/bc07f6515748678a40ed38eab98d816e
+    // https://github.com/zeit/next.js/issues/273#issuecomment-273637698
+    // OR BETTER CONVERT THEM TO PLAIN OLD REDUX THUNK
+    // store.dispatch(CityActions.loadCities());
     return { isServer }
   }
 

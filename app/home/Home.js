@@ -10,7 +10,7 @@ import { CityActions, GuessActions } from '../statemanagement/actions';
 import { CitySelectors, GuessSelectors } from '../statemanagement/selectors';
 
 // Components
-// import RoundedButton from '../shared/RoundedButton';
+import RoundedButton from '../shared/components/RoundedButton';
 import CitySelector from './components/CitySelector';
 // import GuessBarChart from './GuessBarChart';
 
@@ -74,9 +74,9 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
         <div className="Container">
           {/*{ <GuessBarChart onChange={(value, index) => this.onChangeGuess(value, index)} guess={this.props.ownGuess} /> }*/}
           <div className="CenteredContent">
-            {/*<RoundedButton disabled={!this.state.guessed} onClick={() => this.solved()}>
+            <RoundedButton disabled={!this.state.guessed} onClick={() => this.solved()}>
               Get Started
-            </RoundedButton>*/}
+            </RoundedButton>
           </div>
         </div>
       </div>
