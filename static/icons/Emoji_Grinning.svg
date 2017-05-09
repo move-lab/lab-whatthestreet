@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="44px" height="44px" viewBox="0 0 44 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>Emoji_Grinning</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Emoji_Grinning" fill-rule="nonzero">
+            <circle id="Oval" fill="#FFDD67" cx="22" cy="22" r="22"></circle>
+            <g id="1f643" transform="translate(22.500000, 22.500000) scale(1, -1) translate(-22.500000, -22.500000) translate(10.000000, 12.000000)" fill="#664E27">
+                <g id="Group">
+                    <g id="Group-2" transform="translate(0.000000, 12.000000)">
+                        <ellipse id="Oval" cx="20.6550164" cy="4.54019672" rx="3.60655738" ry="3.60655738"></ellipse>
+                        <ellipse id="Oval" cx="4.06485246" cy="4.54019672" rx="3.60655738" ry="3.60655738"></ellipse>
+                    </g>
+                    <path d="M3.02088447,6.6562623 C8.87072053,2.57652459 15.3603599,2.60032787 21.1748517,6.6562623 C21.8752451,7.14459016 22.5063927,6.29921311 22.0317697,5.51803279 C20.2595074,2.59888525 16.6810812,0 12.0985894,0 C7.51609758,0 3.93839267,2.59960656 2.16540906,5.51803279 C1.6900648,6.29921311 2.32121234,7.14386885 3.02088447,6.6562623 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -11,7 +11,7 @@ import { CitySelectors, GuessSelectors } from '../statemanagement/selectors';
 
 // Components
 // import RoundedButton from '../shared/RoundedButton';
-// import CitySelector from './CitySelector';
+import CitySelector from './components/CitySelector';
 // import GuessBarChart from './GuessBarChart';
 
 // Styles
@@ -60,7 +60,13 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
         <div className="Container">
           <div className="Container">
             <h2 className="Title">Who owns</h2>
-            {/*<CitySelector selectorOpen={this.props.show_city_selection} onButtonClick={this.props.toggleCitySelection} availableCities={this.props.availableCities} city={this.props.city} onChange={this.onCityChanged} />*/}
+            <CitySelector
+              selectorOpen={this.props.show_city_selection}
+              onButtonClick={this.props.toggleCitySelection}
+              availableCities={this.props.availableCities}
+              city={this.props.city}
+              onChange={this.onCityChanged}
+            />
             <h3 className="SubTitle">How much space do bikes, trams</h3>
           </div>
           <div className="Container"></div>

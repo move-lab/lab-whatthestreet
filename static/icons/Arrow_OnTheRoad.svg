@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="171px" height="139px" viewBox="0 0 171 139" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>Arrow_OnTheRoad</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Arrow_OnTheRoad" stroke="#FF6819" stroke-width="1.5">
+            <g transform="translate(85.966310, 68.898437) scale(-1, 1) rotate(12.000000) translate(-85.966310, -68.898437) translate(10.966310, 13.898437)">
+                <path d="M76.4258394,33.4514599 C134.841898,23.2010949 102.371387,99.1419708 149.170365,103.991606" id="Shape_12_copy_3"></path>
+                <path d="M132.692628,109.943431 C140.639416,106.085766 147.087226,104.65292 149.95292,104.763139 C149.95292,104.763139 142.656423,94.2923358 146.436934,86.7974453" id="Shape_5_copy_9" stroke-linecap="round"></path>
+                <path d="M43.8010219,5.12518248 C23.7606158,1.95153942 4.79911151,15.1963498 0.881751825,35.1047445 C-0.903869532,44.5770318 1.24090378,54.3681544 6.8228612,62.2265525 C12.4048186,70.0849507 20.9435691,75.3343197 30.4755474,76.7675182 C50.5023358,80.0740876 71.9289051,74.7835766 75.0921898,43.5916058 C78.2554745,12.399635 59.6284672,-6.5580292 23.4325547,2.59014599" id="Ellipse_8_copy_4"></path>
+            </g>
+        </g>
+    </g>
+</svg>
