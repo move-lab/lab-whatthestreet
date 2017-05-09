@@ -1,0 +1,1 @@
+export const SELECT_VEHICLE = 'App/SELECT_VEHICLE';

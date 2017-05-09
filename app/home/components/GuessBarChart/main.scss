@@ -1,0 +1,93 @@
+@import '~styles/configuration/metrics';
+@import '~styles/configuration/colors';
+
+.Chart {
+  position: relative;
+  width: $Metrics_Chart_Width;
+
+  ::selection {
+    background-color: inherit;
+    color: inherit;
+  }
+
+}
+
+.ChartHeader {
+  background-color: $Color_White;
+  width: 480px;
+  height: 160px;
+  display: flex;
+  justify-content: space-between;
+
+  .Column {
+    padding-top: 40px;
+  }
+}
+
+.ChartBody {
+  display: flex;
+  width: 480px;
+  justify-content: space-between;
+}
+
+.Column {
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  width: $Metrics_Bar_Width;
+  background-color: $Color_White;
+}
+
+.Icon {
+  padding-top: 40px;
+}
+
+.Header {
+  font-size: 23px;
+  line-height: 29px;
+  margin: 15px 0 0 0;
+}
+
+.ExplainLabel {
+  position: absolute;
+  left: -200px;
+  top: 240px;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  transform: rotate(-20deg);
+
+  img {
+    transform: rotate(20deg);
+  }
+
+  span {
+    display: flex;
+    flex-direction: column;
+    color: $Color_Foreground_Orange;
+    font-family: 'sign-painter';
+    text-align: center;
+    margin-top: 5px;
+    width: 150px;
+
+    big {
+      font-size: 2em;
+    }
+  }
+}
+
+.Value {
+  position: absolute;
+  bottom: 0;
+  color: $Color_Black;
+  padding-bottom: 30px;
+  font-size: 1.5em;
+  font-family: 'Circular';
+  width: 100%;
+  text-align: center;
+
+  small {
+    font-size: .6em;
+  }
+}
