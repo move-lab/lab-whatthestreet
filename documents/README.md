@@ -163,18 +163,18 @@ This is just a simpler view of the mobility triangle. It lists cities with the m
 If the currently selected city is among the top 5, list it normally. If would be further down the list, display position 4 as "..." and display the number where it would be in the rank (see image for reference).
 
 ## Future City
-The icon for cars on the road is always 1, but the number it shows is specific for each city – always a certain fraction of **cars** in **citymetadata.json** (I don't know right now, if this section of the document hasn't been updated until you need to know, please file a github issue).
+The icon for cars on the road is always 1, but the number it shows is specific for each city – always a certain fraction of **cars** in **citymetadata.json**. (See below)
 
-E.g. Let's say the fraction is of all cars 0.01 are driving and there are 35000 car.
-This means 1 icon stands for 350 cars. It also means that the rest of the cars (34650) are parking and are resembled in 99 icons.
+There are 35000 cars and 2.5% are driving in any moment (on average).
+This means the 1 driving icon stands for 875 cars. It also means that the rest of the cars (34125) are parking and are resembled in 39 icons (34125 divided by 875). 
 
-The number of cars parking for the future (right column) is a fraction of cars parking of today. Also I don't know the fraction right now, but will update this document.
+Only 7% percent of today's car parking will be needed in the future, the right column has 3 car icons (34125*0.07/875 = 2.73).
 
 ### Summary:
 - Number of cars in city (see **cars** in **citymetadata.json**)
-- Number of cars on road (now and future the same): **number of cars** * **certain fraction** (will let you know the fraction)
+- Number of cars on road (now and future the same): **number of cars** * **2.5%**
 - Number of cars parking (today): **Number of cars** - **Number of cars on road**
-- Number of cars parking (future): **Number of cars parking (today)** * **certain fraction** (will let you know the fraction)
+- Number of cars parking (future): **Number of cars parking (today)** * **7%**
 - Parking Spaces that could be freed up: **Number of cars parking (today)** - **Number of cars parking (future)**
 
 ### Landmarks
