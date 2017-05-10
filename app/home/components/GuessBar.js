@@ -73,11 +73,13 @@ class GuessBar extends React.PureComponent { // eslint-disable-line react/prefer
           justify-content: flex-start;
           border-bottom: 50px transparent;
           cursor: grab;
+          cursor: -webkit-grab;
           background-color: ${COLORS.ColorChartBar};
         }
 
         .Container:active {
             cursor: grabbing;
+            cursor: -webkit-grabbing;
         }
 
         .GuessBar {
@@ -92,6 +94,7 @@ class GuessBar extends React.PureComponent { // eslint-disable-line react/prefer
 
         .DragPanel {
           cursor: grab;
+          cursor: -webkit-grab;
           height: 56px;
           width: 56px;
           border-radius: 50%;
