@@ -28,7 +28,8 @@ export default function cityReducer(state = initialState, action) {
         .set('error', true);
     case CITY.SELECT_CITY:
       return state
-        .set('actual_city', state.get('availableCities').get(action.payload));
+        .set('actual_city', state.get('availableCities')
+                                 .find((city) => city.get('slug') === action.payload));
     case CITY.SET_NEAREST_CITY:
       return state
         .set('nearestCity', fromJS(action.city));

@@ -11,10 +11,15 @@ import { setBaseUrl } from '../app/statemanagement/AppStateManagement';
 
 class Index extends Component {
 
-  static async getInitialProps ({ store, isServer, req }) {
+  static async getInitialProps (params) {
+    const { store, isServer, req } = params;
     const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
     await store.dispatch(setBaseUrl(baseUrl));
     await store.dispatch(CityActions.loadCities());
+    // We may render from city/:cityName and select that city by default
+    if(req.params.cityName) {
+      await store.dispatch(CityActions.selectCity(req.params.cityName));
+    }
     return;
   }
 

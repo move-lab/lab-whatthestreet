@@ -50,8 +50,8 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
   }
 
   solved = () => {
+    // TODO MAKE GUESS PERSIST BY REFACTORING SAGA
     this.props.saveGuess(this.props.ownGuess);
-    this.props.nextScrollIndex();
   }
 
   render = () => {
@@ -144,7 +144,6 @@ const mapDispatchToProps = (dispatch) => ({
   loadCities: () => dispatch(CityActions.loadCities()),
   selectCity: (identifyer) => dispatch(CityActions.selectCity(identifyer)),
   toggleCitySelection: () => dispatch(CityActions.toggleCitySelection()),
-  nextScrollIndex: (index) => dispatch(ScrollActions.nextScrollIndex(index)),
   setGuess: (guess) => dispatch(GuessActions.setOwnGuess(guess)),
   saveGuess: (guess) => dispatch(GuessActions.saveGuess(guess)),
 });

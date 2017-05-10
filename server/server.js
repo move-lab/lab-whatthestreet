@@ -1,5 +1,6 @@
 const express = require('express')
 const next = require('next')
+const compression = require('compression');
 const bodyParser = require('body-parser');
 const router = require('./api/router');
 
@@ -14,15 +15,23 @@ app.prepare()
   // API routes
   server.use(bodyParser.urlencoded({ extended: true }));
   server.use(bodyParser.json());
+  server.use(compression());
   server.use('/api/v1', router);
+
+  server.get('/city/:cityName', (req, res) => {
+    const cityName = req.params.cityName;
+    return app.render(req, res, '/', req.query, {
+      cityName : cityName
+    });
+  })
 
   // Routes handled by next.js
   server.get('*', (req, res) => {
     return handle(req, res)
   })
 
-  server.listen(process.env.PORT || 3000, (err) => {
+  server.listen(process.env.PORT || 4000, (err) => {
     if (err) throw err
-    console.log(`> Ready on http://localhost:${process.env.PORT || 3000}`)
+    console.log(`> Ready on http://localhost:${process.env.PORT || 4000}`)
   })
 })

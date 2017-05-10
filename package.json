@@ -7,6 +7,7 @@
   "dependencies": {
     "axios": "^0.16.1",
     "body-parser": "^1.17.1",
+    "compression": "^1.6.2",
     "express": "^4.14.0",
     "geoip-lite": "^1.2.1",
     "immutable": "^3.8.1",

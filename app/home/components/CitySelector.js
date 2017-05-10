@@ -89,7 +89,7 @@ class CitySelector extends React.PureComponent {
           font-size: 47px;
           background-color: ${COLORS.ColorWhite};
           overflow: hidden;
-          z-index: ${METRICS.Metrics_Zindex_Header};
+          z-index: ${METRICS.MetricsZindexHeader};
         }
 
         .CitySelectionModalContent {

@@ -22,10 +22,10 @@ export function onLoadCitiesFailure(err) {
   };
 }
 
-export function selectCity(index) {
+export function selectCity(citySlug) {
   return {
     type: CITY.SELECT_CITY,
-    payload: index
+    payload: citySlug
   };
 }
 
@@ -63,7 +63,7 @@ export function loadCities() {
       const baseUrl = getState().app.get('baseUrl');
       axios.get(`${baseUrl}/api/v1/cities`).then((response) => {
         dispatch(onLoadCitiesSuccess(response.data));
-        dispatch(selectCity(0));
+        dispatch(selectCity('berlin'));
         resolve();
         // dispatch(getCitiesbyIp()).then(() => {
         //   resolve();
