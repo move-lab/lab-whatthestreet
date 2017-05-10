@@ -54,7 +54,8 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
     this.props.nextScrollIndex();
   }
 
-  render = () => (
+  render = () => {
+    return (
     <section className="HomePage">
       <div className="Wrapper">
         <div className="Container">
@@ -129,6 +130,7 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
       `}</style>
     </section>
   )
+  }
 }
 
 const mapStateToProps = createStructuredSelector({

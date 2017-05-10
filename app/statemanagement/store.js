@@ -1,15 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import Immutable from 'immutable';
-import createSagaMiddleware from 'redux-saga';
+import thunkMiddleware from 'redux-thunk';
 import reducers from './reducers';
-import { cityData } from './sagas/citySagas';
-import { guessData } from './sagas/guessSagas';
-import { cityMetaData } from './sagas/cityMetaSagas';
-// import { versusData } from './sagas/versusSagas';
-// import { streetData } from './sagas/streetSagas';
-// import { searchData } from './sagas/searchSagas';
-
-const sagaMiddleware = createSagaMiddleware();
 
 const composeEnhancers =
     process.env.NODE_ENV !== 'production' &&
@@ -20,11 +12,9 @@ const composeEnhancers =
       }) : compose;
 
 const enhancer = composeEnhancers(
-  applyMiddleware(sagaMiddleware),
+  applyMiddleware(thunkMiddleware)
   // other store enhancers if any
 );
-
-
 
 
 export const initStore = (initialState) => {
@@ -42,14 +32,6 @@ export const initStore = (initialState) => {
     }
     store = window.store
   }
-
-  store.runSaga = sagaMiddleware.run;
-  store.runSaga(cityData);
-  store.runSaga(guessData);
-  store.runSaga(cityMetaData);
-  // store.runSaga(versusData);
-  // store.runSaga(streetData);
-  // store.runSaga(searchData);
 
   return store;
 }

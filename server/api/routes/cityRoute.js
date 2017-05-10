@@ -18,15 +18,15 @@ exports.getAllCities = (request, response) => {
 exports.getNerestCity = (request, response) => {
   const ip = '77.185.208.234';
 
-  console.log('Get nearest city by IP');
-  console.log('IP:', ip);
+  // console.log('Get nearest city by IP');
+  // console.log('IP:', ip);
 
   const geo = geoip.lookup(ip);
 
   if (geo === null) {
     response.status(404).send(`Not Found City near ${ip}`);
   } else {
-    console.log(geo);
+    // console.log(geo);
     const cities = Object.keys(data);
     let city = '';
 

@@ -17,19 +17,18 @@ export default function cityReducer(state = initialState, action) {
       return state
         .set('loading', true)
         .set('error', false)
-        .set('availableCities', fromJS([]));
     case CITY.LOAD_CITIES_SUCCESS:
       return state
         .set('loading', false)
         .set('error', false)
-        .set('availableCities', action.cities.toJS().length > 0 && action.cities);
+        .set('availableCities', action.payload);
     case CITY.LOAD_CITIES_FAILURE:
       return state
         .set('loading', false)
         .set('error', true);
     case CITY.SELECT_CITY:
       return state
-        .set('actual_city', state.toJS().availableCities[action.city]);
+        .set('actual_city', state.get('availableCities').get(action.payload));
     case CITY.SET_NEAREST_CITY:
       return state
         .set('nearestCity', fromJS(action.city));

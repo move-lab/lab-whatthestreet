@@ -9,7 +9,7 @@ const makeSelectCities = () => createSelector(
 
 const makeSelectActualCity = () => createSelector(
   selectCityState,
-  (actualCityState) => actualCityState.get('actual_city')
+  (actualCityState) => actualCityState.get('actual_city').toJS()
 );
 
 const makeShowCitySelection = () => createSelector(
