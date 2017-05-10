@@ -47,7 +47,7 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
 
   onCityChanged = (citySlug) => {
     this.props.selectCity(citySlug);
-    Router.push('/', `/city/${citySlug}`, { shallow: true });
+    Router.push('/', `/${citySlug}`, { shallow: true });
   }
 
   onChangeGuess = (guess) => {
@@ -58,7 +58,7 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
   solved = () => {
     // TODO MAKE GUESS PERSIST BY REFACTORING SAGA
     this.props.saveGuess(this.props.ownGuess);
-    Router.push('/explore',`/city/${this.props.city.slug}/explore`);
+    Router.push('/explore',`/${this.props.city.slug}/explore`);
   }
 
   render = () => {
