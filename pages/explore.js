@@ -19,7 +19,8 @@ class Explore extends Component {
       const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
       await store.dispatch(setBaseUrl(baseUrl));
       await store.dispatch(CityActions.loadCities());
-      // We may render from city/:cityName and select that city by default
+      // Select city from url
+      // Todo handle city do not exists
       if(req && req.params.cityName) {
         await store.dispatch(CityActions.selectCity(req.params.cityName));
       }

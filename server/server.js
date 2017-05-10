@@ -19,13 +19,12 @@ app.prepare()
   server.use('/api/v1', router);
 
   server.get('/:cityName/explore', (req, res) => {
-    console.log('handled by /city/:cityName/explore');
+    console.log('handled by /:cityName/explore');
     return app.render(req, res, '/explore', req.query);
   })
 
   server.get('/:cityName', (req, res) => {
-    console.log('handled by /city/:cityName');
-    const cityName = req.params.cityName;
+    console.log('handled by /:cityName');
     return app.render(req, res, '/', req.query);
   })
 
