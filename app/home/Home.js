@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Router from 'next/router';
+import Link from 'next/link';
 import { createStructuredSelector } from 'reselect';
 
 // Actions
@@ -43,7 +45,11 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
     }
   }
 
-  onCityChanged = (identifyer) => this.props.selectCity(identifyer)
+  onCityChanged = (citySlug) => {
+    this.props.selectCity(citySlug);
+    Router.push('/', `/city/${citySlug}`, { shallow: true });
+  }
+
   onChangeGuess = (guess) => {
     this.setState({ guessed : true });
     this.props.setGuess(guess);
@@ -52,6 +58,7 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
   solved = () => {
     // TODO MAKE GUESS PERSIST BY REFACTORING SAGA
     this.props.saveGuess(this.props.ownGuess);
+    Router.push('/explore',`/city/${this.props.city.slug}/explore`);
   }
 
   render = () => {

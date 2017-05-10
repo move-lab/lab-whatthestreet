@@ -18,15 +18,19 @@ app.prepare()
   server.use(compression());
   server.use('/api/v1', router);
 
-  server.get('/city/:cityName', (req, res) => {
-    const cityName = req.params.cityName;
-    return app.render(req, res, '/', req.query, {
-      cityName : cityName
-    });
+  server.get('/city/:cityName/explore', (req, res) => {
+    console.log('handled by /city/:cityName/explore');
+    return app.render(req, res, '/explore', req.query);
   })
 
-  // Routes handled by next.js
+  server.get('/city/:cityName', (req, res) => {
+    console.log('handled by /city/:cityName');
+    const cityName = req.params.cityName;
+    return app.render(req, res, '/', req.query);
+  })
+
   server.get('*', (req, res) => {
+    console.log('handled by next.js *');
     return handle(req, res)
   })
 

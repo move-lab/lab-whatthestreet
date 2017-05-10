@@ -9,11 +9,12 @@ import Home from '../app/home/Home';
 import { CityActions } from '../app/statemanagement/actions';
 import { setBaseUrl } from '../app/statemanagement/AppStateManagement';
 
-class Index extends Component {
+class Explore extends Component {
 
   static async getInitialProps (params) {
     const { store, isServer, req } = params;
-    console.log('Index page render');
+    console.log('Explore page render');
+    // If not Server Side rendered, do not need to fetch everything again
     if (isServer) {
       const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
       await store.dispatch(setBaseUrl(baseUrl));
@@ -29,10 +30,10 @@ class Index extends Component {
   render() {
     return (
       <Layout>
-        <Home />
+        blabla
       </Layout>
     )
   }
 }
 
-export default withRedux(initStore)(Index);
+export default withRedux(initStore)(Explore);

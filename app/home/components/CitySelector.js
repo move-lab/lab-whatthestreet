@@ -41,7 +41,7 @@ class CitySelector extends React.PureComponent {
     <div
       className="CitySelectionModalItem"
       key={`citySelectorItem-${index}`}
-      onClick={() => this.onChange(this.props.availableCities.indexOf(city))}>
+      onClick={() => this.onChange(city.slug)}>
       <span className="CitySelectionModalItemCheckedIndicator">
         {city.slug === this.props.city.slug && this.renderCheckMarkIcon()}
       </span>
