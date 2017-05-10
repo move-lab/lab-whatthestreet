@@ -7,6 +7,7 @@ import cityReducer from'./reducers/cityReducer';
 import guessReducer from './reducers/guessReducer';
 // import mapReducer from './reducers/mapReducer';
 import cityMetaReducer from './reducers/cityMetaReducer';
+import appStateManagement from './AppStateManagement';
 // import versusReducer from './reducers/versusReducer';
 // import laneReducer from './reducers/laneReducer';
 // import pageReducer from './reducers/pageReducer';
@@ -14,6 +15,7 @@ import cityMetaReducer from './reducers/cityMetaReducer';
 // import searchReducer from './reducers/searchReducer';
 
 export default combineReducers({
+  app: appStateManagement,
   // page: pageReducer,
   city: cityReducer,
   // vehicle: vehicleReducer,

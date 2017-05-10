@@ -45,7 +45,8 @@ export function setNearestCity(city) {
 export function getCitiesbyIp() {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
-      axios.get('http://localhost:3000/api/v1/cities/nearest').then((response) => {
+      const baseUrl = getState().app.get('baseUrl');
+      axios.get(`${baseUrl}/api/v1/cities/nearest`).then((response) => {
         dispatch(setNearestCity(response.data));
         resolve();
       }, (error) => {
@@ -59,8 +60,8 @@ export function loadCities() {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       dispatch(startLoadingCities());
-
-      axios.get('http://localhost:3000/api/v1/cities').then((response) => {
+      const baseUrl = getState().app.get('baseUrl');
+      axios.get(`${baseUrl}/api/v1/cities`).then((response) => {
         dispatch(onLoadCitiesSuccess(response.data));
         dispatch(selectCity(0));
         resolve();

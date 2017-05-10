@@ -7,10 +7,13 @@ import Layout from '../app/shared/components/Layout';
 import Home from '../app/home/Home';
 
 import { CityActions } from '../app/statemanagement/actions';
+import { setBaseUrl } from '../app/statemanagement/AppStateManagement';
 
 class Index extends Component {
 
-  static async getInitialProps ({ store, isServer }) {
+  static async getInitialProps ({ store, isServer, req }) {
+    const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
+    await store.dispatch(setBaseUrl(baseUrl));
     await store.dispatch(CityActions.loadCities());
     return;
   }
