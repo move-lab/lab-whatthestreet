@@ -176,7 +176,7 @@ class GuessBarChart extends React.Component {
           display: flex;
           flex-direction: column;
           color: ${COLORS.ColorForegroundOrange};
-          font-family: 'sign-painter';
+          font-family: 'sign-painter', sans-serif;
           text-align: center;
           margin-top: 5px;
           width: 150px;
@@ -192,7 +192,7 @@ class GuessBarChart extends React.Component {
           color: ${COLORS.ColorBlack};
           padding-bottom: 30px;
           font-size: 1.5em;
-          font-family: 'Circular';
+          font-family: 'Circular', sans-serif;
           width: 100%;
           text-align: center;
         }

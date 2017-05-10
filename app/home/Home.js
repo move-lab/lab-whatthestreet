@@ -125,7 +125,7 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
           line-height: 27px;
           font-weight: 200;
           margin-top: 15px;
-          font-family: 'LarsseitLight';
+          font-family: 'LarsseitLight', sans-serif;
         }
       `}</style>
     </section>
