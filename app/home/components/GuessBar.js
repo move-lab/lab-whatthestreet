@@ -85,6 +85,7 @@ class GuessBar extends React.PureComponent { // eslint-disable-line react/prefer
         .GuessBar {
           position: relative;
           width: 150px;
+          height: 106.56px;
           background-color: #FF6819;
           display: flex;
           align-items: flex-end;

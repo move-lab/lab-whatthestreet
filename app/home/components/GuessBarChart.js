@@ -11,7 +11,7 @@ const ArrowIcon = '/static/icons/Arrow_Landing.svg';
 import * as METRICS from '../../shared/style/metrics';
 import * as COLORS from '../../shared/style/colors';
 
-class GuessBarChart extends React.PureComponent {
+class GuessBarChart extends React.Component {
 
   static propTypes = {
     guess: React.PropTypes.object.isRequired,
@@ -24,8 +24,6 @@ class GuessBarChart extends React.PureComponent {
       guess: props.guess,
     };
   }
-
-  shouldComponentUpdate = () => (true)
 
   onChange = () => this.props.onChange(this.state.guess);
 
