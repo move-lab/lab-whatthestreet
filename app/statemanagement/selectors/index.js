@@ -24,7 +24,7 @@ export {
   // makeSelectActualVehicle,
   // selectParkingSlots,
   // makeSelectActualParkingPlace,
-  // CityMetaSelectors,
+  CityMetaSelectors,
   // VersusSelectors,
   // LaneSelectors,
   GuessSelectors,

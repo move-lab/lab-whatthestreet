@@ -115,7 +115,7 @@ class CitySelector extends React.PureComponent {
           flex-wrap: wrap;
         }
 
-        .CitySelectionModalItem {
+        .CitySelectionModalItems :global(.CitySelectionModalItem) {
           display: flex;
           flex-direction: row;
           align-items: center;
@@ -124,7 +124,7 @@ class CitySelector extends React.PureComponent {
           cursor: pointer;
         }
 
-        .CitySelectionModalItemCheckedIndicator {
+        .CitySelectionModalItems :global(.CitySelectionModalItemCheckedIndicator) {
           width: 50px;
         }
       `}</style>
