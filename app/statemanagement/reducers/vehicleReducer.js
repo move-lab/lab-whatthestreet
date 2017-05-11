@@ -2,7 +2,7 @@ import { fromJS } from 'immutable';
 
 import {
   SELECT_VEHICLE,
-} from 'data/constants';
+} from '../constants';
 
 const initialState = fromJS({
   availableVehicles: ['bike', 'rails', 'car'],

@@ -4,6 +4,7 @@ export const MetricsContentPadding = "160px";
 export const MetricsSectionPadding = "70px";
 export const MetricsSectionMinHeight = "100vh";
 export const MetricsBasePadding = "15px";
+export const MetricsTopSpace = "200px";
 
 // Z-Indexes
 export const MetricsZindexHeader = 9999;

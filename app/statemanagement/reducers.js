@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 import cityReducer from'./reducers/cityReducer';
-// import vehicleReducer from './reducers/vehicleReducer';
+import vehiclesStateManagement from './VehiclesStateManagement';
 // import scrollReducer from './reducers/scrollReducer';
 // import parkingReducer from './reducers/parkingReducer';
 import guessReducer from './reducers/guessReducer';
@@ -18,7 +18,7 @@ export default combineReducers({
   app: appStateManagement,
   // page: pageReducer,
   city: cityReducer,
-  // vehicle: vehicleReducer,
+  vehicles: vehiclesStateManagement,
   // scroll: scrollReducer,
   // parking: parkingReducer,
   // lanes: laneReducer,

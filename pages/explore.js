@@ -5,6 +5,7 @@ import { initStore } from '../app/statemanagement/store';
 
 import Layout from '../app/shared/components/Layout';
 import Home from '../app/home/Home';
+import ExploreScroll from '../app/explore/ExploreScroll';
 
 import { CityActions } from '../app/statemanagement/actions';
 import { setBaseUrl } from '../app/statemanagement/AppStateManagement';
@@ -31,7 +32,7 @@ class Explore extends Component {
   render() {
     return (
       <Layout>
-        blabla
+        <ExploreScroll />
       </Layout>
     )
   }
