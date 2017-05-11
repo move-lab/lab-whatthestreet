@@ -44,8 +44,8 @@ router.use('/cities/:city/:vehicle', (request, response, next) => {
   next();
 });
 
-router.route('/cities/:city/:vehicle/parking').get(cityRoute.getParkingSvg);
-router.route('/cities/:city/:vehicle/lanes').get(cityRoute.getLanesSvg);
+router.route('/cities/:city/parking/:vehicle').get(cityRoute.getParkingSvg);
+router.route('/cities/:city/lanes/:vehicle').get(cityRoute.getLanesSvg);
 
 // Guesses
 router.route('/cities/:city/guess').get(guessRoute.getAllGuesses);
