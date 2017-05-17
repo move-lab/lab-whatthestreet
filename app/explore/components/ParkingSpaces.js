@@ -124,7 +124,7 @@ class ParkingSpaces extends React.Component {
 
     if (activePolygon) {
       // TODO FIGURE OUT WHY POLYGON ACTIVATED IF NOT THE RIGHT ONE
-      console.log('active polygon:' + activePolygon.id);
+      // console.log('active polygon:' + activePolygon.id);
       this.props.onItemSelected();
       this.activatePolygon(activePolygon.id);
     }
