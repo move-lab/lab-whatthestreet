@@ -37,7 +37,7 @@ class ExploreScroll extends React.Component {
     return (
       <section>
         <VehicleSlide
-          vehicle="bike"
+          vehicle="car"
           onLoaded={this.handleVehicleSlideLoaded}
         />
         {/*{this.props.availableVehicles.map((vehicle, index) =>
