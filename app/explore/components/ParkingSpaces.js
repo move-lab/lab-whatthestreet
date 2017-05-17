@@ -146,7 +146,7 @@ class ParkingSpaces extends React.Component {
 
   render() {
     return (
-      <div style={{ width: '100%' }}>
+      <div className="ParkingSpacesWrapper">
         {!this.state.loading &&
           <div
             className="ParkingSpacesSvg"
@@ -159,10 +159,15 @@ class ParkingSpaces extends React.Component {
           <Loader />
         }
         <style jsx>{`
-          .ParkingSpacesSvg {
+          .ParkingSpacesWrapper {
             position: relative;
             overflow: hidden;
             width: 600px;
+          }
+
+          .ParkingSpacesSvg {
+            display : flex;
+            justify-content: center;
           }
 
           .ParkingSpacesSvg :global(svg) :global(polygon) {
