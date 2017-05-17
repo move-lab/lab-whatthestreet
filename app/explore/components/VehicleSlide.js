@@ -128,6 +128,7 @@ class VehicleSlide extends React.Component {
 
           .Title {
             font-size: 50px;
+            margin-top: 0;
             text-align: center;
             width: 600px;
             font-weight: 400;

@@ -25,7 +25,7 @@ class Layout extends Component {
           <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/4.1.0/sanitize.min.css"/>
         </Head>
         {this.props.children}
-        <style jsx>{`
+        <style jsx global>{`
           @font-face {
             font-family: 'LarsseitMedium';
             src: url('/static/fonts/Larsseit/Larsseit-Medium.eot');

@@ -4,6 +4,7 @@ import withRedux from 'next-redux-wrapper';
 import { initStore } from '../app/statemanagement/store';
 
 import Layout from '../app/shared/components/Layout';
+import Header from '../app/shared/components/Header';
 import Home from '../app/home/Home';
 import ExploreScroll from '../app/explore/ExploreScroll';
 
@@ -32,6 +33,9 @@ class Explore extends Component {
   render() {
     return (
       <Layout>
+        <Header
+          mode="explore"
+        />
         <ExploreScroll />
       </Layout>
     )

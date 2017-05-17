@@ -5,6 +5,7 @@ import { initStore } from '../app/statemanagement/store';
 
 import Layout from '../app/shared/components/Layout';
 import Home from '../app/home/Home';
+import Header from '../app/shared/components/Header';
 
 import { CityActions } from '../app/statemanagement/actions';
 import { setBaseUrl } from '../app/statemanagement/AppStateManagement';
@@ -29,6 +30,10 @@ class Index extends Component {
   render() {
     return (
       <Layout>
+        <Header
+          title="What the Street!?"
+          mode="normal"
+        />
         <Home />
       </Layout>
     )
