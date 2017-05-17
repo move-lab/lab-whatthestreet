@@ -2,7 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import VehicleSlide from './components/VehicleSlide';
-import VehicleSlidesOverlay from './components/VehicleSlidesOverlay'
+import VehicleSlidesOverlay from './components/VehicleSlidesOverlay';
+
+import { lanes } from '../statemanagement/constants/identifiersConstants';
 
 class ExploreScroll extends React.Component {
 
@@ -12,17 +14,32 @@ class ExploreScroll extends React.Component {
 
   constructor(props) {
     super(props);
+
+    this.handleVehicleSlideLoaded = this.handleVehicleSlideLoaded.bind(this);
+
     this.state = {
-      showParkingMapButton: true,
+      showParkingMapButton: false,
       showLanesMapButton: false
     };
+  }
+
+  handleVehicleSlideLoaded(dataType) {
+    console.log('loaded');
+    if (dataType === lanes) {
+      this.setState({ showLanesMapButton: true })
+    } else {
+      this.setState({ showParkingMapButton: true })
+    }
   }
 
   render() {
 
     return (
       <section>
-        <VehicleSlide vehicle="bike" />
+        <VehicleSlide
+          vehicle="bike"
+          onLoaded={this.handleVehicleSlideLoaded}
+        />
         {/*{this.props.availableVehicles.map((vehicle, index) =>
           <VehicleSlide
             key={index}

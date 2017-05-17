@@ -104,22 +104,6 @@ exports.getVersus = (request, response) => {
 };
 
 /**
- * Gets lanes of City
- */
-exports.getLanesSvg = (request, response) => {
-  response.header('Content-Type', 'image/svg+xml');
-  response.sendFile(path.join(__dirname, `../../../static/cities/${request.params.city}/lanes/${request.params.vehicle}.svg`));
-};
-
-/**
- * Gets Parkingspaces of city
- */
-exports.getParkingSvg = (request, response) => {
-  response.header('Content-Type', 'image/svg+xml');
-  response.sendFile(path.join(__dirname, `../../../static/cities/${request.params.city}/parking/${request.params.vehicle}.svg`));
-};
-
-/**
  * Gets Backgroundimage for given City
  */
 exports.getCityBackground = (request, response) => {
