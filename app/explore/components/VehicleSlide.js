@@ -50,8 +50,12 @@ class VehicleSlide extends React.Component {
         onPathClicked={(data, path) => console.log(`TODO onPathClicked() ${data} ${path}`)}
         registerItemsForSearch={(items) => console.log(`TODO registerItemsForSearch ${items}`)}
         onLoaded={() => this.props.onLoaded(lanes)}
-        onItemSelected={(isLast) => console.log('TODO onItemSelected()')}
-        onPathSelected={(data) => console.log('TODO onPathSelected()')}
+        onItemSelected={(isLast) => {
+          {/*console.log('TODO onItemSelected()')*/}
+        }}
+        onPathSelected={(data) => {
+          {/*console.log('TODO onPathSelected()')*/}
+        }}
       />
     )
   }

@@ -12,6 +12,7 @@
     "geoip-lite": "^1.2.1",
     "immutable": "^3.8.1",
     "lodash.find": "^4.6.0",
+    "lodash.findindex": "^4.6.0",
     "mongodb": "^2.2.26",
     "next": "latest",
     "next-redux-wrapper": "^1.1.2",

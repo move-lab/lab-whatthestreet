@@ -41,7 +41,7 @@ class Header extends React.Component {
 
     return (
       <div className="InfoLabel">
-        <h3>No Parkingplace Selected</h3>
+        <h3>No Parking Selected</h3>
       </div>
     );
   }

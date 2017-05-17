@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-
-import _find from 'lodash.find';
+import _findIndex from 'lodash.findindex';
 
 // Styles
 import * as METRICS from '../../shared/style/metrics';
@@ -50,9 +49,8 @@ class Lanes extends React.Component {
   }
 
   getPathData = (path) => {
-    const svgNode = _find(this.element.childNodes, { nodeName: 'svg'});
-    const absoluteX = svgNode.getBBox().x + this.element.getBoundingClientRect().left;
-    const absoluteY = svgNode.getBBox().y + (this.element.getBoundingClientRect().top - 2);
+    const absoluteX = this.element.childNodes[this.svgNodeIndex].getBBox().x + this.element.getBoundingClientRect().left;
+    const absoluteY = this.element.childNodes[this.svgNodeIndex].getBBox().y + (this.element.getBoundingClientRect().top - 2);
 
     return ({
       id: parseInt(path.getAttribute('id'), 10),
@@ -79,17 +77,29 @@ class Lanes extends React.Component {
   }
 
   initialize() {
+    const self = this;
     this.getSvg(this.props.city, this.props.vehicle).then((response) => {
       this.setState({ svg: response.data, loading: false });
       this.reducedPathData = this.reducePathData();
+      console.log(this.reducedPathData);
       this.addClickHandler();
-      // registerScrollEventsToElement(document.getElementById(this.props.scrollParent), this.doesScroll);
+      let ticking = false;
+      window.addEventListener('scroll', (e) => {
+        const lastKnownScrollPosition = - this.element.getBoundingClientRect().top + this.element.offsetTop;
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            self.doesScroll(lastKnownScrollPosition);
+            ticking = false;
+          });
+        }
+        ticking = true;
+      }, { capture: true, passive: true });
       this.props.onLoaded();
     }, (error) => { window.console.log(error); });
   }
 
   addClickHandler() {
-    const paths = _find(this.element.childNodes, { nodeName: 'svg'}).getElementsByTagName('path');
+    const paths = this.element.childNodes[this.svgNodeIndex].getElementsByTagName('path');
     for (let i = 0; i < paths.length; i += 1) {
       paths[i].addEventListener('click', (e) => this.pathClicked(e));
     }
@@ -101,7 +111,7 @@ class Lanes extends React.Component {
   }
 
   reducePathData() {
-    const paths = _find(this.element.childNodes, { nodeName: 'svg'}).getElementsByTagName('path');
+    const paths = this.element.childNodes[this.svgNodeIndex].getElementsByTagName('path');
 
     const searchableItems = [];
     const importantPaths = [];
@@ -117,25 +127,23 @@ class Lanes extends React.Component {
     return importantPaths;
   }
 
-  // doesScroll() {
-  //   const ST = document.getElementById(this.props.scrollParent).scrollTop;
-  //   let activePathID = '';
+  doesScroll(lastKnownScrollPosition) {
+    const ST = lastKnownScrollPosition;
+    let activePath = this.reducedPathData.find((item) => {
+      return isInRange(item.coordinates.minY, item.coordinates.maxY, ST)
+    });
 
-  //   for (let i = 0; i < this.reducedPathData.length; i += 1) {
-  //     if (isInRange(this.reducedPathData[i].coordinates.minY, this.reducedPathData[i].coordinates.maxY, ST)) {
-  //       activePathID = this.reducedPathData[i].id;
-  //     }
-  //   }
-
-  //   this.props.onItemSelected(ST >= this.element.offsetHeight);
-  //   this.activatePath(activePathID);
-  // }
+    if (activePath) {
+      this.props.onItemSelected();
+      this.activatePath(activePath.id);
+    }
+  }
 
   activatePath(index = 0) {
     if (!this.state.loading) {
-      const svgElement = _find(this.element.childNodes, { nodeName: 'svg'}).getElementById(index);
+      const svgElement = this.element.childNodes[this.svgNodeIndex].getElementById(index);
 
-      if (this.state.lastIndex) _find(this.element.childNodes, { nodeName: 'svg'}).getElementById(this.state.lastIndex).style.stroke = '';
+      if (this.state.lastIndex) this.element.childNodes[this.svgNodeIndex].getElementById(this.state.lastIndex).style.stroke = '';
 
       if (svgElement) svgElement.style.stroke = COLORS.ColorForegroundOrange;
 
@@ -155,8 +163,10 @@ class Lanes extends React.Component {
         {!this.state.loading &&
           <div
             className="LanesSvg"
-            ref={(element) => { this.element = element; }}
-            id={`lanes-${this.props.vehicle}`}
+            ref={(element) => { 
+              this.element = element;
+              if(this.element) this.svgNodeIndex = _findIndex(this.element.childNodes, { nodeName: 'svg'});
+            }}
             dangerouslySetInnerHTML={this.renderSvg(this.state.svg)}
           />
         }
@@ -185,9 +195,9 @@ class Lanes extends React.Component {
   }
 }
 
-// function isInRange(rangeMin, rangeMax, value) {
-//   return value > rangeMin && value < rangeMax;
-// }
+function isInRange(rangeMin, rangeMax, value) {
+  return value > rangeMin && value < rangeMax;
+}
 
 
 export default connect((state) => {
