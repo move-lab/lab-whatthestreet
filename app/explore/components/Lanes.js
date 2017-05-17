@@ -81,7 +81,6 @@ class Lanes extends React.Component {
     this.getSvg(this.props.city, this.props.vehicle).then((response) => {
       this.setState({ svg: response.data, loading: false });
       this.reducedPathData = this.reducePathData();
-      console.log(this.reducedPathData);
       this.addClickHandler();
       let ticking = false;
       window.addEventListener('scroll', (e) => {

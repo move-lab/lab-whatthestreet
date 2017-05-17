@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-
-import _find from 'lodash.find';
+import _findIndex from 'lodash.findindex';
 
 // Styles
 import * as METRICS from '../../shared/style/metrics';
@@ -70,24 +69,35 @@ class ParkingSpaces extends React.Component {
   }
 
   initialize() {
+    const self = this;
     this.getSvg(this.props.city, this.props.vehicle).then((response) => {
       this.setState({ svg: response.data, loading: false });
       this.reducedPolygonData = this.reducePolygonData();
       this.addClickHandler();
-      // registerScrollEventsToElement(document.getElementById(this.props.scrollParent), this.doesScroll);
+      let ticking = false;
+      window.addEventListener('scroll', (e) => {
+        const lastKnownScrollPosition = - this.element.getBoundingClientRect().top + this.element.offsetTop;
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            self.doesScroll(lastKnownScrollPosition);
+            ticking = false;
+          });
+        }
+        ticking = true;
+      }, { capture: true, passive: true });
       this.props.onLoaded();
     }, (error) => { window.console.log(error); });
   }
 
   addClickHandler() {
-    const polygons = _find(this.element.childNodes, { nodeName: 'svg'}).getElementsByTagName('path');
+    const polygons = this.element.childNodes[this.svgNodeIndex].getElementsByTagName('polygon');
     for (let i = 0; i < polygons.length; i += 1) {
       polygons[i].addEventListener('click', (e) => this.props.onPathClicked(this.getPolygonData(e.target), e));
     }
   }
 
   reducePolygonData() {
-    const polygons = _find(this.element.childNodes, { nodeName: 'svg'}).getElementsByTagName('path');
+    const polygons = this.element.childNodes[this.svgNodeIndex].getElementsByTagName('polygon');
     const importantPolygons = [];
     const searchableItems = [];
 
@@ -102,38 +112,36 @@ class ParkingSpaces extends React.Component {
     }
 
     this.props.registerItemsForSearch(searchableItems);
+
     return importantPolygons;
   }
 
-  // doesScroll = () => {
-  //   const ST = document.getElementById(this.props.scrollParent).scrollTop;
+  doesScroll(lastKnownScrollPosition) {
+    const ST = lastKnownScrollPosition;
+    let activePolygon = this.reducedPolygonData.find((item) => {
+      return isInRange(item.coordinates.minY, item.coordinates.maxY, ST)
+    });
 
-  //   let activePolygonID = '';
-
-  //   for (let i = 0; i < this.reducedPolygonData.length; i += 1) {
-  //     const polygon = this.reducedPolygonData[i];
-  //     if (isInRange(polygon.coordinates.minY, polygon.coordinates.maxY, ST)) {
-  //       activePolygonID = polygon.id;
-  //     }
-  //   }
-
-  //   this.activatePolygon(activePolygonID);
-
-  //   this.props.onItemSelected(ST >= this.element.offsetHeight);
-  // }
-
-  polygonSelected(polygon) {
-    this.props.polygonSelected(this.getPolygonData(polygon))
+    if (activePolygon) {
+      // TODO FIGURE OUT WHY POLYGON ACTIVATED IF NOT THE RIGHT ONE
+      console.log('active polygon:' + activePolygon.id);
+      this.props.onItemSelected();
+      this.activatePolygon(activePolygon.id);
+    }
   }
+
+  // polygonSelected(polygon) {
+  //   this.props.polygonSelected(this.getPolygonData(polygon))
+  // }
 
   activatePolygon(id) {
     if (!this.state.loading) {
-      const svgElement = _find(this.element.childNodes, { nodeName: 'svg'}).getElementById(id);
+      const svgElement = this.element.childNodes[this.svgNodeIndex].getElementById(id);
 
-      if (this.state.lastIndex) _find(this.element.childNodes, { nodeName: 'svg'}).getElementById(this.state.lastIndex).style.fill = '';
+      if (this.state.lastIndex) this.element.childNodes[this.svgNodeIndex].getElementById(this.state.lastIndex).style.fill = '';
       if (svgElement) {
         svgElement.style.fill = COLORS.ColorForegroundOrange;
-        this.polygonSelected(svgElement);
+        // this.polygonSelected(svgElement);
       }
 
       this.setState({ lastIndex: id });
@@ -150,7 +158,10 @@ class ParkingSpaces extends React.Component {
         {!this.state.loading &&
           <div
             className="ParkingSpacesSvg"
-            ref={(element) => { this.element = element; }}
+            ref={(element) => { 
+              this.element = element;
+              if(this.element) this.svgNodeIndex = _findIndex(this.element.childNodes, { nodeName: 'svg'});
+            }}
             id={`parkingspace-${this.props.vehicle}`}
             dangerouslySetInnerHTML={this.renderSvg(this.state.svg)}
           />
@@ -186,9 +197,9 @@ class ParkingSpaces extends React.Component {
   }
 }
 
-// function isInRange(rangeMin, rangeMax, value) {
-//   return value > rangeMin && value < rangeMax;
-// }
+function isInRange(rangeMin, rangeMax, value) {
+  return value > rangeMin && value < rangeMax;
+}
 
 export default connect((state) => {
   return {
