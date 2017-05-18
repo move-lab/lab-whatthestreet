@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import Router from 'next/router';
+
 // Styles
 import * as METRICS from '../../shared/style/metrics';
 import * as COLORS from '../../shared/style/colors';
@@ -19,6 +21,8 @@ class VehicleSlide extends React.Component {
 
   static propTypes = {
     vehicle: React.PropTypes.string,
+    citySlug: React.PropTypes.string,
+    actualVehicle: React.PropTypes.string,
     onLoaded: React.PropTypes.func
   }
 
@@ -52,6 +56,10 @@ class VehicleSlide extends React.Component {
     }
   }
 
+  goToMapView(areaType, id) {
+    Router.push('/map', `/${this.props.citySlug}/explore/${this.props.actualVehicle}/${areaType}/${id}`, { shallow: true });
+  }
+
   onPolygonSelected(data) {
     const { dispatch } = this.props;
     dispatch(ParkingActions.setParkingSpace(data.id, data.neighborhood, data.area));
@@ -72,7 +80,7 @@ class VehicleSlide extends React.Component {
         <ParkingSpaces
           city="berlin"
           vehicle={this.props.vehicle}
-          onPathClicked={(data, path) => console.log(`TODO onPathClicked() ${data} ${path}`)}
+          onPathClicked={(data, path) => this.goToMapView('parking', data.id)}
           registerItemsForSearch={(items) => console.log(`TODO registerItemsForSearch`)}
           onLoaded={() => this.props.onLoaded(parkingspace)}
           onItemSelected={(isLast) => console.log('TODO onItemSelected()')}
@@ -89,7 +97,7 @@ class VehicleSlide extends React.Component {
       <Lanes
         city="berlin"
         vehicle={this.props.vehicle}
-        onPathClicked={(data, path) => console.log(`TODO onPathClicked() ${data} ${path}`)}
+        onPathClicked={(data, path) => this.goToMapView('lanes', data.id)}
         registerItemsForSearch={(items) => console.log(`TODO registerItemsForSearch`)}
         onLoaded={() => this.props.onLoaded(lanes)}
         onItemSelected={(isLast) => {
@@ -195,9 +203,9 @@ class VehicleSlide extends React.Component {
 
 }
 
-// TODO CONNECT AND GET:
-// city
-
 export default connect((state) => {
-  return {}
+  return {
+    actualVehicle: state.vehicles.get('vehicle'),
+    citySlug: state.city.getIn(['actual_city','slug'])
+  }
 })(VehicleSlide);
