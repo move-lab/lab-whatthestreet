@@ -84,15 +84,18 @@ class Lanes extends React.Component {
       this.addClickHandler();
       let ticking = false;
       window.addEventListener('scroll', (e) => {
-        const lastKnownScrollPosition = - this.element.getBoundingClientRect().top + this.element.offsetTop;
-        if (!ticking) {
-          window.requestAnimationFrame(() => {
-            self.doesScroll(lastKnownScrollPosition);
-            ticking = false;
-          });
+        // Sometimes element is undefined
+        if(this.element) {
+          const lastKnownScrollPosition = - this.element.getBoundingClientRect().top + this.element.offsetTop;
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              self.doesScroll(lastKnownScrollPosition);
+              ticking = false;
+            });
+          }
+          ticking = true;
         }
-        ticking = true;
-      }, { capture: true, passive: true });
+        }, { capture: true, passive: true });
       this.props.onLoaded();
     }, (error) => { window.console.log(error); });
   }
@@ -105,7 +108,6 @@ class Lanes extends React.Component {
   }
 
   pathClicked(event) {
-    console.log('path clicked');
     this.props.onPathClicked(this.getPathData(event.target), event);
   }
 
@@ -162,7 +164,7 @@ class Lanes extends React.Component {
         {!this.state.loading &&
           <div
             className="LanesSvg"
-            ref={(element) => { 
+            ref={(element) => {
               this.element = element;
               if(this.element) this.svgNodeIndex = _findIndex(this.element.childNodes, { nodeName: 'svg'});
             }}

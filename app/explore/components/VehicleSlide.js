@@ -31,7 +31,7 @@ class VehicleSlide extends React.Component {
           city="berlin"
           vehicle={this.props.vehicle}
           onPathClicked={(data, path) => console.log(`TODO onPathClicked() ${data} ${path}`)}
-          registerItemsForSearch={(items) => console.log(`TODO registerItemsForSearch ${items}`)}
+          registerItemsForSearch={(items) => console.log(`TODO registerItemsForSearch`)}
           onLoaded={() => this.props.onLoaded(parkingspace)}
           onItemSelected={(isLast) => console.log('TODO onItemSelected()')}
           onPathSelected={(data) => console.log('TODO onPathSelected()')}
@@ -48,7 +48,7 @@ class VehicleSlide extends React.Component {
         city="berlin"
         vehicle={this.props.vehicle}
         onPathClicked={(data, path) => console.log(`TODO onPathClicked() ${data} ${path}`)}
-        registerItemsForSearch={(items) => console.log(`TODO registerItemsForSearch ${items}`)}
+        registerItemsForSearch={(items) => console.log(`TODO registerItemsForSearch`)}
         onLoaded={() => this.props.onLoaded(lanes)}
         onItemSelected={(isLast) => {
           {/*console.log('TODO onItemSelected()')*/}

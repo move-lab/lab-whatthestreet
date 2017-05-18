@@ -76,14 +76,17 @@ class ParkingSpaces extends React.Component {
       this.addClickHandler();
       let ticking = false;
       window.addEventListener('scroll', (e) => {
-        const lastKnownScrollPosition = - this.element.getBoundingClientRect().top + this.element.offsetTop;
-        if (!ticking) {
-          window.requestAnimationFrame(() => {
-            self.doesScroll(lastKnownScrollPosition);
-            ticking = false;
-          });
+        if(self.element) {
+          // Hack because we know offset is 290
+          const lastKnownScrollPosition = - self.element.getBoundingClientRect().top + 290;
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              self.doesScroll(lastKnownScrollPosition);
+              ticking = false;
+            });
+          }
+          ticking = true;
         }
-        ticking = true;
       }, { capture: true, passive: true });
       this.props.onLoaded();
     }, (error) => { window.console.log(error); });
@@ -158,7 +161,7 @@ class ParkingSpaces extends React.Component {
         {!this.state.loading &&
           <div
             className="ParkingSpacesSvg"
-            ref={(element) => { 
+            ref={(element) => {
               this.element = element;
               if(this.element) this.svgNodeIndex = _findIndex(this.element.childNodes, { nodeName: 'svg'});
             }}
