@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 // Styles
@@ -6,6 +7,8 @@ import * as METRICS from '../../shared/style/metrics';
 import * as COLORS from '../../shared/style/colors';
 
 import { lanes, parkingspace } from '../../statemanagement/constants/identifiersConstants';
+
+import { setScrollPosition } from '../../statemanagement/AppStateManagement';
 
 import Lanes from './Lanes';
 import ParkingSpaces from './ParkingSpaces';
@@ -19,7 +22,27 @@ class VehicleSlide extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+
+    this.lastKnownScrollPosition = 0;
+  }
+
+  watchScrollPosition() {
+    return window.requestAnimationFrame(() => {
+      const newScrollPosition = Math.abs(this.elMainContainer.getBoundingClientRect().top);
+      if (this.lastKnownScrollPosition !== newScrollPosition) {
+        this.lastKnownScrollPosition = newScrollPosition;
+        this.props.dispatch(setScrollPosition(newScrollPosition));
+      }
+      this.watchScrollPosition();
+    });
+  }
+
+  componentDidMount() {
+    this.scrollPositionWatcher = this.watchScrollPosition();
+  }
+
+  componentWillUnmount() {
+    window.cancelAnimationFrame(this.scrollPositionWatcher);
   }
 
   renderParkingSpaces() {
@@ -63,7 +86,10 @@ class VehicleSlide extends React.Component {
   render() {
     return (
       <div className="SWrapper">
-        <div className="MainContainer">
+        <div
+          className="MainContainer"
+          ref={(element) => this.elMainContainer = element}
+        >
           <div className="Wrapper">
             <div className="Container ContainerLeft">
               <h3 className="Title">
@@ -155,4 +181,6 @@ class VehicleSlide extends React.Component {
 // TODO CONNECT AND GET:
 // city
 
-export default VehicleSlide;
+export default connect((state) => {
+  return {}
+})(VehicleSlide);

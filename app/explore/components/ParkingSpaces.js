@@ -35,11 +35,15 @@ class ParkingSpaces extends React.Component {
     this.initialize();
   }
 
-  componentWillReceiveProps(props) {
+  componentWillReceiveProps(nextProps) {
     if (this.state.svg) {
-      this.activatePolygon(props.active);
+      this.activatePolygon(nextProps.active);
     } else if (!this.state.svg) {
-      this.entry(true, props);
+      this.entry(true, nextProps);
+    }
+
+    if (!this.state.loading) {
+      this.doesScroll(nextProps.scrollPosition);
     }
   }
 
@@ -74,20 +78,6 @@ class ParkingSpaces extends React.Component {
       this.setState({ svg: response.data, loading: false });
       this.reducedPolygonData = this.reducePolygonData();
       this.addClickHandler();
-      let ticking = false;
-      window.addEventListener('scroll', (e) => {
-        if(self.element) {
-          // Hack because we know offset is 290
-          const lastKnownScrollPosition = - self.element.getBoundingClientRect().top + 290;
-          if (!ticking) {
-            window.requestAnimationFrame(() => {
-              self.doesScroll(lastKnownScrollPosition);
-              ticking = false;
-            });
-          }
-          ticking = true;
-        }
-      }, { capture: true, passive: true });
       this.props.onLoaded();
     }, (error) => { window.console.log(error); });
   }
@@ -126,8 +116,6 @@ class ParkingSpaces extends React.Component {
     });
 
     if (activePolygon) {
-      // TODO FIGURE OUT WHY POLYGON ACTIVATED IF NOT THE RIGHT ONE
-      // console.log('active polygon:' + activePolygon.id);
       this.props.onItemSelected();
       this.activatePolygon(activePolygon.id);
     }
@@ -206,7 +194,8 @@ function isInRange(rangeMin, rangeMax, value) {
 
 export default connect((state) => {
   return {
-    baseUrl: state.app.get('baseUrl')
+    baseUrl: state.app.get('baseUrl'),
+    scrollPosition: state.app.get('scrollPosition')
   }
 })(ParkingSpaces);
 

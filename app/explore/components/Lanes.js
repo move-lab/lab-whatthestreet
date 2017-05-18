@@ -20,7 +20,7 @@ class Lanes extends React.Component {
     onLoaded: React.PropTypes.func,
     onPathSelected: React.PropTypes.func,
     onPathClicked: React.PropTypes.func,
-    registerItemsForSearch: React.PropTypes.func,
+    registerItemsForSearch: React.PropTypes.func
   }
 
   constructor(props) {
@@ -36,11 +36,15 @@ class Lanes extends React.Component {
     this.initialize();
   }
 
-  componentWillReceiveProps(props) {
+  componentWillReceiveProps(nextProps) {
     if (this.state.svg) {
-      this.activatePath(props.active);
+      this.activatePath(nextProps.active);
     } else if (!this.state.svg) {
-      this.entry(true, props);
+      this.entry(true, nextProps);
+    }
+
+    if (!this.state.loading) {
+      this.doesScroll(nextProps.scrollPosition);
     }
   }
 
@@ -82,20 +86,6 @@ class Lanes extends React.Component {
       this.setState({ svg: response.data, loading: false });
       this.reducedPathData = this.reducePathData();
       this.addClickHandler();
-      let ticking = false;
-      window.addEventListener('scroll', (e) => {
-        // Sometimes element is undefined
-        if(this.element) {
-          const lastKnownScrollPosition = - this.element.getBoundingClientRect().top + this.element.offsetTop;
-          if (!ticking) {
-            window.requestAnimationFrame(() => {
-              self.doesScroll(lastKnownScrollPosition);
-              ticking = false;
-            });
-          }
-          ticking = true;
-        }
-        }, { capture: true, passive: true });
       this.props.onLoaded();
     }, (error) => { window.console.log(error); });
   }
@@ -203,6 +193,7 @@ function isInRange(rangeMin, rangeMax, value) {
 
 export default connect((state) => {
   return {
-    baseUrl: state.app.get('baseUrl')
+    baseUrl: state.app.get('baseUrl'),
+    scrollPosition: state.app.get('scrollPosition')
   }
 })(Lanes);
