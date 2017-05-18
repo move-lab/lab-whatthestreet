@@ -1,4 +1,4 @@
-import { NEXT_SCROLL_INDEX, PREVIOUS_SCROLL_INDEX, SCROLLING, SET_SCROLL_INDEX, REGISTER_SCROLL_TARGET, FINISH_SCROLLING } from './scrollConstants';
+// import { NEXT_SCROLL_INDEX, PREVIOUS_SCROLL_INDEX, SCROLLING, SET_SCROLL_INDEX, REGISTER_SCROLL_TARGET, FINISH_SCROLLING } from './scrollConstants';
 
 import { SET_PARKINGSPACE } from './parkingConstants';
 import * as CITY from './cityConstants';
@@ -24,7 +24,7 @@ export {
   LANES,
   GUESS,
   // PAGE,
-  // MAP,
+  MAP,
   STREET,
   CITY,
   // SEARCH,

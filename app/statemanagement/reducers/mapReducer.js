@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 
-import { MAP } from 'data/constants';
+import { MAP } from '../constants';
 
 const initialState = fromJS({
   latitude: 48.7666667,

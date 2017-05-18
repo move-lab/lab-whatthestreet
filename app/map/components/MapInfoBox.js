@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 
 import Link from 'next/link';
 
-import { MapSelectors, StreetSelectors } from '../../statemanagement/selectors';
-
 import * as identifiers from '../../statemanagement/constants/identifiersConstants';
 import * as COLORS from '../../shared/style/colors';
 
@@ -17,10 +15,13 @@ class MapInfoBox extends React.Component {
     neighborhood: React.PropTypes.string,
     street: React.PropTypes.object,
     mapArea: React.PropTypes.number,
-    actualVehicle: React.PropTypes.string
+    actualVehicle: React.PropTypes.string,
+    citySlug: React.PropTypes.string
   }
 
   render() {
+
+    console.log(this.props.citySlug);
 
     const isParkingSpace = this.props.mapMode === identifiers.parkingspace;
     const headline = isParkingSpace ? `Parkingspace in ${this.props.neighborhood}` : this.props.street.properties && this.props.street.properties.name;
@@ -36,8 +37,8 @@ class MapInfoBox extends React.Component {
         <div className="MapInfoButtons">
           <button className="MapInfoButton" onClick={() => console.log('TODO zoom in')}>+</button>
           <button className="MapInfoButton" onClick={() => console.log('TODO zoom out')}>-</button>
-          <Link href="/" prefetch>
-            <a className="MapInfoButton" onClick={() => console.log('TODO close')}>Close</a>
+          <Link href="/explore" as={`/${this.props.citySlug}/explore`} prefetch>
+            <a className="MapInfoButton">Close</a>
           </Link>
         </div>
         <style jsx>{`
@@ -98,10 +99,11 @@ class MapInfoBox extends React.Component {
 
 export default connect((state) => {
   return {
-    mapArea: MapSelectors.selectArea(),
-    mapMode: MapSelectors.selectMapMode(),
-    neighborhood: MapSelectors.selectNeighborhood(),
-    street: StreetSelectors.selectStreet(),
-    actualVehicle: state.vehicles.get('vehicle')
+    mapArea: state.map.get('area'),
+    mapMode: state.map.get('mapMode'),
+    neighborhood: state.map.get('neighborhood'),
+    street: state.street.get('data').toJS(),
+    actualVehicle: state.vehicles.get('vehicle'),
+    citySlug: state.city.getIn(['actual_city','slug'])
   }
 })(MapInfoBox);
