@@ -28,6 +28,7 @@ class VehicleSlide extends React.Component {
     this.lastKnownScrollPosition = 0;
 
     this.onLaneSelected = this.onLaneSelected.bind(this);
+    this.onPolygonSelected = this.onPolygonSelected.bind(this);
   }
 
   watchScrollPosition() {
@@ -49,6 +50,11 @@ class VehicleSlide extends React.Component {
     window.cancelAnimationFrame(this.scrollPositionWatcher);
   }
 
+  onPolygonSelected(data) {
+    const { dispatch } = this.props;
+    dispatch(ParkingActions.setParkingSpace(data.id, data.neighborhood, data.area));
+  }
+
   onLaneSelected(data) {
     const { dispatch } = this.props;
     dispatch(LaneActions.setLane(data.name, data.neighborhood, data.length, data.area, data.coordinates));
@@ -57,6 +63,7 @@ class VehicleSlide extends React.Component {
 
   renderParkingSpaces() {
     if (this.props.vehicle === 'rails') {
+      // TODO SPECIAL CASE RAILS NEED TO CALL onPolygonselected
       return this.renderLanes()
     } else {
       return (
@@ -67,6 +74,7 @@ class VehicleSlide extends React.Component {
           registerItemsForSearch={(items) => console.log(`TODO registerItemsForSearch`)}
           onLoaded={() => this.props.onLoaded(parkingspace)}
           onItemSelected={(isLast) => console.log('TODO onItemSelected()')}
+          onPolygonSelected={this.onPolygonSelected}
         />
       );
     }

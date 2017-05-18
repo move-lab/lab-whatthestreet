@@ -15,7 +15,7 @@ class ParkingSpaces extends React.Component {
   static propTypes = {
     vehicle: React.PropTypes.string,
     city: React.PropTypes.string,
-    polygonSelected: React.PropTypes.func,
+    onPolygonSelected: React.PropTypes.func,
     onItemSelected: React.PropTypes.func,
     onLoaded: React.PropTypes.func,
     scrollParent: React.PropTypes.string,
@@ -121,9 +121,9 @@ class ParkingSpaces extends React.Component {
     }
   }
 
-  // polygonSelected(polygon) {
-  //   this.props.polygonSelected(this.getPolygonData(polygon))
-  // }
+  polygonSelected(polygon) {
+    this.props.onPolygonSelected(this.getPolygonData(polygon))
+  }
 
   activatePolygon(id) {
     if (!this.state.loading) {
@@ -132,7 +132,7 @@ class ParkingSpaces extends React.Component {
       if (this.state.lastIndex) this.element.childNodes[this.svgNodeIndex].getElementById(this.state.lastIndex).style.fill = '';
       if (svgElement) {
         svgElement.style.fill = COLORS.ColorForegroundOrange;
-        // this.polygonSelected(svgElement);
+        this.polygonSelected(svgElement);
       }
 
       this.setState({ lastIndex: id });
