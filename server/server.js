@@ -18,6 +18,11 @@ app.prepare()
   server.use(compression());
   server.use('/api/v1', router);
 
+  server.get('/:cityName/explore/:type/:itemId', (req, res) => {
+    console.log('handled by /:cityName/explore/:type/:itemId');
+    return app.render(req, res, '/map', req.query);
+  })
+
   server.get('/:cityName/explore', (req, res) => {
     console.log('handled by /:cityName/explore');
     return app.render(req, res, '/explore', req.query);

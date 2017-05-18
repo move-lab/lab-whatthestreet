@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-const selectMap = (state) => state.get('map');
+const selectMap = (state) => state.map;
 
 export const selectLatitude = () => createSelector(
   selectMap,

@@ -30,7 +30,7 @@ export {
   LaneSelectors,
   GuessSelectors,
   // PageSelectors,
-  // MapSelectors,
-  StreetSelectors,
+  MapSelectors,
+  StreetSelectors
   // SearchSelectors,
 };

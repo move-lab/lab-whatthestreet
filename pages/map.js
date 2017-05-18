@@ -4,17 +4,19 @@ import withRedux from 'next-redux-wrapper';
 import { initStore } from '../app/statemanagement/store';
 
 import Layout from '../app/shared/components/Layout';
-import Header from '../app/shared/components/Header';
-import ExploreScroll from '../app/explore/ExploreScroll';
+import Loader from '../app/shared/components/Loader';
+import MapInfoBox from '../app/map/components/MapInfoBox';
 
 import { CityActions } from '../app/statemanagement/actions';
 import { setBaseUrl } from '../app/statemanagement/AppStateManagement';
+
+let Map;
 
 class Explore extends Component {
 
   static async getInitialProps (params) {
     const { store, isServer, req } = params;
-    console.log('Explore page render');
+    console.log('Map page render');
     // If not Server Side rendered, do not need to fetch everything again
     if (isServer) {
       const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
@@ -29,13 +31,29 @@ class Explore extends Component {
     return;
   }
 
+  constructor () {
+    super();
+    this.state = { showMap: false };
+  }
+
+  componentDidMount() {
+    // Do not render on server
+    Map = require('../app/map/Map').default;
+    this.setState({ showMap: true });
+  }
+
   render() {
     return (
       <Layout>
-        <Header
-          mode="explore"
-        />
-        <ExploreScroll />
+        <MapInfoBox />
+        {!this.state.showMap &&
+          <div style={{ display: 'flex', height: '100vh', alignItems: 'center', justifyContent: 'center' }}>
+            <Loader />
+          </div>
+        }
+        {this.state.showMap &&
+          <Map />
+        }
       </Layout>
     )
   }
