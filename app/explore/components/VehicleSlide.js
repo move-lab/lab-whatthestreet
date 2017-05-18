@@ -33,7 +33,7 @@ class VehicleSlide extends React.Component {
 
   watchScrollPosition() {
     return window.requestAnimationFrame(() => {
-      const newScrollPosition = Math.abs(this.elMainContainer.getBoundingClientRect().top);
+      const newScrollPosition = Math.round(Math.abs(this.elMainContainer.getBoundingClientRect().top));
       if (this.lastKnownScrollPosition !== newScrollPosition) {
         this.lastKnownScrollPosition = newScrollPosition;
         this.props.dispatch(setScrollPosition(newScrollPosition));
@@ -47,7 +47,9 @@ class VehicleSlide extends React.Component {
   }
 
   componentWillUnmount() {
-    window.cancelAnimationFrame(this.scrollPositionWatcher);
+    if (this.scrollPositionWatcher) {
+      window.cancelAnimationFrame(this.scrollPositionWatcher);
+    }
   }
 
   onPolygonSelected(data) {
