@@ -10,6 +10,8 @@ import { lanes, parkingspace } from '../../statemanagement/constants/identifiers
 
 import { setScrollPosition } from '../../statemanagement/AppStateManagement';
 
+import { StreetActions, LaneActions, ParkingActions } from '../../statemanagement/actions';
+
 import Lanes from './Lanes';
 import ParkingSpaces from './ParkingSpaces';
 
@@ -24,6 +26,8 @@ class VehicleSlide extends React.Component {
     super(props);
 
     this.lastKnownScrollPosition = 0;
+
+    this.onLaneSelected = this.onLaneSelected.bind(this);
   }
 
   watchScrollPosition() {
@@ -45,6 +49,12 @@ class VehicleSlide extends React.Component {
     window.cancelAnimationFrame(this.scrollPositionWatcher);
   }
 
+  onLaneSelected(data) {
+    const { dispatch } = this.props;
+    dispatch(LaneActions.setLane(data.name, data.neighborhood, data.length, data.area, data.coordinates));
+    dispatch(StreetActions.setStreetId(data.id));
+  }
+
   renderParkingSpaces() {
     if (this.props.vehicle === 'rails') {
       return this.renderLanes()
@@ -57,7 +67,6 @@ class VehicleSlide extends React.Component {
           registerItemsForSearch={(items) => console.log(`TODO registerItemsForSearch`)}
           onLoaded={() => this.props.onLoaded(parkingspace)}
           onItemSelected={(isLast) => console.log('TODO onItemSelected()')}
-          onPathSelected={(data) => console.log('TODO onPathSelected()')}
         />
       );
     }
@@ -76,9 +85,7 @@ class VehicleSlide extends React.Component {
         onItemSelected={(isLast) => {
           {/*console.log('TODO onItemSelected()')*/}
         }}
-        onPathSelected={(data) => {
-          {/*console.log('TODO onPathSelected()')*/}
-        }}
+        onLaneSelected={this.onLaneSelected}
       />
     )
   }

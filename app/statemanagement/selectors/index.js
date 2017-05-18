@@ -12,6 +12,7 @@ import * as PageSelectors from './pageSelectors';
 import * as MapSelectors from './mapSelectors';
 import * as StreetSelectors from './streetSelectors';
 import * as SearchSelectors from './searchSelectors';
+import * as ParkingSelectors from './parkingSelectors';
 
 export {
   // makeSelectLocationState,
@@ -23,13 +24,13 @@ export {
   // makeSelectVehicles,
   // makeSelectActualVehicle,
   // selectParkingSlots,
-  // makeSelectActualParkingPlace,
+  ParkingSelectors,
   CityMetaSelectors,
   // VersusSelectors,
-  // LaneSelectors,
+  LaneSelectors,
   GuessSelectors,
   // PageSelectors,
   // MapSelectors,
-  // StreetSelectors,
+  StreetSelectors,
   // SearchSelectors,
 };

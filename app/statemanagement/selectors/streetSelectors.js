@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-export const selectStreetState = (state) => state.get('street');
+export const selectStreetState = (state) => state.street;
 
 export const selectStreetId = () => createSelector(
   selectStreetState,

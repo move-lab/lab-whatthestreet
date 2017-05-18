@@ -18,7 +18,7 @@ class Lanes extends React.Component {
     baseUrl: React.PropTypes.string,
     onItemSelected: React.PropTypes.func,
     onLoaded: React.PropTypes.func,
-    onPathSelected: React.PropTypes.func,
+    onLaneSelected: React.PropTypes.func,
     onPathClicked: React.PropTypes.func,
     registerItemsForSearch: React.PropTypes.func
   }
@@ -49,10 +49,11 @@ class Lanes extends React.Component {
   }
 
   onPathSelected(path) {
-    this.props.onPathSelected(this.getPathData(path))
+    this.props.onLaneSelected(this.getPathData(path))
   }
 
   getPathData = (path) => {
+    // This might cause perf issue as we are reading from the dom
     const absoluteX = this.element.childNodes[this.svgNodeIndex].getBBox().x + this.element.getBoundingClientRect().left;
     const absoluteY = this.element.childNodes[this.svgNodeIndex].getBBox().y + (this.element.getBoundingClientRect().top - 2);
 
@@ -136,6 +137,8 @@ class Lanes extends React.Component {
 
       if (this.state.lastIndex) this.element.childNodes[this.svgNodeIndex].getElementById(this.state.lastIndex).style.stroke = '';
 
+      // This super costly because it cause a repaint of everything
+      // Maybe avoid triggering it when scrolling super fast
       if (svgElement) svgElement.style.stroke = COLORS.ColorForegroundOrange;
 
       if (svgElement !== null) this.onPathSelected(svgElement);

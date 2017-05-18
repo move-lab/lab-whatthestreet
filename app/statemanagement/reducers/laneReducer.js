@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 
-import { LANES } from 'data/constants';
+import { LANES } from '../constants';
 
 const initialState = fromJS({
   neighborhood: '',

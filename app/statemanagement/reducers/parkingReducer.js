@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 
-import { SET_PARKINGSPACE } from 'data/constants';
+import { SET_PARKINGSPACE } from '../constants';
 
 const initialState = fromJS({
   id: 0,

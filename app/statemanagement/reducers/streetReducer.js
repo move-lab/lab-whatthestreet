@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 
-import { STREET } from 'data/constants';
+import { STREET } from '../constants';
 
 const initialState = fromJS({
   loading: false,

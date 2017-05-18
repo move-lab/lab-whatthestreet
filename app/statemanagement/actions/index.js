@@ -12,14 +12,14 @@ import * as SearchActions from './searchActions';
 
 export {
   // ScrollActions,
-  // ParkingActions,
+  ParkingActions,
   CityMetaActions,
   // VersusActions,
-  // LaneActions,
+  LaneActions,
   GuessActions,
   // PageActions,
   // MapActions,
-  // StreetActions,
+  StreetActions,
   CityActions,
   // SearchActions,
 };

@@ -7,7 +7,7 @@ import SocialMediaButtons from './SocialMediaButtons';
 import VehicleIcon from './VehicleIcon';
 
 // Selectors
-// import { makeSelectActualScrollIndex, makeSelectActualParkingPlace, LaneSelectors } from 'data/selectors';
+import { ParkingSelectors, LaneSelectors } from '../../statemanagement/selectors';
 
 const searchIcon = '/static/icons/Icon_Search.svg';
 
@@ -301,15 +301,9 @@ class Header extends React.Component {
   }
 }
 
-// const mapStateToProps = createStructuredSelector({
-//   scrollIndex: makeSelectActualScrollIndex(),
-//   parkingSpace: makeSelectActualParkingPlace(),
-//   lane: LaneSelectors.makeSelectActualLane(),
-// });
+const mapStateToProps = createStructuredSelector({
+  parkingSpace: ParkingSelectors.makeSelectActualParkingPlace(),
+  lane: LaneSelectors.makeSelectActualLane(),
+});
 
-export default connect((state) => {
-  return {
-    parkingSpace: {},
-    lane: {}
-  }
-})(Header);
+export default connect(mapStateToProps)(Header);

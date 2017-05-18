@@ -1,7 +1,6 @@
 import { createSelector } from 'reselect';
 
-const selectLanes = (state) => state.get('lanes');
-
+const selectLanes = (state) => state.lanes;
 
 const makeSelectActualLane = () => createSelector(
   selectLanes,

@@ -1,7 +1,6 @@
 import { createSelector } from 'reselect';
 
-const selectParkingSlots = (state) => state.get('parking');
-
+const selectParkingSlots = (state) => state.parking;
 
 const makeSelectActualParkingPlace = () => createSelector(
   selectParkingSlots,
