@@ -35,7 +35,9 @@ class Explore extends Component {
         <Header
           mode="explore"
         />
-        <ExploreScroll />
+        <ExploreScroll
+          url={this.props.url}
+        />
       </Layout>
     )
   }

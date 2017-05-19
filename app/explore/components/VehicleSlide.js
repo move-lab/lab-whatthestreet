@@ -23,6 +23,7 @@ class VehicleSlide extends React.Component {
     vehicle: React.PropTypes.string,
     citySlug: React.PropTypes.string,
     actualVehicle: React.PropTypes.string,
+    showMap: React.PropTypes.func,
     onLoaded: React.PropTypes.func
   }
 
@@ -57,7 +58,16 @@ class VehicleSlide extends React.Component {
   }
 
   goToMapView(areaType, id) {
-    Router.push('/map', `/${this.props.citySlug}/explore/${this.props.actualVehicle}/${areaType}/${id}`, { shallow: true });
+    this.props.showMap(
+      `/${this.props.citySlug}/explore/${this.props.actualVehicle}/${areaType}/${id}`,
+      {
+        citySlug: this.props.citySlug,
+        actualVehicle: this.props.actualVehicle,
+        areaType,
+        id
+      }
+    )
+    // Router.push('/map', `/${this.props.citySlug}/explore/${this.props.actualVehicle}/${areaType}/${id}`, { shallow: true });
   }
 
   onPolygonSelected(data) {

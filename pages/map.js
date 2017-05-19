@@ -4,13 +4,10 @@ import withRedux from 'next-redux-wrapper';
 import { initStore } from '../app/statemanagement/store';
 
 import Layout from '../app/shared/components/Layout';
-import Loader from '../app/shared/components/Loader';
-import MapInfoBox from '../app/map/components/MapInfoBox';
+import MapModal from '../app/map/MapModal';
 
 import { CityActions } from '../app/statemanagement/actions';
 import { setBaseUrl } from '../app/statemanagement/AppStateManagement';
-
-let Map;
 
 class Explore extends Component {
 
@@ -31,29 +28,10 @@ class Explore extends Component {
     return;
   }
 
-  constructor () {
-    super();
-    this.state = { showMap: false };
-  }
-
-  componentDidMount() {
-    // Do not render on server
-    Map = require('../app/map/Map').default;
-    this.setState({ showMap: true });
-  }
-
   render() {
     return (
       <Layout>
-        <MapInfoBox />
-        {!this.state.showMap &&
-          <div style={{ display: 'flex', height: '100vh', alignItems: 'center', justifyContent: 'center' }}>
-            <Loader />
-          </div>
-        }
-        {this.state.showMap &&
-          <Map />
-        }
+        <MapModal />
       </Layout>
     )
   }
