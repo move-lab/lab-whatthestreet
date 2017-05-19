@@ -15,7 +15,7 @@ Using https://github.com/zeit/next.js/ for easy SSR rendering and routing
 ```
 yarn install
 yarn run dev
-open browser on localhost:3000
+open browser on localhost:4000
 ```
 Please note that switching between pages can be slow in dev mode, as prefetching is not enabled, to see performance in prod, you can run a prod build with these commands:
 
@@ -23,7 +23,7 @@ Please note that switching between pages can be slow in dev mode, as prefetching
 yarn install
 yarn build (will take a while)
 yarn start
-open browser on localhost:3000
+open browser on localhost:4000
 ```
 
 ## Database set-up
