@@ -2,8 +2,8 @@ import { fromJS } from 'immutable';
 
 // Initial state
 const initialState = fromJS({
-  availableVehicles: ['bike', 'rails', 'car'],
-  vehicle: 'bike',
+  availableVehicles: ['car', 'bike', 'rail'],
+  vehicle: 'car'
 });
 
 // Actions
@@ -12,7 +12,7 @@ export const SELECT_VEHICLE = 'Vehicules/SELECT_VEHICLE';
 export function selectVehicle(type) {
   return {
     type: SELECT_VEHICLE,
-    vehicle: type,
+    payload: type,
   };
 }
 
