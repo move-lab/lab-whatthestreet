@@ -41,7 +41,25 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
   constructor() {
     super();
     this.state = {
-      guessed : false
+      guessed : false,
+      loadingExplorePage: false
+    }
+
+    Router.onRouteChangeStart = (url) => {
+      console.log(url);
+      this.setState({
+        loadingExplorePage : true
+      });
+    }
+    Router.onRouteChangeComplete = () => {
+      this.setState({
+        loadingExplorePage : false
+      });
+    }
+    Router.onRouteChangeError = () => {
+      this.setState({
+        loadingExplorePage : false
+      });
     }
   }
 
@@ -85,7 +103,11 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
           guess={this.props.ownGuess} 
           />
           <div className="CenteredContent">
-            <RoundedButton disabled={!this.state.guessed} onClick={() => this.solved()}>
+            <RoundedButton
+              disabled={(!this.state.guessed || this.state.loadingExplorePage)}
+              loading={this.state.loadingExplorePage}
+              onClick={() => this.solved()}
+            >
               Get Started
             </RoundedButton>
           </div>
