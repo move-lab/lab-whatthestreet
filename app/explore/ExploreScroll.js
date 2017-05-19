@@ -47,7 +47,7 @@ class ExploreScroll extends React.Component {
   }
 
   dismissMap () {
-    Router.push('/explore', '/berlin/explore', { shallow: true })
+    Router.replace('/explore', '/berlin/explore', { shallow: true })
   }
 
   render() {
