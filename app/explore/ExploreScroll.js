@@ -43,7 +43,6 @@ class ExploreScroll extends React.Component {
       url,
       { shallow: true }
     );
-    // this.props.url.push('/map', url);
   }
 
   dismissMap () {
