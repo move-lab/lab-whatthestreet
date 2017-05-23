@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg width="120px" height="120px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
     <title>Icon_SpaceAllocation_Rail</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
@@ -12,11 +12,11 @@
                 </g>
             </g>
             <g id="Layer_2" transform="translate(0.000000, 30.000000)" stroke="#0000FF" stroke-width="2" stroke-linejoin="round">
-                <ellipse id="Oval" stroke-linecap="round" cx="32.2282718" cy="50.2878356" rx="4.1442953" ry="4.1442953"></ellipse>
-                <ellipse id="Oval" stroke-linecap="round" cx="50.6353188" cy="50.2878356" rx="4.1442953" ry="4.1442953"></ellipse>
+                <circle id="Oval" stroke-linecap="round" cx="32.2282718" cy="50.2878356" r="4.1442953"></circle>
+                <circle id="Oval" stroke-linecap="round" cx="50.6353188" cy="50.2878356" r="4.1442953"></circle>
                 <path d="M36.8288591,50 L46.0388591,50" id="Shape" stroke-linecap="round"></path>
                 <path d="M24.8163591,49.8479027 L24.8163591,46.1706376 C24.8163591,44.9232246 25.8275871,43.9119966 27.075,43.9119966 L55.6323826,43.9119966 C56.2314114,43.9119966 56.8059055,44.1499599 57.2294829,44.5735373 C57.6530602,44.9971146 57.8910235,45.5716088 57.8910235,46.1706376 L57.8910235,49.8479027" id="Shape" stroke-linecap="round"></path>
-                <ellipse id="Oval" stroke-linecap="round" cx="86.5759228" cy="50.2878356" rx="4.1442953" ry="4.1442953"></ellipse>
+                <circle id="Oval" stroke-linecap="round" cx="86.5759228" cy="50.2878356" r="4.1442953"></circle>
                 <path d="M91.1765101,50 L94.8865101,50" id="Shape" stroke-linecap="round"></path>
                 <path d="M79.1624161,49.8479027 L79.1624161,46.1706376 C79.162416,45.5713325 79.400598,44.9965966 79.8245202,44.5729734 C80.2484423,44.1493503 80.8233461,43.9115737 81.422651,43.9119966 L94.8947987,43.9119966" id="Shape" stroke-linecap="round"></path>
                 <path d="M57.9388423,50 L79.1640101,50" id="Shape" stroke-linecap="round"></path>

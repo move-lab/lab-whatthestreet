@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg width="80px" height="60px" viewBox="0 0 80 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
     <title>Icon_Label_Rail_Explanation</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
         <g id="Icon_Label_Rail_Explanation" stroke="#0000FF">
             <g id="Icon---Rail" transform="translate(8.000000, 11.000000)">
-                <ellipse id="Oval" cx="21.7116779" cy="33.8781208" rx="2.79194631" ry="2.79194631"></ellipse>
-                <ellipse id="Oval" cx="34.1122148" cy="33.8781208" rx="2.79194631" ry="2.79194631"></ellipse>
+                <circle id="Oval" cx="21.7116779" cy="33.8781208" r="2.79194631"></circle>
+                <circle id="Oval" cx="34.1122148" cy="33.8781208" r="2.79194631"></circle>
                 <path d="M24.5,34 L31,34" id="Shape"></path>
                 <path d="M16.7183893,33.581745 L16.7183893,31.1044295 C16.7183893,30.2640671 17.3996376,29.5828188 18.24,29.5828188 L37.4786577,29.5828188 C37.882214,29.5828188 38.2692416,29.7431309 38.554599,30.0284883 C38.8399564,30.3138456 39.0002685,30.7008733 39.0002685,31.1044295 L39.0002685,33.581745" id="Shape"></path>
-                <ellipse id="Oval" cx="58.3248322" cy="33.8781208" rx="2.79194631" ry="2.79194631"></ellipse>
+                <circle id="Oval" cx="58.3248322" cy="33.8781208" r="2.79194631"></circle>
                 <path d="M61.4489188,34 L63.9215437,34" id="Shape"></path>
                 <path d="M53.3304698,33.581745 L53.3304698,31.1044295 C53.3304697,30.7006872 53.4909292,30.3134967 53.7765189,30.0281084 C54.0621085,29.7427202 54.4494121,29.5825339 54.8531544,29.5828188 L63.9291275,29.5828188" id="Shape"></path>
                 <path d="M39.0324832,34 L53.3315436,34" id="Shape"></path>
