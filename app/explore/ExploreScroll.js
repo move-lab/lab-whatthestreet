@@ -6,8 +6,6 @@ import Router from 'next/router';
 import VehicleSlide from './components/VehicleSlide';
 import VehicleSlidesOverlay from './components/VehicleSlidesOverlay';
 
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
-
 import MapModal from '../map/MapModal';
 
 import { lanes } from '../statemanagement/constants/identifiersConstants';
@@ -53,67 +51,61 @@ class ExploreScroll extends React.Component {
     Router.replace('/explore', '/berlin/explore', { shallow: true })
   }
 
-  setNextVehicle() {
+  getNextVehicle() {
     const currentIndex = this.props.availableVehicles.indexOf(this.props.vehicle);
     if(currentIndex + 1 < this.props.availableVehicles.size) {
       const nextVehicule = this.props.availableVehicles.get(currentIndex + 1);
-      this.props.dispatch(selectVehicle(nextVehicule));
+      return nextVehicule;
+    } else {
+      return null;
     }
   }
 
-  setPreviousVehicle() {
+  getPreviousVehicle() {
     const currentIndex = this.props.availableVehicles.indexOf(this.props.vehicle);
     if(currentIndex - 1 >= 0) {
       const previousVehicule = this.props.availableVehicles.get(currentIndex - 1);
-      this.props.dispatch(selectVehicle(previousVehicule));
+      return previousVehicule;
+    } else {
+      return null;
     }
   }
 
+  selectVehicle(vehicle) {
+    this.props.dispatch(selectVehicle(vehicle));
+  }
+
   render() {
-    console.log('RENDER');
-    console.log(this.props.vehicle);
     return (
       <section>
-        <CSSTransitionGroup
-          transitionName="example"
-          transitionAppear={true}
-          transitionAppearTimeout={0}
-          transitionEnter={true}
-          transitionLeave={true}>
-          {this.props.vehicle === 'car' &&
-            <VehicleSlide
-              vehicle="car"
-              showMap={(url, data) => this.showMap(url, data)}
-              onLoaded={this.handleVehicleSlideLoaded}
-            />
-          }
-          {this.props.vehicle === 'bike' &&
-            <VehicleSlide
-              vehicle="bike"
-              showMap={(url, data) => this.showMap(url, data)}
-              onLoaded={this.handleVehicleSlideLoaded}
-            />
-          }
-          {this.props.vehicle === 'rail' &&
-            <VehicleSlide
-              vehicle="rail"
-              showMap={(url, data) => this.showMap(url, data)}
-              onLoaded={this.handleVehicleSlideLoaded}
-            />
-          }
-        </CSSTransitionGroup>
-        {/*{this.props.availableVehicles.map((vehicle, index) =>
+        {this.props.vehicle === 'car' &&
           <VehicleSlide
-            key={index}
-            vehicle={vehicle} />
-        )}*/}
+            vehicle="car"
+            showMap={(url, data) => this.showMap(url, data)}
+            onLoaded={this.handleVehicleSlideLoaded}
+          />
+        }
+        {this.props.vehicle === 'bike' &&
+          <VehicleSlide
+            vehicle="bike"
+            showMap={(url, data) => this.showMap(url, data)}
+            onLoaded={this.handleVehicleSlideLoaded}
+          />
+        }
+        {this.props.vehicle === 'rail' &&
+          <VehicleSlide
+            vehicle="rail"
+            showMap={(url, data) => this.showMap(url, data)}
+            onLoaded={this.handleVehicleSlideLoaded}
+          />
+        }
         <VehicleSlidesOverlay
           showLanesMapButton={this.state.showLanesMapButton}
           showParkingMapButton={this.state.showParkingMapButton}
-          goToNextVehicle={() => this.setNextVehicle()}
-          goToPreviousVehicle={() => this.setPreviousVehicle()}
-          nextVehicleName="rail"
-          previousVehicleName="car"
+          goToNextVehicle={() => this.selectVehicle(this.getNextVehicle())}
+          goToPreviousVehicle={() => this.selectVehicle(this.getPreviousVehicle())}
+          nextVehicleName={this.getNextVehicle()}
+          previousVehicleName={this.getPreviousVehicle()}
           scrollToTop={() => console.log("TODO")}
           scrollToEnd={() => console.log("TODO")}
         />

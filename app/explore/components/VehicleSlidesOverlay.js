@@ -38,29 +38,33 @@ class VehicleSlidesOverlay extends React.Component {
         {showBtns && 
           <div className="PositionLine" />
         }
-        <button
-          className="VehicleButton NextVehicleButton"
-          onClick={() => this.props.goToNextVehicle()}
-        >
-          <VehicleIcon
-            className="vehicle"
-            vehicle={this.props.nextVehicleName}
-            height={60}
-            width={60}
-          />
-          <img alt="icon" src={angle} className="arrow" />
-        </button>
-        <button
-          className="VehicleButton PrevVehicleButton"
-          onClick={() => this.props.goToPreviousVehicle()}>
-          <img alt="icon" src={angle} className="arrow" />
-          <VehicleIcon
-            className="vehicle"
-            vehicle={this.props.previousVehicleName}
-            height={60}
-            width={60}
-          />
-        </button>
+        {this.props.nextVehicleName &&
+          <button
+            className="VehicleButton NextVehicleButton"
+            onClick={() => this.props.goToNextVehicle()}
+          >
+            <VehicleIcon
+              className="vehicle"
+              vehicle={this.props.nextVehicleName}
+              height={60}
+              width={60}
+            />
+            <img alt="icon" src={angle} className="arrow" />
+          </button>
+        }
+        {this.props.previousVehicleName &&
+          <button
+            className="VehicleButton PrevVehicleButton"
+            onClick={() => this.props.goToPreviousVehicle()}>
+            <img alt="icon" src={angle} className="arrow" />
+            <VehicleIcon
+              className="vehicle"
+              vehicle={this.props.previousVehicleName}
+              height={60}
+              width={60}
+            />
+          </button>
+        }
         <section className="ButtonsSection">
           <div className="ButtonsSectionInner">
             <div className="ButtonContainer">

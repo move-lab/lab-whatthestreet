@@ -2,7 +2,7 @@ import { fromJS } from 'immutable';
 
 // Initial state
 const initialState = fromJS({
-  availableVehicles: ['car', 'bike', 'rail'],
+  availableVehicles: ['car', 'rail', 'bike'],
   vehicle: 'car'
 });
 
