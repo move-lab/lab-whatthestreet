@@ -54,6 +54,7 @@ class VehicleSlide extends React.Component {
   componentDidMount() {
     this.scrollPositionWatcher = this.watchScrollPosition();
     window.document.body.scrollTop = 0;
+    // Some hack sometimes the scrollTop doesn't work
     setTimeout(() => {
       window.document.body.scrollTop = 0;
     }, 50);
