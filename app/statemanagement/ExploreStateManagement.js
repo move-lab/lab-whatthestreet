@@ -26,7 +26,7 @@ export const scrollingMayEnd = debounce((dispatch) => {
   dispatch({
     type: STOPED_SCROLLING
   });
-}, 200);
+}, 100);
 
 export function setScrollPosition(scrollPosition) {
   return (dispatch, getState) => {
