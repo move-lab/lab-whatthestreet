@@ -5,17 +5,15 @@ import { initStore } from '../app/statemanagement/store';
 
 import Layout from '../app/shared/components/Layout';
 import Header from '../app/shared/components/Header';
-import ExploreScroll from '../app/explore/ExploreScroll';
 
 import { CityActions } from '../app/statemanagement/actions';
 import { setBaseUrl } from '../app/statemanagement/AppStateManagement';
-import { selectVehicle } from '../app/statemanagement/VehiclesStateManagement';
 
-class Explore extends Component {
+class Results extends Component {
 
   static async getInitialProps (params) {
     const { store, isServer, req } = params;
-    console.log('Explore page render');
+    console.log('Results page render');
     // If not Server Side rendered, do not need to fetch everything again
     if (isServer) {
       const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
@@ -26,17 +24,6 @@ class Explore extends Component {
       if(req && req.params.cityName) {
         await store.dispatch(CityActions.selectCity(req.params.cityName));
       }
-      if(req && req.params.vehicleType) {
-        await store.dispatch(selectVehicle(req.params.vehicleType));
-      }
-    } else {
-      console.log(params);
-      if(params && params.query.vehicleType) {
-        await store.dispatch(selectVehicle(params.query.vehicleType));
-      } else {
-        //Default to car
-        await store.dispatch(selectVehicle("car"));
-      }
     }
     return;
   }
@@ -44,15 +31,11 @@ class Explore extends Component {
   render() {
     return (
       <Layout>
-        <Header
-          mode="explore"
-        />
-        <ExploreScroll
-          url={this.props.url}
-        />
+        <Header title="Results" />
+        <p>results page</p>
       </Layout>
     )
   }
 }
 
-export default withRedux(initStore)(Explore);
+export default withRedux(initStore)(Results);

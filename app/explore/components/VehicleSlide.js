@@ -20,7 +20,6 @@ import { StreetActions, LaneActions, ParkingActions } from '../../statemanagemen
 
 import Lanes from './Lanes';
 import ParkingSpaces from './ParkingSpaces';
-import VehicleSlideSummary from './VehicleSlideSummary';
 
 class VehicleSlide extends React.Component {
 
@@ -55,6 +54,9 @@ class VehicleSlide extends React.Component {
   componentDidMount() {
     this.scrollPositionWatcher = this.watchScrollPosition();
     window.document.body.scrollTop = 0;
+    setTimeout(() => {
+      window.document.body.scrollTop = 0;
+    }, 50);
   }
 
   componentWillUnmount() {
@@ -156,7 +158,6 @@ class VehicleSlide extends React.Component {
               {this.renderLanes()}
             </div>
           </div>
-          <VehicleSlideSummary />
         </div>
         <style jsx>{`
           .SWrapper {

@@ -33,6 +33,11 @@ app.prepare()
     return app.render(req, res, '/explore', req.query);
   })
 
+  server.get('/:cityName/results', (req, res) => {
+    console.log('handled by /:cityName/results');
+    return app.render(req, res, '/results', req.query);
+  })
+
   server.get('/:cityName', (req, res) => {
     console.log('handled by /:cityName');
     return app.render(req, res, '/', req.query);

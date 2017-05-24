@@ -14,7 +14,8 @@ class VehicleSlideSummary extends React.Component {
 
   static propTypes = {
     availableVehicles: React.PropTypes.object,
-    activeVehicle: React.PropTypes.string
+    activeVehicle: React.PropTypes.string,
+    goToNextVehicle: React.PropTypes.func
   }
 
   formatFirstLetterUpperCase(string) {
@@ -22,7 +23,7 @@ class VehicleSlideSummary extends React.Component {
   }
 
   getNextVehicleName() {
-    const currentIndex = this.props.availableVehicles.indexOf(this.props.vehicle);
+    const currentIndex = this.props.availableVehicles.indexOf(this.props.activeVehicle);
     if(currentIndex + 1 < this.props.availableVehicles.size) {
       const nextVehicule = this.props.availableVehicles.get(currentIndex + 1);
       return nextVehicule;
@@ -43,13 +44,13 @@ class VehicleSlideSummary extends React.Component {
           After scrolling over an area of 2999 m<sup>2</sup> you ran out of {vehicleFormatted} space. This area is about half of lower Manhatten. This also equals 292 flats
         </p>
         <RoundedButton
-          onClick={() => console.log('TODO')}
+          onClick={() => this.props.goToResults()}
         >
           Results
         </RoundedButton>
         {this.getNextVehicleName() &&
           <RoundedButton
-            onClick={() => console.log('TODO')}
+            onClick={() => this.props.goToNextVehicle()}
           >
             Discover {this.formatFirstLetterUpperCase(this.getNextVehicleName())}
           </RoundedButton>

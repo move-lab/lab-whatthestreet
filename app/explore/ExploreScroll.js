@@ -5,6 +5,7 @@ import Router from 'next/router';
 
 import VehicleSlide from './components/VehicleSlide';
 import VehicleSlidesOverlay from './components/VehicleSlidesOverlay';
+import VehicleSlideSummary from './components/VehicleSlideSummary';
 
 import MapModal from '../map/MapModal';
 
@@ -17,6 +18,7 @@ class ExploreScroll extends React.Component {
   static propTypes = {
     availableVehicles: React.PropTypes.object,
     activeVehicle: React.PropTypes.string,
+    citySlug: React.PropTypes.string,
     showScrollUI: React.PropTypes.bool,
     isScrolling: React.PropTypes.bool,
     url: React.PropTypes.object
@@ -51,7 +53,7 @@ class ExploreScroll extends React.Component {
   }
 
   dismissMap () {
-    Router.replace('/explore', `/berlin/explore/${vehicle}`, { shallow: true })
+    Router.replace('/explore', `/${this.props.citySlug}/explore/${vehicle}`, { shallow: true })
   }
 
   selectVehicle(vehicle) {
@@ -60,7 +62,11 @@ class ExploreScroll extends React.Component {
       parkingLoaded: false,
       lanesLoaded: false
     });
-    Router.push(`/explore?vehicleType=${vehicle}`, `/berlin/explore/${vehicle}`);
+    Router.push(`/explore?vehicleType=${vehicle}`, `/${this.props.citySlug}/explore/${vehicle}`);
+  }
+
+  goToResults() {
+    Router.push(`/results`, `/${this.props.citySlug}/results`);
   }
 
   getNextVehicle() {
@@ -107,6 +113,10 @@ class ExploreScroll extends React.Component {
             onLoaded={this.handleVehicleSlideLoaded}
           />
         }
+        <VehicleSlideSummary
+          goToNextVehicle={() => this.selectVehicle(this.getNextVehicle())}
+          goToResults={() => this.goToResults()}
+        />
         <VehicleSlidesOverlay
           lanesLoaded={this.state.lanesLoaded}
           parkingLoaded={this.state.parkingLoaded}
@@ -153,6 +163,7 @@ export default connect((state) => {
   return {
     availableVehicles: state.vehicles.get('availableVehicles'),
     activeVehicle: state.vehicles.get('vehicle'),
+    citySlug: state.city.getIn(['actual_city','slug']),
     showScrollUI,
     isScrolling: state.explore.get('isScrolling')
   }
