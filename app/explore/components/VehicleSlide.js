@@ -38,7 +38,7 @@ class VehicleSlide extends React.Component {
 
   watchScrollPosition() {
     return window.requestAnimationFrame(() => {
-      const newScrollPosition = Math.round(Math.abs(this.elMainContainer.getBoundingClientRect().top));
+      const newScrollPosition = document.body.scrollTop;
       if (this.lastKnownScrollPosition !== newScrollPosition) {
         this.lastKnownScrollPosition = newScrollPosition;
         this.props.dispatch(setScrollPosition(newScrollPosition));
@@ -49,6 +49,7 @@ class VehicleSlide extends React.Component {
 
   componentDidMount() {
     this.scrollPositionWatcher = this.watchScrollPosition();
+    window.document.body.scrollTop = 0;
   }
 
   componentWillUnmount() {
@@ -143,7 +144,6 @@ class VehicleSlide extends React.Component {
         </div>
         <style jsx>{`
           .SWrapper {
-            height: 100vh;
             overflow: auto;
             transform: translateZ(0);
             will-change: transform;
@@ -153,7 +153,6 @@ class VehicleSlide extends React.Component {
             position: relative;
             background-color: ${COLORS.ColorWhite};
             color: ${COLORS.ColorForegroundOrange};
-            min-height: 100vh;
             margin: 0 auto;
           }
 
@@ -171,14 +170,7 @@ class VehicleSlide extends React.Component {
             flex-direction: column;
             flex-grow: 1;
             padding-bottom: 55px;
-          }
-
-          .ContainerLeft {
-            align-items: flex-end;
-          }
-
-          .ContainerRight {
-            align-items: flex-start;
+            align-items: center;
           }
 
           .ToolBoxColumn {

@@ -15,6 +15,10 @@ class Layout extends Component {
     title: 'What the Street!?'
   }
 
+  componentDidMount() {
+    require('smoothscroll-polyfill').polyfill();
+  }
+
   render() {
     return (
       <div>
@@ -52,7 +56,7 @@ class Layout extends Component {
           }
 
           html, body {
-            height: 100%;
+            min-height: 100%;
             width: 100%;
           }
 
@@ -66,7 +70,12 @@ class Layout extends Component {
           body {
             font-family: 'Larsseit', 'Helvetica Neue', Helvetica, Arial, sans-serif;
             color: ${COLORS.Color_Foreground_Text};
+            background-color: #fafafa;
             line-height: 1;
+          }
+
+          body.fontLoaded {
+            font-family: 'Larsseit', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
           }
 
           h1 {
@@ -82,16 +91,6 @@ class Layout extends Component {
 
           h3 {
             margin-top: 0;
-          }
-
-          body.fontLoaded {
-            font-family: 'Larsseit', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-          }
-
-          #app {
-            background-color: #fafafa;
-            min-height: 100%;
-            min-width: 100%;
           }
         `}</style>
       </div>

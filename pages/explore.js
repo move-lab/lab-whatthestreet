@@ -29,6 +29,13 @@ class Explore extends Component {
       if(req && req.params.vehicleType) {
         await store.dispatch(selectVehicle(req.params.vehicleType));
       }
+    } else {
+      if(params && params.query.vehicleType) {
+        await store.dispatch(selectVehicle(params.query.vehicleType));
+      } else {
+        //Default to car
+        await store.dispatch(selectVehicle("car"));
+      }
     }
     return;
   }

@@ -48,7 +48,12 @@ class ExploreScroll extends React.Component {
   }
 
   dismissMap () {
-    Router.replace('/explore', '/berlin/explore', { shallow: true })
+    Router.replace('/explore', `/berlin/explore/${vehicle}`, { shallow: true })
+  }
+
+  selectVehicle(vehicle) {
+    this.props.dispatch(selectVehicle(vehicle));
+    Router.push(`/explore?vehicleType=${vehicle}`, `/berlin/explore/${vehicle}`);
   }
 
   getNextVehicle() {
@@ -69,11 +74,6 @@ class ExploreScroll extends React.Component {
     } else {
       return null;
     }
-  }
-
-  selectVehicle(vehicle) {
-    this.props.dispatch(selectVehicle(vehicle));
-    Router.push('/explore', `/berlin/explore/${vehicle}`, { shallow: true });
   }
 
   render() {
@@ -107,8 +107,16 @@ class ExploreScroll extends React.Component {
           goToPreviousVehicle={() => this.selectVehicle(this.getPreviousVehicle())}
           nextVehicleName={this.getNextVehicle()}
           previousVehicleName={this.getPreviousVehicle()}
-          scrollToTop={() => console.log("TODO")}
-          scrollToEnd={() => console.log("TODO")}
+          scrollToTop={() => window.scroll({ 
+            top: 0,
+            left: 0,
+            behavior: 'smooth' 
+          })}
+          scrollToEnd={() => window.scroll({ 
+            top: window.document.body.scrollHeight,
+            left: 0,
+            behavior: 'smooth' 
+          })}
         />
         {this.props.url.query.id &&
           <MapModal
