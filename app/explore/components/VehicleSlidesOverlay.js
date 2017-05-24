@@ -148,6 +148,10 @@ class VehicleSlidesOverlay extends React.Component {
             transition: 300ms opacity;
           }
 
+          .VehicleButton:hover, .VehicleButton:focus, .VehicleButton:active {
+            opacity: 0.9;
+          }
+
           .PrevVehicleButton {
             right: auto;
             left: 0;
