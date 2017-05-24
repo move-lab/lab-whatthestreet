@@ -16,6 +16,9 @@ class ExploreScroll extends React.Component {
 
   static propTypes = {
     availableVehicles: React.PropTypes.object,
+    activeVehicle: React.PropTypes.string,
+    showScrollUI: React.PropTypes.bool,
+    isScrolling: React.PropTypes.bool,
     url: React.PropTypes.object
   }
 
@@ -25,17 +28,17 @@ class ExploreScroll extends React.Component {
     this.handleVehicleSlideLoaded = this.handleVehicleSlideLoaded.bind(this);
 
     this.state = {
-      showParkingMapButton: false,
-      showLanesMapButton: false
+      parkingLoaded: false,
+      lanesLoaded: false
     };
   }
 
   handleVehicleSlideLoaded(dataType) {
     console.log('loaded');
     if (dataType === lanes) {
-      this.setState({ showLanesMapButton: true })
+      this.setState({ lanesLoaded: true })
     } else {
-      this.setState({ showParkingMapButton: true })
+      this.setState({ parkingLoaded: true })
     }
   }
 
@@ -53,11 +56,15 @@ class ExploreScroll extends React.Component {
 
   selectVehicle(vehicle) {
     this.props.dispatch(selectVehicle(vehicle));
+    this.setState({
+      parkingLoaded: false,
+      lanesLoaded: false
+    });
     Router.push(`/explore?vehicleType=${vehicle}`, `/berlin/explore/${vehicle}`);
   }
 
   getNextVehicle() {
-    const currentIndex = this.props.availableVehicles.indexOf(this.props.vehicle);
+    const currentIndex = this.props.availableVehicles.indexOf(this.props.activeVehicle);
     if(currentIndex + 1 < this.props.availableVehicles.size) {
       const nextVehicule = this.props.availableVehicles.get(currentIndex + 1);
       return nextVehicule;
@@ -67,7 +74,7 @@ class ExploreScroll extends React.Component {
   }
 
   getPreviousVehicle() {
-    const currentIndex = this.props.availableVehicles.indexOf(this.props.vehicle);
+    const currentIndex = this.props.availableVehicles.indexOf(this.props.activeVehicle);
     if(currentIndex - 1 >= 0) {
       const previousVehicule = this.props.availableVehicles.get(currentIndex - 1);
       return previousVehicule;
@@ -79,21 +86,21 @@ class ExploreScroll extends React.Component {
   render() {
     return (
       <section>
-        {this.props.vehicle === 'car' &&
+        {this.props.activeVehicle === 'car' &&
           <VehicleSlide
             vehicle="car"
             showMap={(url, data) => this.showMap(url, data)}
             onLoaded={this.handleVehicleSlideLoaded}
           />
         }
-        {this.props.vehicle === 'bike' &&
+        {this.props.activeVehicle === 'bike' &&
           <VehicleSlide
             vehicle="bike"
             showMap={(url, data) => this.showMap(url, data)}
             onLoaded={this.handleVehicleSlideLoaded}
           />
         }
-        {this.props.vehicle === 'rail' &&
+        {this.props.activeVehicle === 'rail' &&
           <VehicleSlide
             vehicle="rail"
             showMap={(url, data) => this.showMap(url, data)}
@@ -101,8 +108,8 @@ class ExploreScroll extends React.Component {
           />
         }
         <VehicleSlidesOverlay
-          showLanesMapButton={this.state.showLanesMapButton}
-          showParkingMapButton={this.state.showParkingMapButton}
+          lanesLoaded={this.state.lanesLoaded}
+          parkingLoaded={this.state.parkingLoaded}
           goToNextVehicle={() => this.selectVehicle(this.getNextVehicle())}
           goToPreviousVehicle={() => this.selectVehicle(this.getPreviousVehicle())}
           nextVehicleName={this.getNextVehicle()}
@@ -115,6 +122,8 @@ class ExploreScroll extends React.Component {
           scrollToEnd={() => {
             document.querySelector('.VehicleSlideSummary').scrollIntoView({ behavior: 'smooth' });
           }}
+          showScrollUI={this.props.showScrollUI}
+          isScrolling={this.props.isScrolling}
         />
         {this.props.url.query.id &&
           <MapModal
@@ -138,8 +147,13 @@ class ExploreScroll extends React.Component {
 }
 
 export default connect((state) => {
+
+  const showScrollUI = state.explore.get('lanesInFocus') || state.explore.get('parkingInFocus');
+
   return {
     availableVehicles: state.vehicles.get('availableVehicles'),
-    vehicle: state.vehicles.get('vehicle')
+    activeVehicle: state.vehicles.get('vehicle'),
+    showScrollUI,
+    isScrolling: state.explore.get('isScrolling')
   }
 })(ExploreScroll);

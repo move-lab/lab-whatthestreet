@@ -8,6 +8,7 @@ import guessReducer from './reducers/guessReducer';
 import mapReducer from './reducers/mapReducer';
 import cityMetaReducer from './reducers/cityMetaReducer';
 import appStateManagement from './AppStateManagement';
+import exploreStateManagement from './ExploreStateManagement';
 // import versusReducer from './reducers/versusReducer';
 import laneReducer from './reducers/laneReducer';
 // import pageReducer from './reducers/pageReducer';
@@ -16,6 +17,7 @@ import streetReducer from './reducers/streetReducer';
 
 export default combineReducers({
   app: appStateManagement,
+  explore: exploreStateManagement,
   // page: pageReducer,
   city: cityReducer,
   vehicles: vehiclesStateManagement,

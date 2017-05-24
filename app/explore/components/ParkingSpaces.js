@@ -78,7 +78,7 @@ class ParkingSpaces extends React.Component {
       this.setState({ svg: response.data, loading: false });
       this.reducedPolygonData = this.reducePolygonData();
       this.addClickHandler();
-      this.props.onLoaded();
+      this.props.onLoaded(this.element.scrollHeight);
     }, (error) => { window.console.log(error); });
   }
 
@@ -195,7 +195,7 @@ function isInRange(rangeMin, rangeMax, value) {
 export default connect((state) => {
   return {
     baseUrl: state.app.get('baseUrl'),
-    scrollPosition: state.app.get('scrollPosition')
+    scrollPosition: state.explore.get('scrollPosition')
   }
 })(ParkingSpaces);
 

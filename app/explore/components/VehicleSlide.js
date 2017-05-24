@@ -10,7 +10,11 @@ import * as COLORS from '../../shared/style/colors';
 
 import { lanes, parkingspace } from '../../statemanagement/constants/identifiersConstants';
 
-import { setScrollPosition } from '../../statemanagement/AppStateManagement';
+import {
+  setScrollPosition,
+  setLanesBottomPosition,
+  setParkingBottomPosition
+} from '../../statemanagement/ExploreStateManagement';
 
 import { StreetActions, LaneActions, ParkingActions } from '../../statemanagement/actions';
 
@@ -86,7 +90,7 @@ class VehicleSlide extends React.Component {
   renderParkingSpaces() {
     if (this.props.vehicle === 'rails') {
       // TODO SPECIAL CASE RAILS NEED TO CALL onPolygonselected
-      return this.renderLanes()
+      return this.renderLanes(true)
     } else {
       return (
         <ParkingSpaces
@@ -94,7 +98,10 @@ class VehicleSlide extends React.Component {
           vehicle={this.props.vehicle}
           onPathClicked={(data, path) => this.goToMapView('parking', data.id)}
           registerItemsForSearch={(items) => console.log(`TODO registerItemsForSearch`)}
-          onLoaded={() => this.props.onLoaded(parkingspace)}
+          onLoaded={(scrollHeight) => {
+            this.props.onLoaded(parkingspace);
+            this.props.dispatch(setParkingBottomPosition(scrollHeight));
+          }}
           onItemSelected={(isLast) => console.log('TODO onItemSelected()')}
           onPolygonSelected={this.onPolygonSelected}
         />
@@ -103,7 +110,7 @@ class VehicleSlide extends React.Component {
     
   }
 
-  renderLanes() {
+  renderLanes(parkingMode) {
     // TODO REPLACE BERLIN BY DYNAMIC CITY
     return (
       <Lanes
@@ -111,7 +118,14 @@ class VehicleSlide extends React.Component {
         vehicle={this.props.vehicle}
         onPathClicked={(data, path) => this.goToMapView('lanes', data.id)}
         registerItemsForSearch={(items) => console.log(`TODO registerItemsForSearch`)}
-        onLoaded={() => this.props.onLoaded(lanes)}
+        onLoaded={(scrollHeight) => {
+          this.props.onLoaded(lanes)
+          if (parkingMode) {
+            this.props.dispatch(setParkingBottomPosition(scrollHeight));
+          } else {
+            this.props.dispatch(setLanesBottomPosition(scrollHeight));
+          }
+        }}
         onItemSelected={(isLast) => {
           {/*console.log('TODO onItemSelected()')*/}
         }}

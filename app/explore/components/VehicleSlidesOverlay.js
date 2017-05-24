@@ -14,10 +14,12 @@ const ScrollIconReverse = '/static/icons/Icon_JumpSection_Reverse.svg';
 class VehicleSlidesOverlay extends React.Component {
 
   static propTypes = {
-    showLanesMapButton: PropTypes.bool,
-    showParkingMapButton: PropTypes.bool,
+    lanesLoaded: PropTypes.bool,
+    parkingLoaded: PropTypes.bool,
     nextVehicleName: PropTypes.string,
     previousVehicleName: PropTypes.string,
+    showScrollUI: PropTypes.bool,
+    isScrolling: PropTypes.bool,
     goToNextVehicle: PropTypes.func,
     goToPreviousVehicle: PropTypes.func,
     scrollToTop: PropTypes.func,
@@ -31,11 +33,11 @@ class VehicleSlidesOverlay extends React.Component {
 
   render() {
 
-    const showBtns = this.props.showLanesMapButton || this.props.showParkingMapButton;
+    const lanesOrParkingLoaded = this.props.lanesLoaded || this.props.parkingLoaded;
 
     return (
       <div className="Overlay">
-        {showBtns && 
+        {this.props.showScrollUI && lanesOrParkingLoaded && 
           <div className="PositionLine" />
         }
         {this.props.nextVehicleName &&
@@ -64,29 +66,28 @@ class VehicleSlidesOverlay extends React.Component {
             />
           </button>
         }
-        {false &&
-        <section className="ButtonsSection">
-          <div className="ButtonsSectionInner">
-            <div className="ButtonContainer">
-              <RoundedButton
-                onClick={() => console.log("TODO")}
-                hidden={!this.props.showParkingMapButton}>
-                  Show on Map
-              </RoundedButton>
-              }
+        {!this.props.isScrolling && this.props.showScrollUI &&
+          <section className="ButtonsSection">
+            <div className="ButtonsSectionInner">
+              <div className="ButtonContainer">
+                <RoundedButton
+                  onClick={() => console.log("TODO")}
+                  hidden={!this.props.parkingLoaded}>
+                    Show on Map
+                </RoundedButton>
+              </div>
+              <div className="ButtonContainer">
+                <RoundedButton
+                  onClick={() => console.log("TODO")}
+                  hidden={!this.props.lanesLoaded}
+                >
+                    Show on Map
+                </RoundedButton>
+              </div>
             </div>
-            <div className="ButtonContainer">
-              <RoundedButton
-                onClick={() => console.log("TODO")}
-                hidden={!this.props.showLanesMapButton}
-              >
-                  Show on Map
-              </RoundedButton>
-            </div>
-          </div>
-        </section>
+          </section>
         }
-        {showBtns &&
+        {this.props.showScrollUI && lanesOrParkingLoaded &&
           <footer className="Footer">
             <div className="ButtonGroup">
               <button

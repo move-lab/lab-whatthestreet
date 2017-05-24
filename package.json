@@ -11,6 +11,7 @@
     "express": "^4.14.0",
     "geoip-lite": "^1.2.1",
     "immutable": "^3.8.1",
+    "lodash.debounce": "^4.0.8",
     "lodash.findindex": "^4.6.0",
     "mapbox-gl": "^0.37.0",
     "mongodb": "^2.2.26",
