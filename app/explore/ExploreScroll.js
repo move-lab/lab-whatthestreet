@@ -73,6 +73,7 @@ class ExploreScroll extends React.Component {
 
   selectVehicle(vehicle) {
     this.props.dispatch(selectVehicle(vehicle));
+    Router.push('/explore', `/berlin/explore/${vehicle}`, { shallow: true });
   }
 
   render() {

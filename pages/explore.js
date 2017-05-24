@@ -9,6 +9,7 @@ import ExploreScroll from '../app/explore/ExploreScroll';
 
 import { CityActions } from '../app/statemanagement/actions';
 import { setBaseUrl } from '../app/statemanagement/AppStateManagement';
+import { selectVehicle } from '../app/statemanagement/VehiclesStateManagement';
 
 class Explore extends Component {
 
@@ -24,6 +25,9 @@ class Explore extends Component {
       // Todo handle city do not exists
       if(req && req.params.cityName) {
         await store.dispatch(CityActions.selectCity(req.params.cityName));
+      }
+      if(req && req.params.vehicleType) {
+        await store.dispatch(selectVehicle(req.params.vehicleType));
       }
     }
     return;
