@@ -13,8 +13,8 @@ const curlIcon = '/static/icons/Curl.svg';
 class VehicleSpaceComparisonGraph extends React.Component {
 
   static propTypes = {
-    currentVehicle: React.PropTypes.string,
-    currentAreaType: React.PropTypes.string
+    activeVehicle: React.PropTypes.string,
+    activeAreaType: React.PropTypes.string
   }
 
   renderCurl() {
@@ -38,7 +38,7 @@ class VehicleSpaceComparisonGraph extends React.Component {
     return (
       <div className="Wrapper">
         <div className="Column">
-          {this.props.currentVehicle === 'car' && 
+          {this.props.activeVehicle === 'car' && 
             this.renderCurl()
           }
           <img src={carIcon} alt="CarIcon" />
@@ -48,7 +48,7 @@ class VehicleSpaceComparisonGraph extends React.Component {
           </div>
         </div>
         <div className="Column">
-          {this.props.currentVehicle === 'rail' && 
+          {this.props.activeVehicle === 'rail' && 
             this.renderCurl()
           }
           <img src={tramIcon} alt="TramIcon" />
@@ -58,7 +58,7 @@ class VehicleSpaceComparisonGraph extends React.Component {
           </div>
         </div>
         <div className="Column">
-          {this.props.currentVehicle === 'bike' && 
+          {this.props.activeVehicle === 'bike' && 
             this.renderCurl()
           }
           <img src={bikeIcon} alt="BikeIcon" />

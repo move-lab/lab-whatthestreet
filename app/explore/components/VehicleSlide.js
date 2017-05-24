@@ -16,6 +16,7 @@ import { StreetActions, LaneActions, ParkingActions } from '../../statemanagemen
 
 import Lanes from './Lanes';
 import ParkingSpaces from './ParkingSpaces';
+import VehicleSlideSummary from './VehicleSlideSummary';
 
 class VehicleSlide extends React.Component {
 
@@ -141,6 +142,7 @@ class VehicleSlide extends React.Component {
               {this.renderLanes()}
             </div>
           </div>
+          <VehicleSlideSummary />
         </div>
         <style jsx>{`
           .SWrapper {

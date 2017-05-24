@@ -64,6 +64,7 @@ class VehicleSlidesOverlay extends React.Component {
             />
           </button>
         }
+        {false &&
         <section className="ButtonsSection">
           <div className="ButtonsSectionInner">
             <div className="ButtonContainer">
@@ -72,6 +73,7 @@ class VehicleSlidesOverlay extends React.Component {
                 hidden={!this.props.showParkingMapButton}>
                   Show on Map
               </RoundedButton>
+              }
             </div>
             <div className="ButtonContainer">
               <RoundedButton
@@ -83,6 +85,7 @@ class VehicleSlidesOverlay extends React.Component {
             </div>
           </div>
         </section>
+        }
         {showBtns &&
           <footer className="Footer">
             <div className="ButtonGroup">

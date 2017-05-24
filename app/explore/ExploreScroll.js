@@ -112,11 +112,9 @@ class ExploreScroll extends React.Component {
             left: 0,
             behavior: 'smooth' 
           })}
-          scrollToEnd={() => window.scroll({ 
-            top: window.document.body.scrollHeight,
-            left: 0,
-            behavior: 'smooth' 
-          })}
+          scrollToEnd={() => {
+            document.querySelector('.VehicleSlideSummary').scrollIntoView({ behavior: 'smooth' });
+          }}
         />
         {this.props.url.query.id &&
           <MapModal

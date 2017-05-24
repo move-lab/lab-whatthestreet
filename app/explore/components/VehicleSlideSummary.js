@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Router from 'next/router';
 
 import { selectVehicle } from '../../statemanagement/VehiclesStateManagement';
@@ -12,7 +13,7 @@ import * as COLORS from '../../shared/style/colors';
 class VehicleSlideSummary extends React.Component {
 
   static propTypes = {
-    availableVehicles: React.PropTypes.array,
+    availableVehicles: React.PropTypes.object,
     activeVehicle: React.PropTypes.string
   }
 
@@ -34,7 +35,7 @@ class VehicleSlideSummary extends React.Component {
     const vehicleFormatted = this.formatFirstLetterUpperCase(this.props.activeVehicle);
 
     return (
-      <section className="Container">
+      <section className="Container VehicleSlideSummary">
         <h3 className="LargeText">
           You ran out of {vehicleFormatted} Space
         </h3>
@@ -58,8 +59,33 @@ class VehicleSlideSummary extends React.Component {
         />
         <style jsx>{`
           .Container {
-            padding-top: ${METRICS.MetricsSectionPadding};
-            padding-bottom: ${METRICS.MetricsContentPadding};
+            padding-top: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+          }
+
+          .LargeText {
+            font-size: 50px;
+            font-weight: 400;
+            text-align: center;
+            color: ${COLORS.ColorForegroundText};
+            width: 350px;
+            text-align: center;
+            margin: 0 auto;
+            margin-top: 30px;
+            line-height: 1.5em;
+            margin-bottom: 40px;
+          }
+
+          .Text {
+            font-size: 30px;
+            color: ${COLORS.ColorForegroundText};
+            width: 750px;
+            text-align: center;
+            margin: 0 auto;
+            font-weight: 200;
           }
         `}</style>
       </section>
@@ -67,4 +93,9 @@ class VehicleSlideSummary extends React.Component {
   }
 }
 
-export default VehicleSlideSummary;
+export default connect((state) => {
+  return {
+    availableVehicles: state.vehicles.get('availableVehicles'),
+    activeVehicle: state.vehicles.get('vehicle')
+  }
+})(VehicleSlideSummary);
