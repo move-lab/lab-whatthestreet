@@ -40,6 +40,7 @@ class VehicleIcon extends React.PureComponent {
       <img
         alt={vehicleIcon.alt}
         src={vehicleIcon.src}
+        className="vehicle-icon"
         width={this.props.width}
         height={this.props.height} 
       />

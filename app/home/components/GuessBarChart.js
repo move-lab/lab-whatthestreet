@@ -3,7 +3,7 @@ import React from 'react';
 import * as identifiers from '../../statemanagement/constants/identifiersConstants';
 
 import Bar from './GuessBar';
-import VehicleIcon from './VehicleIcon';
+import VehicleIcon from '../../shared/components/VehicleIcon';
 
 const ArrowIcon = '/static/icons/Arrow_Landing.svg';
 

@@ -44,7 +44,7 @@ class VehicleSlidesOverlay extends React.Component {
             onClick={() => this.props.goToNextVehicle()}
           >
             <VehicleIcon
-              className="vehicle"
+              className="vehicle-icon"
               vehicle={this.props.nextVehicleName}
               height={60}
               width={60}
@@ -58,7 +58,6 @@ class VehicleSlidesOverlay extends React.Component {
             onClick={() => this.props.goToPreviousVehicle()}>
             <img alt="icon" src={angle} className="arrow" />
             <VehicleIcon
-              className="vehicle"
               vehicle={this.props.previousVehicleName}
               height={60}
               width={60}
@@ -138,18 +137,14 @@ class VehicleSlidesOverlay extends React.Component {
             cursor: pointer;
           }
 
-          .VehicleButton .vehicle {
-            opacity: 0.5;
+          .VehicleButton :global(.vehicle-icon) {
+            opacity: 0.7;
             transition: 300ms opacity;
           }
 
-          .VehicleButton:hover .vehicle {
+          .VehicleButton:hover :global(.vehicle-icon) {
             opacity: 1;
             transition: 300ms opacity;
-          }
-
-          .VehicleButton:hover, .VehicleButton:focus, .VehicleButton:active {
-            opacity: 0.9;
           }
 
           .PrevVehicleButton {
