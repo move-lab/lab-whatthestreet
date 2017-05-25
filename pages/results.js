@@ -6,7 +6,7 @@ import { initStore } from '../app/statemanagement/store';
 import Layout from '../app/shared/components/Layout';
 import Header from '../app/shared/components/Header';
 
-import { CityActions } from '../app/statemanagement/actions';
+import { CityActions, GuessActions } from '../app/statemanagement/actions';
 import { setBaseUrl } from '../app/statemanagement/AppStateManagement';
 
 class Results extends Component {

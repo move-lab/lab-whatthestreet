@@ -17,6 +17,7 @@ class ExploreScroll extends React.Component {
 
   static propTypes = {
     availableVehicles: React.PropTypes.object,
+    ownGuess: React.PropTypes.object,
     activeVehicle: React.PropTypes.string,
     citySlug: React.PropTypes.string,
     showScrollUI: React.PropTypes.bool,
@@ -45,15 +46,28 @@ class ExploreScroll extends React.Component {
   }
 
   showMap(url, data) {
-    Router.push(
-      `/explore?city=${data.citySlug}&vehicle=${data.citySlug}&areaType=${data.areaType}&id=${data.id}`,
-      url,
-      { shallow: true }
+    Router.push({
+      pathname: '/explore',
+      query: {
+        id: data.id,
+        ...this.props.ownGuess.toJS()
+      }
+    },{
+      pathname: url,
+      query: this.props.ownGuess.toJS()
+    },
+    { shallow: true }
     );
   }
 
   dismissMap () {
-    Router.replace('/explore', `/${this.props.citySlug}/explore/${vehicle}`, { shallow: true })
+    Router.replace({
+      pathname: '/explore',
+      query: this.props.ownGuess.toJS()
+    }, {
+      pathname: `/${this.props.citySlug}/explore/${this.props.activeVehicle}`,
+      query: this.props.ownGuess.toJS()
+    }, { shallow: true });
   }
 
   selectVehicle(vehicle) {
@@ -62,11 +76,27 @@ class ExploreScroll extends React.Component {
       parkingLoaded: false,
       lanesLoaded: false
     });
-    Router.push(`/explore?vehicleType=${vehicle}`, `/${this.props.citySlug}/explore/${vehicle}`);
+
+    Router.push({
+      pathname: '/explore',
+      query: {
+        vehicleType : vehicle,
+        ...this.props.ownGuess.toJS()
+      }
+    },{
+      pathname: `/${this.props.citySlug}/explore/${vehicle}`,
+      query: this.props.ownGuess.toJS()
+    });
   }
 
   goToResults() {
-    Router.push(`/results`, `/${this.props.citySlug}/results`);
+    Router.push({
+      pathname: '/results',
+      query: this.props.ownGuess.toJS()
+    }, {
+      pathname: `/${this.props.citySlug}/results`,
+      query: this.props.ownGuess.toJS()
+    });
   }
 
   getNextVehicle() {
@@ -165,6 +195,7 @@ export default connect((state) => {
     activeVehicle: state.vehicles.get('vehicle'),
     citySlug: state.city.getIn(['actual_city','slug']),
     showScrollUI,
-    isScrolling: state.explore.get('isScrolling')
+    isScrolling: state.explore.get('isScrolling'),
+    ownGuess: state.guess.get('own')
   }
 })(ExploreScroll);
