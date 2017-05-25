@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Router from 'next/router';
 
+import Stats from './sections/Stats';
 import Versus from './sections/Versus';
 import EyesPlaceholder from './sections/EyesPlaceholder';
 import Future from './sections/Future';
@@ -16,6 +17,7 @@ class ResultsPage extends Component {
   render() {
     return (
       <div>
+        <Stats />
         <Versus />
         <EyesPlaceholder />
         <Future />
