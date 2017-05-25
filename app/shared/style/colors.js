@@ -32,7 +32,7 @@ export const HomePageBackgroundColor = ColorBackgroundLightBlue;
 export const DemandSectionBackgroundColor = ColorBackgroundLightBlue;
 
 // OtherCities
-export const OtherCitiesBackgroundColor = ColorBlue;
+export const OtherCitiesBackgroundColor = "#6894ED";
 
 // About
 export const AboutSectionBackgroundColor = ColorWhite;

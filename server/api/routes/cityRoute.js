@@ -109,7 +109,7 @@ exports.getVersus = (request, response) => {
 exports.getCityBackground = (request, response) => {
   const city = request.params.city.charAt(0).toUpperCase() + request.params.city.slice(1);
   response.header('Content-Type', 'image/jpeg');
-  response.sendFile(path.join(__dirname, `../../assets/cityBackgrounds/about-${city}.jpg`));
+  response.sendFile(path.join(__dirname, `../../../static/cityBackgrounds/about-${city}.jpg`));
 };
 
 /**
@@ -118,7 +118,7 @@ exports.getCityBackground = (request, response) => {
 exports.getLandmark = (request, response) => {
   const city = request.params.city.charAt(0).toUpperCase() + request.params.city.slice(1);
   response.header('Content-Type', 'image/svg+xml');
-  response.sendFile(path.join(__dirname, `../../assets/cityLandmarks/Landmark_${city}.svg`));
+  response.sendFile(path.join(__dirname, `../../../static/cityLandmarks/Landmark_${city}.svg`));
 };
 
 /**

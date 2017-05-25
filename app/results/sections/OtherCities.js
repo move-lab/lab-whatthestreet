@@ -19,7 +19,7 @@ class OtherCities extends React.PureComponent {
   render() {
     return (
       <div className="MainContainer" style={{ backgroundImage: `url(/api/v1/cities/${this.props.city.slug}/background)` }}>
-        <div className="Wrapper" style={{ backgroundImage: 'url("static/Background_Skyline@2x.jpg")' }}>
+        <div className="Wrapper">
           <h2 className="Title">
             More Cities to discover
           </h2>
