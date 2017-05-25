@@ -63,20 +63,49 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
     }
   }
 
+  componentDidMount() {
+    Router.replace({
+      pathname: '/',
+      query: this.props.ownGuess
+    }, {
+      pathname: `/${this.props.city.slug}`,
+      query: this.props.ownGuess
+    }, { shallow: true });
+  }
+
   onCityChanged = (citySlug) => {
     this.props.selectCity(citySlug);
-    Router.push('/', `/${citySlug}`, { shallow: true });
+    Router.push({
+      pathname: '/',
+      query: this.props.ownGuess
+    }, {
+      pathname: `/${citySlug}`,
+      query: this.props.ownGuess
+    }, { shallow: true });
   }
 
   onChangeGuess = (guess) => {
     this.setState({ guessed : true });
     this.props.setGuess(guess);
+    Router.replace({
+      pathname: '/',
+      query: guess
+    },{
+      pathname: `/${this.props.city.slug}`,
+      query: guess
+    });
   }
 
   solved = () => {
     // TODO MAKE GUESS PERSIST BY REFACTORING SAGA
     this.props.saveGuess(this.props.ownGuess);
-    Router.push('/explore',`/${this.props.city.slug}/explore`);
+    Router.push({
+      pathname: '/explore',
+      query: this.props.ownGuess
+    },{
+      pathname: `/${this.props.city.slug}/explore`,
+      query: this.props.ownGuess
+    });
   }
 
   render = () => {

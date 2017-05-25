@@ -24,6 +24,17 @@ class Results extends Component {
       if(req && req.params.cityName) {
         await store.dispatch(CityActions.selectCity(req.params.cityName));
       }
+      if(req && req.query.bike && req.query.rail && req.query.car) {
+        await store.dispatch(GuessActions.setOwnGuess({
+          bike: parseFloat(req.query.bike),
+          rail: parseFloat(req.query.rail),
+          car: parseFloat(req.query.car)
+        }));
+      } else {
+        // Redirect to home
+        res.writeHead(302, { Location: `/${req.params.cityName}` })
+        res.end()
+      }
     }
     return;
   }
@@ -31,7 +42,7 @@ class Results extends Component {
   render() {
     return (
       <Layout>
-        <Header title="Results" />
+        <Header title="What the Street | Results" />
         <p>results page</p>
       </Layout>
     )

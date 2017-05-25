@@ -60,7 +60,7 @@ class GuessBar extends React.PureComponent { // eslint-disable-line react/prefer
   render = () => (
     <div>
       <div className="Container" id={`bar-${this.props.id}`}>
-        <div className="GuessBar" ref={(element) => { this.element = element; }} >
+        <div className="GuessBar" ref={(element) => { this.element = element; }} style={{ height: `${this.props.guess > 0 ? this.props.guess * 320 : 0}px` }} >
           <div className="DragPanel"><img alt="DragIcon" src="/static/icons/Slider.svg" /></div>
         </div>
       </div>

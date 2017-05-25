@@ -69,7 +69,13 @@ class GuessBarChart extends React.Component {
       }
     }
 
-    this.setState({ guess });
+    this.setState({ 
+      guess: {
+        bike: Math.round(guess.bike * 100) / 100,
+        rail: Math.round(guess.rail * 100) / 100,
+        car: Math.round(guess.car * 100) / 100
+      }
+    });
     return true;
   }
 

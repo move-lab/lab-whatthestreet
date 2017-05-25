@@ -7,14 +7,14 @@ import Layout from '../app/shared/components/Layout';
 import Header from '../app/shared/components/Header';
 import ExploreScroll from '../app/explore/ExploreScroll';
 
-import { CityActions } from '../app/statemanagement/actions';
+import { CityActions, GuessActions } from '../app/statemanagement/actions';
 import { setBaseUrl } from '../app/statemanagement/AppStateManagement';
 import { selectVehicle } from '../app/statemanagement/VehiclesStateManagement';
 
 class Explore extends Component {
 
   static async getInitialProps (params) {
-    const { store, isServer, req } = params;
+    const { store, isServer, req, res } = params;
     console.log('Explore page render');
     // If not Server Side rendered, do not need to fetch everything again
     if (isServer) {
@@ -29,8 +29,18 @@ class Explore extends Component {
       if(req && req.params.vehicleType) {
         await store.dispatch(selectVehicle(req.params.vehicleType));
       }
+      if(req && req.query.bike && req.query.rail && req.query.car) {
+        await store.dispatch(GuessActions.setOwnGuess({
+          bike: parseFloat(req.query.bike),
+          rail: parseFloat(req.query.rail),
+          car: parseFloat(req.query.car)
+        }));
+      } else {
+        // Redirect to home
+        res.writeHead(302, { Location: `/${req.params.cityName}` })
+        res.end()
+      }
     } else {
-      console.log(params);
       if(params && params.query.vehicleType) {
         await store.dispatch(selectVehicle(params.query.vehicleType));
       } else {
