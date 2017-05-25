@@ -71,6 +71,7 @@ class VehicleSpaceComparisonGraph extends React.Component {
           .Wrapper {
             display: flex;
             margin-right: 50px;
+            margin-top: 150px;
           }
 
           .Column {

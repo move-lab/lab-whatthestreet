@@ -6,13 +6,14 @@ import { initStore } from '../app/statemanagement/store';
 import Layout from '../app/shared/components/Layout';
 import MapModal from '../app/map/MapModal';
 
-import { CityActions } from '../app/statemanagement/actions';
+import { CityActions, GuessActions } from '../app/statemanagement/actions';
 import { setBaseUrl } from '../app/statemanagement/AppStateManagement';
+import { selectVehicle } from '../app/statemanagement/VehiclesStateManagement';
 
 class Explore extends Component {
 
   static async getInitialProps (params) {
-    const { store, isServer, req } = params;
+    const { store, isServer, req, res } = params;
     console.log('Map page render');
     // If not Server Side rendered, do not need to fetch everything again
     if (isServer) {
@@ -23,6 +24,20 @@ class Explore extends Component {
       // Todo handle city do not exists
       if(req && req.params.cityName) {
         await store.dispatch(CityActions.selectCity(req.params.cityName));
+      }
+      if(req && req.params.vehicleType) {
+        await store.dispatch(selectVehicle(req.params.vehicleType));
+      }
+      if(req && req.query.bike && req.query.rail && req.query.car) {
+        await store.dispatch(GuessActions.setOwnGuess({
+          bike: parseFloat(req.query.bike),
+          rail: parseFloat(req.query.rail),
+          car: parseFloat(req.query.car)
+        }));
+      } else {
+        // Redirect to home
+        res.writeHead(302, { Location: `/${req.params.cityName}` })
+        res.end()
       }
     }
     return;

@@ -167,7 +167,7 @@ class ExploreScroll extends React.Component {
         />
         {this.props.url.query.id &&
           <MapModal
-            onDismiss={() => this.dismissModal()}
+            onDismiss={() => this.dismissMap()}
           />
         }
         <style jsx>{`

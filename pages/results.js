@@ -12,7 +12,7 @@ import { setBaseUrl } from '../app/statemanagement/AppStateManagement';
 class Results extends Component {
 
   static async getInitialProps (params) {
-    const { store, isServer, req } = params;
+    const { store, isServer, req, res } = params;
     console.log('Results page render');
     // If not Server Side rendered, do not need to fetch everything again
     if (isServer) {
@@ -42,7 +42,7 @@ class Results extends Component {
   render() {
     return (
       <Layout>
-        <Header title="What the Street | Results" />
+        <Header title="Reown the city" />
         <p>results page</p>
       </Layout>
     )

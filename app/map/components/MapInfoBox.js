@@ -16,7 +16,8 @@ class MapInfoBox extends React.Component {
     street: React.PropTypes.object,
     mapArea: React.PropTypes.number,
     actualVehicle: React.PropTypes.string,
-    citySlug: React.PropTypes.string
+    citySlug: React.PropTypes.string,
+    closeModal: React.PropTypes.func
   }
 
   render() {
@@ -37,9 +38,12 @@ class MapInfoBox extends React.Component {
         <div className="MapInfoButtons">
           <button className="MapInfoButton" onClick={() => console.log('TODO zoom in')}>+</button>
           <button className="MapInfoButton" onClick={() => console.log('TODO zoom out')}>-</button>
-          <Link href="/explore" as={`/${this.props.citySlug}/explore`} prefetch>
-            <a className="MapInfoButton">Close</a>
-          </Link>
+          <a
+            className="MapInfoButton"
+            onClick={() => this.props.closeModal()}
+          >
+            Close
+          </a>
         </div>
         <style jsx>{`
           .MapInfoBox {
