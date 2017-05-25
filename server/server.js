@@ -16,7 +16,6 @@ app.prepare()
   server.use(bodyParser.urlencoded({ extended: true }));
   server.use(bodyParser.json());
   server.use(compression());
-  server.use('/api/v1', router);
 
   server.get('/:cityName/explore/:vehicleType/:areaType/:itemId', (req, res) => {
     console.log('handled by /:cityName/explore/:vehicleType/:areaType/:itemId');
@@ -42,6 +41,8 @@ app.prepare()
     console.log('handled by /:cityName');
     return app.render(req, res, '/', req.query);
   })
+
+  server.use('/api/v1', router);
 
   server.get('*', (req, res) => {
     console.log('handled by next.js *');

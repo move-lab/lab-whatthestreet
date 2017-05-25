@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-export const selectVersusState = (state) => state.get('versus');
+export const selectVersusState = (state) => state.versus;
 
 export const makeSelectVersusData = () => createSelector(
   selectVersusState,

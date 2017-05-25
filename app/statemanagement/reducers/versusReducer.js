@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 
-import { VERSUS } from 'data/constants';
+import { VERSUS } from '../constants';
 
 const initialState = fromJS({
   loading: false,

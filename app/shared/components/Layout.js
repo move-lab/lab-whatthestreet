@@ -27,6 +27,7 @@ class Layout extends Component {
           <meta charset='utf-8' />
           <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
           <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/4.1.0/sanitize.min.css"/>
+          <link rel="shortcut icon" href="about:blank" />
         </Head>
         {this.props.children}
         <style jsx global>{`
@@ -69,7 +70,7 @@ class Layout extends Component {
 
           body {
             font-family: 'Larsseit', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            color: ${COLORS.Color_Foreground_Text};
+            color: ${COLORS.ColorForegroundText};
             background-color: #fafafa;
             line-height: 1;
           }

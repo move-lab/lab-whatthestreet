@@ -9,7 +9,7 @@ import mapReducer from './reducers/mapReducer';
 import cityMetaReducer from './reducers/cityMetaReducer';
 import appStateManagement from './AppStateManagement';
 import exploreStateManagement from './ExploreStateManagement';
-// import versusReducer from './reducers/versusReducer';
+import versusReducer from './reducers/versusReducer';
 import laneReducer from './reducers/laneReducer';
 // import pageReducer from './reducers/pageReducer';
 import streetReducer from './reducers/streetReducer';
@@ -27,7 +27,7 @@ export default combineReducers({
   guess: guessReducer,
   map: mapReducer,
   cityMeta: cityMetaReducer,
-  // versus: versusReducer,
+  versus: versusReducer,
   street: streetReducer,
   // search: searchReducer
 });

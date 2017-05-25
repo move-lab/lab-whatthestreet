@@ -260,5 +260,401 @@
         "length": 76480.44
       }
     }
+  },
+  "test": {
+    "name": "Test",
+    "country": "USA",
+    "boundingBox": [
+      42.2071592425,
+      -71.2120056152,
+      42.3969802856,
+      -70.8618164062
+    ],
+    "onStreetParkingSpots": 59925,
+    "modalsplit": {
+      "foot": 0.14,
+      "bike": 0.02,
+      "public": 0.35,
+      "car": 0.45
+    },
+    "streets": {
+      "longestNames": [
+        "South Station Bus Terminal Connector",
+        "Commonwealth Avenue Frontage Road Wb",
+        "West Roxbury Centre Street Rotary"
+      ],
+      "longestStreets": [
+        {
+          "length": 26963.47,
+          "name": "Washington Street",
+          "id": 3743
+        },
+        {
+          "length": 21950.07,
+          "name": "Commonwealth Avenue",
+          "id": 815
+        },
+        {
+          "length": 11583.54,
+          "name": "Blue Hill Avenue",
+          "id": 389
+        },
+        {
+          "length": 11477.58,
+          "name": "Centre Street",
+          "id": 661
+        },
+        {
+          "length": 10698.29,
+          "name": "Columbia Road",
+          "id": 802
+        },
+        {
+          "length": 9628.18,
+          "name": "Dorchester Avenue",
+          "id": 1062
+        },
+        {
+          "length": 9308.62,
+          "name": "Beacon Street",
+          "id": 291
+        },
+        {
+          "length": 8776.45,
+          "name": "River Street",
+          "id": 3048
+        },
+        {
+          "length": 8769.14,
+          "name": "American Legion Highway",
+          "id": 101
+        },
+        {
+          "length": 7939.89,
+          "name": "Hyde Park Avenue",
+          "id": 1890
+        }
+      ],
+      "staffPicks": [
+        "Massachusetts Avenue",
+        "Boylston Street",
+        "Atlantic Avenue"
+      ]
+    },
+    "population": 645966,
+    "cars": 303604,
+    "landmark": {
+      "name": "Boston Common",
+      "area": 194115
+    },
+    "sources": {
+      "modalsplit": "https://en.wikipedia.org/wiki/Modal_share",
+      "cars": "http://www.governing.com/gov-data/car-ownership-numbers-of-vehicles-by-city-map.html",
+      "onStreetParkingSpots": "http://www.cityofboston.gov/TRANSPORTATION/accessboston/pdfs/front.pdf"
+    },
+    "space": {
+      "rail": 118010,
+      "car": 24247331.27,
+      "bike": 59653.17
+    },
+    "moving": {
+      "rail": {
+        "area": 59006.18000000016,
+        "length": 264968.60000000027
+      },
+      "car": {
+        "area": 23230623.92,
+        "length": 1519467.25
+      },
+      "bike": {
+        "area": 59003.57,
+        "length": 89058.27
+      }
+    },
+    "parking": {
+      "car": {
+        "onStreet": {
+          "number": 0
+        },
+        "offStreet": {
+          "number": 296,
+          "area": 1016707.35,
+          "svgHeight": 1695
+        }
+      },
+      "bike": {
+        "number": 43,
+        "area": 649.6,
+        "svgHeight": 5
+      },
+      "rail": {
+        "area": 59003.5,
+        "length": 76480.44
+      }
+    }
+  },
+  "test2": {
+    "name": "Test2",
+    "country": "USA",
+    "boundingBox": [
+      42.2071592425,
+      -71.2120056152,
+      42.3969802856,
+      -70.8618164062
+    ],
+    "onStreetParkingSpots": 59925,
+    "modalsplit": {
+      "foot": 0.14,
+      "bike": 0.02,
+      "public": 0.35,
+      "car": 0.45
+    },
+    "streets": {
+      "longestNames": [
+        "South Station Bus Terminal Connector",
+        "Commonwealth Avenue Frontage Road Wb",
+        "West Roxbury Centre Street Rotary"
+      ],
+      "longestStreets": [
+        {
+          "length": 26963.47,
+          "name": "Washington Street",
+          "id": 3743
+        },
+        {
+          "length": 21950.07,
+          "name": "Commonwealth Avenue",
+          "id": 815
+        },
+        {
+          "length": 11583.54,
+          "name": "Blue Hill Avenue",
+          "id": 389
+        },
+        {
+          "length": 11477.58,
+          "name": "Centre Street",
+          "id": 661
+        },
+        {
+          "length": 10698.29,
+          "name": "Columbia Road",
+          "id": 802
+        },
+        {
+          "length": 9628.18,
+          "name": "Dorchester Avenue",
+          "id": 1062
+        },
+        {
+          "length": 9308.62,
+          "name": "Beacon Street",
+          "id": 291
+        },
+        {
+          "length": 8776.45,
+          "name": "River Street",
+          "id": 3048
+        },
+        {
+          "length": 8769.14,
+          "name": "American Legion Highway",
+          "id": 101
+        },
+        {
+          "length": 7939.89,
+          "name": "Hyde Park Avenue",
+          "id": 1890
+        }
+      ],
+      "staffPicks": [
+        "Massachusetts Avenue",
+        "Boylston Street",
+        "Atlantic Avenue"
+      ]
+    },
+    "population": 645966,
+    "cars": 303604,
+    "landmark": {
+      "name": "Boston Common",
+      "area": 194115
+    },
+    "sources": {
+      "modalsplit": "https://en.wikipedia.org/wiki/Modal_share",
+      "cars": "http://www.governing.com/gov-data/car-ownership-numbers-of-vehicles-by-city-map.html",
+      "onStreetParkingSpots": "http://www.cityofboston.gov/TRANSPORTATION/accessboston/pdfs/front.pdf"
+    },
+    "space": {
+      "rail": 118010,
+      "car": 24247331.27,
+      "bike": 59653.17
+    },
+    "moving": {
+      "rail": {
+        "area": 59006.18000000016,
+        "length": 264968.60000000027
+      },
+      "car": {
+        "area": 23230623.92,
+        "length": 1519467.25
+      },
+      "bike": {
+        "area": 59003.57,
+        "length": 89058.27
+      }
+    },
+    "parking": {
+      "car": {
+        "onStreet": {
+          "number": 0
+        },
+        "offStreet": {
+          "number": 296,
+          "area": 1016707.35,
+          "svgHeight": 1695
+        }
+      },
+      "bike": {
+        "number": 43,
+        "area": 649.6,
+        "svgHeight": 5
+      },
+      "rail": {
+        "area": 59003.5,
+        "length": 76480.44
+      }
+    }
+  },
+  "test3": {
+    "name": "Test3",
+    "country": "USA",
+    "boundingBox": [
+      42.2071592425,
+      -71.2120056152,
+      42.3969802856,
+      -70.8618164062
+    ],
+    "onStreetParkingSpots": 59925,
+    "modalsplit": {
+      "foot": 0.14,
+      "bike": 0.02,
+      "public": 0.35,
+      "car": 0.45
+    },
+    "streets": {
+      "longestNames": [
+        "South Station Bus Terminal Connector",
+        "Commonwealth Avenue Frontage Road Wb",
+        "West Roxbury Centre Street Rotary"
+      ],
+      "longestStreets": [
+        {
+          "length": 26963.47,
+          "name": "Washington Street",
+          "id": 3743
+        },
+        {
+          "length": 21950.07,
+          "name": "Commonwealth Avenue",
+          "id": 815
+        },
+        {
+          "length": 11583.54,
+          "name": "Blue Hill Avenue",
+          "id": 389
+        },
+        {
+          "length": 11477.58,
+          "name": "Centre Street",
+          "id": 661
+        },
+        {
+          "length": 10698.29,
+          "name": "Columbia Road",
+          "id": 802
+        },
+        {
+          "length": 9628.18,
+          "name": "Dorchester Avenue",
+          "id": 1062
+        },
+        {
+          "length": 9308.62,
+          "name": "Beacon Street",
+          "id": 291
+        },
+        {
+          "length": 8776.45,
+          "name": "River Street",
+          "id": 3048
+        },
+        {
+          "length": 8769.14,
+          "name": "American Legion Highway",
+          "id": 101
+        },
+        {
+          "length": 7939.89,
+          "name": "Hyde Park Avenue",
+          "id": 1890
+        }
+      ],
+      "staffPicks": [
+        "Massachusetts Avenue",
+        "Boylston Street",
+        "Atlantic Avenue"
+      ]
+    },
+    "population": 645966,
+    "cars": 303604,
+    "landmark": {
+      "name": "Boston Common",
+      "area": 194115
+    },
+    "sources": {
+      "modalsplit": "https://en.wikipedia.org/wiki/Modal_share",
+      "cars": "http://www.governing.com/gov-data/car-ownership-numbers-of-vehicles-by-city-map.html",
+      "onStreetParkingSpots": "http://www.cityofboston.gov/TRANSPORTATION/accessboston/pdfs/front.pdf"
+    },
+    "space": {
+      "rail": 118010,
+      "car": 24247331.27,
+      "bike": 59653.17
+    },
+    "moving": {
+      "rail": {
+        "area": 59006.18000000016,
+        "length": 264968.60000000027
+      },
+      "car": {
+        "area": 23230623.92,
+        "length": 1519467.25
+      },
+      "bike": {
+        "area": 59003.57,
+        "length": 89058.27
+      }
+    },
+    "parking": {
+      "car": {
+        "onStreet": {
+          "number": 0
+        },
+        "offStreet": {
+          "number": 296,
+          "area": 1016707.35,
+          "svgHeight": 1695
+        }
+      },
+      "bike": {
+        "number": 43,
+        "area": 649.6,
+        "svgHeight": 5
+      },
+      "rail": {
+        "area": 59003.5,
+        "length": 76480.44
+      }
+    }
   }
 }

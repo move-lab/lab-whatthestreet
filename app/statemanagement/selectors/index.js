@@ -26,7 +26,7 @@ export {
   // selectParkingSlots,
   ParkingSelectors,
   CityMetaSelectors,
-  // VersusSelectors,
+  VersusSelectors,
   LaneSelectors,
   GuessSelectors,
   // PageSelectors,

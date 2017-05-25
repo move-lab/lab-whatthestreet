@@ -20,7 +20,7 @@ export {
   // REGISTER_SCROLL_TARGET,
   // FINISH_SCROLLING,
   CITY_META,
-  // VERSUS,
+  VERSUS,
   LANES,
   GUESS,
   // PAGE,

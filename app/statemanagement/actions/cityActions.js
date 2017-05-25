@@ -1,7 +1,8 @@
 import { fromJS } from 'immutable';
 import axios from 'axios';
 import { CITY } from '../constants';
-import * as CityMetaActions from './cityMetaActions'
+import * as CityMetaActions from './cityMetaActions';
+import * as VersusActions from './versusActions';
 
 export function startLoadingCities() {
   return {
@@ -32,17 +33,13 @@ export function selectCity(citySlug) {
       payload: citySlug
     });
 
-    return new Promise((resolve, reject) => {
-      const baseUrl = getState().app.get('baseUrl');
-      dispatch(CityMetaActions.loadCityMetaData());
-      axios.get(`${baseUrl}/api/v1/cities/${citySlug}`).then((response) => {
-        dispatch(CityMetaActions.loadCityMetaDataSuccess(response.data));
-        resolve();
-      }, (error) => {
-        dispatch(CityMetaActions.loadCityMetaDataFailure(error))
-        reject(error);
-      });
-    });
+    // Load City Metadata
+    const fetchCityMetaData = dispatch(CityMetaActions.loadCityMetadata(citySlug));
+
+    // Load Versus Data
+    const fetchVersusData = dispatch(VersusActions.loadVersusData(citySlug));
+
+    return Promise.all([fetchCityMetaData, fetchVersusData]);
   }
 }
 
