@@ -1,6 +1,7 @@
 import { fromJS } from 'immutable';
 import axios from 'axios';
 import { CITY } from '../constants';
+import * as CityMetaActions from './cityMetaActions'
 
 export function startLoadingCities() {
   return {
@@ -23,10 +24,26 @@ export function onLoadCitiesFailure(err) {
 }
 
 export function selectCity(citySlug) {
-  return {
-    type: CITY.SELECT_CITY,
-    payload: citySlug
-  };
+  return (dispatch, getState) => {
+
+    // Select city
+    dispatch({
+      type: CITY.SELECT_CITY,
+      payload: citySlug
+    });
+
+    return new Promise((resolve, reject) => {
+      const baseUrl = getState().app.get('baseUrl');
+      dispatch(CityMetaActions.loadCityMetaData());
+      axios.get(`${baseUrl}/api/v1/cities/${citySlug}`).then((response) => {
+        dispatch(CityMetaActions.loadCityMetaDataSuccess(response.data));
+        resolve();
+      }, (error) => {
+        dispatch(CityMetaActions.loadCityMetaDataFailure(error))
+        reject(error);
+      });
+    });
+  }
 }
 
 export function toggleCitySelection() {
