@@ -10,8 +10,6 @@ class OtherCities extends React.PureComponent {
     city: React.PropTypes.object,
   }
 
-  shouldComponentUpdate = () => (false)
-
   renderCityLink = (city, index) => (
     <li className="ListItem" key={index}>
       <a href={`/${city.slug}`} className="Link">{city.name}</a>
