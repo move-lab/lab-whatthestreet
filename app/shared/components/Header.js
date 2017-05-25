@@ -112,7 +112,6 @@ class Header extends React.Component {
           }
           <style jsx>{`
             .NavigationBar {
-              position: fixed;
               z-index: ${METRICS.MetricsZindexHeader};
               top: 0;
               left: 0;
@@ -120,7 +119,6 @@ class Header extends React.Component {
               display: flex;
               justify-content: center;
               background-color: #fff;
-              {/*animation: slideFromTop .2s ease-in;*/}
             }
 
             .ScrollPageNavigationBar {
@@ -198,16 +196,16 @@ class Header extends React.Component {
               cursor: pointer;
             }
 
-            :global(.InfoLabel) {
+            .Container :global(.InfoLabel) {
               color: ${COLORS.ColorForegroundOrange};
               margin-top: 20px;
             }
 
-            :global(.InfoLabel) h3 {
+            .Container :global(.InfoLabel) h3 {
               margin: 0;
             }
             
-            :global(.InfoLabel) p {
+            .Container :global(.InfoLabel) p {
               margin: 0;
               margin-top: 10px;
             }

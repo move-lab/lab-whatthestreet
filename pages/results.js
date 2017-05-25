@@ -5,6 +5,7 @@ import { initStore } from '../app/statemanagement/store';
 
 import Layout from '../app/shared/components/Layout';
 import Header from '../app/shared/components/Header';
+import ResultsPage from '../app/results/ResultsPage';
 
 import { CityActions, GuessActions } from '../app/statemanagement/actions';
 import { setBaseUrl } from '../app/statemanagement/AppStateManagement';
@@ -43,7 +44,7 @@ class Results extends Component {
     return (
       <Layout>
         <Header title="Reown the city" />
-        <p>results page</p>
+        <ResultsPage />
       </Layout>
     )
   }

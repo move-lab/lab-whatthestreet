@@ -84,17 +84,17 @@ class VehicleSpaceComparisonGraph extends React.Component {
             justify-content: center;
           }
 
-          :global(.Bar) {
+          .Wrapper :global(.Bar) {
             background-color: ${COLORS.ColorLightBlue};
             width: 10px;
             margin-left: 2px;
           }
 
-          :global(.Curl) {
+          .Wrapper :global(.Curl) {
             position: absolute;
           }
 
-          :global(.CurlText) {
+          .Wrapper :global(.CurlText) {
             position: absolute;
             font-family: 'Sign-Painter';
             transform: rotate(-25deg);

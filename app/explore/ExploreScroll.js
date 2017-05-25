@@ -170,16 +170,6 @@ class ExploreScroll extends React.Component {
             onDismiss={() => this.dismissMap()}
           />
         }
-        <style jsx>{`
-          :global(.example-appear) {
-            opacity: 0.01;
-          }
-
-          :global(.example-appear).example-appear-active {
-            opacity: 1;
-            transition: opacity 0.1s ease-in;
-          }
-        `}</style>
       </section>
     )
   }
