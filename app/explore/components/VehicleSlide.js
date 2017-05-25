@@ -97,7 +97,7 @@ class VehicleSlide extends React.Component {
     } else {
       return (
         <ParkingSpaces
-          city="berlin"
+          city={this.props.citySlug}
           vehicle={this.props.vehicle}
           onPathClicked={(data, path) => this.goToMapView('parking', data.id)}
           registerItemsForSearch={(items) => console.log(`TODO registerItemsForSearch`)}
@@ -117,7 +117,7 @@ class VehicleSlide extends React.Component {
     // TODO REPLACE BERLIN BY DYNAMIC CITY
     return (
       <Lanes
-        city="berlin"
+        city={this.props.citySlug}
         vehicle={this.props.vehicle}
         onPathClicked={(data, path) => this.goToMapView('lanes', data.id)}
         registerItemsForSearch={(items) => console.log(`TODO registerItemsForSearch`)}

@@ -12,7 +12,7 @@
       "foot": 0.29,
       "bike": 0.15,
       "public": 0.26,
-      "car": 0.30
+      "car": 0.3
     },
     "streets": {
       "longestNames": [
@@ -73,126 +73,6 @@
         }
       ],
       "staffpicks": [
-        { "id": 1, "name": "Adlergestell" },
-        { "id": 2, "name": "Havelchaussee" },
-        { "id": 3, "name": "Kurfürstendamm" }
-      ]
-    },
-    "population": 3502000,
-    "cars": 12000000,
-    "landmark": {
-      "name": "Tempelhofer Feld",
-      "area": 2412477
-    },
-    "sources": {
-      "cars": "http://www.visitberlin.de/en/article/facts-and-figures",
-      "onStreetParkingSpots": "http://www.stadtentwicklung.berlin.de/verkehr/politik_planung/strassen_kfz/parkraum/"
-    },
-    "space": {
-      "rail": 10987669.15,
-      "car": 39581773.06,
-      "bike": 4669893.8
-    },
-    "moving": {
-      "rail": {
-        "area": 8290310.62,
-        "length": 1781530.59
-      },
-      "car": {
-        "area": 30187155,
-        "length": 3830307.55
-      },
-      "bike": {
-        "area": 4623361.1,
-        "length": 1263986.18
-      }
-    },
-    "parking": {
-      "car": {
-        "onStreet": {
-          "number": 103210
-        },
-        "offStreet": {
-          "number": 4917,
-          "area": 8156098.06,
-          "svgHeight": 20584
-        }
-      },
-      "bike": {
-        "number": 1653,
-        "area": 46532.7,
-        "svgHeight": 233
-      },
-      "rail": {
-        "area": 2697358.53,
-        "length": 550394.22
-      }
-    }
-  },
-  "stuttgart": {
-    "name": "Stuttgart",
-    "country": "Germany",
-    "boundingBox": [
-      52.33812,
-      13.0884,
-      52.675499,
-      13.76134
-    ],
-    "modalsplit": {
-      "foot": 0.29,
-      "bike": 0.15,
-      "public": 0.26,
-      "car": 0.30
-    },
-    "streets": {
-      "longestNames": [
-        "Hohenschönhausener Rhinstraßenbrücke",
-        "Anneliese-und-Georg-Groscurth-Platz",
-        "Marie-Elisabeth-von-Humboldt-Straße"
-      ],
-      "longestStreets": [
-        {
-          "name": "Landsberger Allee",
-          "length": 33520
-        },
-        {
-          "name": "Heerstraße",
-          "length": 33520
-        },
-        {
-          "name": "Adlergestell",
-          "length": 33520
-        },
-        {
-          "name": "Märkische Allee",
-          "length": 33520
-        },
-        {
-          "name": "Potsdamer Chaussee",
-          "length": 33520
-        },
-        {
-          "name": "Blumberger Damm",
-          "length": 33520
-        },
-        {
-          "name": "Köpenicker Straße",
-          "length": 33520
-        },
-        {
-          "name": "Allee der Kosmonauten",
-          "length": 33520
-        },
-        {
-          "name": "Rhinstraße",
-          "length": 33520
-        },
-        {
-          "name": "Havelchaussee",
-          "length": 33520
-        }
-      ],
-      "staffpicks": [
         "Adlergestell",
         "Havelchaussee",
         "Kurfürstendamm"
@@ -249,363 +129,135 @@
       }
     }
   },
-  "vaihingen": {
-    "name": "Vaihingen Enz",
-    "country": "Germany",
+  "boston": {
+    "name": "Boston",
+    "country": "USA",
     "boundingBox": [
-      52.33812,
-      13.0884,
-      52.675499,
-      13.76134
+      42.2071592425,
+      -71.2120056152,
+      42.3969802856,
+      -70.8618164062
     ],
+    "onStreetParkingSpots": 59925,
     "modalsplit": {
-      "foot": 0.29,
-      "bike": 0.15,
-      "public": 0.26,
-      "car": 0.30
+      "foot": 0.14,
+      "bike": 0.02,
+      "public": 0.35,
+      "car": 0.45
     },
     "streets": {
       "longestNames": [
-        "Hohenschönhausener Rhinstraßenbrücke",
-        "Anneliese-und-Georg-Groscurth-Platz",
-        "Marie-Elisabeth-von-Humboldt-Straße"
+        "South Station Bus Terminal Connector",
+        "Commonwealth Avenue Frontage Road Wb",
+        "West Roxbury Centre Street Rotary"
       ],
       "longestStreets": [
         {
-          "name": "Landsberger Allee",
-          "length": 33520
+          "length": 26963.47,
+          "name": "Washington Street",
+          "id": 3743
         },
         {
-          "name": "Heerstraße",
-          "length": 33520
+          "length": 21950.07,
+          "name": "Commonwealth Avenue",
+          "id": 815
         },
         {
-          "name": "Adlergestell",
-          "length": 33520
+          "length": 11583.54,
+          "name": "Blue Hill Avenue",
+          "id": 389
         },
         {
-          "name": "Märkische Allee",
-          "length": 33520
+          "length": 11477.58,
+          "name": "Centre Street",
+          "id": 661
         },
         {
-          "name": "Potsdamer Chaussee",
-          "length": 33520
+          "length": 10698.29,
+          "name": "Columbia Road",
+          "id": 802
         },
         {
-          "name": "Blumberger Damm",
-          "length": 33520
+          "length": 9628.18,
+          "name": "Dorchester Avenue",
+          "id": 1062
         },
         {
-          "name": "Köpenicker Straße",
-          "length": 33520
+          "length": 9308.62,
+          "name": "Beacon Street",
+          "id": 291
         },
         {
-          "name": "Allee der Kosmonauten",
-          "length": 33520
+          "length": 8776.45,
+          "name": "River Street",
+          "id": 3048
         },
         {
-          "name": "Rhinstraße",
-          "length": 33520
+          "length": 8769.14,
+          "name": "American Legion Highway",
+          "id": 101
         },
         {
-          "name": "Havelchaussee",
-          "length": 33520
+          "length": 7939.89,
+          "name": "Hyde Park Avenue",
+          "id": 1890
         }
       ],
-      "staffpicks": [
-        "Adlergestell",
-        "Havelchaussee",
-        "Kurfürstendamm"
+      "staffPicks": [
+        "Massachusetts Avenue",
+        "Boylston Street",
+        "Atlantic Avenue"
       ]
     },
-    "population": 3502000,
-    "cars": 12000000,
+    "population": 645966,
+    "cars": 303604,
     "landmark": {
-      "name": "Tempelhofer Feld",
-      "area": 2412477
+      "name": "Boston Common",
+      "area": 194115
     },
     "sources": {
-      "cars": "http://www.visitberlin.de/en/article/facts-and-figures",
-      "onStreetParkingSpots": "http://www.stadtentwicklung.berlin.de/verkehr/politik_planung/strassen_kfz/parkraum/"
+      "modalsplit": "https://en.wikipedia.org/wiki/Modal_share",
+      "cars": "http://www.governing.com/gov-data/car-ownership-numbers-of-vehicles-by-city-map.html",
+      "onStreetParkingSpots": "http://www.cityofboston.gov/TRANSPORTATION/accessboston/pdfs/front.pdf"
     },
     "space": {
-      "rail": 10987669.15,
-      "car": 39581773.06,
-      "bike": 4669893.8
+      "rail": 118010,
+      "car": 24247331.27,
+      "bike": 59653.17
     },
     "moving": {
       "rail": {
-        "area": 8290310.62,
-        "length": 1781530.59
+        "area": 59006.18000000016,
+        "length": 264968.60000000027
       },
       "car": {
-        "area": 30187155,
-        "length": 3830307.55
+        "area": 23230623.92,
+        "length": 1519467.25
       },
       "bike": {
-        "area": 4623361.1,
-        "length": 1263986.18
+        "area": 59003.57,
+        "length": 89058.27
       }
     },
     "parking": {
       "car": {
         "onStreet": {
-          "number": 103210
+          "number": 0
         },
         "offStreet": {
-          "number": 4917,
-          "area": 8156098.06,
-          "svgHeight": 20584
+          "number": 296,
+          "area": 1016707.35,
+          "svgHeight": 1695
         }
       },
       "bike": {
-        "number": 1653,
-        "area": 46532.7,
-        "svgHeight": 233
+        "number": 43,
+        "area": 649.6,
+        "svgHeight": 5
       },
       "rail": {
-        "area": 2697358.53,
-        "length": 550394.22
-      }
-    }
-  },
-  "ravensburg": {
-    "name": "Ravensburg",
-    "country": "Germany",
-    "boundingBox": [
-      52.33812,
-      13.0884,
-      52.675499,
-      13.76134
-    ],
-    "modalsplit": {
-      "foot": 0.29,
-      "bike": 0.15,
-      "public": 0.26,
-      "car": 0.30
-    },
-    "streets": {
-      "longestNames": [
-        "Hohenschönhausener Rhinstraßenbrücke",
-        "Anneliese-und-Georg-Groscurth-Platz",
-        "Marie-Elisabeth-von-Humboldt-Straße"
-      ],
-      "longestStreets": [
-        {
-          "name": "Landsberger Allee",
-          "length": 33520
-        },
-        {
-          "name": "Heerstraße",
-          "length": 33520
-        },
-        {
-          "name": "Adlergestell",
-          "length": 33520
-        },
-        {
-          "name": "Märkische Allee",
-          "length": 33520
-        },
-        {
-          "name": "Potsdamer Chaussee",
-          "length": 33520
-        },
-        {
-          "name": "Blumberger Damm",
-          "length": 33520
-        },
-        {
-          "name": "Köpenicker Straße",
-          "length": 33520
-        },
-        {
-          "name": "Allee der Kosmonauten",
-          "length": 33520
-        },
-        {
-          "name": "Rhinstraße",
-          "length": 33520
-        },
-        {
-          "name": "Havelchaussee",
-          "length": 33520
-        }
-      ],
-      "staffpicks": [
-        "Adlergestell",
-        "Havelchaussee",
-        "Kurfürstendamm"
-      ]
-    },
-    "population": 3502000,
-    "cars": 12000000,
-    "landmark": {
-      "name": "Tempelhofer Feld",
-      "area": 2412477
-    },
-    "sources": {
-      "cars": "http://www.visitberlin.de/en/article/facts-and-figures",
-      "onStreetParkingSpots": "http://www.stadtentwicklung.berlin.de/verkehr/politik_planung/strassen_kfz/parkraum/"
-    },
-    "space": {
-      "rail": 10987669.15,
-      "car": 39581773.06,
-      "bike": 4669893.8
-    },
-    "moving": {
-      "rail": {
-        "area": 8290310.62,
-        "length": 1781530.59
-      },
-      "car": {
-        "area": 30187155,
-        "length": 3830307.55
-      },
-      "bike": {
-        "area": 4623361.1,
-        "length": 1263986.18
-      }
-    },
-    "parking": {
-      "car": {
-        "onStreet": {
-          "number": 103210
-        },
-        "offStreet": {
-          "number": 4917,
-          "area": 8156098.06,
-          "svgHeight": 20584
-        }
-      },
-      "bike": {
-        "number": 1653,
-        "area": 46532.7,
-        "svgHeight": 233
-      },
-      "rail": {
-        "area": 2697358.53,
-        "length": 550394.22
-      }
-    }
-  },
-  "koeln": {
-    "name": "Köln",
-    "country": "Germany",
-    "boundingBox": [
-      52.33812,
-      13.0884,
-      52.675499,
-      13.76134
-    ],
-    "modalsplit": {
-      "foot": 0.29,
-      "bike": 0.15,
-      "public": 0.26,
-      "car": 0.30
-    },
-    "streets": {
-      "longestNames": [
-        "Hohenschönhausener Rhinstraßenbrücke",
-        "Anneliese-und-Georg-Groscurth-Platz",
-        "Marie-Elisabeth-von-Humboldt-Straße"
-      ],
-      "longestStreets": [
-        {
-          "name": "Landsberger Allee",
-          "length": 33520
-        },
-        {
-          "name": "Heerstraße",
-          "length": 33520
-        },
-        {
-          "name": "Adlergestell",
-          "length": 33520
-        },
-        {
-          "name": "Märkische Allee",
-          "length": 33520
-        },
-        {
-          "name": "Potsdamer Chaussee",
-          "length": 33520
-        },
-        {
-          "name": "Blumberger Damm",
-          "length": 33520
-        },
-        {
-          "name": "Köpenicker Straße",
-          "length": 33520
-        },
-        {
-          "name": "Allee der Kosmonauten",
-          "length": 33520
-        },
-        {
-          "name": "Rhinstraße",
-          "length": 33520
-        },
-        {
-          "name": "Havelchaussee",
-          "length": 33520
-        }
-      ],
-      "staffpicks": [
-        "Adlergestell",
-        "Havelchaussee",
-        "Kurfürstendamm"
-      ]
-    },
-    "population": 3502000,
-    "cars": 12000000,
-    "landmark": {
-      "name": "Tempelhofer Feld",
-      "area": 2412477
-    },
-    "sources": {
-      "cars": "http://www.visitberlin.de/en/article/facts-and-figures",
-      "onStreetParkingSpots": "http://www.stadtentwicklung.berlin.de/verkehr/politik_planung/strassen_kfz/parkraum/"
-    },
-    "space": {
-      "rail": 10987669.15,
-      "car": 39581773.06,
-      "bike": 4669893.8
-    },
-    "moving": {
-      "rail": {
-        "area": 8290310.62,
-        "length": 1781530.59
-      },
-      "car": {
-        "area": 30187155,
-        "length": 3830307.55
-      },
-      "bike": {
-        "area": 4623361.1,
-        "length": 1263986.18
-      }
-    },
-    "parking": {
-      "car": {
-        "onStreet": {
-          "number": 103210
-        },
-        "offStreet": {
-          "number": 4917,
-          "area": 8156098.06,
-          "svgHeight": 20584
-        }
-      },
-      "bike": {
-        "number": 1653,
-        "area": 46532.7,
-        "svgHeight": 233
-      },
-      "rail": {
-        "area": 2697358.53,
-        "length": 550394.22
+        "area": 59003.5,
+        "length": 76480.44
       }
     }
   }
