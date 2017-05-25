@@ -20,7 +20,7 @@ const IconParkingSpace = '/static/icons/Icon_ParkingSpace.svg';
 const ArrowOnTheRoad = '/static/icons/Arrow_OnTheRoad.svg';
 const ArrowEmptyParkingLots = '/static/icons/Arrow_EmptyParkingLots.svg';
 
-class FuturePage extends React.PureComponent {
+class FuturePage extends React.Component {
 
   static propTypes = {
     city: React.PropTypes.object,

@@ -13,7 +13,7 @@ import * as COLORS from '../../shared/style/colors';
 import * as METRICS from '../../shared/style/metrics';
 
 
-class VersusPage extends React.PureComponent {
+class VersusPage extends React.Component {
 
   static propTypes = {
     city: React.PropTypes.object,

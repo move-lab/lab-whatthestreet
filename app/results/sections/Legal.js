@@ -5,7 +5,7 @@ const logoResidencyProgram = '/static/icons/Logo_ResidencyProgram.svg';
 import * as COLORS from '../../shared/style/colors';
 import * as METRICS from '../../shared/style/metrics';
 
-class Legal extends React.PureComponent {
+class Legal extends React.Component {
 
   static propTypes = {
     cities: React.PropTypes.arrayOf(React.PropTypes.object),

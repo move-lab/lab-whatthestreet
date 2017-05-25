@@ -3,7 +3,7 @@ import React from 'react';
 import * as COLORS from '../../shared/style/colors';
 import * as METRICS from '../../shared/style/metrics';
 
-class OtherCities extends React.PureComponent {
+class OtherCities extends React.Component {
 
   static propTypes = {
     cities: React.PropTypes.arrayOf(React.PropTypes.object),

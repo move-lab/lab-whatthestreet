@@ -13,7 +13,7 @@ import { CityMetaSelectors } from '../../statemanagement/selectors';
 import * as COLORS from '../../shared/style/colors';
 import * as METRICS from '../../shared/style/metrics';
 
-class Stats extends React.PureComponent {
+class Stats extends React.Component {
 
   static propTypes = {
     cityMetaData: React.PropTypes.object.isRequired,
