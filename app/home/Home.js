@@ -35,31 +35,14 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
     ownGuess: PropTypes.objectOf(PropTypes.number),
     setGuess: PropTypes.func,
     saveGuess: PropTypes.func,
+    isRouting: PropTypes.bool
   }
 
 
   constructor() {
     super();
     this.state = {
-      guessed : false,
-      loadingExplorePage: false
-    }
-
-    Router.onRouteChangeStart = (url) => {
-      console.log(url);
-      this.setState({
-        loadingExplorePage : true
-      });
-    }
-    Router.onRouteChangeComplete = () => {
-      this.setState({
-        loadingExplorePage : false
-      });
-    }
-    Router.onRouteChangeError = () => {
-      this.setState({
-        loadingExplorePage : false
-      });
+      guessed : false
     }
   }
 
@@ -133,8 +116,8 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
           />
           <div className="CenteredContent">
             <RoundedButton
-              disabled={(!this.state.guessed || this.state.loadingExplorePage)}
-              loading={this.state.loadingExplorePage}
+              disabled={(!this.state.guessed || this.props.isRouting)}
+              loading={this.props.isRouting}
               onClick={() => this.solved()}
             >
               Get Started
@@ -191,7 +174,7 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
   }
 }
 
-const mapStateToProps = createStructuredSelector({
+const propsSelector = createStructuredSelector({
   availableCities: CitySelectors.makeSelectCities(),
   city: CitySelectors.makeSelectActualCity(),
   show_city_selection: CitySelectors.makeShowCitySelection(),
@@ -206,4 +189,9 @@ const mapDispatchToProps = (dispatch) => ({
   saveGuess: (guess) => dispatch(GuessActions.saveGuess(guess)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default connect((state) => {
+  return {
+    ...propsSelector(state),
+    isRouting: state.app.get('isRouting')
+  }
+}, mapDispatchToProps)(HomePage);

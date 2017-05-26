@@ -8,7 +8,7 @@ import Header from '../app/shared/components/Header';
 import ResultsPage from '../app/results/ResultsPage';
 
 import { CityActions, GuessActions } from '../app/statemanagement/actions';
-import { setBaseUrl } from '../app/statemanagement/AppStateManagement';
+import { setBaseUrl, initRouterWatcher } from '../app/statemanagement/AppStateManagement';
 
 class Results extends Component {
 
@@ -38,6 +38,11 @@ class Results extends Component {
       }
     }
     return;
+  }
+
+  componentDidMount() {
+    // Triggered on client
+    this.props.dispatch(initRouterWatcher());
   }
 
   render() {

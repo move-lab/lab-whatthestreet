@@ -7,7 +7,7 @@ import Layout from '../app/shared/components/Layout';
 import MapModal from '../app/map/MapModal';
 
 import { CityActions, GuessActions } from '../app/statemanagement/actions';
-import { setBaseUrl } from '../app/statemanagement/AppStateManagement';
+import { setBaseUrl, initRouterWatcher } from '../app/statemanagement/AppStateManagement';
 import { selectVehicle } from '../app/statemanagement/VehiclesStateManagement';
 
 class Explore extends Component {
@@ -41,6 +41,11 @@ class Explore extends Component {
       }
     }
     return;
+  }
+
+  componentDidMount() {
+    // Triggered on client
+    this.props.dispatch(initRouterWatcher());
   }
 
   render() {

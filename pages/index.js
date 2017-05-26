@@ -8,7 +8,7 @@ import Home from '../app/home/Home';
 import Header from '../app/shared/components/Header';
 
 import { CityActions, GuessActions } from '../app/statemanagement/actions';
-import { setBaseUrl } from '../app/statemanagement/AppStateManagement';
+import { setBaseUrl, initRouterWatcher } from '../app/statemanagement/AppStateManagement';
 
 class Index extends Component {
 
@@ -32,6 +32,11 @@ class Index extends Component {
       }
     }
     return;
+  }
+
+  componentDidMount() {
+    // Triggered on client
+    this.props.dispatch(initRouterWatcher());
   }
 
   render() {

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import Router from 'next/router';
+import Link from 'next/link';
 
 // Components
 import SocialMediaButtons from './SocialMediaButtons';
@@ -81,7 +82,18 @@ class Header extends React.Component {
       <header className={this.props.mode === 'normal' ? 'NavigationBar' : 'ScrollPageNavigationBar'}>
           {this.props.mode === 'normal' &&
             <div className="Content">
-              <a href="/" className="Title">{this.props.title}</a>
+              <Link prefetch href="/" as={{
+                  pathname: `/${this.props.citySlug}`,
+                  query: this.props.ownGuess.toJS()
+                }}
+              >
+                <a
+                  href="#"
+                  className="Title"
+                >
+                  {this.props.title}
+                </a>
+              </Link>
               <span className="AboutLink">
                 <button
                   className="AboutButton"

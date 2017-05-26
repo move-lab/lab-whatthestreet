@@ -15,7 +15,8 @@ class VehicleSlideSummary extends React.Component {
   static propTypes = {
     availableVehicles: React.PropTypes.object,
     activeVehicle: React.PropTypes.string,
-    goToNextVehicle: React.PropTypes.func
+    goToNextVehicle: React.PropTypes.func,
+    isRouting: React.PropTypes.bool
   }
 
   formatFirstLetterUpperCase(string) {
@@ -45,6 +46,8 @@ class VehicleSlideSummary extends React.Component {
         </p>
         <RoundedButton
           onClick={() => this.props.goToResults()}
+          disabled={this.props.isRouting}
+          loading={this.props.isRouting}
         >
           Results
         </RoundedButton>
@@ -97,6 +100,7 @@ class VehicleSlideSummary extends React.Component {
 export default connect((state) => {
   return {
     availableVehicles: state.vehicles.get('availableVehicles'),
-    activeVehicle: state.vehicles.get('vehicle')
+    activeVehicle: state.vehicles.get('vehicle'),
+    isRouting: state.app.get('isRouting')
   }
 })(VehicleSlideSummary);
