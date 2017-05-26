@@ -123,46 +123,43 @@ class VersusPage extends React.Component {
   }
 
   render() {
-    if (this.props.triangleData.length > 0) {
-      return (
-        <div className="MainContainer">
-          <div className="Wrapper">
-            <h2 className="Title">
-              {this.props.city.name} vs.<br />the World
-            </h2>
-            <VersusTriangle triangleData={this.renderTriangleData()} />
-            <VersusTable tableData={this.renderTableData()} />
-          </div>
-          <style jsx>{`
-            .MainContainer {
-              background-color: #e9edff;
-              padding-top: ${METRICS.MetricsSectionPadding};
-            }
-
-            .Wrapper {
-              width: ${METRICS.MetricsContentWidth};
-              padding: 0 ${METRICS.MetricsContentPadding};
-              margin: 0 auto;
-              position: relative;
-            }
-
-            .Title {
-              font-size: 47px;
-              line-height: 56px;
-              font-weight: 500;
-              color: ${COLORS.ColorBlue};
-              margin: 0;
-              padding: 0;
-              position: absolute;
-              top: 0;
-              left: ${METRICS.MetricsContentPadding};
-              width: 320px;
-            }
-          `}</style>
+    return (
+      <div className="MainContainer">
+        <div className="Wrapper">
+          <h2 className="Title">
+            {this.props.city.name} vs.<br />the World
+          </h2>
+          <VersusTriangle triangleData={this.renderTriangleData()} />
+          <VersusTable tableData={this.renderTableData()} />
         </div>
-      );
-    }
-    return (<div></div>);
+        <style jsx>{`
+          .MainContainer {
+            background-color: #e9edff;
+            padding-top: ${METRICS.MetricsSectionPadding};
+          }
+
+          .Wrapper {
+            width: ${METRICS.MetricsContentWidth};
+            padding: 0 ${METRICS.MetricsContentPadding};
+            margin: 0 auto;
+            position: relative;
+          }
+
+          .Title {
+            font-size: 47px;
+            line-height: 56px;
+            font-weight: 500;
+            color: ${COLORS.ColorBlue};
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            top: 0;
+            left: ${METRICS.MetricsContentPadding};
+            width: 320px;
+          }
+        `}</style>
+      </div>
+    );
   }
 }
 

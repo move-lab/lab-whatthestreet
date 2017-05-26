@@ -77,8 +77,11 @@ export function loadCities() {
       const baseUrl = getState().app.get('baseUrl');
       axios.get(`${baseUrl}/api/v1/cities`).then((response) => {
         dispatch(onLoadCitiesSuccess(response.data));
-        dispatch(selectCity('berlin'));
-        resolve();
+        // TODO HERE GET CLOSEST API CITY
+        dispatch(selectCity('berlin')).then(() => {
+          resolve();
+        });
+        
         // dispatch(getCitiesbyIp()).then(() => {
         //   resolve();
         // }, (error) => {

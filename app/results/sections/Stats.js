@@ -42,48 +42,45 @@ class Stats extends React.Component {
   }
 
   render = () => {
-    if (Object.keys(this.props.cityMetaData).length > 0) {
-      return (
-        <div className="MainContainer" style={{ backgroundImage: `url(${this.getBackground(this.props.cityMetaData.name)})` }}>
-          <div className="Wrapper">
-            <h2 className="Title">
-              About
-              <br />
-              {this.props.cityMetaData.name}
-            </h2>
-            <LongestStreets city={this.props.cityMetaData.name} streets={this.props.cityMetaData.streets.longestStreets} />
-            <LongestStreetNames streets={this.props.cityMetaData.streets.longestNames} />
-            <CitizenOwnership city={this.props.cityMetaData.name} data={this.calculateOwnership()} />
-          </div>
-          <style jsx>{`
-            .MainContainer {
-              padding-top: ${METRICS.MetricsSectionPadding};
-              padding-bottom: ${METRICS.MetricsSectionPadding};
-              background-color: ${COLORS.ColorBlue};
-              background-repeat: no-repeat;
-              background-position: center center;
-              background-size: cover;
-            }
-
-            .Wrapper {
-              width: ${METRICS.MetricsContentWidth};
-              padding: 0 ${METRICS.MetricsContentPadding};
-              margin: 0 auto;
-            }
-
-            .Title {
-              font-size: 47px;
-              line-height: 56px;
-              font-weight: 500;
-              color: white;
-              margin: 0 0 150px 0;
-            }
-          `}
-          </style>
+    return (
+      <div className="MainContainer" style={{ backgroundImage: `url(${this.getBackground(this.props.cityMetaData.name)})` }}>
+        <div className="Wrapper">
+          <h2 className="Title">
+            About
+            <br />
+            {this.props.cityMetaData.name}
+          </h2>
+          <LongestStreets city={this.props.cityMetaData.name} streets={this.props.cityMetaData.streets.longestStreets} />
+          <LongestStreetNames streets={this.props.cityMetaData.streets.longestNames} />
+          <CitizenOwnership city={this.props.cityMetaData.name} data={this.calculateOwnership()} />
         </div>
-      );
-    }
-    return (<div></div>);
+        <style jsx>{`
+          .MainContainer {
+            padding-top: ${METRICS.MetricsSectionPadding};
+            padding-bottom: ${METRICS.MetricsSectionPadding};
+            background-color: ${COLORS.ColorBlue};
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+          }
+
+          .Wrapper {
+            width: ${METRICS.MetricsContentWidth};
+            padding: 0 ${METRICS.MetricsContentPadding};
+            margin: 0 auto;
+          }
+
+          .Title {
+            font-size: 47px;
+            line-height: 56px;
+            font-weight: 500;
+            color: white;
+            margin: 0 0 150px 0;
+          }
+        `}
+        </style>
+      </div>
+    );
   }
 }
 

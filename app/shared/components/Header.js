@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
+import Router from 'next/router';
+
 // Components
 import SocialMediaButtons from './SocialMediaButtons';
 import VehicleIcon from './VehicleIcon';
@@ -10,6 +12,7 @@ import VehicleIcon from './VehicleIcon';
 import { ParkingSelectors, LaneSelectors } from '../../statemanagement/selectors';
 
 const searchIcon = '/static/icons/Icon_Search.svg';
+const homeIcon = '/static/icons/Icon_Home.svg';
 
 import * as METRICS from '../style/metrics';
 import * as COLORS from '../style/colors';
@@ -63,6 +66,16 @@ class Header extends React.Component {
     );
   }
 
+  goToHomePage() {
+    Router.push({
+      pathname: '/',
+      query: this.props.ownGuess.toJS()
+    }, {
+      pathname: `/${this.props.citySlug}`,
+      query: this.props.ownGuess.toJS()
+    }, { shallow: true });
+  }
+
   render() {
     return (
       <header className={this.props.mode === 'normal' ? 'NavigationBar' : 'ScrollPageNavigationBar'}>
@@ -82,10 +95,17 @@ class Header extends React.Component {
           {this.props.mode === 'explore' &&
             <div className="Content">
               <div className="Container">
-                <div className="SearchButton">
-                  <button onClick={() => console.log('TODO onsearch CLICK')} >
-                    <img alt="SearchIcon" src={searchIcon} /><span>Search</span>
-                  </button>
+                <div className="NavButtons">
+                  <div className="HomeButton">
+                    <button onClick={() => this.goToHomePage()} >
+                      <img alt="HomeIcon" className="HomeIcon" src={homeIcon} /><span>Home</span>
+                    </button>
+                  </div>
+                  <div className="SearchButton">
+                    <button onClick={() => console.log('TODO onsearch CLICK')} >
+                      <img alt="SearchIcon" src={searchIcon} /><span>Search</span>
+                    </button>
+                  </div>
                 </div>
                 <div className="SearchWrapper">
                   <div className="SearchBox">
@@ -280,17 +300,33 @@ class Header extends React.Component {
               font-weight: 200;
             }
 
-            .SearchButton {
-              padding: 10px 0;
-              cursor: pointer;
+            .NavButtons {
+              display: flex;
+              flex-direction: row;
             }
 
-            .SearchButton * {
+            .SearchButton,.HomeButton {
+              padding: 10px 0;
+              cursor: pointer;
+              margin-right: 10px;
+            }
+
+            .SearchButton:hover,.SearchButton:focus,.SearchButton:active,
+            .HomeButton:hover,.HomeButton:focus,.HomeButton:active, {
+              opacity: 0.5;
+            }
+
+            .SearchButton *,.HomeButton * {
               cursor: pointer;
               padding: 0;
             }
 
-            .SearchButton span {
+            .HomeIcon {
+              position: relative;
+              bottom: 3px;
+            }
+
+            .SearchButton span,.HomeButton span {
               margin-left: 5px;
             }
           `}</style>
@@ -299,9 +335,17 @@ class Header extends React.Component {
   }
 }
 
-const mapStateToProps = createStructuredSelector({
+const structuredSelector = createStructuredSelector({
   parkingSpace: ParkingSelectors.makeSelectActualParkingPlace(),
   lane: LaneSelectors.makeSelectActualLane(),
 });
+
+const mapStateToProps = (state) => {
+  return {
+    ...structuredSelector(state),
+    ownGuess: state.guess.get('own'),
+    citySlug: state.city.getIn(['actual_city','slug'])
+  }
+};
 
 export default connect(mapStateToProps)(Header);
