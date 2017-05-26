@@ -88,7 +88,6 @@ class Header extends React.Component {
                 }}
               >
                 <a
-                  href="#"
                   className="Title"
                 >
                   {this.props.title}
