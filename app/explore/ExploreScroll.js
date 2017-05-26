@@ -46,10 +46,12 @@ class ExploreScroll extends React.Component {
   }
 
   showMap(url, data) {
+    // TODO IN CASE OF PARKING, CALL setItemData with data from SVG
     Router.push({
       pathname: '/explore',
       query: {
         id: data.id,
+        areaType: data.areaType,
         ...this.props.ownGuess.toJS()
       }
     },{
@@ -169,6 +171,9 @@ class ExploreScroll extends React.Component {
         />
         {this.props.url.query.id &&
           <MapModal
+            renderingFromExplorePage={true}
+            itemId={parseInt(this.props.url.query.id)}
+            areaType={this.props.url.query.areaType}
             onDismiss={() => this.dismissMap()}
           />
         }

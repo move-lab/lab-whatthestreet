@@ -11,29 +11,26 @@ import VehicleIcon from '../../shared/components/VehicleIcon';
 class MapInfoBox extends React.Component {
 
   static propTypes = {
-    mapMode: React.PropTypes.string,
+    areaType: React.PropTypes.string,
     neighborhood: React.PropTypes.string,
-    street: React.PropTypes.object,
-    mapArea: React.PropTypes.number,
+    area: React.PropTypes.string,
     actualVehicle: React.PropTypes.string,
     citySlug: React.PropTypes.string,
+    streetName: React.PropTypes.string,
     closeModal: React.PropTypes.func
   }
 
   render() {
 
-    console.log(this.props.citySlug);
-
-    const isParkingSpace = this.props.mapMode === identifiers.parkingspace;
-    const headline = isParkingSpace ? `Parkingspace in ${this.props.neighborhood}` : this.props.street.properties && this.props.street.properties.name;
-    const area = isParkingSpace ? this.props.mapArea : this.props.street.properties && this.props.street.properties.area;
+    const isParkingSpace = this.props.areaType === identifiers.parkingspace;
+    const headline = isParkingSpace ? `Parkingspace in ${this.props.neighborhood}` : this.props.streetName;
 
     return (
       <div className="MapInfoBox">
         <div className="MapInfoContent">
           <VehicleIcon height={60} width={60} vehicle={this.props.actualVehicle} />
           <p>{headline}</p>
-          <p>{`${area}m² = ${Math.round(area / 12)} cars`}</p>
+          <p>{`${this.props.area}m² = ${Math.round(parseFloat(this.props.area) / 12)} cars`}</p>
         </div>
         <div className="MapInfoButtons">
           <button className="MapInfoButton" onClick={() => console.log('TODO zoom in')}>+</button>
@@ -103,11 +100,11 @@ class MapInfoBox extends React.Component {
 
 export default connect((state) => {
   return {
-    mapArea: state.map.get('area'),
-    mapMode: state.map.get('mapMode'),
-    neighborhood: state.map.get('neighborhood'),
-    street: state.street.get('data').toJS(),
+    areaType: state.map.get('areaType'),
+    area: state.map.getIn(['itemData','properties','area']),
+    neighborhood: state.map.getIn(['itemData','properties','neighborhood']),
     actualVehicle: state.vehicles.get('vehicle'),
-    citySlug: state.city.getIn(['actual_city','slug'])
+    citySlug: state.city.getIn(['actual_city','slug']),
+    streetName: state.map.getIn(['itemData','properties','name'])
   }
 })(MapInfoBox);

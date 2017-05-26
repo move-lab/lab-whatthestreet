@@ -27,6 +27,7 @@
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.0",
     "sha1": "^1.1.1",
-    "smoothscroll-polyfill": "^0.3.5"
+    "smoothscroll-polyfill": "^0.3.5",
+    "turf": "^3.0.14"
   }
 }

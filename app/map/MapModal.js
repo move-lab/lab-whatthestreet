@@ -5,6 +5,8 @@ import Router from 'next/router';
 import Loader from '../shared/components/Loader';
 import MapInfoBox from './components/MapInfoBox';
 
+import { fetchItemData } from '../statemanagement/MapStateManagement';
+
 let Map;
 
 class MapModal extends Component {
@@ -13,12 +15,22 @@ class MapModal extends Component {
     onDismiss: React.PropTypes.func,
     citySlug: React.PropTypes.string,
     activeVehicle: React.PropTypes.string,
-    ownGuess: React.PropTypes.object
+    ownGuess: React.PropTypes.object,
+    itemId: React.PropTypes.number,
+    areaType: React.PropTypes.string,
+    renderingFromExplorePage: React.PropTypes.bool
   }
 
-  constructor () {
-    super();
+  constructor (props) {
+    super(props);
     this.closeModal = this.closeModal.bind(this);
+
+    // Do not fetch is we are doing a server side rendering
+    // (they are undefined and already fetched in getInitialProps)
+    if (this.props.renderingFromExplorePage) {
+      this.props.dispatch(fetchItemData(this.props.itemId, this.props.areaType));
+    }
+
     this.state = { showMap: false };
   }
 
@@ -48,13 +60,13 @@ class MapModal extends Component {
         <MapInfoBox
           closeModal={this.closeModal}
         />
-        {!this.state.showMap &&
+        {!this.state.showMap || !this.props.itemData &&
           <div style={{ display: 'flex', height: '100vh', alignItems: 'center', justifyContent: 'center' }}>
             <Loader />
           </div>
         }
-        {this.state.showMap &&
-          <Map />
+        {this.state.showMap && this.props.itemData &&
+          <Map itemData={this.props.itemData.toJS()} />
         }
       </div>
     );
@@ -65,6 +77,7 @@ export default connect((state) => {
   return {
     citySlug: state.city.getIn(['actual_city','slug']),
     activeVehicle: state.vehicles.get('vehicle'),
-    ownGuess: state.guess.get('own')
+    ownGuess: state.guess.get('own'),
+    itemData: state.map.get('itemData')
   }
 })(MapModal);

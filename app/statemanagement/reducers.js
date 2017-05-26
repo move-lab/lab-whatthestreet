@@ -5,7 +5,7 @@ import vehiclesStateManagement from './VehiclesStateManagement';
 // import scrollReducer from './reducers/scrollReducer';
 import parkingReducer from './reducers/parkingReducer';
 import guessReducer from './reducers/guessReducer';
-import mapReducer from './reducers/mapReducer';
+import mapStateManagement from './MapStateManagement';
 import cityMetaReducer from './reducers/cityMetaReducer';
 import appStateManagement from './AppStateManagement';
 import exploreStateManagement from './ExploreStateManagement';
@@ -25,7 +25,7 @@ export default combineReducers({
   parking: parkingReducer,
   lanes: laneReducer,
   guess: guessReducer,
-  map: mapReducer,
+  map: mapStateManagement,
   cityMeta: cityMetaReducer,
   versus: versusReducer,
   street: streetReducer,
