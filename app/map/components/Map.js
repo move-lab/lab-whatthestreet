@@ -51,7 +51,8 @@ class Map extends Component {
   render() {
 
     // HOW TO STYLE GEOJSON LAYER ???
-    // IT IS CORRECT
+    // THE GEOJSON IS SET CORRECTLY, see for http://localhost:4000/berlin/explore/car/lanes/8?bike=0.53&rail=0.24&car=0.24
+    // CORRESPONDING GEOJSON: 
 
     return (
       <ReactMapboxGl
