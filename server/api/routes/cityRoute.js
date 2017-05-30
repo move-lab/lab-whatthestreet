@@ -69,7 +69,7 @@ exports.getStreetByID = (request, response) => {
   request.db.open((err, database) => {
     const collections = {
       bike: 'biketracks',
-      rails: 'railtracks',
+      rail: 'railtracks',
       car: 'streets',
     };
 

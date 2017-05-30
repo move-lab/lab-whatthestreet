@@ -29,8 +29,12 @@ class MapInfoBox extends React.Component {
       <div className="MapInfoBox">
         <div className="MapInfoContent">
           <VehicleIcon height={60} width={60} vehicle={this.props.actualVehicle} />
-          <p>{headline}</p>
-          <p>{`${this.props.area}m² = ${Math.round(parseFloat(this.props.area) / 12)} cars`}</p>
+          {this.headline &&
+            <p>{headline}</p>
+          }
+          {this.props.area &&
+            <p>{`${this.props.area}m² = ${Math.round(parseFloat(this.props.area) / 12)} cars`}</p>
+          }
         </div>
         <div className="MapInfoButtons">
           <button className="MapInfoButton" onClick={() => console.log('TODO zoom in')}>+</button>
