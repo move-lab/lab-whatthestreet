@@ -67,6 +67,14 @@ class Map extends Component {
         <ZoomControl/>
         <GeoJSONLayer
           data={this.state.geojson}
+          linePaint={{
+            "line-color": "#00f",
+            "line-width": 5
+          }}
+          lineLayout={{
+            "line-join": "round",
+            "line-cap": "round"
+          }}
         />
       </ReactMapboxGl>
     );
