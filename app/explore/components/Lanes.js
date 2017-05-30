@@ -54,16 +54,16 @@ class Lanes extends React.PureComponent {
 
   getPathData = (path) => {
     // This might cause perf issue as we are reading from the dom
-    const absoluteX = this.element.childNodes[this.svgNodeIndex].getBBox().x + this.element.getBoundingClientRect().left;
-    const absoluteY = this.element.childNodes[this.svgNodeIndex].getBBox().y + (this.element.getBoundingClientRect().top - 2);
+    // const absoluteX = this.element.childNodes[this.svgNodeIndex].getBBox().x + this.element.getBoundingClientRect().left;
+    // const absoluteY = this.element.childNodes[this.svgNodeIndex].getBBox().y + (this.element.getBoundingClientRect().top - 2);
 
     return ({
       id: parseInt(path.getAttribute('id'), 10),
       neighborhood: path.getAttribute('moovel_neighborhood'),
       name: path.getAttribute('moovel_name'),
       area: path.getAttribute('moovel_area'),
-      length: path.getAttribute('moovel_length'),
-      coordinates: { x: absoluteX, y: absoluteY },
+      length: path.getAttribute('moovel_length')
+      // coordinates: { x: absoluteX, y: absoluteY },
     });
   }
 
