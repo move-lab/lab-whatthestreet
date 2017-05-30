@@ -13,7 +13,7 @@ import { lanes } from '../statemanagement/constants/identifiersConstants';
 
 import { selectVehicle } from '../statemanagement/VehiclesStateManagement';
 
-class ExploreScroll extends React.Component {
+class ExploreScroll extends React.PureComponent {
 
   static propTypes = {
     availableVehicles: React.PropTypes.object,

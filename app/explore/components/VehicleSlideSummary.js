@@ -10,7 +10,7 @@ import VehicleSpaceComparisonGraph from './VehicleSpaceComparisonGraph';
 import * as METRICS from '../../shared/style/metrics';
 import * as COLORS from '../../shared/style/colors';
 
-class VehicleSlideSummary extends React.Component {
+class VehicleSlideSummary extends React.PureComponent {
 
   static propTypes = {
     availableVehicles: React.PropTypes.object,

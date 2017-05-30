@@ -23,7 +23,7 @@ import { StreetActions, LaneActions, ParkingActions } from '../../statemanagemen
 import Lanes from './Lanes';
 import ParkingSpaces from './ParkingSpaces';
 
-class VehicleSlide extends React.Component {
+class VehicleSlide extends React.PureComponent {
 
   static propTypes = {
     vehicle: React.PropTypes.string,

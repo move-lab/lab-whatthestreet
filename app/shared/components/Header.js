@@ -18,7 +18,7 @@ const homeIcon = '/static/icons/Icon_Home.svg';
 import * as METRICS from '../style/metrics';
 import * as COLORS from '../style/colors';
 
-class Header extends React.Component {
+class Header extends React.PureComponent {
 
   static propTypes = {
     title: React.PropTypes.string,

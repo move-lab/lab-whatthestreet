@@ -29,5 +29,8 @@
     "sha1": "^1.1.1",
     "smoothscroll-polyfill": "^0.3.5",
     "turf": "^3.0.14"
+  },
+  "devDependencies": {
+    "react-addons-perf": "^15.4.2"
   }
 }

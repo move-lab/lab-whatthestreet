@@ -11,7 +11,7 @@ const angle = '/static/icons/Icon_ButtonArrow_Blue.svg';
 const ScrollIcon = '/static/icons/Icon_JumpSection.svg';
 const ScrollIconReverse = '/static/icons/Icon_JumpSection_Reverse.svg';
 
-class VehicleSlidesOverlay extends React.Component {
+class VehicleSlidesOverlay extends React.PureComponent {
 
   static propTypes = {
     lanesLoaded: PropTypes.bool,

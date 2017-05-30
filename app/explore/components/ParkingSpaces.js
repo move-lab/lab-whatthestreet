@@ -10,7 +10,7 @@ import * as COLORS from '../../shared/style/colors';
 // Components
 import Loader from '../../shared/components/Loader';
 
-class ParkingSpaces extends React.Component {
+class ParkingSpaces extends React.PureComponent {
 
   static propTypes = {
     vehicle: React.PropTypes.string,
