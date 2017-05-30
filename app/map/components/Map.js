@@ -10,9 +10,15 @@ const containerStyle = {
 
 class Map extends Component {
 
+  static propTypes = {
+    itemData: React.PropTypes.object,
+    onMapLoaded: React.PropTypes.func
+  }
+
   constructor(props) {
     super(props);
 
+    // Unfold to final street for now
     const unfolder = unfold();
     const geoJson = unfolder.geoJsonStreetAnimation(
       props.itemData.original,
@@ -22,46 +28,26 @@ class Map extends Component {
       1
     );
 
-    console.log(geoJson);
-
-    
     this.state = {
-      maxBounds: null,
       geojson: geoJson
     };
   }
 
   // componentDidMount() {
-  //   const unfolder = unfold();
-  //   const geoJson = unfolder.geoJsonStreetAnimation(
-  //     this.props.itemData.original,
-  //     this.props.itemData.coiled,
-  //     this.props.itemData.properties.origin,
-  //     1,
-  //     1
-  //   );
-
-  //   console.log(geoJson);
-
-  //   this.setState({
-  //     geojson: geoJson
-  //   });
+  // Here we could do the unfold animation
   // }
 
   render() {
-
-    // HOW TO STYLE GEOJSON LAYER ???
-    // THE GEOJSON IS SET CORRECTLY, see for http://localhost:4000/berlin/explore/car/lanes/8?bike=0.53&rail=0.24&car=0.24
-    // CORRESPONDING GEOJSON: 
 
     return (
       <ReactMapboxGl
         style="mapbox://styles/mapbox/streets-v9"
         accessToken="***REMOVED***"
-        center={[ 13.32094, 52.51650 ]}
+        center={[ this.props.itemData.original.destination.lon, this.props.itemData.original.destination.lat ]}
         zoom={[17]}
         movingMethod="jumpTo"
         containerStyle={containerStyle}
+        onStyleLoad={this.props.onMapLoaded}
       >
         <ScaleControl/>
         <ZoomControl/>
