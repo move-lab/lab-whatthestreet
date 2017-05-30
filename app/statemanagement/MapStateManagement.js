@@ -5,10 +5,10 @@ import axios from 'axios';
 const initialState = fromJS({
   areaType: null,
   itemId: null,
-  isFetchingItemData: false,
-  itemData: null,
+  isFetchingLaneData: false,
+  laneData: null,
   parkingData: null,
-  errorFetchingItemData: false
+  errorFetchingLaneData: false
 });
 
 // Actions
@@ -16,9 +16,9 @@ export const SET_AREA_TYPE = 'Map/SET_AREA_TYPE';
 export const SET_ITEM_ID = 'Map/SET_ITEM_ID';
 export const SET_PARKING_DATA = 'Map/SET_PARKING_DATA';
 
-export const START_FETCHING_ITEM_DATA = 'Map/START_FETCHING_ITEM_DATA';
-export const SUCCESS_FETCHING_ITEM_DATA = 'Map/SUCCESS_FETCHING_ITEM_DATA';
-export const ERROR_FETCHING_ITEM_DATA = 'Map/ERROR_FETCHING_ITEM_DATA';
+export const START_FETCHING_LANE_DATA = 'Map/START_FETCHING_LANE_DATA';
+export const SUCCESS_FETCHING_LANE_DATA = 'Map/SUCCESS_FETCHING_LANE_DATA';
+export const ERROR_FETCHING_LANE_DATA = 'Map/ERROR_FETCHING_LANE_DATA';
 
 export function setAreaType(areaType) {
   return {
@@ -34,23 +34,23 @@ export function setItemId(itemId) {
   }
 }
 
-export function startFetchingItemData() {
+export function startFetchingLaneData() {
   return {
-    type: START_FETCHING_ITEM_DATA
+    type: START_FETCHING_LANE_DATA
   }
 }
 
-export function errorFetchingItemData(error) {
+export function errorFetchingLaneData(error) {
   return {
-    type: ERROR_FETCHING_ITEM_DATA,
+    type: ERROR_FETCHING_LANE_DATA,
     payload: error
   }
 }
 
-export function successFetchingItemData(itemData) {
+export function successFetchingLaneData(laneData) {
   return {
-    type: SUCCESS_FETCHING_ITEM_DATA,
-    payload: itemData
+    type: SUCCESS_FETCHING_LANE_DATA,
+    payload: laneData
   }
 }
 
@@ -66,7 +66,7 @@ export function setParkingData(data) {
   }
 }
 
-export function fetchItemData(itemId, areaType) {
+export function fetchLaneData(itemId, areaType) {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
 
@@ -78,7 +78,7 @@ export function fetchItemData(itemId, areaType) {
       }
 
       // Notify UI we are fetching stuff
-      dispatch(startFetchingItemData());
+      dispatch(startFetchingLaneData());
       dispatch(setAreaType(areaType));
       dispatch(setItemId(itemId));
 
@@ -90,10 +90,10 @@ export function fetchItemData(itemId, areaType) {
       const activeVehicule = getState().vehicles.get('vehicle');
 
       axios.get(`${baseUrl}/api/v1/cities/${currentCity}/streets/${activeVehicule}/${itemId}`).then((response) => {
-        dispatch(successFetchingItemData(response.data));
+        dispatch(successFetchingLaneData(response.data));
         resolve();
       }, (error) => {
-        dispatch(errorFetchingItemData(error));
+        dispatch(errorFetchingLaneData(error));
         reject();
       });
     });
@@ -109,19 +109,19 @@ export default function MapStateManagement(state = initialState, action) {
     case SET_ITEM_ID:
       return state
         .set('itemId', action.payload);
-    case START_FETCHING_ITEM_DATA:
+    case START_FETCHING_LANE_DATA:
       return state
-        .set('isFetchingItemData', true)
-        .set('errorFetchingItemData', false)
-        .set('itemData', null)
-    case ERROR_FETCHING_ITEM_DATA:
+        .set('isFetchingLaneData', true)
+        .set('errorFetchingLaneData', false)
+        .set('laneData', null)
+    case ERROR_FETCHING_LANE_DATA:
       return state
-        .set('isFetchingItemData', false)
-        .set('errorFetchingItemData', true)
-    case SUCCESS_FETCHING_ITEM_DATA:
+        .set('isFetchingLaneData', false)
+        .set('errorFetchingLaneData', true)
+    case SUCCESS_FETCHING_LANE_DATA:
       return state
-        .set('isFetchingItemData', false)
-        .set('itemData', fromJS(action.payload))
+        .set('isFetchingLaneData', false)
+        .set('laneData', fromJS(action.payload))
      case SET_PARKING_DATA:
       return state
         .set('parkingData', fromJS(action.payload))

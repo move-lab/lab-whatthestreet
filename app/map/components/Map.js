@@ -12,7 +12,7 @@ class Map extends Component {
 
   static propTypes = {
     areaType: React.PropTypes.string,
-    itemData: React.PropTypes.object,
+    laneData: React.PropTypes.object,
     parkingData: React.PropTypes.object,
     onMapLoaded: React.PropTypes.func
   }
@@ -37,17 +37,15 @@ class Map extends Component {
       // Unfold to final street for now
       const unfolder = unfold();
       geojson = unfolder.geoJsonStreetAnimation(
-        props.itemData.original,
-        props.itemData.coiled,
-        props.itemData.properties.origin,
+        props.laneData.original,
+        props.laneData.coiled,
+        props.laneData.properties.origin,
         1,
         1
       );
 
-      center = [ props.itemData.original.destination.lon, props.itemData.original.destination.lat ]
+      center = [ props.laneData.original.destination.lon, props.laneData.original.destination.lat ]
     }
-
-    console.log(geojson);
 
     this.state = {
       center : center,

@@ -46,7 +46,7 @@ class ExploreScroll extends React.Component {
   }
 
   showMap(url, data) {
-    // TODO IN CASE OF PARKING, CALL setItemData with data from SVG
+    // TODO IN CASE OF PARKING, CALL setLaneData with data from SVG
    
     Router.push({
       pathname: '/explore',

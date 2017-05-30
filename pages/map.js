@@ -8,7 +8,7 @@ import MapModal from '../app/map/MapModal';
 
 import { CityActions, GuessActions } from '../app/statemanagement/actions';
 import { setBaseUrl, initRouterWatcher } from '../app/statemanagement/AppStateManagement';
-import { fetchItemData } from '../app/statemanagement/MapStateManagement';
+import { fetchLaneData } from '../app/statemanagement/MapStateManagement';
 import { selectVehicle } from '../app/statemanagement/VehiclesStateManagement';
 
 class Explore extends Component {
@@ -30,7 +30,7 @@ class Explore extends Component {
         await store.dispatch(selectVehicle(req.params.vehicleType));
       }
       if(req && req.params.itemId && req.params.areaType) {
-        await store.dispatch(fetchItemData(parseInt(req.params.itemId), req.params.areaType));
+        await store.dispatch(fetchLaneData(parseInt(req.params.itemId), req.params.areaType));
       }
       if(req && req.query.bike && req.query.rail && req.query.car) {
         await store.dispatch(GuessActions.setOwnGuess({

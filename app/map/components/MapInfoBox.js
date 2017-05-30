@@ -12,28 +12,37 @@ class MapInfoBox extends React.Component {
 
   static propTypes = {
     areaType: React.PropTypes.string,
-    neighborhood: React.PropTypes.string,
-    area: React.PropTypes.string,
-    actualVehicle: React.PropTypes.string,
+    parkingData: React.PropTypes.object,
+    laneData: React.PropTypes.object,
+    activeVehicle: React.PropTypes.string,
     citySlug: React.PropTypes.string,
-    streetName: React.PropTypes.string,
     closeModal: React.PropTypes.func
   }
 
   render() {
+    let area;
+    let headline;
 
-    const isParkingSpace = this.props.areaType === identifiers.parkingspace;
-    const headline = isParkingSpace ? `Parkingspace in ${this.props.neighborhood}` : this.props.streetName;
+    if (this.props.areaType === identifiers.parkingspace) {
+      const neighborhood = this.props.parkingData.get('neighborhood');
+      headline = `Parkingspace in ${neighborhood}`;
+      area = this.props.parkingData.get('area');
+    } else {
+      headline = this.props.laneData && this.props.laneData.getIn(['properties','name']);
+      area = this.props.laneData && this.props.laneData.getIn(['properties','area']);
+    }
+
+    console.log(headline);
 
     return (
       <div className="MapInfoBox">
         <div className="MapInfoContent">
-          <VehicleIcon height={60} width={60} vehicle={this.props.actualVehicle} />
+          <VehicleIcon height={60} width={60} vehicle={this.props.activeVehicle} />
           {headline &&
             <p>{headline}</p>
           }
-          {this.props.area &&
-            <p>{`${this.props.area}m² = ${Math.round(parseFloat(this.props.area) / 12)} cars`}</p>
+          {area &&
+            <p>{`${area}m² = ${Math.round(parseFloat(area) / 12)} cars`}</p>
           }
         </div>
         <div className="MapInfoButtons">
@@ -102,13 +111,4 @@ class MapInfoBox extends React.Component {
   }
 }
 
-export default connect((state) => {
-  return {
-    areaType: state.map.get('areaType'),
-    area: state.map.getIn(['itemData','properties','area']),
-    neighborhood: state.map.getIn(['itemData','properties','neighborhood']),
-    actualVehicle: state.vehicles.get('vehicle'),
-    citySlug: state.city.getIn(['actual_city','slug']),
-    streetName: state.map.getIn(['itemData','properties','name'])
-  }
-})(MapInfoBox);
+export default MapInfoBox;
