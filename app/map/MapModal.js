@@ -18,6 +18,7 @@ class MapModal extends Component {
     ownGuess: React.PropTypes.object,
     itemId: React.PropTypes.number,
     areaType: React.PropTypes.string,
+    areaTypeFromExplore: React.PropTypes.string,
     renderingFromExplorePage: React.PropTypes.bool
   }
 
@@ -26,10 +27,12 @@ class MapModal extends Component {
     this.closeModal = this.closeModal.bind(this);
     this.onMapLoaded = this.onMapLoaded.bind(this);
 
+    console.log('coucou');
+
     // Do not fetch is we are doing a server side rendering
     // (they are undefined and already fetched in getInitialProps)
-    if (this.props.renderingFromExplorePage) {
-      this.props.dispatch(fetchItemData(this.props.itemId, this.props.areaType));
+    if (this.props.renderingFromExplorePage && this.props.areaTypeFromExplore === 'lanes') {
+      this.props.dispatch(fetchItemData(this.props.itemId, this.props.areaTypeFromExplore));
     }
 
     this.state = { 
@@ -77,9 +80,17 @@ class MapModal extends Component {
             <Loader />
           </div>
         }
-        {this.state.showMap && this.props.itemData &&
+        {this.state.showMap && this.props.areaType === 'parking' &&
           <Map
-            itemData={this.props.itemData.toJS()}
+            areaType={this.props.areaType}
+            parkingData={this.props.parkingData && this.props.parkingData.toJS()}
+            onMapLoaded={this.onMapLoaded}
+          />
+        }
+        {this.state.showMap && this.props.itemData && this.props.areaType === 'lanes' &&
+          <Map
+            areaType={this.props.areaType}
+            itemData={this.props.itemData && this.props.itemData.toJS()}
             onMapLoaded={this.onMapLoaded}
           />
         }
@@ -93,6 +104,8 @@ export default connect((state) => {
     citySlug: state.city.getIn(['actual_city','slug']),
     activeVehicle: state.vehicles.get('vehicle'),
     ownGuess: state.guess.get('own'),
-    itemData: state.map.get('itemData')
+    itemData: state.map.get('itemData'),
+    parkingData: state.map.get('parkingData'),
+    areaType: state.map.get('areaType')
   }
 })(MapModal);

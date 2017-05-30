@@ -16,6 +16,8 @@ import {
   setParkingBottomPosition
 } from '../../statemanagement/ExploreStateManagement';
 
+import { setParkingData } from '../../statemanagement/MapStateManagement';
+
 import { StreetActions, LaneActions, ParkingActions } from '../../statemanagement/actions';
 
 import Lanes from './Lanes';
@@ -99,7 +101,10 @@ class VehicleSlide extends React.Component {
         <ParkingSpaces
           city={this.props.citySlug}
           vehicle={this.props.vehicle}
-          onPathClicked={(data, path) => this.goToMapView('parking', data.id)}
+          onPathClicked={(data, path) => {
+            this.props.dispatch(setParkingData(data));
+            this.goToMapView('parking', data.id)
+          }}
           registerItemsForSearch={(items) => console.log(`TODO registerItemsForSearch`)}
           onLoaded={(scrollHeight) => {
             this.props.onLoaded(parkingspace);

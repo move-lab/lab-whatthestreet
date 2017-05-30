@@ -11,30 +11,52 @@ const containerStyle = {
 class Map extends Component {
 
   static propTypes = {
+    areaType: React.PropTypes.string,
     itemData: React.PropTypes.object,
+    parkingData: React.PropTypes.object,
     onMapLoaded: React.PropTypes.func
   }
 
   constructor(props) {
     super(props);
 
-    // Unfold to final street for now
-    const unfolder = unfold();
-    const geoJson = unfolder.geoJsonStreetAnimation(
-      props.itemData.original,
-      props.itemData.coiled,
-      props.itemData.properties.origin,
-      1,
-      1
-    );
+    let geojson;
+    let center;
+
+    if (props.areaType === 'parking') {
+      geojson = {
+        type: 'Feature',
+        geometry: {
+          type: 'Polygon',
+          coordinates: [props.parkingData.coordinates],
+        }
+      }
+
+      center = props.parkingData.center;
+    } else {
+      // Unfold to final street for now
+      const unfolder = unfold();
+      geojson = unfolder.geoJsonStreetAnimation(
+        props.itemData.original,
+        props.itemData.coiled,
+        props.itemData.properties.origin,
+        1,
+        1
+      );
+
+      center = [ props.itemData.original.destination.lon, props.itemData.original.destination.lat ]
+    }
+
+    console.log(geojson);
 
     this.state = {
-      geojson: geoJson
+      center : center,
+      geojson: geojson
     };
   }
 
-  // componentDidMount() {
-  // Here we could do the unfold animation
+  // componentWillReceiveProps() {
+    // We should have logic here when we will avoid remounting map each time
   // }
 
   render() {
@@ -43,7 +65,7 @@ class Map extends Component {
       <ReactMapboxGl
         style="mapbox://styles/mapbox/streets-v9"
         accessToken="***REMOVED***"
-        center={[ this.props.itemData.original.destination.lon, this.props.itemData.original.destination.lat ]}
+        center={this.state.center}
         zoom={[17]}
         movingMethod="jumpTo"
         containerStyle={containerStyle}

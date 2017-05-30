@@ -7,12 +7,14 @@ const initialState = fromJS({
   itemId: null,
   isFetchingItemData: false,
   itemData: null,
+  parkingData: null,
   errorFetchingItemData: false
 });
 
 // Actions
 export const SET_AREA_TYPE = 'Map/SET_AREA_TYPE';
 export const SET_ITEM_ID = 'Map/SET_ITEM_ID';
+export const SET_PARKING_DATA = 'Map/SET_PARKING_DATA';
 
 export const START_FETCHING_ITEM_DATA = 'Map/START_FETCHING_ITEM_DATA';
 export const SUCCESS_FETCHING_ITEM_DATA = 'Map/SUCCESS_FETCHING_ITEM_DATA';
@@ -52,18 +54,17 @@ export function successFetchingItemData(itemData) {
   }
 }
 
-/*
-  TODO CREATE a setItemData in case of Parking
 
-  setItemData(itemId, areaType, data)
-  data: {
-    property: {
-      name:
-      ...
-    }
-    ...
+export function setParkingData(data) {
+  return (dispatch) => {
+    dispatch(setAreaType('parking'));
+    dispatch(setItemId(data.id))
+    dispatch({
+      type: SET_PARKING_DATA,
+      payload: data
+    });
   }
-*/
+}
 
 export function fetchItemData(itemId, areaType) {
   return (dispatch, getState) => {
@@ -121,6 +122,9 @@ export default function MapStateManagement(state = initialState, action) {
       return state
         .set('isFetchingItemData', false)
         .set('itemData', fromJS(action.payload))
+     case SET_PARKING_DATA:
+      return state
+        .set('parkingData', fromJS(action.payload))
     default:
       return state;
   }
