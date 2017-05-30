@@ -29,7 +29,7 @@ class MapInfoBox extends React.Component {
       <div className="MapInfoBox">
         <div className="MapInfoContent">
           <VehicleIcon height={60} width={60} vehicle={this.props.actualVehicle} />
-          {this.headline &&
+          {headline &&
             <p>{headline}</p>
           }
           {this.props.area &&
