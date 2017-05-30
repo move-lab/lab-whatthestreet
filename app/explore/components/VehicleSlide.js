@@ -116,6 +116,7 @@ class VehicleSlide extends React.PureComponent {
     this.props.onLoaded(lanes)
     this.props.dispatch(setLanesBottomPosition(scrollHeight));
     // This suppose both parking and normal lanes are equivalent
+    // TODO THIS IS NOT TRUE, WE NEED TO PASS THE parkingMode variable here
     if (this.props.actualVehicle === 'rail') {
       this.props.dispatch(setParkingBottomPosition(scrollHeight));
     }
