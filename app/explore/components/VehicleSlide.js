@@ -40,6 +40,12 @@ class VehicleSlide extends React.PureComponent {
 
     this.onLaneSelected = this.onLaneSelected.bind(this);
     this.onPolygonSelected = this.onPolygonSelected.bind(this);
+    this.onParkingClicked = this.onParkingClicked.bind(this);
+    this.registerItemsForSearch = this.registerItemsForSearch.bind(this);
+    this.onParkingLoaded = this.onParkingLoaded.bind(this);
+    this.onItemSelected = this.onItemSelected.bind(this);
+    this.onLaneClicked = this.onLaneClicked.bind(this);
+    this.onLaneLoaded = this.onLaneLoaded.bind(this);
   }
 
   watchScrollPosition() {
@@ -92,6 +98,37 @@ class VehicleSlide extends React.PureComponent {
     dispatch(StreetActions.setStreetId(data.id));
   }
 
+  onLaneClicked(data, path) {
+    this.goToMapView('lanes', data.id);
+  }
+
+  onParkingClicked(data, path) {
+    this.props.dispatch(setParkingData(data));
+    this.goToMapView('parking', data.id)
+  }
+
+  onParkingLoaded(scrollHeight) {
+    this.props.onLoaded(parkingspace);
+    this.props.dispatch(setParkingBottomPosition(scrollHeight));
+  }
+  
+  onLaneLoaded(scrollHeight) {
+    this.props.onLoaded(lanes)
+    this.props.dispatch(setLanesBottomPosition(scrollHeight));
+    // This suppose both parking and normal lanes are equivalent
+    if (this.props.actualVehicle === 'rail') {
+      this.props.dispatch(setParkingBottomPosition(scrollHeight));
+    }
+  }
+
+  registerItemsForSearch(items) {
+    // TODO WHEN IMPLEMENTING SEARCH
+  }
+
+  onItemSelected(isLast) {
+    // TODO MAYBE DELETE ?
+  }
+
   renderParkingSpaces() {
     if (this.props.vehicle === 'rails') {
       // TODO SPECIAL CASE RAILS NEED TO CALL onPolygonselected
@@ -101,16 +138,10 @@ class VehicleSlide extends React.PureComponent {
         <ParkingSpaces
           city={this.props.citySlug}
           vehicle={this.props.vehicle}
-          onPathClicked={(data, path) => {
-            this.props.dispatch(setParkingData(data));
-            this.goToMapView('parking', data.id)
-          }}
-          registerItemsForSearch={(items) => console.log(`TODO registerItemsForSearch`)}
-          onLoaded={(scrollHeight) => {
-            this.props.onLoaded(parkingspace);
-            this.props.dispatch(setParkingBottomPosition(scrollHeight));
-          }}
-          onItemSelected={(isLast) => console.log('TODO onItemSelected()')}
+          onPathClicked={this.onParkingClicked}
+          registerItemsForSearch={this.registerItemsForSearch}
+          onLoaded={this.onParkingLoaded}
+          onItemSelected={this.onItemSelected}
           onPolygonSelected={this.onPolygonSelected}
         />
       );
@@ -124,19 +155,10 @@ class VehicleSlide extends React.PureComponent {
       <Lanes
         city={this.props.citySlug}
         vehicle={this.props.vehicle}
-        onPathClicked={(data, path) => this.goToMapView('lanes', data.id)}
-        registerItemsForSearch={(items) => console.log(`TODO registerItemsForSearch`)}
-        onLoaded={(scrollHeight) => {
-          this.props.onLoaded(lanes)
-          if (parkingMode) {
-            this.props.dispatch(setParkingBottomPosition(scrollHeight));
-          } else {
-            this.props.dispatch(setLanesBottomPosition(scrollHeight));
-          }
-        }}
-        onItemSelected={(isLast) => {
-          {/*console.log('TODO onItemSelected()')*/}
-        }}
+        onPathClicked={this.onLaneClicked}
+        registerItemsForSearch={this.registerItemsForSearch}
+        onLoaded={this.onLaneLoaded}
+        onItemSelected={this.onItemSelected}
         onLaneSelected={this.onLaneSelected}
       />
     )

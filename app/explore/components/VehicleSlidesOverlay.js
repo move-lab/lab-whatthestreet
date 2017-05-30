@@ -113,6 +113,7 @@ class VehicleSlidesOverlay extends React.PureComponent {
             height: 100vh;
             pointer-events: none;
             will-change: transform;
+            transform: translateZ(0);
           }
 
           .PositionLine {
@@ -229,6 +230,8 @@ class VehicleSlidesOverlay extends React.PureComponent {
             display: flex;
             justify-content: center;
             align-items: flex-start;
+            will-change: transform;
+            transform: translateZ(0);
           }
 
         `}</style>
