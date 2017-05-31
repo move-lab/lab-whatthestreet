@@ -135,7 +135,7 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
           display: flex;
           width: ${METRICS.MetricsContentWidth};
           margin: 0 auto;
-          padding-top: ${METRICS.MetricsHeaderHeight};
+          padding-top: 30px;
           padding-bottom: ${METRICS.MetricsSectionPadding};
           padding-left: ${METRICS.MetricsContentPadding};
           padding-right: ${METRICS.MetricsContentPadding};
