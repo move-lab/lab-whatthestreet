@@ -100,7 +100,7 @@ class VehicleSlidesOverlay extends React.PureComponent {
                 className="ButtonGroupButton ButtonGroupButtonBottom"
                 onClick={() => this.props.scrollToEnd()}>
                   <span className="ButtonLabel-scrolltobottom">Scroll to next</span>
-                  <img alt="ScrollIcon" src={IconArrowRight} />
+                  <img alt="ScrollIcon" className="ScrollIconRight" src={IconArrowRight} />
               </button>
             </div>
           </footer>
@@ -193,10 +193,13 @@ class VehicleSlidesOverlay extends React.PureComponent {
           .ButtonGroup {
             display: flex;
             overflow: hidden;
+            justify-content: center;
+            align-items: center;
             border-radius: 50px;
-            width: 217px;
+            padding-left: 10px;
+            padding-right: 10px;
             height: 50px;
-            box-shadow: 0 6px 10px rgba(0,0,0,.08);
+            box-shadow: 6px 0px 10px rgba(0,0,0,.08);
             pointer-events: all;
             transform: rotate(90deg);
           }
@@ -213,7 +216,7 @@ class VehicleSlidesOverlay extends React.PureComponent {
           }
 
           .ButtonGroupButton:hover {
-            background-color: #FDFDFD;
+            opacity: 0.5;
           }
 
           .ButtonGroupSeparator {
@@ -228,6 +231,10 @@ class VehicleSlidesOverlay extends React.PureComponent {
 
           .ButtonGroupButtonBottom {
             border-bottom:0;
+          }
+
+          .ScrollIconRight {
+            margin-left: 10px;
           }
 
           .ButtonLabel-scrolltobottom {
