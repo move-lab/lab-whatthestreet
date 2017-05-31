@@ -6,6 +6,7 @@ import * as COLORS from '../../shared/style/colors';
 
 import RoundedButton from '../../shared/components/RoundedButton';
 import VehicleIcon from '../../shared/components/VehicleIcon';
+import ScrollPositionOverview from './ScrollPositionOverview';
 
 const angle = '/static/icons/Icon_ButtonArrow_Blue.svg';
 const IconArrowRight = '/static/icons/Icon_ArrowRight.svg';
@@ -87,6 +88,11 @@ class VehicleSlidesOverlay extends React.PureComponent {
             </div>
           </section>
         }
+        {this.props.showScrollUI &&
+          <div className="ScrollPositionOverviewWrapper">
+            <ScrollPositionOverview />
+          </div>
+        }
         {this.props.showScrollUI && lanesOrParkingLoaded &&
           <footer className="Footer">
             <div className="ButtonGroup">
@@ -124,6 +130,7 @@ class VehicleSlidesOverlay extends React.PureComponent {
             height: 7px;
             width: 100%;
             background-color: rgba(255, 104, 25, .2);
+            will-change: transform;
           }
 
           .VehicleButton {
@@ -253,6 +260,14 @@ class VehicleSlidesOverlay extends React.PureComponent {
             align-items: flex-start;
             will-change: transform;
             transform: translateZ(0);
+          }
+
+          .ScrollPositionOverviewWrapper {
+            top: 180px;
+            width: 34px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
           }
 
         `}</style>

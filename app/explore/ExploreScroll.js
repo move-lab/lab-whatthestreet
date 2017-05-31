@@ -148,10 +148,12 @@ class ExploreScroll extends React.PureComponent {
             onLoaded={this.handleVehicleSlideLoaded}
           />
         }
-        <VehicleSlideSummary
-          goToNextVehicle={() => this.selectVehicle(this.getNextVehicle())}
-          goToResults={() => this.goToResults()}
-        />
+        {this.state.parkingLoaded && this.state.lanesLoaded &&
+          <VehicleSlideSummary
+            goToNextVehicle={() => this.selectVehicle(this.getNextVehicle())}
+            goToResults={() => this.goToResults()}
+          />
+        }
         <VehicleSlidesOverlay
           lanesLoaded={this.state.lanesLoaded}
           parkingLoaded={this.state.parkingLoaded}
