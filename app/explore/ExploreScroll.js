@@ -85,7 +85,7 @@ class ExploreScroll extends React.PureComponent {
   showLaneMap() {
     this.showMap({
       id: this.props.selectedLaneId,
-      areaType: 'lane',
+      areaType: 'lanes',
       citySlug: this.props.citySlug,
       actualVehicle: this.props.activeVehicle
     });

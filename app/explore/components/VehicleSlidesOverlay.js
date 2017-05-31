@@ -180,7 +180,7 @@ class VehicleSlidesOverlay extends React.PureComponent {
 
           .ButtonsSection {
             position: fixed;
-            top: 450px;
+            top: 350px;
             width: 100%;
           }
 
