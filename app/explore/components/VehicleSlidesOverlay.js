@@ -239,6 +239,7 @@ class VehicleSlidesOverlay extends React.PureComponent {
 
           .ButtonLabel-scrolltobottom {
             font-size: 18px;
+            font-weight: 500;
           }
 
           .Footer {

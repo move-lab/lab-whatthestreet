@@ -220,7 +220,7 @@ class VehicleSlide extends React.PureComponent {
           }
 
           .ContainerLeft {
-            align-items: flex-start;
+            align-items: center;
           }
 
           .ContainerRight {
