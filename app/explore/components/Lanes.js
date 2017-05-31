@@ -62,7 +62,8 @@ class Lanes extends React.PureComponent {
       neighborhood: path.getAttribute('moovel_neighborhood'),
       name: path.getAttribute('moovel_name'),
       area: path.getAttribute('moovel_area'),
-      length: path.getAttribute('moovel_length')
+      length: path.getAttribute('moovel_length'),
+      cumulativeArea: path.getAttribute('moovel_cumulative_area')
       // coordinates: { x: absoluteX, y: absoluteY },
     });
   }

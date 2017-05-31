@@ -1,12 +1,12 @@
 import { LANES } from '../constants';
 
-export function setLane(name, neighborhood, length, area, coordinates) {
+export function setLane(name, neighborhood, length, area, cumulativeArea) {
   return {
     type: LANES.SET_LANE,
     neighborhood,
     name,
     length,
     area,
-    coordinates,
+    cumulativeArea: parseInt(cumulativeArea)
   };
 }

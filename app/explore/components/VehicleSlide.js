@@ -94,7 +94,7 @@ class VehicleSlide extends React.PureComponent {
 
   onLaneSelected(data) {
     const { dispatch } = this.props;
-    dispatch(LaneActions.setLane(data.name, data.neighborhood, data.length, data.area, data.coordinates));
+    dispatch(LaneActions.setLane(data.name, data.neighborhood, data.length, data.area, data.cumulativeArea));
     dispatch(StreetActions.setStreetId(data.id));
   }
 

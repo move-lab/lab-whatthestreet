@@ -22,9 +22,10 @@ class Header extends React.PureComponent {
 
   static propTypes = {
     title: React.PropTypes.string,
-    vehicle: React.PropTypes.string,
+    activeVehicle: React.PropTypes.string,
     parkingSpace: React.PropTypes.object,
     lane: React.PropTypes.object,
+    cityLandmark: React.PropTypes.object,
     onSearchButtonClick: React.PropTypes.func,
     mode: React.PropTypes.oneOf(['explore', 'normal'])
   }
@@ -33,12 +34,23 @@ class Header extends React.PureComponent {
     mode: 'normal'
   }
 
+  constructor() {
+    super();
+
+    this.getHumanArea = this.getHumanArea.bind(this);
+    
+    // The local may be from the server
+    this.state = {
+      FH : new Intl.NumberFormat()
+    }
+  }
+
   renderParkingInfo() {
     if (this.props.parkingSpace.neighborhood && this.props.parkingSpace.neighborhood.length > 0) {
       return (
         <div className="InfoLabel">
           <h3>{`Parking space in ${this.props.parkingSpace.neighborhood}`}</h3>
-          <p>{`${Math.round(this.props.parkingSpace.area)}m² = ${Math.round(this.props.parkingSpace.area / 12)} cars`}</p>
+          <p>{`${this.state.FH.format(Math.round(this.props.parkingSpace.area))}m² = ${this.state.FH.format(Math.round(this.props.parkingSpace.area / 12))} cars`}</p>
         </div>
       );
     }
@@ -55,7 +67,7 @@ class Header extends React.PureComponent {
       return (
         <div className="InfoLabel">
           <h3>{this.props.lane.name || this.props.lane.neighborhood}</h3>
-          <p>{`${Math.round(this.props.lane.area)}m = ${Math.round(this.props.lane.length)}m²`}</p>
+          <p>{`${this.state.FH.format(Math.round(this.props.lane.area))}m = ${this.state.FH.format(Math.round(this.props.lane.length))}m²`}</p>
         </div>
       );
     }
@@ -65,6 +77,27 @@ class Header extends React.PureComponent {
         <h3>No Lane Selected</h3>
       </div>
     );
+  }
+
+  getHumanArea(area) {
+    const cityLandmarkArea = this.props.cityLandmark.area;
+    if (area < 225) {
+      return `${this.state.FH.format(area)} m²`;
+    } else if (area < 71400) {
+      const playgroundArea = 225;
+      const nbPlayground = Math.round( area / playgroundArea * 10 ) / 10;
+      const playgroundLabel = nbPlayground > 1 ? 'Playgrounds' : 'Playground';
+      return `${this.state.FH.format(nbPlayground)} ${playgroundLabel}`;
+    } else if (area < cityLandmarkArea) {
+      const soccerFieldArea = 7140;
+      const nbSoccerField = Math.round( area / soccerFieldArea * 10 ) / 10;
+      const soccerFieldLabel = nbSoccerField > 1 ? 'Soccer Fields' : 'Soccer Field';
+      return `${this.state.FH.format(nbSoccerField)} ${soccerFieldLabel}`;
+    } else {
+      const nbCityLandmark = Math.round( area / cityLandmarkArea * 10 ) / 10;
+      const cityLandmarkLabel = this.props.cityLandmark.name;
+      return `${this.state.FH.format(nbCityLandmark)} ${cityLandmarkLabel}`;
+    }
   }
 
   goToHomePage() {
@@ -105,7 +138,7 @@ class Header extends React.PureComponent {
           }
           {this.props.mode === 'explore' &&
             <div className="Content">
-              <div className="Container">
+              <div className="Container ContainerLeft">
                 <div className="NavButtons">
                   <div className="HomeButton">
                     <button onClick={() => this.goToHomePage()} >
@@ -128,14 +161,18 @@ class Header extends React.PureComponent {
                 </div>
                 {this.renderParkingInfo()}
               </div>
-              <div className="Container">
-                <VehicleIcon vehicle={this.props.vehicle} width={60} height={60} />
-                <div className="CenterInfo">
-                  <p>{`${0.5} Flats`}</p>
-                  <p>{`12m²`}</p>
+              <div className="Container ContainerCenter">
+                <div className="VehicleAndAreaM2">
+                  <VehicleIcon vehicle={this.props.activeVehicle} width={70} height={70} />
+                  <div className="AreaM2">
+                    {this.state.FH.format(this.props.lane.cumulativeArea)} m²
+                  </div>
+                </div>
+                <div className="AreaHuman">
+                  {this.getHumanArea(this.props.lane.cumulativeArea)}
                 </div>
               </div>
-              <div className="Container">
+              <div className="Container ContainerRight">
                 <SocialMediaButtons />
                 {this.renderLaneInfo()}
               </div>
@@ -200,19 +237,43 @@ class Header extends React.PureComponent {
               align-items: center;
             }
 
-            .Container:first-child {
+            .ContainerLeft {
               align-items: flex-start;
-              flex-basis: 45%;
+              flex-basis: 35%;
             }
 
-            .Container:nth-child(2) {
+            .ContainerCenter {
               display: flex;
-              flex-basis: 10%;
+              flex-basis: 30%;
               justify-content: center;
             }
 
-            .Container:last-child {
-              flex-basis: 45%;
+            .VehicleAndAreaM2 {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              justify-content: center;
+            }
+
+            .AreaM2 {
+              font-weight: 500;
+              font-size: 24px;
+              color: #A6C4FF;
+              min-width: 160px;
+              margin-left: 10px;
+            }
+
+            .AreaHuman {
+              margin: 0;
+              font-size: 38px;
+              font-weight: 500;
+              max-width: 366px;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+            }
+
+            .ContainerRight {
+              flex-basis: 35%;
               align-items: flex-end;
               text-align: right;
             }
@@ -239,22 +300,22 @@ class Header extends React.PureComponent {
               margin: 0;
               font-size: 24px;
               font-weight: 500;
+              max-width: 425px;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
             }
             
             .Container :global(.InfoLabel) :global(p) {
-              margin: 0;
+              margin:0;
               margin-top: 5px;
               font-size: 24px;
+              line-height: 1.2;
               font-weight: 300;
-            }
-
-            .CenterInfo {
-              margin: 0;
-              text-align: center;
-            }
-
-            .CenterInfo p {
-              margin: 0;
+              max-width: 425px;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
             }
 
             @keyframes slideFromTop {
@@ -362,7 +423,9 @@ const mapStateToProps = (state) => {
   return {
     ...structuredSelector(state),
     ownGuess: state.guess.get('own'),
-    citySlug: state.city.getIn(['actual_city','slug'])
+    citySlug: state.city.getIn(['actual_city','slug']),
+    activeVehicle: state.vehicles.get('vehicle'),
+    cityLandmark: state.cityMeta.getIn(['metaData','landmark']).toJS()
   }
 };
 

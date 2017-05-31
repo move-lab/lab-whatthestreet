@@ -7,7 +7,7 @@ const initialState = fromJS({
   name: '',
   length: 0,
   area: 0,
-  coordinates: {},
+  cumulativeArea: 0,
 });
 
 export default function laneReducer(state = initialState, action) {
@@ -18,7 +18,7 @@ export default function laneReducer(state = initialState, action) {
       .set('name', action.name)
       .set('length', action.length)
       .set('area', action.area)
-      .set('coordinates', action.coordinates);
+      .set('cumulativeArea', action.cumulativeArea);
     default:
       return state;
   }
