@@ -8,8 +8,8 @@ import RoundedButton from '../../shared/components/RoundedButton';
 import VehicleIcon from '../../shared/components/VehicleIcon';
 
 const angle = '/static/icons/Icon_ButtonArrow_Blue.svg';
-const ScrollIcon = '/static/icons/Icon_JumpSection.svg';
-const ScrollIconReverse = '/static/icons/Icon_JumpSection_Reverse.svg';
+const IconArrowRight = '/static/icons/Icon_ArrowRight.svg';
+const IconArrowLeft = '/static/icons/Icon_ArrowLeft.svg';
 
 class VehicleSlidesOverlay extends React.PureComponent {
 
@@ -93,12 +93,14 @@ class VehicleSlidesOverlay extends React.PureComponent {
               <button
                 className="ButtonGroupButton ButtonGroupButtonTop"
                 onClick={() => this.props.scrollToTop()}>
-                <img alt="ScrollIcon" src={ScrollIcon} />
+                <img alt="ScrollIcon" src={IconArrowLeft} />
               </button>
+              <div className="ButtonGroupSeparator"></div>
               <button 
                 className="ButtonGroupButton ButtonGroupButtonBottom"
                 onClick={() => this.props.scrollToEnd()}>
-                  <img alt="ScrollIcon" src={ScrollIconReverse} />
+                  <span className="ButtonLabel-scrolltobottom">Scroll to next</span>
+                  <img alt="ScrollIcon" src={IconArrowRight} />
               </button>
             </div>
           </footer>
@@ -190,12 +192,13 @@ class VehicleSlidesOverlay extends React.PureComponent {
 
           .ButtonGroup {
             display: flex;
-            flex-flow: column nowrap;
             overflow: hidden;
             border-radius: 50px;
-            width: 50px;
+            width: 217px;
+            height: 50px;
             box-shadow: 0 6px 10px rgba(0,0,0,.08);
             pointer-events: all;
+            transform: rotate(90deg);
           }
 
           .ButtonGroupButton {
@@ -213,12 +216,22 @@ class VehicleSlidesOverlay extends React.PureComponent {
             background-color: #FDFDFD;
           }
 
+          .ButtonGroupSeparator {
+            background-color: ${COLORS.ColorBlueishGray};
+            height: 50px;
+            width: 2px;
+          }
+
           .ButtonGroupButtonTop {
             border-top:0;
           }
 
           .ButtonGroupButtonBottom {
             border-bottom:0;
+          }
+
+          .ButtonLabel-scrolltobottom {
+            font-size: 18px;
           }
 
           .Footer {
