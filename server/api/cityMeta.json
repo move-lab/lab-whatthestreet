@@ -127,6 +127,32 @@
         "area": 2697358.53,
         "length": 550394.22
       }
+    },
+    "svg": {
+      "car": {
+        "parking": {
+          "height": 19346
+        },
+        "lanes": {
+          "height": 112626
+        }
+      },
+      "rail": {
+        "parking": {
+          "height": 6718
+        },
+        "lanes": {
+          "height": 21855
+        }
+      },
+      "bike": {
+        "parking": {
+          "height": 242.82
+        },
+        "lanes": {
+          "height": 12775
+        }
+      }
     }
   },
   "boston": {
@@ -258,6 +284,32 @@
       "rail": {
         "area": 59003.5,
         "length": 76480.44
+      }
+    },
+    "svg": {
+      "car": {
+        "parking": {
+          "height": 1695
+        },
+        "lanes": {
+          "height": 15166
+        }
+      },
+      "rail": {
+        "parking": {
+          "height": 660
+        },
+        "lanes": {
+          "height": 2656
+        }
+      },
+      "bike": {
+        "parking": {
+          "height": 4.7
+        },
+        "lanes": {
+          "height": 1028
+        }
       }
     }
   },
