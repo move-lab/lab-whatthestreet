@@ -131,7 +131,10 @@ class ParkingSpaces extends React.PureComponent {
 
       if (this.state.lastIndex) this.element.childNodes[this.svgNodeIndex].getElementById(this.state.lastIndex).style.fill = '';
       if (svgElement) {
-        svgElement.style.fill = COLORS.ColorForegroundOrange;
+        clearTimeout(this.activatePolygonTimeout);
+        this.activatePolygonTimeout = setTimeout(() => {
+          svgElement.style.fill = COLORS.ColorForegroundOrange
+        }, 50);
         this.polygonSelected(svgElement);
       }
 

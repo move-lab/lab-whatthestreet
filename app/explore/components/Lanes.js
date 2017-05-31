@@ -140,7 +140,12 @@ class Lanes extends React.PureComponent {
 
       // This super costly because it cause a repaint of everything
       // Maybe avoid triggering it when scrolling super fast
-      if (svgElement) svgElement.style.stroke = COLORS.ColorForegroundOrange;
+      if (svgElement) {
+        clearTimeout(this.activatePathTimeout);
+        this.activatePathTimeout = setTimeout(() => {
+          svgElement.style.stroke = COLORS.ColorForegroundOrange;
+        }, 50);
+      }
 
       if (svgElement !== null) this.onPathSelected(svgElement);
 
