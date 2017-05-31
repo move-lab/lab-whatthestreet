@@ -20,4 +20,4 @@ export const FooterListWidth = MetricsContentWidth;
 export const FooterListPaddingRight = MetricsContentPadding;
 
 // Header
-export const MetricsHeaderHeight = "130px";
+export const MetricsHeaderHeight = "160px";

@@ -28,9 +28,17 @@ class Explore extends Component {
       }
       if(req && req.params.vehicleType) {
         await store.dispatch(selectVehicle(req.params.vehicleType));
-      }
+        
+      } 
       if(req && req.params.itemId && req.params.areaType) {
-        await store.dispatch(fetchLaneData(parseInt(req.params.itemId), req.params.areaType));
+        if(req.params.areaType === "parking") {
+          console.log('redirect to home page, cannot SSR parking area')
+          // Redirect to home, cannot SSR parking map
+          res.writeHead(302, { Location: `/${req.params.cityName}` })
+          res.end()
+        } else {
+          await store.dispatch(fetchLaneData(parseInt(req.params.itemId), req.params.areaType));
+        }
       }
       if(req && req.query.bike && req.query.rail && req.query.car) {
         await store.dispatch(GuessActions.setOwnGuess({

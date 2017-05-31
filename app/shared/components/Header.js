@@ -164,6 +164,9 @@ class Header extends React.PureComponent {
               background-color: #fff;
               box-shadow: ${COLORS.boxshadow};
               height: ${METRICS.MetricsHeaderHeight};
+              padding-left: 15px;
+              padding-right: 15px;
+              padding-bottom: 10px;
               {/*animation: slideFromTop .2s ease-in;*/}
             }
 
@@ -232,13 +235,17 @@ class Header extends React.PureComponent {
               margin-top: 20px;
             }
 
-            .Container :global(.InfoLabel) h3 {
+            .Container :global(.InfoLabel) :global(h3) {
               margin: 0;
+              font-size: 24px;
+              font-weight: 500;
             }
             
-            .Container :global(.InfoLabel) p {
+            .Container :global(.InfoLabel) :global(p) {
               margin: 0;
-              margin-top: 10px;
+              margin-top: 5px;
+              font-size: 24px;
+              font-weight: 300;
             }
 
             .CenterInfo {
