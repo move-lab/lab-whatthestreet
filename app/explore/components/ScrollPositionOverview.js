@@ -28,7 +28,7 @@ class ScrollPositionOverview extends React.PureComponent {
     if(this.props.scrollPosition) {
       return Math.round(this.overviewHeight * this.props.scrollPosition / this.tallestSvgHeight - 2.5);
     } else {
-      return 0;
+      return -2.5;
     }
   }
 
