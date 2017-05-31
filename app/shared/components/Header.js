@@ -38,10 +38,9 @@ class Header extends React.PureComponent {
     super();
 
     this.getHumanArea = this.getHumanArea.bind(this);
-    
-    // The local may be from the server
+
     this.state = {
-      FH : new Intl.NumberFormat()
+      FH : new Intl.NumberFormat('en-US')
     }
   }
 
