@@ -16,7 +16,9 @@ class RoundedButton extends React.PureComponent {
     hidden: PropTypes.bool,
     hideIcon: PropTypes.bool,
     disabled: PropTypes.bool,
-    loading: PropTypes.bool
+    loading: PropTypes.bool,
+    small: PropTypes.bool,
+    orange: PropTypes.bool
   };
 
   render() {
@@ -28,6 +30,8 @@ class RoundedButton extends React.PureComponent {
         ${this.props.arrowDown ? 'arrowDown' : ''}
         ${this.props.hidden  ? 'hidden' : ''}
         ${this.props.disabled ? 'disabled' : ''}
+        ${this.props.small ? 'small' : ''}
+        ${this.props.orange ? 'orange' : ''}
         ${this.props.loading ? 'loading' : ''}`}
         onClick={() => this.props.onClick()}>
         { this.props.children }
@@ -54,10 +58,27 @@ class RoundedButton extends React.PureComponent {
             cursor: pointer;
             opacity: 1;
             transition: 300ms opacity;
+            font-weight: 500;
+            pointer-events: auto;
+          }
+
+          .Button.small {
+            padding: 10px;
+            padding-left: 15px;
+            padding-right: 15px;
+            font-size: 15px;
+          }
+
+          .Button.orange {
+            background-color: ${COLORS.ColorForegroundOrange};
+          }
+
+          .Button.orange:not(.disabled):hover {
+            background-color: ${COLORS.ColorForegroundOrangeDarker};
           }
 
           .Button:not(.disabled):hover {
-            background-color: rgba(0,0,255,0.7);
+            background-color: ${COLORS.ButtonBackgroundColorDarker};
           }
 
           .Icon {

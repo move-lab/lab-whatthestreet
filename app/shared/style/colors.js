@@ -14,6 +14,8 @@ export const ColorForegroundText = ColorBlue;
 export const ColorForegroundOrange = "#FF6819";
 export const ColorForegroundGrey = "#797a7f";
 
+export const ColorForegroundOrangeDarker = "#cc4600";
+
 
 // Background
 export const ColorBackgroundWhite = ColorWhite;
@@ -56,6 +58,8 @@ export const VersusTableBorderColor = "#F0F2F3";
 
 // Button
 export const ButtonBackgroundColor = ColorBlue;
+export const ButtonBackgroundColorDarker = "#0000b3";
+export const ButtonBackgroundColorLighter = "#ff9a66";
 export const ButtonForegroundColor = "white";
 
 // path color

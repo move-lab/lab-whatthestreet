@@ -72,6 +72,9 @@ class VehicleSlidesOverlay extends React.PureComponent {
             <div className="ButtonsSectionInner">
               <div className="ButtonContainer">
                 <RoundedButton
+                  small
+                  hideIcon
+                  orange
                   onClick={() => console.log("TODO")}
                   hidden={!this.props.parkingLoaded}>
                     Show on Map
@@ -79,6 +82,9 @@ class VehicleSlidesOverlay extends React.PureComponent {
               </div>
               <div className="ButtonContainer">
                 <RoundedButton
+                  small
+                  hideIcon
+                  orange
                   onClick={() => console.log("TODO")}
                   hidden={!this.props.lanesLoaded}
                 >
@@ -172,7 +178,7 @@ class VehicleSlidesOverlay extends React.PureComponent {
 
           .ButtonsSection {
             position: fixed;
-            top: 340px;
+            top: 450px;
             width: 100%;
           }
 
