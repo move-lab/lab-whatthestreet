@@ -219,6 +219,14 @@ class VehicleSlide extends React.PureComponent {
             align-items: center;
           }
 
+          .ContainerLeft {
+            align-items: flex-start;
+          }
+
+          .ContainerRight {
+            align-items: flex-end;
+          }
+
           .ToolBoxColumn {
             flex-grow: 0;
             flex-shrink: 1;

@@ -154,7 +154,7 @@ class Lanes extends React.PureComponent {
 
   render() {
     return (
-      <div style={{ width: '100%' }}>
+      <div className="LanesWrapper">
         {!this.state.loading &&
           <div
             className="LanesSvg"
@@ -169,6 +169,12 @@ class Lanes extends React.PureComponent {
           <Loader />
         }
         <style jsx>{`
+          .LanesWrapper {
+            position: relative;
+            overflow: hidden;
+            width: 600px;
+          }
+
           .LanesSvg {
             position: relative;
             overflow: hidden;
