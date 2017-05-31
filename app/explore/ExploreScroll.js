@@ -29,6 +29,8 @@ class ExploreScroll extends React.PureComponent {
     super(props);
 
     this.handleVehicleSlideLoaded = this.handleVehicleSlideLoaded.bind(this);
+    this.showParkingMap = this.showParkingMap.bind(this);
+    this.showLaneMap = this.showLaneMap.bind(this);
 
     this.state = {
       parkingLoaded: false,
@@ -45,9 +47,7 @@ class ExploreScroll extends React.PureComponent {
     }
   }
 
-  showMap(url, data) {
-    // TODO IN CASE OF PARKING, CALL setLaneData with data from SVG
-   
+  showMap(data) {
     Router.push({
       pathname: '/explore',
       query: {
@@ -56,7 +56,7 @@ class ExploreScroll extends React.PureComponent {
         ...this.props.ownGuess.toJS()
       }
     },{
-      pathname: url,
+      pathname: `/${data.citySlug}/explore/${data.actualVehicle}/${data.areaType}/${data.id}`,
       query: this.props.ownGuess.toJS()
     },
     { shallow: true }
@@ -71,6 +71,24 @@ class ExploreScroll extends React.PureComponent {
       pathname: `/${this.props.citySlug}/explore/${this.props.activeVehicle}`,
       query: this.props.ownGuess.toJS()
     }, { shallow: true });
+  }
+
+  showParkingMap() {
+    this.showMap({
+      id: this.props.selectedParkingId,
+      areaType: 'parking',
+      citySlug: this.props.citySlug,
+      actualVehicle: this.props.activeVehicle
+    });
+  }
+
+  showLaneMap() {
+    this.showMap({
+      id: this.props.selectedLaneId,
+      areaType: 'lane',
+      citySlug: this.props.citySlug,
+      actualVehicle: this.props.activeVehicle
+    });
   }
 
   selectVehicle(vehicle) {
@@ -157,6 +175,8 @@ class ExploreScroll extends React.PureComponent {
         <VehicleSlidesOverlay
           lanesLoaded={this.state.lanesLoaded}
           parkingLoaded={this.state.parkingLoaded}
+          showParkingMap={this.showParkingMap}
+          showLaneMap={this.showLaneMap}
           goToNextVehicle={() => this.selectVehicle(this.getNextVehicle())}
           goToPreviousVehicle={() => this.selectVehicle(this.getPreviousVehicle())}
           nextVehicleName={this.getNextVehicle()}
@@ -196,6 +216,8 @@ export default connect((state) => {
     citySlug: state.city.getIn(['actual_city','slug']),
     showScrollUI,
     isScrolling: state.explore.get('isScrolling'),
-    ownGuess: state.guess.get('own')
+    ownGuess: state.guess.get('own'),
+    selectedLaneId: state.street.get('id'),
+    selectedParkingId: state.parking.get('id')
   }
 })(ExploreScroll);

@@ -75,20 +75,17 @@ class VehicleSlide extends React.PureComponent {
   }
 
   goToMapView(areaType, id) {
-    this.props.showMap(
-      `/${this.props.citySlug}/explore/${this.props.actualVehicle}/${areaType}/${id}`,
-      {
-        citySlug: this.props.citySlug,
-        actualVehicle: this.props.actualVehicle,
-        areaType,
-        id
-      }
-    )
-    // Router.push('/map', `/${this.props.citySlug}/explore/${this.props.actualVehicle}/${areaType}/${id}`, { shallow: true });
+    this.props.showMap({
+      citySlug: this.props.citySlug,
+      actualVehicle: this.props.actualVehicle,
+      areaType,
+      id
+    });
   }
 
   onPolygonSelected(data) {
     const { dispatch } = this.props;
+    this.props.dispatch(setParkingData(data));
     dispatch(ParkingActions.setParkingSpace(data.id, data.neighborhood, data.area));
   }
 

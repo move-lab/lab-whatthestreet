@@ -24,7 +24,9 @@ class VehicleSlidesOverlay extends React.PureComponent {
     goToNextVehicle: PropTypes.func,
     goToPreviousVehicle: PropTypes.func,
     scrollToTop: PropTypes.func,
-    scrollToEnd: PropTypes.func
+    scrollToEnd: PropTypes.func,
+    showParkingMap: PropTypes.func,
+    showLaneMap: PropTypes.func
   }
 
   constructor(props) {
@@ -75,7 +77,7 @@ class VehicleSlidesOverlay extends React.PureComponent {
                   small
                   hideIcon
                   orange
-                  onClick={() => console.log("TODO")}
+                  onClick={this.props.showParkingMap}
                   hidden={!this.props.parkingLoaded}>
                     Show on Map
                 </RoundedButton>
@@ -85,7 +87,7 @@ class VehicleSlidesOverlay extends React.PureComponent {
                   small
                   hideIcon
                   orange
-                  onClick={() => console.log("TODO")}
+                  onClick={this.props.showLaneMap}
                   hidden={!this.props.lanesLoaded}
                 >
                     Show on Map
