@@ -1,5 +1,6 @@
 import { CITY_META } from '../constants';
 import axios from 'axios';
+import * as GuessActions from './guessActions';
 
 export function startLoadCityMetaData() {
   return {
@@ -28,6 +29,8 @@ export function loadCityMetadata(citySlug) {
       dispatch(startLoadCityMetaData());
       axios.get(`${baseUrl}/api/v1/cities/${citySlug}`).then((response) => {
         dispatch(loadCityMetaDataSuccess(response.data));
+        // Set guesses
+        GuessActions.setActual(response.data.space)
         resolve();
       }, (error) => {
         dispatch(loadCityMetaDataFailure(error))

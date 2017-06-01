@@ -22,6 +22,12 @@ class Index extends Component {
       // We may render from city/:cityName and select that city by default
       if(req && req.params.cityName) {
         await store.dispatch(CityActions.selectCity(req.params.cityName));
+      } else {
+        // TODO HERE GET THE IP OF THE CLIENT AND PASS IT TO LOAD CITY TO FIGURE
+        // OUT THE CITY TO SELECT FROM IP, for now select berlin as default
+        // const ip = req.ip;
+        // console.log(ip);
+        await store.dispatch(CityActions.selectCity("berlin"));
       }
       if(req && req.query.bike && req.query.rail && req.query.car) {
         await store.dispatch(GuessActions.setOwnGuess({

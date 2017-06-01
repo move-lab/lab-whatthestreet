@@ -3,6 +3,7 @@ import axios from 'axios';
 import { CITY } from '../constants';
 import * as CityMetaActions from './cityMetaActions';
 import * as VersusActions from './versusActions';
+import * as GuessActions from './guessActions';
 
 export function startLoadingCities() {
   return {
@@ -39,7 +40,10 @@ export function selectCity(citySlug) {
     // Load Versus Data
     const fetchVersusData = dispatch(VersusActions.loadVersusData(citySlug));
 
-    return Promise.all([fetchCityMetaData, fetchVersusData]);
+    // Load Guesses
+    const guessData = dispatch(GuessActions.loadGuesses(citySlug));
+
+    return Promise.all([fetchCityMetaData, fetchVersusData, guessData]);
   }
 }
 
@@ -77,16 +81,7 @@ export function loadCities() {
       const baseUrl = getState().app.get('baseUrl');
       axios.get(`${baseUrl}/api/v1/cities`).then((response) => {
         dispatch(onLoadCitiesSuccess(response.data));
-        // TODO HERE GET CLOSEST API CITY
-        dispatch(selectCity('berlin')).then(() => {
-          resolve();
-        });
-        
-        // dispatch(getCitiesbyIp()).then(() => {
-        //   resolve();
-        // }, (error) => {
-        //   reject(error);
-        // });
+        resolve();
       }, (error) => {
         dispatch(onLoadCitiesFailure(error));
         reject(error);

@@ -80,8 +80,7 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
   }
 
   solved = () => {
-    // TODO MAKE GUESS PERSIST BY REFACTORING SAGA
-    this.props.saveGuess(this.props.ownGuess);
+    this.props.saveGuess(this.props.ownGuess, this.props.city.slug);
     Router.push({
       pathname: '/explore',
       query: this.props.ownGuess

@@ -58,7 +58,9 @@ class ResultsPage extends React.PureComponent {
         <div>
           <ResultsBarChart guessStrength={this.calculateGuessStrength()} suggestion={this.getSuggestion()} actual={this.props.actual} own={this.props.own} city={this.props.city.name} />
           <DeviderImage alt="SnapDevider" background={SnapDeviderBackground} foreground={IllustrationSnap} />
-          <ComparisonBarChart guessStrength={this.calculateGuessStrength()} actual={this.props.actual} own={this.props.own} others={this.props.others} city={this.props.city.name} />
+          {this.props.others && this.props.others.length > 0 &&
+            <ComparisonBarChart guessStrength={this.calculateGuessStrength()} actual={this.props.actual} own={this.props.own} others={this.props.others} city={this.props.city.name} />
+          }
         </div>
       );
     }
