@@ -134,6 +134,7 @@ class ComparisonBarChart extends React.PureComponent {
         .MainContainer {
           background-color: ${COLORS.ColorBackgroundLightBlue};
           padding: ${METRICS.MetricsSectionPadding} 0;
+          padding-bottom: 140px;
         }
 
         .Wrapper {
