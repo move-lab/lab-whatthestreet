@@ -33,6 +33,13 @@ class ResultsBarChart extends React.PureComponent {
           <SocialShareButtons result="bad" suggestion={this.props.suggestion} />
           <h2 className="Title">You should move to {this.props.suggestion} <img alt="UpsideDownEmoji" src={UpsideDownEmoji} /></h2>
           <h3 className="SubTitle">That’s the city your guess matches best</h3>
+          <style jsx>{`
+            .Container {
+              width: 350px;
+              transform: translate(30px, 0px);
+              padding-top: 110px;
+            }
+          `}</style>
         </div>
       );
     }
@@ -42,6 +49,13 @@ class ResultsBarChart extends React.PureComponent {
         <SocialShareButtons result="good" suggestion={this.props.suggestion} />
         <h2 className="Title">You must be from {this.props.city} <img alt="ShockedEmoji" src={ShockedEmoji} /></h2>
         <h3 className="SubTitle">Your guess was almost perfect, you mobility guru</h3>
+        <style jsx>{`
+          .Container {
+            width: 350px;
+            transform: translate(30px, 0px);
+            padding-top: 110px;
+          }
+        `}</style>
       </div>
     );
   }
@@ -67,12 +81,6 @@ class ResultsBarChart extends React.PureComponent {
           display: flex;
           justify-content: space-between;
           position: relative;
-        }
-
-        .Wrapper > :global(.Container) {
-          width: 350px;
-          transform: translate(30px, 0px);
-          padding-top: 110px;
         }
 
         .Wrapper :global(.Title) {

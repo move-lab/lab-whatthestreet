@@ -99,22 +99,22 @@ class GuessBarChart extends React.Component {
       </div>
       <div className="ChartHeader">
         <div className="Column">
-          <VehicleIcon className="Icon" vehicle={identifiers.bike} />
-          <p className="Header">Bikes</p>
+          <VehicleIcon className="Icon" vehicle={identifiers.car} />
+          <p className="Header">Cars</p>
         </div>
         <div className="Column">
           <VehicleIcon className="Icon" vehicle={identifiers.rail} />
           <p className="Header">Rails</p>
         </div>
         <div className="Column">
-          <VehicleIcon className="Icon" vehicle={identifiers.car} />
-          <p className="Header">Cars</p>
+          <VehicleIcon className="Icon" vehicle={identifiers.bike} />
+          <p className="Header">Bikes</p>
         </div>
       </div>
       <div className="ChartBody">
-        { this.renderResult(this.state.guess.bike, 'bike') }
-        { this.renderResult(this.state.guess.rail, 'rail') }
         { this.renderResult(this.state.guess.car, 'car') }
+        { this.renderResult(this.state.guess.rail, 'rail') }
+        { this.renderResult(this.state.guess.bike, 'bike') }
       </div>
       <style jsx>{`
         .Chart {

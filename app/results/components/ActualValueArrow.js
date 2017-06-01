@@ -26,7 +26,7 @@ class ActualValueArrow extends React.PureComponent {
       <style jsx>{`
         .Container {
           position: absolute;
-          left: calc(${METRICS.MetricsContentPadding} / 4);
+          left: 40px;
         }
 
         .Arrow {
@@ -56,7 +56,7 @@ class ActualValueArrow extends React.PureComponent {
       <style jsx>{`
         .Container {
           position: absolute;
-          left: calc(${METRICS.MetricsContentPadding} / 4);
+          left: 40px;
         }
 
         .Arrow {
