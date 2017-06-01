@@ -16,7 +16,7 @@ class ActualValueArrow extends React.PureComponent {
   }
 
   renderAbove = () => (
-    <div className="Container" style={{ top: `${-25 + ((this.props.data) * 320)}px` }} >
+    <div className="Container" style={{ top: `${((this.props.data) * 320)}px` }} >
       <p className="Text" style={{ marginBottom: '20px' }}>
         Actual
         <br />
@@ -46,7 +46,7 @@ class ActualValueArrow extends React.PureComponent {
   )
 
   renderBelow = () => (
-    <div className="Container" style={{ top: `${(105 + (this.props.data * 320) + this.props.offset)}px` }}>
+    <div className="Container" style={{ top: `${(145 + (this.props.data * 320) + this.props.offset)}px` }}>
       <img className="Arrow" alt="ArrowActualData" src={ArrowActualData} />
       <p className="Text">
         Actual
