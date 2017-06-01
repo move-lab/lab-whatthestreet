@@ -17,6 +17,11 @@ app.prepare()
   server.use(bodyParser.json());
   server.use(compression());
 
+  server.get('/about', (req, res) => {
+    console.log('handled by /about');
+    return app.render(req, res, '/about', req.query);
+  })
+
   server.get('/:cityName/explore/:vehicleType/:areaType/:itemId', (req, res) => {
     console.log('handled by /:cityName/explore/:vehicleType/:areaType/:itemId');
     return app.render(req, res, '/map', req.query);

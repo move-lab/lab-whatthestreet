@@ -125,13 +125,13 @@ class Header extends React.PureComponent {
                   {this.props.title}
                 </a>
               </Link>
-              <span className="AboutLink">
-                <button
-                  className="AboutButton"
-                  onClick={() => console.log('TODO ABOUT MODAL')} >
+              <Link prefetch href="/about">
+                <a
+                  className="AboutLink"
+                >
                   About
-                </button>
-              </span>
+                </a>
+              </Link>
               <SocialMediaButtons />
             </div>
           }
@@ -283,11 +283,8 @@ class Header extends React.PureComponent {
               color: ${COLORS.ColorForegroundOrange};
               margin-right: 15px;
               outline: none;
-            }
-
-            .AboutButton {
-              outline: none;
               cursor: pointer;
+              text-decoration: none;
             }
 
             .Container :global(.InfoLabel) {
