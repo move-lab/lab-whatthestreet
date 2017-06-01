@@ -12,14 +12,14 @@ class OthersGuessesArrow extends React.PureComponent {
   }
 
   getSortedData = (data) => data.sort((a, b) => {
-    if (a.bike > b.bike) return 1;
-    if (a.bike < b.bike) return -1;
+    if (a.car > b.car) return 1;
+    if (a.car < b.car) return -1;
     return 0;
   })
 
   renderAbove() {
     return (
-      <div className="Container" style={{ bottom: `${145 + (this.getSortedData(this.props.data)[1].bike * 320)}px` }}>
+      <div className="Container" style={{ bottom: `${145 + (this.getSortedData(this.props.data)[1].car * 320)}px` }}>
         <p className="Text">
           Other<br />People’s<br />Guesses
         </p>
@@ -46,7 +46,7 @@ class OthersGuessesArrow extends React.PureComponent {
 
   renderBelow() {
     return (
-      <div className="Container" style={{ top: `${145 + ((this.getSortedData(this.props.data)[this.props.data.length - 1].bike * 320) + this.props.offset)}px` }}>
+      <div className="Container" style={{ top: `${145 + ((this.getSortedData(this.props.data)[this.props.data.length - 1].car * 320) + this.props.offset)}px` }}>
         <img alt="ArrowOtherGuess" src={ArrowOtherGuess} style={{ transform: 'scale(1, -1)' }} />
         <p className="Text">
           Other<br />People’s<br />Guesses

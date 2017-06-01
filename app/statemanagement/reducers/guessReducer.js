@@ -5,7 +5,7 @@ import { GUESS } from '../constants';
 const initialState = fromJS({
   loading: false,
   error: false,
-  others: fromJS([{ car: 0.5, bike: 0.2, rail: 0.3 }, { car: 0.5, bike: 0.3, rail: 0.2 }, { car: 0.7, bike: 0.1, rail: 0.2 }, { car: 0.6, bike: 0.2, rail: 0.2 }]),
+  others: fromJS([{ car: 0.9, bike: 0.05, rail: 0.05 }, { car: 0.8, bike: 0.1, rail: 0.1 }, { car: 0.85, bike: 0.125, rail: 0.125 }, { car: 0.9, bike: 0.05, rail: 0.05 }]),
   own: fromJS({ car: 0.333, rail: 0.333, bike: 0.333 }),
   actual: fromJS({ rail: 0.5, car: 0.3, bike: 0.2 }),
 });

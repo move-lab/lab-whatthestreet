@@ -24,14 +24,14 @@ class ComparisonBarChart extends React.PureComponent {
   }
 
   positionOthersArrow() {
-    if (avg(this.props.others) < this.props.actual.bike) {
+    if (avg(this.props.others) < this.props.actual.car) {
       return 'above';
     }
     return 'below';
   }
 
   positionActualArrow() {
-    if (this.props.actual.bike <= avg(this.props.others)) {
+    if (this.props.actual.car <= avg(this.props.others)) {
       return 'above';
     }
     return 'below';
@@ -124,7 +124,7 @@ class ComparisonBarChart extends React.PureComponent {
   render = () => (
     <div className="MainContainer">
       <div className="Wrapper">
-        <OthersGuessesArrow position={this.positionOthersArrow()} data={this.props.others} offset={offsetOthersArrow(avg(this.props.others[0]), this.props.actual.car)} />
+        <OthersGuessesArrow position={this.positionOthersArrow()} data={this.props.others} offset={offsetOthersArrow(avg(this.props.others), this.props.actual.car)} />
         <ActualValueArrow position={this.positionActualArrow()} data={this.props.actual.car} city={this.props.city} offset={offsetActualArrow(this.props.actual.car, avg(this.props.others))} />
         <BarChart actual={this.props.actual} others={this.props.others} own={this.props.own} />
         <YourGuessArrow data={this.props.own.bike} area={false} />
@@ -154,8 +154,9 @@ export default ComparisonBarChart;
 const avg = (values) => {
   let sum = 0;
   for (let i = 0; i < values.length; i += 1) {
-    sum += parseFloat(values[i].bike);
+    sum += parseFloat(values[i].car);
   }
+
   return (sum / values.length);
 };
 
