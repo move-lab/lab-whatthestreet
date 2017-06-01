@@ -69,7 +69,7 @@ class ComparisonBarChart extends React.PureComponent {
       return (
         <div className="Container">
           <h2 className="Title">Not a bad guess for the first time <img alt="GrinningEmoji" src={GrinningEmoji} /></h2>
-          <h3 className="SubTitle">Your guess was similar to 12 000 other people</h3>
+          <h3 className="SubTitle">Your guess was similar to all other people</h3>
           <style jsx>{`
             .Container {
               width: 320px;
@@ -134,7 +134,7 @@ class ComparisonBarChart extends React.PureComponent {
         .MainContainer {
           background-color: ${COLORS.ColorBackgroundLightBlue};
           padding: ${METRICS.MetricsSectionPadding} 0;
-          padding-bottom: 140px;
+          padding-bottom: 150px;
         }
 
         .Wrapper {

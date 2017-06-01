@@ -13,6 +13,7 @@
     "immutable": "^3.8.1",
     "lodash.debounce": "^4.0.8",
     "lodash.findindex": "^4.6.0",
+    "lodash.maxby": "^4.6.0",
     "mapbox-gl": "^0.37.0",
     "mongodb": "^2.2.26",
     "next": "^2.4.0",

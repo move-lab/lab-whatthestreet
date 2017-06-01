@@ -72,6 +72,7 @@ class ResultsBarChart extends React.PureComponent {
         .MainContainer {
           background-color: ${COLORS.ColorBackgroundLightBlue};
           padding: ${METRICS.MetricsSectionPadding} 0;
+          padding-bottom: 150px;
         }
 
         .Wrapper {

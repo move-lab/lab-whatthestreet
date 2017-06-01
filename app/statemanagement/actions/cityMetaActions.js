@@ -30,7 +30,7 @@ export function loadCityMetadata(citySlug) {
       axios.get(`${baseUrl}/api/v1/cities/${citySlug}`).then((response) => {
         dispatch(loadCityMetaDataSuccess(response.data));
         // Set guesses
-        GuessActions.setActual(response.data.space)
+        dispatch(GuessActions.setActual(response.data.space));
         resolve();
       }, (error) => {
         dispatch(loadCityMetaDataFailure(error))

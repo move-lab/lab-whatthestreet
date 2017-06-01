@@ -33,6 +33,8 @@ router.route('/cities/:city/landmark').get(cityRoute.getLandmark);
 // Searching
 router.route('/cities/:city/search_street/:term').get(cityRoute.searchStreets);
 
+router.route('/closestCityToGuess').post(cityRoute.closestCityToGuess);
+
 // Gif
 router.route('/gif/:city/:street/gif').get(cityRoute.generateGif);
 router.route('/gif/:city/:street/poster').get(cityRoute.generatePoster);

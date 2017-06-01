@@ -24,7 +24,19 @@ class ResultsPage extends React.PureComponent {
     isLoading: React.PropTypes.bool,
   }
 
-  getSuggestion = () => ('Indiapolis')
+  getSuggestion() {
+    // TODO : implement endpoint on server that answer that:
+    //  : PING THAT ENDPOINT api/v1/closestCityToGuess
+    // POST 
+    // guess: { bike: 0.3, car, rails.. ...}
+    // ANSWER: 
+    // {
+    //   "score": 99,
+    //   "name": "Boston",
+    //   "slug": "boston"
+    // } 
+    return "TODO"
+  }
 
   calculateGuessStrength = () => {
     const actual = this.props.actual;

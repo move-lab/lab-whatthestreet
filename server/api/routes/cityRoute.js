@@ -4,12 +4,46 @@ const data = require('../cityMeta.json');
 const redis = require('redis');
 const sha1 = require('sha1');
 const geoip = require('geoip-lite');
+const maxBy = require('lodash.maxby');
 
 /**
  * Gets all Cities
  */
 exports.getAllCities = (request, response) => {
   response.json(Object.keys(data).map((item) => ({ slug: item, name: data[item].name })));
+};
+
+exports.closestCityToGuess = (request, response) => {
+  const guess = request.body.guess;
+
+  const allCitiesSpaces = Object.keys(data).map((item) => {
+    const hundredPercent = data[item].space.rail + data[item].space.car + data[item].space.bike;
+    const car = ((100 / hundredPercent) * data[item].space.car) / 100;
+    const bike = ((100 / hundredPercent) * data[item].space.bike) / 100;
+    const rail = ((100 / hundredPercent) * data[item].space.rail) / 100;
+    const result = { car, bike, rail };
+    return ({
+      bike: result.bike,
+      car: result.car,
+      rail: result.rail,
+      name: data[item].name,
+      slug: item
+    })
+  });
+
+  const getPercentOfRightness = (valueA, valueB) => (100 - Math.round(Math.abs(((valueA * 100) - (valueB * 100)))));
+
+  let guessRightnessAgainstAllCities = allCitiesSpaces.map((item) => 
+    ({
+      score: (getPercentOfRightness(guess.bike, item.bike) + getPercentOfRightness(guess.car, item.car) + getPercentOfRightness(guess.rail, item.rail)) / 3,
+      name: item.name,
+      slug: item.slug
+    })
+  );
+
+  const best = maxBy(guessRightnessAgainstAllCities, 'score');
+
+  response.json(best);
 };
 
 /**
