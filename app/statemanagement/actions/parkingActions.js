@@ -1,4 +1,4 @@
-import { SET_PARKINGSPACE } from '../constants';
+import { SET_PARKINGSPACE, CLEAR_PARKINGSPACE } from '../constants';
 
 export function setParkingSpace(id, neighborhood, area) {
   return {
@@ -7,4 +7,10 @@ export function setParkingSpace(id, neighborhood, area) {
     neighborhood,
     area,
   };
+}
+
+export function clearParking() {
+  return {
+    type: CLEAR_PARKINGSPACE
+  }
 }

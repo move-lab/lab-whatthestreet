@@ -19,6 +19,8 @@ export default function laneReducer(state = initialState, action) {
       .set('length', action.length)
       .set('area', action.area)
       .set('cumulativeArea', action.cumulativeArea);
+    case LANES.CLEAR_LANE:
+      return initialState;
     default:
       return state;
   }

@@ -10,3 +10,9 @@ export function setLane(name, neighborhood, length, area, cumulativeArea) {
     cumulativeArea: parseInt(cumulativeArea)
   };
 }
+
+export function clearLane() {
+  return {
+    type: LANES.CLEAR_LANE
+  }
+}

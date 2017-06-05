@@ -1,6 +1,4 @@
-// import { NEXT_SCROLL_INDEX, PREVIOUS_SCROLL_INDEX, SCROLLING, SET_SCROLL_INDEX, REGISTER_SCROLL_TARGET, FINISH_SCROLLING } from './scrollConstants';
-
-import { SET_PARKINGSPACE } from './parkingConstants';
+import { SET_PARKINGSPACE, CLEAR_PARKINGSPACE } from './parkingConstants';
 import * as CITY from './cityConstants';
 import * as CITY_META from './cityMetaConstants';
 import * as VERSUS from './versusConstants';
@@ -13,12 +11,7 @@ import * as SEARCH from './searchConstants';
 
 export {
   SET_PARKINGSPACE,
-  // NEXT_SCROLL_INDEX,
-  // PREVIOUS_SCROLL_INDEX,
-  // SCROLLING,
-  // SET_SCROLL_INDEX,
-  // REGISTER_SCROLL_TARGET,
-  // FINISH_SCROLLING,
+  CLEAR_PARKINGSPACE,
   CITY_META,
   VERSUS,
   LANES,

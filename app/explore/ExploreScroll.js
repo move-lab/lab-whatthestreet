@@ -20,8 +20,6 @@ class ExploreScroll extends React.PureComponent {
     ownGuess: React.PropTypes.object,
     activeVehicle: React.PropTypes.string,
     citySlug: React.PropTypes.string,
-    showScrollUI: React.PropTypes.bool,
-    isScrolling: React.PropTypes.bool,
     url: React.PropTypes.object
   }
 
@@ -189,8 +187,6 @@ class ExploreScroll extends React.PureComponent {
           scrollToEnd={() => {
             document.querySelector('.VehicleSlideSummary').scrollIntoView({ behavior: 'smooth' });
           }}
-          showScrollUI={this.props.showScrollUI}
-          isScrolling={this.props.isScrolling}
         />
         {this.props.url.query.id &&
           <MapModal
@@ -208,14 +204,10 @@ class ExploreScroll extends React.PureComponent {
 
 export default connect((state) => {
 
-  const showScrollUI = state.explore.get('lanesInFocus') || state.explore.get('parkingInFocus');
-
   return {
     availableVehicles: state.vehicles.get('availableVehicles'),
     activeVehicle: state.vehicles.get('vehicle'),
     citySlug: state.city.getIn(['actual_city','slug']),
-    showScrollUI,
-    isScrolling: state.explore.get('isScrolling'),
     ownGuess: state.guess.get('own'),
     selectedLaneId: state.street.get('id'),
     selectedParkingId: state.parking.get('id')

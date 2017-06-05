@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import * as METRICS from '../../shared/style/metrics';
@@ -21,6 +22,8 @@ class VehicleSlidesOverlay extends React.PureComponent {
     previousVehicleName: PropTypes.string,
     showScrollUI: PropTypes.bool,
     isScrolling: PropTypes.bool,
+    lanesInFocus: PropTypes.bool,
+    parkingInFocus: PropTypes.bool,
     goToNextVehicle: PropTypes.func,
     goToPreviousVehicle: PropTypes.func,
     scrollToTop: PropTypes.func,
@@ -73,25 +76,29 @@ class VehicleSlidesOverlay extends React.PureComponent {
           <section className="ButtonsSection">
             <div className="ButtonsSectionInner">
               <div className="ButtonContainer">
-                <RoundedButton
-                  small
-                  hideIcon
-                  orange
-                  onClick={this.props.showParkingMap}
-                  hidden={!this.props.parkingLoaded}>
-                    Show on Map
-                </RoundedButton>
+                {this.props.parkingInFocus &&
+                  <RoundedButton
+                    small
+                    hideIcon
+                    orange
+                    onClick={this.props.showParkingMap}
+                    hidden={!this.props.parkingLoaded}>
+                      Show on Map
+                  </RoundedButton>
+                }
               </div>
               <div className="ButtonContainer">
-                <RoundedButton
-                  small
-                  hideIcon
-                  orange
-                  onClick={this.props.showLaneMap}
-                  hidden={!this.props.lanesLoaded}
-                >
-                    Show on Map
-                </RoundedButton>
+                {this.props.lanesInFocus &&
+                  <RoundedButton
+                    small
+                    hideIcon
+                    orange
+                    onClick={this.props.showLaneMap}
+                    hidden={!this.props.lanesLoaded}
+                  >
+                      Show on Map
+                  </RoundedButton>
+                }
               </div>
             </div>
           </section>
@@ -285,4 +292,14 @@ class VehicleSlidesOverlay extends React.PureComponent {
 
 }
 
-export default VehicleSlidesOverlay;
+export default connect((state) => {
+
+  const showScrollUI = state.explore.get('lanesInFocus') || state.explore.get('parkingInFocus');
+
+  return {
+    isScrolling: state.explore.get('isScrolling'),
+    showScrollUI,
+    lanesInFocus: state.explore.get('lanesInFocus'),
+    parkingInFocus: state.explore.get('parkingInFocus')
+  }
+})(VehicleSlidesOverlay);

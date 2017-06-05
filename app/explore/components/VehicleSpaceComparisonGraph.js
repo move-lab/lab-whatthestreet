@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import * as METRICS from '../../shared/style/metrics';
 import * as COLORS from '../../shared/style/colors';
@@ -14,19 +15,31 @@ class VehicleSpaceComparisonGraph extends React.Component {
 
   static propTypes = {
     activeVehicle: React.PropTypes.string,
-    activeAreaType: React.PropTypes.string
+    svgHeights: React.PropTypes.object
   }
 
-  renderCurl() {
+  constructor(props) {
+    super(props);
+
+    this.overviewHeight = 230;
+    // TODO MAKE SURE THE TALLEST IS ALWAYS CAR LANE
+    this.tallestSvgHeight = props.svgHeights.getIn(['car','lanes','height']);
+  }
+
+  renderCurl(vehicleType) {
     return (
-      <div className="Curl">
+      <div className="Curl" style={{ top: this.getBarHeight(vehicleType, 'lanes') + 30 }}>
         <div className="CurlText">You are<br />
           <span className="BigText">here</span>
         </div>
         <img src={curlIcon} alt="CurlIcon" />
       </div>
     );
-  } 
+  }
+
+  getBarHeight(vehicleType, areaType) {
+    return this.overviewHeight * this.props.svgHeights.getIn([ vehicleType, areaType,'height']) / this.tallestSvgHeight; 
+  }
 
   renderBar(value) {
     return (
@@ -39,39 +52,39 @@ class VehicleSpaceComparisonGraph extends React.Component {
       <div className="Wrapper">
         <div className="Column">
           {this.props.activeVehicle === 'car' && 
-            this.renderCurl()
+            this.renderCurl('car')
           }
           <img src={carIcon} alt="CarIcon" />
           <div className="Graph">
-            { this.renderBar(150) }
-            { this.renderBar(200) }
+            { this.renderBar(this.getBarHeight("car", "parking")) }
+            { this.renderBar(this.getBarHeight("car", "lanes")) }
           </div>
         </div>
         <div className="Column">
           {this.props.activeVehicle === 'rail' && 
-            this.renderCurl()
+            this.renderCurl('rail')
           }
           <img src={tramIcon} alt="TramIcon" />
           <div className="Graph">
-            { this.renderBar(100) }
-            { this.renderBar(130) }
+            { this.renderBar(this.getBarHeight("rail", "parking")) }
+            { this.renderBar(this.getBarHeight("rail", "lanes")) }
           </div>
         </div>
         <div className="Column">
           {this.props.activeVehicle === 'bike' && 
-            this.renderCurl()
+            this.renderCurl('bike')
           }
           <img src={bikeIcon} alt="BikeIcon" />
           <div className="Graph">
-            { this.renderBar(50) }
-            { this.renderBar(70) }
+            { this.renderBar(this.getBarHeight("bike", "parking")) }
+            { this.renderBar(this.getBarHeight("bike", "lanes")) }
           </div>
         </div>
         <style jsx>{`
           .Wrapper {
             display: flex;
             margin-right: 50px;
-            margin-top: 150px;
+            margin-bottom: 150px;
           }
 
           .Column {
@@ -92,6 +105,7 @@ class VehicleSpaceComparisonGraph extends React.Component {
 
           .Wrapper :global(.Curl) {
             position: absolute;
+            left: 5px;
           }
 
           .Wrapper :global(.CurlText) {
@@ -102,8 +116,9 @@ class VehicleSpaceComparisonGraph extends React.Component {
             width: 100px;
             line-height: 1.1em;
             text-align: center;
-            top: -55px;
-            left: -50px;
+            top: 80px;
+            left: 0px;
+            color: ${COLORS.ColorForegroundOrange};
           }
 
           .BigText {
@@ -116,4 +131,9 @@ class VehicleSpaceComparisonGraph extends React.Component {
   }
 }
 
-export default VehicleSpaceComparisonGraph;
+export default connect((state) => {
+  return {
+    svgHeights: state.cityMeta.getIn(['metaData','svg']),
+    activeVehicle: state.vehicles.get('vehicle')
+  }
+})(VehicleSpaceComparisonGraph);

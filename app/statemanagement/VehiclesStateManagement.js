@@ -1,4 +1,6 @@
 import { fromJS } from 'immutable';
+import { clearLane } from './actions/laneActions';
+import { clearParking } from './actions/parkingActions';
 
 // Initial state
 const initialState = fromJS({
@@ -10,10 +12,15 @@ const initialState = fromJS({
 export const SELECT_VEHICLE = 'Vehicules/SELECT_VEHICLE';
 
 export function selectVehicle(type) {
-  return {
-    type: SELECT_VEHICLE,
-    payload: type,
-  };
+  return (dispatch) => {
+    dispatch({
+      type: SELECT_VEHICLE,
+      payload: type,
+    });
+
+    dispatch(clearLane());
+    dispatch(clearParking());
+  }
 }
 
 // Reducer
