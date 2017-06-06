@@ -98,7 +98,7 @@ export function fetchLaneData(itemId, areaType) {
           dispatch(errorFetchingLaneData(error));
           reject();
         });
-      }, 2000);
+      }, 500);
       
     });
   };

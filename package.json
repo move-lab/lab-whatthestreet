@@ -29,7 +29,8 @@
     "reselect": "^3.0.0",
     "sha1": "^1.1.1",
     "smoothscroll-polyfill": "^0.3.5",
-    "turf": "^3.0.14"
+    "turf": "^3.0.14",
+    "tween.js": "^16.6.0"
   },
   "devDependencies": {
     "react-addons-perf": "^15.4.2"

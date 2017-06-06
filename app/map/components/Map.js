@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ReactMapboxGl, { ScaleControl, ZoomControl } from "react-mapbox-gl";
+import TWEEN from 'tween.js';
 
 import { unfold } from '../../shared/utils/unfold';
 
@@ -27,6 +28,7 @@ class Map extends Component {
     defaultCenter.push(0);
     defaultCenter.push(0);
     this.center = defaultCenter;
+    this.zoom = 15;
     this.lastComputedId = 0;
     
     this.computeNewDataToDisplay(props);
@@ -34,7 +36,7 @@ class Map extends Component {
 
   onMapLoaded(map) {
     this.map = map;
-    this.map.jumpTo({center: this.center});
+    this.map.jumpTo({center: this.center, zoom: this.zoom});
     this.map.addLayer({
       id: 'data',
       type: 'line',
@@ -114,7 +116,7 @@ class Map extends Component {
         newProps.laneData.original,
         newProps.laneData.coiled,
         newProps.laneData.properties.origin,
-        1,
+        0,
         1
       );
 
@@ -124,6 +126,37 @@ class Map extends Component {
       ]
 
       this.lastComputedId = newProps.laneData._id;
+
+      if(this.map) {
+        this.unfoldTween = new TWEEN.Tween({progress: 0}).to({ progress: 1 }, 2000);
+        this.unfoldTween.start();
+        this.animate();
+        this.unfoldTween.onUpdate((progress) => {
+          geojson = unfolder.geoJsonStreetAnimation(
+            newProps.laneData.original,
+            newProps.laneData.coiled,
+            newProps.laneData.properties.origin,
+            progress,
+            1
+          );
+          this.map.getSource('data').setData(geojson);
+        });
+        this.unfoldTween.onComplete(() => {
+          this.stitchTween = new TWEEN.Tween({progress: 0}).to({ progress: 1 }, 2000);
+          this.stitchTween.start();
+          this.stitchTween.onUpdate((progress) => {
+            geojson = unfolder.geoJsonStreetAnimation(
+              newProps.laneData.original,
+              newProps.laneData.coiled,
+              newProps.laneData.properties.origin,
+              1,
+              progress
+            );
+            this.map.getSource('data').setData(geojson);
+          });
+        });
+      }
+
     }
 
     this.center = center;
@@ -133,10 +166,18 @@ class Map extends Component {
       this.map.jumpTo({
         center: center
       });
-      console.log('new GEOJSON');
-      console.log(geojson);
-      this.map.getSource('data').setData(geojson);
+      // console.log('new GEOJSON');
+      // console.log(geojson);
+      // this.map.getSource('data').setData(geojson);
     }
+  }
+
+  animate() {
+    // TODO STOP LOOP
+    return window.requestAnimationFrame(() => {
+      TWEEN.update();
+      this.animate();
+    });
   }
 
   render() {
