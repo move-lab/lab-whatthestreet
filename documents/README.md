@@ -178,4 +178,4 @@ Only 7% percent of today's car parking will be needed in the future, the right c
 - Parking Spaces that could be freed up: **Number of cars parking (today)** - **Number of cars parking (future)**
 
 ### Landmarks
-I will reexport the landmark svgs, so they always have the same size in pixel and reflect the scale of 1 icon of parking.
+Landmark assets are scaled to fit the description you just read
