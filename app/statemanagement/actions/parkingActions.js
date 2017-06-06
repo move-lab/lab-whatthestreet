@@ -1,11 +1,9 @@
 import { SET_PARKINGSPACE, CLEAR_PARKINGSPACE } from '../constants';
 
-export function setParkingSpace(id, neighborhood, area) {
+export function setParkingSpace(data) {
   return {
     type: SET_PARKINGSPACE,
-    id,
-    neighborhood,
-    area,
+    payload: data
   };
 }
 

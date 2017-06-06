@@ -1,25 +1,22 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Router from 'next/router';
 
 import Loader from '../shared/components/Loader';
 import MapInfoBox from './components/MapInfoBox';
 
-import { fetchLaneData } from '../statemanagement/MapStateManagement';
-
 let Map;
 
-class MapModal extends Component {
+class MapModal extends PureComponent {
 
   static propTypes = {
     onDismiss: React.PropTypes.func,
+    isVisible: React.PropTypes.bool,
     citySlug: React.PropTypes.string,
     activeVehicle: React.PropTypes.string,
     ownGuess: React.PropTypes.object,
     itemId: React.PropTypes.number,
-    areaType: React.PropTypes.string,
-    areaTypeFromExplore: React.PropTypes.string,
-    renderingFromExplorePage: React.PropTypes.bool
+    areaType: React.PropTypes.string
   }
 
   constructor (props) {
@@ -27,17 +24,14 @@ class MapModal extends Component {
     this.closeModal = this.closeModal.bind(this);
     this.onMapLoaded = this.onMapLoaded.bind(this);
 
-    // Do not fetch is we are doing a server side rendering
-    // (they are undefined and already fetched in getInitialProps)
-    // MAYBE MOVE THAT TO EXPLORE PAGE and read state from redux store... ???
-    if (this.props.renderingFromExplorePage && this.props.areaTypeFromExplore === 'lanes') {
-      this.props.dispatch(fetchLaneData(this.props.itemId, this.props.areaTypeFromExplore));
-    }
-
     this.state = { 
       showMap: false,
       mapLoaded: false
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+
   }
 
   componentDidMount() {
@@ -69,8 +63,9 @@ class MapModal extends Component {
   }
 
   render() {
+    console.log('render mapmodal');
     return (
-      <div style={{ position: 'fixed', top:0, bottom:0, left:0, right:0, zIndex: 20000000}}>
+      <div className={`MapWrapper ${this.props.isVisible ? 'visible' : ''}`}>
         <MapInfoBox
           areaType={this.props.areaType}
           parkingData={this.props.parkingData}
@@ -80,24 +75,42 @@ class MapModal extends Component {
           closeModal={this.closeModal}
         />
         {!this.state.mapLoaded &&
-          <div style={{ display: 'flex', height: '100vh', alignItems: 'center', justifyContent: 'center', backgroundColor: '#e6e4e0' }}>
+          <div className="LoaderWrapper">
             <Loader />
           </div>
         }
-        {this.state.showMap && this.props.areaType === 'parking' &&
+        {this.state.showMap && this.props.areaType &&
           <Map
             areaType={this.props.areaType}
             parkingData={this.props.parkingData && this.props.parkingData.toJS()}
-            onMapLoaded={this.onMapLoaded}
-          />
-        }
-        {this.state.showMap && this.props.laneData && this.props.areaType === 'lanes' &&
-          <Map
-            areaType={this.props.areaType}
             laneData={this.props.laneData && this.props.laneData.toJS()}
             onMapLoaded={this.onMapLoaded}
           />
         }
+        <style jsx>{`
+          .MapWrapper {
+            position: fixed;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            z-index: 20000000;
+            visibility: hidden;
+            background-color: #e6e4e0;
+          }
+
+          .MapWrapper.visible {
+            visibility: visible;
+          }
+
+          .LoaderWrapper {
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            background-color: #e6e4e0;
+          }
+        `}</style>
       </div>
     );
   }

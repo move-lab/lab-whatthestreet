@@ -11,6 +11,8 @@ import MapModal from '../map/MapModal';
 
 import { lanes } from '../statemanagement/constants/identifiersConstants';
 
+import { fetchLaneData, setParkingData } from '../statemanagement/MapStateManagement';
+
 import { selectVehicle } from '../statemanagement/VehiclesStateManagement';
 
 class ExploreScroll extends React.PureComponent {
@@ -29,6 +31,13 @@ class ExploreScroll extends React.PureComponent {
     this.handleVehicleSlideLoaded = this.handleVehicleSlideLoaded.bind(this);
     this.showParkingMap = this.showParkingMap.bind(this);
     this.showLaneMap = this.showLaneMap.bind(this);
+    this.dismissMap = this.dismissMap.bind(this);
+    this.showMap = this.showMap.bind(this);
+    this.goToResults = this.showMap.bind(this);
+    this.selectNextVehicule = this.selectNextVehicule.bind(this);
+    this.selectPreviousVehicule = this.selectPreviousVehicule.bind(this);
+    this.scrollToTop = this.scrollToTop.bind(this);
+    this.scrollToEnd = this.scrollToEnd.bind(this);
 
     this.state = {
       parkingLoaded: false,
@@ -46,6 +55,13 @@ class ExploreScroll extends React.PureComponent {
   }
 
   showMap(data) {
+
+    if(data.areaType === 'lanes') {
+      this.props.dispatch(fetchLaneData(data.id, data.areaType));
+    } else {
+      this.props.dispatch(setParkingData(data.data));
+    }
+
     Router.push({
       pathname: '/explore',
       query: {
@@ -76,7 +92,8 @@ class ExploreScroll extends React.PureComponent {
       id: this.props.selectedParkingId,
       areaType: 'parking',
       citySlug: this.props.citySlug,
-      actualVehicle: this.props.activeVehicle
+      actualVehicle: this.props.activeVehicle,
+      data: this.props.selectedParkingData
     });
   }
 
@@ -140,13 +157,33 @@ class ExploreScroll extends React.PureComponent {
     }
   }
 
+  selectNextVehicule() {
+    this.selectVehicle(this.getNextVehicle());
+  }
+
+  selectPreviousVehicule() {
+    this.selectVehicle(this.getPreviousVehicle());
+  }
+
+  scrollToTop() {
+    window.scroll({ 
+      top: 0,
+      left: 0,
+      behavior: 'smooth' 
+    });
+  }
+
+  scrollToEnd() {
+    document.querySelector('.VehicleSlideSummary').scrollIntoView({ behavior: 'smooth' });
+  }
+
   render() {
     return (
       <section>
         {this.props.activeVehicle === 'car' &&
           <VehicleSlide
             vehicle="car"
-            showMap={(url, data) => this.showMap(url, data)}
+            showMap={this.showMap}
             lanesLoaded={this.state.lanesLoaded}
             parkingLoaded={this.state.parkingLoaded}
             onLoaded={this.handleVehicleSlideLoaded}
@@ -155,7 +192,7 @@ class ExploreScroll extends React.PureComponent {
         {this.props.activeVehicle === 'bike' &&
           <VehicleSlide
             vehicle="bike"
-            showMap={(url, data) => this.showMap(url, data)}
+            showMap={this.showMap}
             lanesLoaded={this.state.lanesLoaded}
             parkingLoaded={this.state.parkingLoaded}
             onLoaded={this.handleVehicleSlideLoaded}
@@ -164,7 +201,7 @@ class ExploreScroll extends React.PureComponent {
         {this.props.activeVehicle === 'rail' &&
           <VehicleSlide
             vehicle="rail"
-            showMap={(url, data) => this.showMap(url, data)}
+            showMap={this.showMap}
             lanesLoaded={this.state.lanesLoaded}
             parkingLoaded={this.state.parkingLoaded}
             onLoaded={this.handleVehicleSlideLoaded}
@@ -172,8 +209,8 @@ class ExploreScroll extends React.PureComponent {
         }
         {this.state.parkingLoaded && this.state.lanesLoaded &&
           <VehicleSlideSummary
-            goToNextVehicle={() => this.selectVehicle(this.getNextVehicle())}
-            goToResults={() => this.goToResults()}
+            goToNextVehicle={this.selectNextVehicule}
+            goToResults={this.goToResults}
           />
         }
         <VehicleSlidesOverlay
@@ -181,27 +218,18 @@ class ExploreScroll extends React.PureComponent {
           parkingLoaded={this.state.parkingLoaded}
           showParkingMap={this.showParkingMap}
           showLaneMap={this.showLaneMap}
-          goToNextVehicle={() => this.selectVehicle(this.getNextVehicle())}
-          goToPreviousVehicle={() => this.selectVehicle(this.getPreviousVehicle())}
+          goToNextVehicle={this.selectNextVehicule}
+          goToPreviousVehicle={this.selectPreviousVehicule}
           nextVehicleName={this.getNextVehicle()}
           previousVehicleName={this.getPreviousVehicle()}
-          scrollToTop={() => window.scroll({ 
-            top: 0,
-            left: 0,
-            behavior: 'smooth' 
-          })}
-          scrollToEnd={() => {
-            document.querySelector('.VehicleSlideSummary').scrollIntoView({ behavior: 'smooth' });
-          }}
+          scrollToTop={this.scrollToTop}
+          scrollToEnd={this.scrollToEnd}
         />
-        {this.props.url.query.id &&
-          <MapModal
-            renderingFromExplorePage={true}
-            itemId={parseInt(this.props.url.query.id)}
-            areaTypeFromExplore={this.props.url.query.areaType}
-            onDismiss={() => this.dismissMap()}
-          />
-        }
+        <MapModal
+          itemId={parseInt(this.props.url.query.id)}
+          isVisible={this.props.url.query.id ? true : false}
+          onDismiss={this.dismissMap}
+        />
       </section>
     )
   }
@@ -216,6 +244,7 @@ export default connect((state) => {
     citySlug: state.city.getIn(['actual_city','slug']),
     ownGuess: state.guess.get('own'),
     selectedLaneId: state.street.get('id'),
-    selectedParkingId: state.parking.get('id')
+    selectedParkingId: state.parking.get('id'),
+    selectedParkingData: state.parking.toJS()
   }
 })(ExploreScroll);

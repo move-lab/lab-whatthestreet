@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import ReactMapboxGl, { GeoJSONLayer, ScaleControl, ZoomControl } from "react-mapbox-gl";
+import ReactMapboxGl, { ScaleControl, ZoomControl } from "react-mapbox-gl";
 
 import { unfold } from '../../shared/utils/unfold';
 
 const containerStyle = {
+  display: "flex",
   height: "100vh",
   width: "100%"
 };
@@ -20,42 +21,123 @@ class Map extends Component {
   constructor(props) {
     super(props);
 
+    this.onMapLoaded = this.onMapLoaded.bind(this);
+
+    const defaultCenter = [];
+    defaultCenter.push(0);
+    defaultCenter.push(0);
+    this.center = defaultCenter;
+    this.lastComputedId = 0;
+    
+    this.computeNewDataToDisplay(props);
+  }
+
+  onMapLoaded(map) {
+    this.map = map;
+    this.map.jumpTo({center: this.center});
+    this.map.addLayer({
+      id: 'data',
+      type: 'line',
+      source: {
+        type: 'geojson',
+        data: this.geojson
+      },
+      paint: {
+        "line-color": "#00f",
+        "line-width": 5
+      },
+      layout: {
+        "line-join": "round",
+        "line-cap": "round"
+      }
+    });
+    this.props.onMapLoaded();
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.areaType !== this.props.areaType) {
+      this.computeNewDataToDisplay(newProps);
+    } else {
+      if (this.props.areaType === 'lanes' &&
+          newProps.laneData !== null &&
+          newProps.laneData._id !== this.lastComputedId) {
+        console.log('compute lane data')
+        this.computeNewDataToDisplay(newProps);
+      }
+      if (this.props.areaType === 'parking' &&
+          newProps.parkingData !== null &&
+          newProps.parkingData.id !== this.lastComputedId) {
+        console.log('compute parking data')
+        this.computeNewDataToDisplay(newProps);
+      }
+    }
+  }
+
+  computeNewDataToDisplay(newProps) {
+    console.log('computeDataToDisplay');
+    // reset previous
+    this.setState({
+      geojson: null
+    });
+
     let geojson;
+    let geojsonItem;
     let center;
 
-    if (props.areaType === 'parking') {
-      geojson = {
-        type: 'Feature',
-        geometry: {
-          type: 'Polygon',
-          coordinates: [props.parkingData.coordinates],
-        }
+    if (newProps.areaType === 'parking') {
+
+      if(!newProps.parkingData) {
+        return;
       }
 
-      center = props.parkingData.center;
+      geojson = {
+        type: 'Feature',
+        properties: {
+          "name": "..."
+        },
+        geometry: {
+          type: 'Polygon',
+          coordinates: [newProps.parkingData.coordinates],
+        }
+      }
+      
+      center = newProps.parkingData.center;
+      this.lastComputedId = newProps.parkingData.id;
     } else {
+
+      if(!newProps.laneData) {
+        return;
+      }
       // Unfold to final street for now
       const unfolder = unfold();
       geojson = unfolder.geoJsonStreetAnimation(
-        props.laneData.original,
-        props.laneData.coiled,
-        props.laneData.properties.origin,
+        newProps.laneData.original,
+        newProps.laneData.coiled,
+        newProps.laneData.properties.origin,
         1,
         1
       );
 
-      center = [ props.laneData.original.destination.lon, props.laneData.original.destination.lat ]
+      center = [ 
+        newProps.laneData.original.destination.lon, 
+        newProps.laneData.original.destination.lat
+      ]
+
+      this.lastComputedId = newProps.laneData._id;
     }
 
-    this.state = {
-      center : center,
-      geojson: geojson
-    };
-  }
+    this.center = center;
+    this.geojson = geojson;
 
-  // componentWillReceiveProps() {
-    // We should have logic here when we will avoid remounting map each time
-  // }
+    if(this.map) {
+      this.map.flyTo({
+        center: center
+      });
+      console.log('new GEOJSON');
+      console.log(geojson);
+      this.map.getSource('data').setData(geojson);
+    }
+  }
 
   render() {
 
@@ -63,25 +145,11 @@ class Map extends Component {
       <ReactMapboxGl
         style="mapbox://styles/mapbox/streets-v9"
         accessToken="***REMOVED***"
-        center={this.state.center}
-        zoom={[17]}
-        movingMethod="jumpTo"
         containerStyle={containerStyle}
-        onStyleLoad={this.props.onMapLoaded}
+        onStyleLoad={this.onMapLoaded}
       >
         <ScaleControl/>
         <ZoomControl/>
-        <GeoJSONLayer
-          data={this.state.geojson}
-          linePaint={{
-            "line-color": "#00f",
-            "line-width": 5
-          }}
-          lineLayout={{
-            "line-join": "round",
-            "line-cap": "round"
-          }}
-        />
       </ReactMapboxGl>
     );
   }

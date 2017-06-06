@@ -11,10 +11,7 @@ const initialState = fromJS({
 export default function parkingReducer(state = initialState, action) {
   switch (action.type) {
     case SET_PARKINGSPACE:
-      return state
-      .set('neighborhood', action.neighborhood)
-      .set('id', action.id)
-      .set('area', action.area);
+      return state.merge(action.payload);
     case CLEAR_PARKINGSPACE:
       return initialState;
     default:

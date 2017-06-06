@@ -76,19 +76,19 @@ class VehicleSlide extends React.PureComponent {
     }
   }
 
-  goToMapView(areaType, id) {
+  goToMapView(areaType, id, data) {
     this.props.showMap({
       citySlug: this.props.citySlug,
       actualVehicle: this.props.actualVehicle,
       areaType,
-      id
+      id,
+      data
     });
   }
 
   onPolygonSelected(data) {
     const { dispatch } = this.props;
-    this.props.dispatch(setParkingData(data));
-    dispatch(ParkingActions.setParkingSpace(data.id, data.neighborhood, data.area));
+    dispatch(ParkingActions.setParkingSpace(data));
   }
 
   onLaneSelected(data) {
@@ -102,8 +102,7 @@ class VehicleSlide extends React.PureComponent {
   }
 
   onParkingClicked(data, path) {
-    this.props.dispatch(setParkingData(data));
-    this.goToMapView('parking', data.id)
+    this.goToMapView('parking', data.id, data)
   }
 
   onParkingLoaded(scrollHeight) {

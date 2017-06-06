@@ -53,16 +53,25 @@ class ParkingSpaces extends React.PureComponent {
     return axios.get(requestURL);
   }
 
-  getPolygonData = (polygon) => ({
-    id: parseInt(polygon.getAttribute('id'), 10),
-    latitude: parseFloat(polygon.getAttribute('moovel_centroidlatlon').split(',')[1]),
-    longitude: parseFloat(polygon.getAttribute('moovel_centroidlatlon').split(',')[0]),
-    neighborhood: polygon.getAttribute('moovel_neighborhood'),
-    area: parseFloat(polygon.getAttribute('moovel_area')),
-    rotation: parseInt(polygon.getAttribute('moovel_rot'), 10),
-    center: polygon.getAttribute('moovel_centroidlatlon').split(',').map((item) => (parseFloat(item))),
-    coordinates: polygon.getAttribute('moovel_pointslatlon').split(' ').map((item) => (item.split(','))),
-  })
+  getPolygonData = (polygon) => {
+    return ({
+      id: parseInt(polygon.getAttribute('id'), 10),
+      latitude: parseFloat(polygon.getAttribute('moovel_centroidlatlon').split(',')[1]),
+      longitude: parseFloat(polygon.getAttribute('moovel_centroidlatlon').split(',')[0]),
+      neighborhood: polygon.getAttribute('moovel_neighborhood'),
+      area: parseFloat(polygon.getAttribute('moovel_area')),
+      rotation: parseInt(polygon.getAttribute('moovel_rot'), 10),
+      center: polygon.getAttribute('moovel_centroidlatlon').split(',').map((item) => (parseFloat(item))),
+      coordinates: polygon.getAttribute('moovel_pointslatlon')
+                          .trim()
+                          .split(' ')
+                          .map((item) => {
+                            if(item !== "") {
+                              return item.split(',').map((coordinate) => parseFloat(coordinate))
+                            }
+                          })
+    })
+  }
 
   entry(load, props = this.props) {
     if (this.state.svg) {

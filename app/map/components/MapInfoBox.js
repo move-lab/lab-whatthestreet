@@ -8,7 +8,7 @@ import * as COLORS from '../../shared/style/colors';
 
 import VehicleIcon from '../../shared/components/VehicleIcon';
 
-class MapInfoBox extends React.Component {
+class MapInfoBox extends React.PureComponent {
 
   static propTypes = {
     areaType: React.PropTypes.string,

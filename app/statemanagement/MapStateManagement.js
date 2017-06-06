@@ -57,12 +57,13 @@ export function successFetchingLaneData(laneData) {
 
 export function setParkingData(data) {
   return (dispatch) => {
-    dispatch(setAreaType('parking'));
-    dispatch(setItemId(data.id))
+    console.log('set Parking data');
     dispatch({
       type: SET_PARKING_DATA,
       payload: data
     });
+    dispatch(setItemId(data.id))
+    dispatch(setAreaType('parking'));
   }
 }
 
