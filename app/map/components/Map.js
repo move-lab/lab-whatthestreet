@@ -102,6 +102,8 @@ class Map extends Component {
           coordinates: [newProps.parkingData.coordinates],
         }
       }
+
+      // For rotation use: https://github.com/Turfjs/turf/tree/master/packages/turf-transform-rotate
       
       center = newProps.parkingData.center;
       this.lastComputedId = newProps.parkingData.id;
@@ -145,6 +147,7 @@ class Map extends Component {
           this.stitchTween = new TWEEN.Tween({progress: 0}).to({ progress: 1 }, 2000);
           this.stitchTween.start();
           this.stitchTween.onUpdate((progress) => {
+            // Better, chain tween: https://github.com/tweenjs/tween.js/blob/master/docs/user_guide.md#chain
             geojson = unfolder.geoJsonStreetAnimation(
               newProps.laneData.original,
               newProps.laneData.coiled,
