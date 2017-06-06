@@ -16,7 +16,8 @@ class MapModal extends PureComponent {
     activeVehicle: React.PropTypes.string,
     ownGuess: React.PropTypes.object,
     itemId: React.PropTypes.number,
-    areaType: React.PropTypes.string
+    areaType: React.PropTypes.string,
+    isFetchingLaneData: React.PropTypes.bool
   }
 
   constructor (props) {
@@ -28,10 +29,6 @@ class MapModal extends PureComponent {
       showMap: false,
       mapLoaded: false
     };
-  }
-
-  componentWillReceiveProps(nextProps) {
-
   }
 
   componentDidMount() {
@@ -74,11 +71,9 @@ class MapModal extends PureComponent {
           citySlug={this.props.citySlug}
           closeModal={this.closeModal}
         />
-        {!this.state.mapLoaded &&
-          <div className="LoaderWrapper">
-            <Loader />
-          </div>
-        }
+        <div className={`LoaderWrapper ${!this.state.mapLoaded || this.props.isFetchingLaneData ? 'visible' : 'hidden'}`}>
+          <Loader />
+        </div>
         {this.state.showMap && this.props.areaType &&
           <Map
             areaType={this.props.areaType}
@@ -108,7 +103,14 @@ class MapModal extends PureComponent {
             height: 100vh;
             align-items: center;
             justify-content: center;
-            background-color: #e6e4e0;
+            position: absolute;
+            z-index: 1;
+            width: 100%;
+            background-color: rgba(230, 228, 224, 0.50);
+          }
+
+          .LoaderWrapper.hidden {
+            visibility: hidden;
           }
         `}</style>
       </div>
@@ -123,6 +125,7 @@ export default connect((state) => {
     ownGuess: state.guess.get('own'),
     laneData: state.map.get('laneData'),
     parkingData: state.map.get('parkingData'),
-    areaType: state.map.get('areaType')
+    areaType: state.map.get('areaType'),
+    isFetchingLaneData: state.map.get('isFetchingLaneData')
   }
 })(MapModal);

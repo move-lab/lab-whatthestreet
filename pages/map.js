@@ -63,7 +63,7 @@ class Explore extends Component {
   render() {
     return (
       <Layout>
-        <MapModal />
+        <MapModal isVisible={true} />
       </Layout>
     )
   }

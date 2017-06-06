@@ -90,13 +90,16 @@ export function fetchLaneData(itemId, areaType) {
       const currentCity = getState().city.getIn(['actual_city','slug']);
       const activeVehicule = getState().vehicles.get('vehicle');
 
-      axios.get(`${baseUrl}/api/v1/cities/${currentCity}/streets/${activeVehicule}/${itemId}`).then((response) => {
-        dispatch(successFetchingLaneData(response.data));
-        resolve();
-      }, (error) => {
-        dispatch(errorFetchingLaneData(error));
-        reject();
-      });
+      setTimeout(() => {
+          axios.get(`${baseUrl}/api/v1/cities/${currentCity}/streets/${activeVehicule}/${itemId}`).then((response) => {
+          dispatch(successFetchingLaneData(response.data));
+          resolve();
+        }, (error) => {
+          dispatch(errorFetchingLaneData(error));
+          reject();
+        });
+      }, 2000);
+      
     });
   };
 }

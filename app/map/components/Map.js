@@ -130,7 +130,7 @@ class Map extends Component {
     this.geojson = geojson;
 
     if(this.map) {
-      this.map.flyTo({
+      this.map.jumpTo({
         center: center
       });
       console.log('new GEOJSON');
