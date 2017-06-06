@@ -22,6 +22,7 @@ import { StreetActions, LaneActions, ParkingActions } from '../../statemanagemen
 
 import Lanes from './Lanes';
 import ParkingSpaces from './ParkingSpaces';
+import VehicleSlideEndOfParkingSummary from './VehicleSlideEndOfParkingSummary';
 
 class VehicleSlide extends React.PureComponent {
 
@@ -29,6 +30,7 @@ class VehicleSlide extends React.PureComponent {
     vehicle: React.PropTypes.string,
     citySlug: React.PropTypes.string,
     actualVehicle: React.PropTypes.string,
+    parkingLoaded: React.PropTypes.bool,
     showMap: React.PropTypes.func,
     onLoaded: React.PropTypes.func
   }
@@ -175,6 +177,9 @@ class VehicleSlide extends React.PureComponent {
                 {this.props.vehicle.charAt(0).toUpperCase() + this.props.vehicle.slice(1)} Parking
               </h3>
               {this.renderParkingSpaces()}
+              {this.props.parkingLoaded &&
+                <VehicleSlideEndOfParkingSummary />
+              }
             </div>
             <div className="ToolBoxColumn" />
             <div className="Container ContainerRight">

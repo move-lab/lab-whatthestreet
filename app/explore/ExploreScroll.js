@@ -147,6 +147,8 @@ class ExploreScroll extends React.PureComponent {
           <VehicleSlide
             vehicle="car"
             showMap={(url, data) => this.showMap(url, data)}
+            lanesLoaded={this.state.lanesLoaded}
+            parkingLoaded={this.state.parkingLoaded}
             onLoaded={this.handleVehicleSlideLoaded}
           />
         }
@@ -154,6 +156,8 @@ class ExploreScroll extends React.PureComponent {
           <VehicleSlide
             vehicle="bike"
             showMap={(url, data) => this.showMap(url, data)}
+            lanesLoaded={this.state.lanesLoaded}
+            parkingLoaded={this.state.parkingLoaded}
             onLoaded={this.handleVehicleSlideLoaded}
           />
         }
@@ -161,6 +165,8 @@ class ExploreScroll extends React.PureComponent {
           <VehicleSlide
             vehicle="rail"
             showMap={(url, data) => this.showMap(url, data)}
+            lanesLoaded={this.state.lanesLoaded}
+            parkingLoaded={this.state.parkingLoaded}
             onLoaded={this.handleVehicleSlideLoaded}
           />
         }

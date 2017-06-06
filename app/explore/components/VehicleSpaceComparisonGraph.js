@@ -14,6 +14,7 @@ const curlIcon = '/static/icons/Curl.svg';
 class VehicleSpaceComparisonGraph extends React.Component {
 
   static propTypes = {
+    mode: React.PropTypes.oneOf(["parking", "lanes"]),
     activeVehicle: React.PropTypes.string,
     svgHeights: React.PropTypes.object
   }
@@ -26,9 +27,9 @@ class VehicleSpaceComparisonGraph extends React.Component {
     this.tallestSvgHeight = props.svgHeights.getIn(['car','lanes','height']);
   }
 
-  renderCurl(vehicleType) {
+  renderCurl(vehicleType, mode) {
     return (
-      <div className="Curl" style={{ top: this.getBarHeight(vehicleType, 'lanes') + 30 }}>
+      <div className="Curl" style={{ top: this.getBarHeight(vehicleType, mode) + 30 }}>
         <div className="CurlText">You are<br />
           <span className="BigText">here</span>
         </div>
@@ -52,7 +53,7 @@ class VehicleSpaceComparisonGraph extends React.Component {
       <div className="Wrapper">
         <div className="Column">
           {this.props.activeVehicle === 'car' && 
-            this.renderCurl('car')
+            this.renderCurl('car', this.props.mode)
           }
           <img src={carIcon} alt="CarIcon" />
           <div className="Graph">
@@ -62,7 +63,7 @@ class VehicleSpaceComparisonGraph extends React.Component {
         </div>
         <div className="Column">
           {this.props.activeVehicle === 'rail' && 
-            this.renderCurl('rail')
+            this.renderCurl('rail', this.props.mode)
           }
           <img src={tramIcon} alt="TramIcon" />
           <div className="Graph">
@@ -72,7 +73,7 @@ class VehicleSpaceComparisonGraph extends React.Component {
         </div>
         <div className="Column">
           {this.props.activeVehicle === 'bike' && 
-            this.renderCurl('bike')
+            this.renderCurl('bike', this.props.mode)
           }
           <img src={bikeIcon} alt="BikeIcon" />
           <div className="Graph">

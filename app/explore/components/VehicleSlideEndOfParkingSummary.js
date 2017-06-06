@@ -4,21 +4,19 @@ import Router from 'next/router';
 
 import { selectVehicle } from '../../statemanagement/VehiclesStateManagement';
 
-import RoundedButton from '../../shared/components/RoundedButton';
 import VehicleSpaceComparisonGraph from './VehicleSpaceComparisonGraph';
 
 import * as METRICS from '../../shared/style/metrics';
 import * as COLORS from '../../shared/style/colors';
 
-class VehicleSlideSummary extends React.PureComponent {
+class VehicleSlideEndOfParkingSummary extends React.PureComponent {
 
   static propTypes = {
     availableVehicles: React.PropTypes.object,
     activeVehicle: React.PropTypes.string,
     goToNextVehicle: React.PropTypes.func,
     cityLandmark: React.PropTypes.object,
-    cumulativeArea: React.PropTypes.number,
-    isRouting: React.PropTypes.bool
+    cumulativeArea: React.PropTypes.number
   }
 
   constructor() {
@@ -70,35 +68,15 @@ class VehicleSlideSummary extends React.PureComponent {
     const vehicleFormatted = this.formatFirstLetterUpperCase(this.props.activeVehicle);
 
     return (
-      <section className="Container VehicleSlideSummary">
+      <section className="Container VehicleSlideEndOfParkingSummary">
         <h3 className="LargeText">
-          You ran out of {vehicleFormatted} Space
+          {vehicleFormatted} Parking is over
         </h3>
         <p className="Text">
-          After scrolling over an area of {this.state.FH.format(Math.round(this.props.cumulativeArea))} m<sup>2</sup> you ran out of {vehicleFormatted} space. This area is about {this.getHumanArea(this.props.cumulativeArea)}.
+          After scrolling over an area of {this.state.FH.format(Math.round(this.props.cumulativeArea))} m<sup>2</sup> you ran out of {this.props.activeVehicle} parking. This area is about {this.getHumanArea(this.props.cumulativeArea)}.
         </p>
-        <div className="Summary">
-          <VehicleSpaceComparisonGraph mode="lanes" />
-          <div className="SummaryCTAWrapper">
-            <RoundedButton
-              onClick={() => this.props.goToResults()}
-              disabled={this.props.isRouting}
-              loading={this.props.isRouting}
-            >
-              Results
-            </RoundedButton>
-            <div className="SummaryCTASeparator"></div>
-            {this.getNextVehicleName() &&
-              <RoundedButton
-                small
-                onClick={() => this.props.goToNextVehicle()}
-              >
-                Discover {this.formatFirstLetterUpperCase(this.getNextVehicleName())}
-              </RoundedButton>
-            }
-          </div>
-        </div>
-        
+        <div className="Separator" />
+        <VehicleSpaceComparisonGraph mode="parking" />
         <style jsx>{`
           .Container {
             padding-top: 180px;
@@ -106,6 +84,10 @@ class VehicleSlideSummary extends React.PureComponent {
             flex-direction: column;
             justify-content: center;
             align-items: center;
+          }
+          
+          .Separator {
+            margin-top: 50px;
           }
 
           .LargeText {
@@ -124,26 +106,10 @@ class VehicleSlideSummary extends React.PureComponent {
           .Text {
             font-size: 30px;
             color: ${COLORS.ColorForegroundText};
-            width: 750px;
+            width: 550px;
             text-align: center;
             margin: 0 auto;
             font-weight: 200;
-          }
-
-          .Summary {
-            display: flex;
-            flex-direction: row;
-            margin-top: 60px;
-          }
-
-          .SummaryCTAWrapper {
-            display: flex;
-            flex-direction: column;
-            padding-top: 50px;
-          }
-
-          .SummaryCTASeparator {
-            height: 20px;
           }
         `}</style>
       </section>
@@ -159,4 +125,4 @@ export default connect((state) => {
     cityLandmark: state.cityMeta.getIn(['metaData','landmark']).toJS(),
     cumulativeArea: state.lanes.get('cumulativeArea')
   }
-})(VehicleSlideSummary);
+})(VehicleSlideEndOfParkingSummary);
