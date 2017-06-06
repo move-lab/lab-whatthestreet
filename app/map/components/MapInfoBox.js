@@ -20,6 +20,7 @@ class MapInfoBox extends React.PureComponent {
   }
 
   render() {
+    console.log('renderMapInfoBox');
     let area;
     let headline;
 
@@ -31,8 +32,6 @@ class MapInfoBox extends React.PureComponent {
       headline = this.props.laneData && this.props.laneData.getIn(['properties','name']);
       area = this.props.laneData && this.props.laneData.getIn(['properties','area']);
     }
-
-    console.log(headline);
 
     return (
       <div className="MapInfoBox">

@@ -140,7 +140,7 @@ class Map extends Component {
   }
 
   render() {
-
+    console.log('rendermap')
     return (
       <ReactMapboxGl
         style="mapbox://styles/mapbox/streets-v9"
