@@ -23,29 +23,44 @@ class Map extends Component {
     super(props);
 
     this.onMapLoaded = this.onMapLoaded.bind(this);
-
-    const defaultCenter = [];
-    defaultCenter.push(0);
-    defaultCenter.push(0);
-    this.center = defaultCenter;
-    this.zoom = 15;
     this.lastComputedId = 0;
-    
-    this.computeNewDataToDisplay(props);
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.areaType !== this.props.areaType) {
+      this.renderData(newProps);
+    } else {
+      if (this.props.areaType === 'lanes' &&
+          newProps.laneData !== null &&
+          newProps.laneData._id !== this.lastComputedId) {
+        this.renderData(newProps);
+      }
+      if (this.props.areaType === 'parking' &&
+          newProps.parkingData !== null &&
+          newProps.parkingData.id !== this.lastComputedId) {
+        this.renderData(newProps);
+      }
+    }
   }
 
   onMapLoaded(map) {
     this.map = map;
-    this.map.jumpTo({center: this.center, zoom: this.zoom});
+    // Add a layer we will use to draw animation and streets
     this.map.addLayer({
       id: 'data',
       type: 'line',
       source: {
         type: 'geojson',
-        data: this.geojson
+        data: {
+          "type": "FeatureCollection",
+          "properties": {
+            "name": "data"
+          },
+          "features": []
+        }
       },
       paint: {
-        "line-color": "#00f",
+        "line-color": "#FF6819",
         "line-width": 5
       },
       layout: {
@@ -54,125 +69,7 @@ class Map extends Component {
       }
     });
     this.props.onMapLoaded();
-  }
-
-  componentWillReceiveProps(newProps) {
-    if (newProps.areaType !== this.props.areaType) {
-      this.computeNewDataToDisplay(newProps);
-    } else {
-      if (this.props.areaType === 'lanes' &&
-          newProps.laneData !== null &&
-          newProps.laneData._id !== this.lastComputedId) {
-        console.log('compute lane data')
-        this.computeNewDataToDisplay(newProps);
-      }
-      if (this.props.areaType === 'parking' &&
-          newProps.parkingData !== null &&
-          newProps.parkingData.id !== this.lastComputedId) {
-        console.log('compute parking data')
-        this.computeNewDataToDisplay(newProps);
-      }
-    }
-  }
-
-  computeNewDataToDisplay(newProps) {
-    console.log('computeDataToDisplay');
-    // reset previous
-    this.setState({
-      geojson: null
-    });
-
-    let geojson;
-    let geojsonItem;
-    let center;
-
-    if (newProps.areaType === 'parking') {
-
-      if(!newProps.parkingData) {
-        return;
-      }
-
-      geojson = {
-        type: 'Feature',
-        properties: {
-          "name": "..."
-        },
-        geometry: {
-          type: 'Polygon',
-          coordinates: [newProps.parkingData.coordinates],
-        }
-      }
-
-      // For rotation use: https://github.com/Turfjs/turf/tree/master/packages/turf-transform-rotate
-      
-      center = newProps.parkingData.center;
-      this.lastComputedId = newProps.parkingData.id;
-    } else {
-
-      if(!newProps.laneData) {
-        return;
-      }
-      // Unfold to final street for now
-      const unfolder = unfold();
-      geojson = unfolder.geoJsonStreetAnimation(
-        newProps.laneData.original,
-        newProps.laneData.coiled,
-        newProps.laneData.properties.origin,
-        0,
-        1
-      );
-
-      center = [ 
-        newProps.laneData.original.destination.lon, 
-        newProps.laneData.original.destination.lat
-      ]
-
-      this.lastComputedId = newProps.laneData._id;
-
-      if(this.map) {
-        this.unfoldTween = new TWEEN.Tween({progress: 0}).to({ progress: 1 }, 2000);
-        this.unfoldTween.start();
-        this.animate();
-        this.unfoldTween.onUpdate((progress) => {
-          geojson = unfolder.geoJsonStreetAnimation(
-            newProps.laneData.original,
-            newProps.laneData.coiled,
-            newProps.laneData.properties.origin,
-            progress,
-            1
-          );
-          this.map.getSource('data').setData(geojson);
-        });
-        this.unfoldTween.onComplete(() => {
-          this.stitchTween = new TWEEN.Tween({progress: 0}).to({ progress: 1 }, 2000);
-          this.stitchTween.start();
-          this.stitchTween.onUpdate((progress) => {
-            // Better, chain tween: https://github.com/tweenjs/tween.js/blob/master/docs/user_guide.md#chain
-            geojson = unfolder.geoJsonStreetAnimation(
-              newProps.laneData.original,
-              newProps.laneData.coiled,
-              newProps.laneData.properties.origin,
-              1,
-              progress
-            );
-            this.map.getSource('data').setData(geojson);
-          });
-        });
-      }
-
-    }
-
-    this.center = center;
-    this.geojson = geojson;
-
-    if(this.map) {
-      this.map.jumpTo({
-        center: center
-      });
-      // console.log('new GEOJSON');
-      // console.log(geojson);
-      // this.map.getSource('data').setData(geojson);
-    }
+    this.renderData(this.props);
   }
 
   animate() {
@@ -181,6 +78,88 @@ class Map extends Component {
       TWEEN.update();
       this.animate();
     });
+  }
+
+  renderParking(props) {
+    let geojson = {
+      type: 'Feature',
+      properties: {
+        "name": "..."
+      },
+      geometry: {
+        type: 'Polygon',
+        coordinates: [props.parkingData.coordinates],
+      }
+    }
+
+    // For rotation use: https://github.com/Turfjs/turf/tree/master/packages/turf-transform-rotate
+    
+    let center = props.parkingData.center;
+
+    if(this.map) {
+      this.map.jumpTo({
+        center: center
+      });
+      this.map.getSource('data').setData(geojson);
+    }
+  }
+
+  renderLane(props) {
+    if(this.map) {
+      let geojson;
+      const unfolder = unfold();
+      this.unfoldTween = new TWEEN.Tween({progress: 0}).to({ progress: 1 }, 2000);
+      this.stitchTween = new TWEEN.Tween({progress: 0}).to({ progress: 1 }, 2000);
+      this.unfoldTween.chain(this.stitchTween);
+      this.unfoldTween.onUpdate((progress) => {
+        geojson = unfolder.geoJsonStreetAnimation(
+          props.laneData.original,
+          props.laneData.coiled,
+          props.laneData.properties.origin,
+          progress,
+          1
+        );
+        this.map.getSource('data').setData(geojson);
+      });
+      this.stitchTween.onUpdate((progress) => {
+        geojson = unfolder.geoJsonStreetAnimation(
+          props.laneData.original,
+          props.laneData.coiled,
+          props.laneData.properties.origin,
+          1,
+          progress
+        );
+        this.map.getSource('data').setData(geojson);
+      });
+
+      this.unfoldTween.start();
+      this.animate();
+
+      let center = [ 
+        props.laneData.original.destination.lon, 
+        props.laneData.original.destination.lat
+      ]
+
+      this.map.jumpTo({
+        center: center
+      });
+    }
+  }
+
+  renderData(props) {
+    if (props.areaType === 'parking') {
+      if(!props.parkingData) {
+        return;
+      }
+      this.renderParking(props);
+      this.lastComputedId = props.parkingData.id;
+    } else {
+      if(!props.laneData) {
+        return;
+      }
+      this.renderLane(props);
+      this.lastComputedId = props.laneData._id;
+    }
   }
 
   render() {
