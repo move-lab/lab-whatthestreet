@@ -1,4 +1,4 @@
-import turf from 'turf';
+import turf from '@turf/turf';
 
 export const unfold = function () {
   function rotateVectorStreet(vectorStreet, bearing) {

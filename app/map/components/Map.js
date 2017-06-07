@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import ReactMapboxGl, { ScaleControl, ZoomControl } from "react-mapbox-gl";
 import TWEEN from 'tween.js';
-import { bbox } from 'turf';
+import { bbox } from '@turf/turf';
+import rotate from '@turf/transform-rotate';
 import _throttle from 'lodash.throttle';
 
 import { unfold } from '../../shared/utils/unfold';
@@ -94,32 +95,70 @@ class Map extends Component {
     });
   }
 
+  /*
+    RENDER PARKING
+  */
+
   renderParking(props) {
-    let geojson = {
-      type: 'Feature',
-      properties: {
-        "name": "..."
-      },
-      geometry: {
-        type: 'Polygon',
-        coordinates: [props.parkingData.coordinates],
-      }
-    }
-
-    // For rotation use: https://github.com/Turfjs/turf/tree/master/packages/turf-transform-rotate
-    
-    let center = props.parkingData.center;
-
+    const self = this;
     if(this.map) {
-      this.map.jumpTo({
-        center: center
+      // parking final geojson
+      const parkingFinal = {
+        type: 'Feature',
+        properties: {
+          "name": "..."
+        },
+        geometry: {
+          type: 'Polygon',
+          coordinates: [props.parkingData.coordinates],
+        }
+      }
+      // initial parking geojson (like it is in the scroll experience)
+      const parkingRotatedStart = rotate(parkingFinal, props.parkingData.rotation);
+
+      // Init map and fit to initial parking geojson
+      this.map.getSource('data').setData(parkingRotatedStart);
+      const parkingRotatedStartBbox = bbox(parkingRotatedStart);
+      const parkingEndBbox = bbox(parkingFinal);
+      this.map.fitBounds(parkingRotatedStartBbox, {
+        maxZoom: 19,
+        padding: 100,
+        linear: true,
+        duration: 0
       });
-      this.map.getSource('data').setData(geojson);
+
+      // Start animating from props.parkingData.rotation to rotation = 0, in 2 s
+      const rotationTween = new TWEEN.Tween({rotation: props.parkingData.rotation})
+                                      .to({ rotation: 0 }, 1000)
+                                      .delay(1000);
+      rotationTween.onUpdate(function() {
+        const parkingRotated = rotate(parkingFinal, this.rotation);
+        self.map.getSource('data').setData(parkingRotated);
+      });
+      rotationTween.onComplete(() => {
+        this.animating = false;
+        // Clean listener because it can trigger onComplete afterwise if not
+        TWEEN.removeAll();
+      })
+
+      rotationTween.start();
+      this.animate(true);
+
+      // Fit bounds to end position
+      setTimeout(() => {
+        this.map.fitBounds(parkingEndBbox, {
+          maxZoom: 19,
+          padding: 200,
+          linear: true,
+          duration: 1000
+        });
+      }, 1000);
+      
     }
   }
 
   /*
-   LANES RENDER UTILITIES
+    RENDER STREET UTILITIES
    */
 
   unfold(laneData, progressUnfold, progressStitch) {
@@ -198,6 +237,8 @@ class Map extends Component {
       });
       stitchTween.onComplete(() => {
         this.animating = false;
+        // Clean listener because it can trigger onComplete afterwise if not
+        TWEEN.removeAll();
       })
 
       unfoldTween.start();
