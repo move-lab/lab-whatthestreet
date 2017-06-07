@@ -3,6 +3,7 @@ import ReactMapboxGl, { ScaleControl, ZoomControl } from "react-mapbox-gl";
 import TWEEN from 'tween.js';
 
 import { unfold } from '../../shared/utils/unfold';
+import { calculateBendWay, getLongestTranslation, getZoomLevel } from '../../shared/utils/geoutils';
 
 const containerStyle = {
   display: "flex",
@@ -104,45 +105,61 @@ class Map extends Component {
     }
   }
 
+  drawLaneFrame(laneData, progressUnfold, progressStitch) {
+    const unfolder = unfold();
+    const geojson = unfolder.geoJsonStreetAnimation(
+      laneData.original,
+      laneData.coiled,
+      laneData.properties.origin,
+      progressUnfold,
+      progressStitch
+    );
+    this.map.getSource('data').setData(geojson);
+  }
+
   renderLane(props) {
     if(this.map) {
-      let geojson;
-      const unfolder = unfold();
-      this.unfoldTween = new TWEEN.Tween({progress: 0}).to({ progress: 1 }, 2000);
-      this.stitchTween = new TWEEN.Tween({progress: 0}).to({ progress: 1 }, 2000);
-      this.unfoldTween.chain(this.stitchTween);
-      this.unfoldTween.onUpdate((progress) => {
-        geojson = unfolder.geoJsonStreetAnimation(
-          props.laneData.original,
-          props.laneData.coiled,
-          props.laneData.properties.origin,
-          progress,
-          1
-        );
-        this.map.getSource('data').setData(geojson);
-      });
-      this.stitchTween.onUpdate((progress) => {
-        geojson = unfolder.geoJsonStreetAnimation(
-          props.laneData.original,
-          props.laneData.coiled,
-          props.laneData.properties.origin,
-          1,
-          progress
-        );
-        this.map.getSource('data').setData(geojson);
-      });
-
-      this.unfoldTween.start();
-      this.animate();
-
+      // Center map on coiler line coord
       let center = [ 
-        props.laneData.original.destination.lon, 
-        props.laneData.original.destination.lat
+        props.laneData.properties.origin.lon, 
+        props.laneData.properties.origin.lat
       ]
 
+      // Get zoom lvl
+      // TODO FIGURE OUT HOW WE TWEAK THIS CONSTANT
+      const meterPerPixel = 1.2672955975;
+      const zoom = getZoomLevel(props.laneData.properties.origin.lat, meterPerPixel);
+
       this.map.jumpTo({
-        center: center
+        center: center,
+        zoom: zoom
       });
+
+      // This depends on how much movement is in the street geometry
+      const timeUnfold = calculateBendWay(props.laneData.original.vectors) * 200000;
+      // This depends on how long the biggest translation is (when a street consists of multiple segments)
+      const timeUnstitch = getLongestTranslation(props.laneData.original.vectors) * 200000;
+      let unstitchDelay = 200;
+      // When a street consists of only piece/pieces are very close together, remove the delay
+      if (timeUnstitch < 100) { 
+        unstitchDelay = 0; 
+      } 
+
+      // Draw it a first time
+      this.drawLaneFrame(props.laneData, 0, 0);
+
+      const unfoldTween = new TWEEN.Tween({progress: 0}).to({ progress: 1 }, timeUnfold).delay(1000);
+      const stitchTween = new TWEEN.Tween({progress: 0}).to({ progress: 1 }, timeUnstitch).delay(unstitchDelay);
+      unfoldTween.chain(stitchTween);
+      unfoldTween.onUpdate((progressUnfold) => {
+        this.drawLaneFrame(props.laneData, progressUnfold, 0);
+      });
+      stitchTween.onUpdate((progressStitch) => {
+        this.drawLaneFrame(props.laneData, 1, progressStitch);
+      });
+
+      unfoldTween.start();
+      this.animate();
     }
   }
 
