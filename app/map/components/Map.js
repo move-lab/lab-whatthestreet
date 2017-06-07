@@ -246,12 +246,15 @@ class Map extends Component {
 
       // Move bounds to the bboxUnfolded view in
       // the same timespan than the animation unfold
-      this.map.fitBounds(bboxUnfolded, {
-        maxZoom: maxZoom,
-        padding: 100,
-        linear: true,
-        duration: timeUnfold + timeUnstitch + 1000
-      });
+      setTimeout(() => {
+        this.map.fitBounds(bboxUnfolded, {
+          maxZoom: maxZoom,
+          padding: 100,
+          linear: true,
+          duration: timeUnfold + timeUnstitch
+        });
+      }, 1000 + unstitchDelay);
+      
     }
   }
 
