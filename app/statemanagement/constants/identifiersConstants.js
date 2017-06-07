@@ -5,3 +5,6 @@ export const facebook = 'facebook';
 export const twitter = 'twitter';
 export const parkingspace = 'parking';
 export const lanes = 'lanes';
+
+export const satelliteLayer = 'satellite-streets-v9';
+export const streetLayer = 'streets-v9';

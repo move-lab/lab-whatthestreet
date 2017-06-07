@@ -76,7 +76,6 @@ class MapModal extends PureComponent {
         <div className="BtnCloseMap" onClick={this.closeModal}>
           <img src="/static/icons/Icon_Cross.svg" alt="close map"/>
         </div>
-        <MapActions />
         <div className={`LoaderWrapper ${!this.state.mapLoaded || this.props.isFetchingLaneData ? 'visible' : 'hidden'}`}>
           <Loader />
         </div>

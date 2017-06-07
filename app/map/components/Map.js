@@ -5,12 +5,15 @@ import { bbox } from '@turf/turf';
 import rotate from '@turf/transform-rotate';
 import _throttle from 'lodash.throttle';
 
+import MapActions from './MapActions';
+
 import { unfold } from '../../shared/utils/unfold';
 import {
   calculateBendWay,
   getLongestTranslation,
   getZoomLevel
 } from '../../shared/utils/geoutils';
+import * as identifiers from '../../statemanagement/constants/identifiersConstants';
 
 const containerStyle = {
   display: "flex",
@@ -34,7 +37,21 @@ class Map extends Component {
 
     this.onMapLoaded = this.onMapLoaded.bind(this);
     this.drawLaneFrame = this.drawLaneFrame.bind(this);
+    this.zoomIn = this.zoomIn.bind(this);
+    this.zoomOut = this.zoomOut.bind(this);
+    this.toggleLayer = this.toggleLayer.bind(this);
     this.lastComputedId = 0;
+    this.geojson = {
+      "type": "FeatureCollection",
+      "properties": {
+        "name": "data"
+      },
+      "features": []
+    };
+
+    this.state = {
+      activeLayer: identifiers.satelliteLayer
+    }
   }
 
   componentWillReceiveProps(newProps) {
@@ -56,19 +73,23 @@ class Map extends Component {
 
   onMapLoaded(map) {
     this.map = map;
+    // Set up event handler for style switching
+    this.map.on('style.load', () => {
+      this.addBaseLayer();
+    });
+    this.addBaseLayer();
+    this.renderData(this.props);
+    this.props.onMapLoaded();
+  }
+
+  addBaseLayer() {
     // Add a layer we will use to draw animation and streets
     this.map.addLayer({
       id: 'data',
       type: 'line',
       source: {
         type: 'geojson',
-        data: {
-          "type": "FeatureCollection",
-          "properties": {
-            "name": "data"
-          },
-          "features": []
-        }
+        data: this.geojson
       },
       paint: {
         "line-color": "#FF6819",
@@ -79,8 +100,37 @@ class Map extends Component {
         "line-cap": "round"
       }
     });
-    this.props.onMapLoaded();
-    this.renderData(this.props);
+  }
+
+  zoomIn() {
+    if(this.map) {
+      this.map.zoomTo(this.map.getZoom() + 0.5);
+    }
+  }
+
+  zoomOut() {
+    if(this.map) {
+      this.map.zoomTo(this.map.getZoom() - 0.5);
+    }
+  }
+
+  toggleLayer() {
+    if(this.animating) {
+      return;
+    }
+    if(this.state.activeLayer === "satellite-streets-v9") {
+      const streetLayer = "streets-v9"
+      this.setState({
+        activeLayer: streetLayer
+      });
+      this.map.setStyle(`mapbox://styles/mapbox/${streetLayer}`, true);
+    } else {
+      const satelliteLayer = "satellite-streets-v9"
+      this.setState({
+        activeLayer: satelliteLayer
+      });
+      this.map.setStyle(`mapbox://styles/mapbox/${satelliteLayer}`, true);
+    }
   }
 
   animate(startingAnimation) {
@@ -137,6 +187,8 @@ class Map extends Component {
       });
       rotationTween.onComplete(() => {
         this.animating = false;
+        // Register final animation state in case we switch layer style
+        this.geojson = parkingFinal;
         // Clean listener because it can trigger onComplete afterwise if not
         TWEEN.removeAll();
       })
@@ -240,6 +292,8 @@ class Map extends Component {
       });
       stitchTween.onComplete(() => {
         this.animating = false;
+        // Register geojson final in case we stich layers
+        this.geojson = geoJsonUnfolded;
         // Clean listener because it can trigger onComplete afterwise if not
         TWEEN.removeAll();
       })
@@ -281,12 +335,18 @@ class Map extends Component {
     console.log('rendermap')
     return (
       <ReactMapboxGl
-        style="mapbox://styles/mapbox/satellite-v9"
+        style={`mapbox://styles/mapbox/${this.state.activeLayer}`}
         accessToken="***REMOVED***"
         containerStyle={containerStyle}
         onStyleLoad={this.onMapLoaded}
       >
         <ScaleControl/>
+        <MapActions
+          activeLayer={this.state.activeLayer}
+          zoomIn={this.zoomIn}
+          zoomOut={this.zoomOut}
+          toggleLayer={this.toggleLayer}
+        />
       </ReactMapboxGl>
     );
   }

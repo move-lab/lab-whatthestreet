@@ -7,31 +7,45 @@ import * as COLORS from '../../shared/style/colors';
 class MapActions extends React.PureComponent {
 
   static propTypes = {
-    currentLayer: React.PropTypes.string,
+    activeLayer: React.PropTypes.string,
     zoomIn: React.PropTypes.func,
-    zoomOut: React.PropTypes.func
+    zoomOut: React.PropTypes.func,
+    toggleLayer: React.PropTypes.func
   }
 
   render() {
     return (
       <div className="MapActions">
-        <div className="LayerSwitch">
-          {true &&
-            <div className="LayerSwitchText">
+        <div
+          className={`LayerSwitch ${this.props.activeLayer}`}
+          onClick={this.props.toggleLayer}
+        >
+          {this.props.activeLayer === identifiers.satelliteLayer &&
+            <div
+              className="LayerSwitchText"
+            >
               Switch to Road
             </div>
           }
-          {false &&
-            <div className="LayerSwitchText">
+          {this.props.activeLayer === identifiers.streetLayer &&
+            <div
+              className="LayerSwitchText"
+            >
               Switch to Satellite
             </div>
           }
         </div>
         <div className="ZoomControls">
-            <div className="ZoomControl ZoomControlIn">
+            <div
+              className="ZoomControl ZoomControlIn"
+              onClick={this.props.zoomIn}
+            >
               <img src="/static/icons/Icon_Plus.svg" alt="close map"/>
             </div>
-            <div className="ZoomControl ZoomControlOut">
+            <div
+              className="ZoomControl ZoomControlOut"
+              onClick={this.props.zoomOut}
+            >
               <img src="/static/icons/Icon_Minus.svg" alt="close map"/>
             </div>
         </div>
@@ -50,7 +64,6 @@ class MapActions extends React.PureComponent {
             height: 120px;
             box-shadow: ${COLORS.boxshadow};
             background-color: ${COLORS.ColorBackgroundWhite};
-            background-image: url("/static/images/layer-road.jpg");
             background-size: cover;
             padding: 10px;
             border: 5px solid white;
@@ -58,6 +71,18 @@ class MapActions extends React.PureComponent {
             justify-content: center;
             align-items: center;
             cursor: pointer;
+          }
+
+          .LayerSwitch.${identifiers.satelliteLayer} {
+            background-image: url("/static/images/layer-road.jpg");
+          }
+
+          .LayerSwitch.${identifiers.streetLayer} {
+            background-image: url("/static/images/layer-satellite.jpg");
+          }
+
+          .LayerSwitch.${identifiers.streetLayer} .LayerSwitchText {
+            color: white;
           }
 
           .LayerSwitchText {
