@@ -1,15 +1,23 @@
 import React, { Component } from "react";
 import ReactMapboxGl, { ScaleControl, ZoomControl } from "react-mapbox-gl";
 import TWEEN from 'tween.js';
+import { bbox } from 'turf';
+import _throttle from 'lodash.throttle';
 
 import { unfold } from '../../shared/utils/unfold';
-import { calculateBendWay, getLongestTranslation, getZoomLevel } from '../../shared/utils/geoutils';
+import {
+  calculateBendWay,
+  getLongestTranslation,
+  getZoomLevel
+} from '../../shared/utils/geoutils';
 
 const containerStyle = {
   display: "flex",
   height: "100vh",
   width: "100%"
 };
+
+const unfolder = unfold();
 
 class Map extends Component {
 
@@ -24,6 +32,7 @@ class Map extends Component {
     super(props);
 
     this.onMapLoaded = this.onMapLoaded.bind(this);
+    this.drawLaneFrame = this.drawLaneFrame.bind(this);
     this.lastComputedId = 0;
   }
 
@@ -105,16 +114,24 @@ class Map extends Component {
     }
   }
 
-  drawLaneFrame(laneData, progressUnfold, progressStitch) {
-    const unfolder = unfold();
-    const geojson = unfolder.geoJsonStreetAnimation(
+  /*
+   LANES RENDER UTILITIES
+   */
+
+  unfold(laneData, progressUnfold, progressStitch) {
+    return unfolder.geoJsonStreetAnimation(
       laneData.original,
       laneData.coiled,
       laneData.properties.origin,
       progressUnfold,
       progressStitch
     );
+  }
+
+  drawLaneFrame(laneData, progressUnfold, progressStitch) {
+    const geojson = this.unfold(laneData, progressUnfold, progressStitch)
     this.map.getSource('data').setData(geojson);
+    return geojson;
   }
 
   renderLane(props) {
@@ -124,15 +141,31 @@ class Map extends Component {
         props.laneData.properties.origin.lon, 
         props.laneData.properties.origin.lat
       ]
-
-      // Get zoom lvl
-      // TODO FIGURE OUT HOW WE TWEAK THIS CONSTANT
+      // Get max zoom lvl
       const meterPerPixel = 1.2672955975;
-      const zoom = getZoomLevel(props.laneData.properties.origin.lat, meterPerPixel);
+      const maxZoom = getZoomLevel(props.laneData.properties.origin.lat, meterPerPixel);
 
+      // Init map at the position of the street
       this.map.jumpTo({
         center: center,
-        zoom: zoom
+        zoom: maxZoom
+      });
+
+      // Compute bbox start and bbox end
+      const geoJsonFolded = this.unfold(props.laneData, 0, 0);
+      const geoJsonUnfolded = this.unfold(props.laneData, 1, 1);
+
+      const bboxFolded = bbox(geoJsonFolded);
+      const bboxUnfolded = bbox(geoJsonUnfolded);
+      const dLonWest = bboxFolded[0] - bboxUnfolded[0];
+      const dLonEast = bboxFolded[2] - bboxUnfolded[2];
+      const dLatNorth = bboxFolded[1] - bboxUnfolded[1];
+      const dLatSouth = bboxFolded[3] - bboxUnfolded[3];
+
+      // Fit bounds to the street folded
+      this.map.fitBounds(bboxFolded, {
+        maxZoom: maxZoom,
+        padding: 100
       });
 
       // This depends on how much movement is in the street geometry
@@ -148,18 +181,29 @@ class Map extends Component {
       // Draw it a first time
       this.drawLaneFrame(props.laneData, 0, 0);
 
+      const throttledDrawLaneFrame = _throttle(this.drawLaneFrame, 100);
+
       const unfoldTween = new TWEEN.Tween({progress: 0}).to({ progress: 1 }, timeUnfold).delay(1000);
       const stitchTween = new TWEEN.Tween({progress: 0}).to({ progress: 1 }, timeUnstitch).delay(unstitchDelay);
       unfoldTween.chain(stitchTween);
       unfoldTween.onUpdate((progressUnfold) => {
-        this.drawLaneFrame(props.laneData, progressUnfold, 0);
+        throttledDrawLaneFrame(props.laneData, progressUnfold, 0);
       });
       stitchTween.onUpdate((progressStitch) => {
-        this.drawLaneFrame(props.laneData, 1, progressStitch);
+        throttledDrawLaneFrame(props.laneData, 1, progressStitch);
       });
 
       unfoldTween.start();
       this.animate();
+
+      // Move bounds to the bboxUnfolded view in
+      // the same time than the animation unfold
+      this.map.fitBounds(bboxUnfolded, {
+        maxZoom: maxZoom,
+        padding: 100,
+        linear: true,
+        duration: timeUnfold + 1000
+      });
     }
   }
 
