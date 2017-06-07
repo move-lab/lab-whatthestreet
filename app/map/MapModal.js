@@ -4,6 +4,9 @@ import Router from 'next/router';
 
 import Loader from '../shared/components/Loader';
 import MapInfoBox from './components/MapInfoBox';
+import MapActions from './components/MapActions';
+
+import * as COLORS from '../shared/style/colors';
 
 let Map;
 
@@ -69,8 +72,11 @@ class MapModal extends PureComponent {
           laneData={this.props.laneData}
           activeVehicle={this.props.activeVehicle}
           citySlug={this.props.citySlug}
-          closeModal={this.closeModal}
         />
+        <div className="BtnCloseMap" onClick={this.closeModal}>
+          <img src="/static/icons/Icon_Cross.svg" alt="close map"/>
+        </div>
+        <MapActions />
         <div className={`LoaderWrapper ${!this.state.mapLoaded || this.props.isFetchingLaneData ? 'visible' : 'hidden'}`}>
           <Loader />
         </div>
@@ -111,6 +117,32 @@ class MapModal extends PureComponent {
 
           .LoaderWrapper.hidden {
             visibility: hidden;
+          }
+
+          .BtnCloseMap {
+            position: absolute;
+            z-index: 100000000;
+            top: 30px;
+            right: 60px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            cursor: pointer;
+            box-shadow: ${COLORS.boxshadow};
+          }
+
+          .BtnCloseMap img {
+            width: 25px;
+            height: 25px;
+          }
+
+          .BtnCloseMap:hover img,
+          .BtnCloseMap:focus img,
+          .BtnCloseMap:active img {
+            opacity: 0.5;
           }
         `}</style>
       </div>

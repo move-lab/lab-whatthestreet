@@ -15,8 +15,7 @@ class MapInfoBox extends React.PureComponent {
     parkingData: React.PropTypes.object,
     laneData: React.PropTypes.object,
     activeVehicle: React.PropTypes.string,
-    citySlug: React.PropTypes.string,
-    closeModal: React.PropTypes.func
+    citySlug: React.PropTypes.string
   }
 
   render() {
@@ -38,33 +37,24 @@ class MapInfoBox extends React.PureComponent {
         <div className="MapInfoContent">
           <VehicleIcon height={60} width={60} vehicle={this.props.activeVehicle} />
           {headline &&
-            <p>{headline}</p>
+            <p className="headline">{headline}</p>
           }
           {area &&
             <p>{`${area}m² = ${Math.round(parseFloat(area) / 12)} cars`}</p>
           }
-        </div>
-        <div className="MapInfoButtons">
-          <button className="MapInfoButton" onClick={() => console.log('TODO zoom in')}>+</button>
-          <button className="MapInfoButton" onClick={() => console.log('TODO zoom out')}>-</button>
-          <a
-            className="MapInfoButton"
-            onClick={() => this.props.closeModal()}
-          >
-            Close
-          </a>
         </div>
         <style jsx>{`
           .MapInfoBox {
             position: absolute;
             background-color: ${COLORS.ColorBackgroundWhite};
             display: flex;
-            width: 280px;
-            min-height: 200px;
+            min-width: 280px;
+            min-height: 150px;
             left: 70px;
             z-index: 100000000;
             display: flex;
             flex-direction: column;
+            box-shadow: ${COLORS.boxshadow};
           }
 
           .MapInfoContent {
@@ -75,34 +65,18 @@ class MapInfoBox extends React.PureComponent {
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
           }
 
           .MapInfoContent p {
             margin: 0;
+            color: ${COLORS.ColorForegroundOrange};
           }
 
-          .MapInfoButtons {
-            height: 50px;
-            border-top: 1px solid #eee;
-            display: flex;
-          }
-
-          .MapInfoButton {
-            border-left: 1px solid #eee;
-            flex-grow: 1;
-            justify-content: center;
-            align-items: center;
-            display: flex;
-            text-decoration: none;
-            color: black;
-          }
-
-          .MapInfoButton:hover {
-            opacity: 0.5;
-          }
-
-          .MapInfoButton:first-child {
-            border-left: 0;
+          .MapInfoContent .headline {
+            font-weight: 500;
+            margin-bottom: 10px;
+            margin-top: 10px;
           }
         `}</style>
       </div>

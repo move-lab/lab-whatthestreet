@@ -230,6 +230,9 @@ class Map extends Component {
       const stitchTween = new TWEEN.Tween({progress: 0}).to({ progress: 1 }, timeUnstitch).delay(unstitchDelay);
       unfoldTween.chain(stitchTween);
       unfoldTween.onUpdate((progressUnfold) => {
+        // TODO, the computation of the unfolding is taking too long even throttle to 100ms and 
+        // drop the FPS on large geojson
+        // if time, improve unfold method to be more efficient
         throttledDrawLaneFrame(props.laneData, progressUnfold, 0);
       });
       stitchTween.onUpdate((progressStitch) => {
@@ -278,13 +281,12 @@ class Map extends Component {
     console.log('rendermap')
     return (
       <ReactMapboxGl
-        style="mapbox://styles/mapbox/streets-v9"
+        style="mapbox://styles/mapbox/satellite-v9"
         accessToken="***REMOVED***"
         containerStyle={containerStyle}
         onStyleLoad={this.onMapLoaded}
       >
         <ScaleControl/>
-        <ZoomControl/>
       </ReactMapboxGl>
     );
   }
