@@ -82,11 +82,15 @@ class Map extends Component {
     this.renderData(this.props);
   }
 
-  animate() {
-    // TODO STOP LOOP
+  animate(startingAnimation) {
+    if(startingAnimation) {
+      this.animating = true;
+    }
     return window.requestAnimationFrame(() => {
       TWEEN.update();
-      this.animate();
+      if(this.animating) {
+        this.animate();
+      }
     });
   }
 
@@ -192,17 +196,20 @@ class Map extends Component {
       stitchTween.onUpdate((progressStitch) => {
         throttledDrawLaneFrame(props.laneData, 1, progressStitch);
       });
+      stitchTween.onComplete(() => {
+        this.animating = false;
+      })
 
       unfoldTween.start();
-      this.animate();
+      this.animate(true);
 
       // Move bounds to the bboxUnfolded view in
-      // the same time than the animation unfold
+      // the same timespan than the animation unfold
       this.map.fitBounds(bboxUnfolded, {
         maxZoom: maxZoom,
         padding: 100,
         linear: true,
-        duration: timeUnfold + 1000
+        duration: timeUnfold + timeUnstitch + 1000
       });
     }
   }
