@@ -41,8 +41,8 @@ class Explore extends PureComponent {
         res.end()
       }
     } else {
-      if(params && params.query.vehicleType) {
-        await store.dispatch(selectVehicle(params.query.vehicleType));
+      if(params && params.store.getState().vehicles.get('vehicle')) {
+        await store.dispatch(selectVehicle(params.store.getState().vehicles.get('vehicle')));
       } else {
         await store.dispatch(selectVehicle("car"));
       }
