@@ -56,24 +56,25 @@ class Map extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.areaType !== this.props.areaType) {
+    if (this.animating) {
+      return;
+    }
+    if (newProps.areaType === 'lanes' &&
+        newProps.laneData !== null &&
+        newProps.laneData._id !== this.lastComputedId) {
       this.renderData(newProps);
-    } else {
-      if (this.props.areaType === 'lanes' &&
-          newProps.laneData !== null &&
-          newProps.laneData._id !== this.lastComputedId) {
-        this.renderData(newProps);
-      }
-      if (this.props.areaType === 'parking' &&
-          newProps.parkingData !== null &&
-          newProps.parkingData.id !== this.lastComputedId) {
-        this.renderData(newProps);
-      }
-      if (this.props.areaType === 'parking' &&
-          newProps.laneData !== null &&
-          newProps.laneData._id !== this.lastComputedId) {
-        this.renderData(newProps);
-      }
+    }
+    if (newProps.areaType === 'parking' &&
+        newProps.activeVehicle !== 'rail' &&
+        newProps.parkingData !== null &&
+        newProps.parkingData.id !== this.lastComputedId) {
+      this.renderData(newProps);
+    }
+    if (newProps.areaType === 'parking' &&
+        newProps.activeVehicle === 'rail' &&
+        newProps.laneData !== null &&
+        newProps.laneData._id !== this.lastComputedId) {
+      this.renderData(newProps);
     }
   }
 
@@ -323,7 +324,7 @@ class Map extends Component {
 
   renderData(props) {
     if (props.areaType === 'parking' && this.props.activeVehicle !== 'rail') {
-      if(!props.parkingData && props.active) {
+      if(!props.parkingData) {
         return;
       }
       this.renderParking(props);

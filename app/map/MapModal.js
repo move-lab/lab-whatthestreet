@@ -48,7 +48,10 @@ class MapModal extends PureComponent {
     } else {
       Router.push({
         pathname: '/explore',
-        query: this.props.ownGuess.toJS()
+        query: {
+          ...this.props.ownGuess.toJS(),
+          vehicleType: this.props.activeVehicle
+        }
       },{
         pathname: `/${this.props.citySlug}/explore/${this.props.activeVehicle}`,
         query: this.props.ownGuess.toJS()
