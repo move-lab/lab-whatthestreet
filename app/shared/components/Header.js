@@ -24,6 +24,7 @@ class Header extends React.PureComponent {
     title: React.PropTypes.string,
     activeVehicle: React.PropTypes.string,
     parkingSpace: React.PropTypes.object,
+    laneRailParking: React.PropTypes.object,
     lane: React.PropTypes.object,
     cityLandmark: React.PropTypes.object,
     onSearchButtonClick: React.PropTypes.func,
@@ -45,10 +46,10 @@ class Header extends React.PureComponent {
   }
 
   renderParkingInfo() {
-    if (this.props.parkingSpace.neighborhood && this.props.parkingSpace.neighborhood.length > 0) {
+    if (this.props.parkingSpace) {
       return (
         <div className="InfoLabel">
-          <h3>{`Parking space in ${this.props.parkingSpace.neighborhood}`}</h3>
+          <h3>{`Parking space ${this.props.parkingSpace.neighborhood ? 'in ' + this.props.parkingSpace.neighborhood : ''}`}</h3>
           <p>{`${this.state.FH.format(Math.round(this.props.parkingSpace.area))}m² = ${this.state.FH.format(Math.round(this.props.parkingSpace.area / 12))} cars`}</p>
         </div>
       );
@@ -61,11 +62,28 @@ class Header extends React.PureComponent {
     );
   }
 
-  renderLaneInfo() {
-    if (this.props.lane.name || this.props.lane.neighborhood) {
+  renderLaneRailParkingInfo() {
+    if (this.props.laneRailParking) {
       return (
         <div className="InfoLabel">
-          <h3>{this.props.lane.name || this.props.lane.neighborhood}</h3>
+          <h3>{`Rail parking space ${this.props.laneRailParking.neighborhood ? 'in ' + this.props.laneRailParking.neighborhood : ''}`}</h3>
+          <p>{`${this.state.FH.format(Math.round(this.props.laneRailParking.area))}m = ${this.state.FH.format(Math.round(this.props.laneRailParking.length))}m²`}</p>
+        </div>
+      );
+    }
+
+    return (
+      <div className="InfoLabel">
+        <h3>No Rail Parking Selected</h3>
+      </div>
+    );
+  }
+
+  renderLaneInfo() {
+    if (this.props.lane) {
+      return (
+        <div className="InfoLabel">
+          <h3>{this.props.lane.name || this.props.lane.neighborhood || 'Lane'}</h3>
           <p>{`${this.state.FH.format(Math.round(this.props.lane.area))}m = ${this.state.FH.format(Math.round(this.props.lane.length))}m²`}</p>
         </div>
       );
@@ -158,7 +176,12 @@ class Header extends React.PureComponent {
                       placeholder="Search..." />
                   </div>
                 </div>
-                {this.renderParkingInfo()}
+                {this.props.activeVehicle === 'rail' &&
+                  this.renderLaneRailParkingInfo()
+                }
+                {this.props.activeVehicle !== 'rail' &&
+                  this.renderParkingInfo()
+                }
               </div>
               <div className="Container ContainerCenter">
                 <div className="VehicleAndAreaM2">
@@ -421,7 +444,8 @@ const mapStateToProps = (state) => {
     ownGuess: state.guess.get('own'),
     citySlug: state.city.getIn(['actual_city','slug']),
     activeVehicle: state.vehicles.get('vehicle'),
-    cityLandmark: state.cityMeta.getIn(['metaData','landmark']).toJS()
+    cityLandmark: state.cityMeta.getIn(['metaData','landmark']).toJS(),
+    laneRailParking: state.lanes.get('laneRailParking').toJS()
   }
 };
 
