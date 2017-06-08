@@ -26,11 +26,28 @@ class MapInfoBox extends React.PureComponent {
         this.props.activeVehicle !== 'rail' &&
         this.props.parkingData) {
       const neighborhood = this.props.parkingData.get('neighborhood');
-      headline = `Parkingspace in ${neighborhood}`;
+      if(neighborhood) {
+        headline = `Parking space in ${neighborhood}`;
+      } else {
+        headline = `Parking space`;
+      }
       area = this.props.parkingData.get('area');
-    } else {
-      headline = this.props.laneData && this.props.laneData.getIn(['properties','name']);
-      area = this.props.laneData && this.props.laneData.getIn(['properties','area']);
+    } else if(this.props.areaType === identifiers.parkingspace &&
+        this.props.activeVehicle === 'rail' &&
+        this.props.laneData) {
+        const neighborhood = this.props.laneData.getIn(['properties','neighborhood']);
+        if(neighborhood) {
+          headline = `Parking space in ${neighborhood}`;
+        } else {
+          headline = `Parking space`;
+        }
+        area = this.props.laneData.getIn(['properties','area']);
+    } else if(this.props.laneData) {
+      headline = this.props.laneData.getIn(['properties','name']);
+      if(!headline) {
+        headline = "Lane";
+      }
+      area = this.props.laneData.getIn(['properties','area']);
     }
 
     return (

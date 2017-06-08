@@ -19,6 +19,8 @@ class VehicleSlidesOverlay extends React.PureComponent {
     activeVehicle: PropTypes.string,
     lanesLoaded: PropTypes.bool,
     parkingLoaded: PropTypes.bool,
+    displayShowParkingMap: PropTypes.bool,
+    displayShowLaneMap: PropTypes.bool,
     nextVehicleName: PropTypes.string,
     previousVehicleName: PropTypes.string,
     showScrollUI: PropTypes.bool,
@@ -77,17 +79,19 @@ class VehicleSlidesOverlay extends React.PureComponent {
           <section className="ButtonsSection">
             <div className="ButtonsSectionInner">
               <div className="ButtonContainer">
-                <RoundedButton
-                  small
-                  hideIcon
-                  orange
-                  onClick={this.props.showParkingMap}
-                  hidden={!this.props.parkingLoaded}>
-                    Show on Map
-                </RoundedButton>
+                {this.props.parkingInFocus && this.props.displayShowParkingMap &&
+                  <RoundedButton
+                    small
+                    hideIcon
+                    orange
+                    onClick={this.props.showParkingMap}
+                    hidden={!this.props.parkingLoaded}>
+                      Show on Map
+                  </RoundedButton>
+                }
               </div>
               <div className="ButtonContainer">
-                {this.props.lanesInFocus &&
+                {this.props.lanesInFocus && this.props.displayShowLaneMap &&
                   <RoundedButton
                     small
                     hideIcon
@@ -295,10 +299,15 @@ export default connect((state) => {
 
   const showScrollUI = state.explore.get('lanesInFocus') || state.explore.get('parkingInFocus');
 
+  const displayShowParkingMap = state.lanes.getIn(['laneRailParking', 'id']) > 0 || state.parking.get('id') > 0;
+  const displayShowLaneMap = state.lanes.get('id') ? true : false;
+
   return {
     isScrolling: state.explore.get('isScrolling'),
     showScrollUI,
     lanesInFocus: state.explore.get('lanesInFocus'),
-    parkingInFocus: state.explore.get('parkingInFocus')
+    parkingInFocus: state.explore.get('parkingInFocus'),
+    displayShowParkingMap,
+    displayShowLaneMap
   }
 })(VehicleSlidesOverlay);
