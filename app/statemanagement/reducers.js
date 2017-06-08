@@ -12,7 +12,6 @@ import exploreStateManagement from './ExploreStateManagement';
 import versusReducer from './reducers/versusReducer';
 import laneReducer from './reducers/laneReducer';
 // import pageReducer from './reducers/pageReducer';
-import streetReducer from './reducers/streetReducer';
 // import searchReducer from './reducers/searchReducer';
 
 export default combineReducers({
@@ -27,7 +26,6 @@ export default combineReducers({
   guess: guessReducer,
   map: mapStateManagement,
   cityMeta: cityMetaReducer,
-  versus: versusReducer,
-  street: streetReducer,
+  versus: versusReducer
   // search: searchReducer
 });

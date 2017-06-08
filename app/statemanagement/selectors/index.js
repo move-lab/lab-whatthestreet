@@ -10,7 +10,6 @@ import * as LaneSelectors from './laneSelectors';
 import * as GuessSelectors from './guessSelectors';
 import * as PageSelectors from './pageSelectors';
 import * as MapSelectors from './mapSelectors';
-import * as StreetSelectors from './streetSelectors';
 import * as SearchSelectors from './searchSelectors';
 import * as ParkingSelectors from './parkingSelectors';
 
@@ -30,7 +29,6 @@ export {
   LaneSelectors,
   GuessSelectors,
   // PageSelectors,
-  MapSelectors,
-  StreetSelectors
+  MapSelectors
   // SearchSelectors,
 };

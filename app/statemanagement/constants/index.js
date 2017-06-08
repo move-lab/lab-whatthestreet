@@ -6,7 +6,6 @@ import * as LANES from './lanesConstants';
 import * as GUESS from './guessConstants';
 import * as PAGE from './pageConstants';
 import * as MAP from './mapConstants';
-import * as STREET from './streetConstants';
 import * as SEARCH from './searchConstants';
 
 export {
@@ -18,7 +17,6 @@ export {
   GUESS,
   // PAGE,
   MAP,
-  STREET,
   CITY,
   // SEARCH,
 };
