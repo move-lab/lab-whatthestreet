@@ -41,10 +41,12 @@ class Explore extends PureComponent {
         res.end()
       }
     } else {
-      if(params && params.store.getState().vehicles.get('vehicle')) {
-        await store.dispatch(selectVehicle(params.store.getState().vehicles.get('vehicle')));
-      } else {
+      if(params && params.query.vehicleType) {
+        await store.dispatch(selectVehicle(params.query.vehicleType));
+      } else if(params && params.asPath.split('?')[0].split('/').pop() === 'car') {
         await store.dispatch(selectVehicle("car"));
+      } else if(params && params.store.getState().vehicles.get('vehicle')) {
+        await store.dispatch(selectVehicle(params.store.getState().vehicles.get('vehicle')));
       }
     }
     return;

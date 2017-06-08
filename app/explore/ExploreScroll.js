@@ -93,12 +93,15 @@ class ExploreScroll extends React.PureComponent {
   showParkingMap() {
 
     let railParking = false;
+    let id = this.props.selectedParkingId;
+
     if (this.props.activeVehicle === 'rail') {
       railParking = true;
+      id = this.props.selectedLaneRailParkingId;
     }
 
     this.showMap({
-      id: this.props.selectedParkingId,
+      id,
       areaType: 'parking',
       citySlug: this.props.citySlug,
       actualVehicle: this.props.activeVehicle,
@@ -254,7 +257,8 @@ export default connect((state) => {
     activeVehicle: state.vehicles.get('vehicle'),
     citySlug: state.city.getIn(['actual_city','slug']),
     ownGuess: state.guess.get('own'),
-    selectedLaneId: state.street.get('id'),
+    selectedLaneId: state.lanes.get('id'),
+    selectedLaneRailParkingId: state.lanes.getIn(['laneRailParking','id']),
     selectedParkingId: state.parking.get('id'),
     selectedParkingData: state.parking.toJS()
   }

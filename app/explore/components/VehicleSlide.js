@@ -18,7 +18,7 @@ import {
 
 import { setParkingData } from '../../statemanagement/MapStateManagement';
 
-import { StreetActions, LaneActions, ParkingActions } from '../../statemanagement/actions';
+import { LaneActions, ParkingActions } from '../../statemanagement/actions';
 
 import Lanes from './Lanes';
 import ParkingSpaces from './ParkingSpaces';
@@ -96,8 +96,7 @@ class VehicleSlide extends React.PureComponent {
 
   onLaneSelected(data) {
     const { dispatch } = this.props;
-    dispatch(LaneActions.setLane(data.name, data.neighborhood, data.length, data.area, data.cumulativeArea));
-    dispatch(StreetActions.setStreetId(data.id));
+    dispatch(LaneActions.setLane(data.id, data.name, data.neighborhood, data.length, data.area, data.cumulativeArea));
   }
 
   onLaneClicked(data, path) {
@@ -107,8 +106,7 @@ class VehicleSlide extends React.PureComponent {
   onLaneParkingSelected(data) {
     const { dispatch } = this.props;
     // TODO HERE SET SPECIAL Parking Lane in order to display in header.
-    dispatch(LaneActions.setLane(data.name, data.neighborhood, data.length, data.area, data.cumulativeArea));
-    dispatch(StreetActions.setStreetId(data.id));
+    dispatch(LaneActions.setLaneRailParking(data.id, data.name, data.neighborhood, data.length, data.area, data.cumulativeArea));
   }
 
   onLaneParkingClicked(data, path) {
