@@ -9,9 +9,6 @@ import Link from 'next/link';
 import SocialMediaButtons from './SocialMediaButtons';
 import VehicleIcon from './VehicleIcon';
 
-// Selectors
-import { ParkingSelectors, LaneSelectors } from '../../statemanagement/selectors';
-
 const searchIcon = '/static/icons/Icon_Search.svg';
 const homeIcon = '/static/icons/Icon_Home.svg';
 
@@ -46,7 +43,7 @@ class Header extends React.PureComponent {
   }
 
   renderParkingInfo() {
-    if (this.props.parkingSpace) {
+    if (this.props.parkingSpace.id > 0) {
       return (
         <div className="InfoLabel">
           <h3>{`Parking space ${this.props.parkingSpace.neighborhood ? 'in ' + this.props.parkingSpace.neighborhood : ''}`}</h3>
@@ -63,7 +60,7 @@ class Header extends React.PureComponent {
   }
 
   renderLaneRailParkingInfo() {
-    if (this.props.laneRailParking) {
+    if (this.props.laneRailParking.id > 0) {
       return (
         <div className="InfoLabel">
           <h3>{`Rail parking space ${this.props.laneRailParking.neighborhood ? 'in ' + this.props.laneRailParking.neighborhood : ''}`}</h3>
@@ -80,7 +77,7 @@ class Header extends React.PureComponent {
   }
 
   renderLaneInfo() {
-    if (this.props.lane) {
+    if (this.props.lane.id > 0) {
       return (
         <div className="InfoLabel">
           <h3>{this.props.lane.name || this.props.lane.neighborhood || 'Lane'}</h3>
@@ -433,19 +430,15 @@ class Header extends React.PureComponent {
   }
 }
 
-const structuredSelector = createStructuredSelector({
-  parkingSpace: ParkingSelectors.makeSelectActualParkingPlace(),
-  lane: LaneSelectors.makeSelectActualLane(),
-});
-
 const mapStateToProps = (state) => {
   return {
-    ...structuredSelector(state),
     ownGuess: state.guess.get('own'),
     citySlug: state.city.getIn(['actual_city','slug']),
     activeVehicle: state.vehicles.get('vehicle'),
     cityLandmark: state.cityMeta.getIn(['metaData','landmark']).toJS(),
-    laneRailParking: state.lanes.get('laneRailParking').toJS()
+    laneRailParking: state.lanes.get('laneRailParking').toJS(),
+    parkingSpace: state.parking.toJS(),
+    lane: state.lanes.toJS()
   }
 };
 
