@@ -16,6 +16,7 @@ const IconArrowLeft = '/static/icons/Icon_ArrowLeft.svg';
 class VehicleSlidesOverlay extends React.PureComponent {
 
   static propTypes = {
+    activeVehicle: PropTypes.string,
     lanesLoaded: PropTypes.bool,
     parkingLoaded: PropTypes.bool,
     nextVehicleName: PropTypes.string,
@@ -76,16 +77,14 @@ class VehicleSlidesOverlay extends React.PureComponent {
           <section className="ButtonsSection">
             <div className="ButtonsSectionInner">
               <div className="ButtonContainer">
-                {this.props.parkingInFocus &&
-                  <RoundedButton
-                    small
-                    hideIcon
-                    orange
-                    onClick={this.props.showParkingMap}
-                    hidden={!this.props.parkingLoaded}>
-                      Show on Map
-                  </RoundedButton>
-                }
+                <RoundedButton
+                  small
+                  hideIcon
+                  orange
+                  onClick={this.props.showParkingMap}
+                  hidden={!this.props.parkingLoaded}>
+                    Show on Map
+                </RoundedButton>
               </div>
               <div className="ButtonContainer">
                 {this.props.lanesInFocus &&

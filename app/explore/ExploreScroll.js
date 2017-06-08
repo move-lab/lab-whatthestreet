@@ -46,7 +46,6 @@ class ExploreScroll extends React.PureComponent {
   }
 
   handleVehicleSlideLoaded(dataType) {
-    console.log('loaded');
     if (dataType === lanes) {
       this.setState({ lanesLoaded: true })
     } else {
@@ -59,7 +58,11 @@ class ExploreScroll extends React.PureComponent {
     if(data.areaType === 'lanes') {
       this.props.dispatch(fetchLaneData(data.id, data.areaType));
     } else {
-      this.props.dispatch(setParkingData(data.data));
+      if(data.railParking) {
+        this.props.dispatch(fetchLaneData(data.id, data.areaType, true));
+      } else {
+        this.props.dispatch(setParkingData(data.data));
+      }
     }
 
     Router.push({
@@ -88,12 +91,19 @@ class ExploreScroll extends React.PureComponent {
   }
 
   showParkingMap() {
+
+    let railParking = false;
+    if (this.props.activeVehicle === 'rail') {
+      railParking = true;
+    }
+
     this.showMap({
       id: this.props.selectedParkingId,
       areaType: 'parking',
       citySlug: this.props.citySlug,
       actualVehicle: this.props.activeVehicle,
-      data: this.props.selectedParkingData
+      data: this.props.selectedParkingData,
+      railParking
     });
   }
 
@@ -214,6 +224,7 @@ class ExploreScroll extends React.PureComponent {
           />
         }
         <VehicleSlidesOverlay
+          activeVehicle={this.props.activeVehicle}
           lanesLoaded={this.state.lanesLoaded}
           parkingLoaded={this.state.parkingLoaded}
           showParkingMap={this.showParkingMap}

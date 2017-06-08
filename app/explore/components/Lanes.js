@@ -16,6 +16,7 @@ class Lanes extends React.PureComponent {
     vehicle: React.PropTypes.string,
     city: React.PropTypes.string,
     baseUrl: React.PropTypes.string,
+    modeParking: React.PropTypes.bool,
     onItemSelected: React.PropTypes.func,
     onLoaded: React.PropTypes.func,
     onLaneSelected: React.PropTypes.func,
@@ -69,7 +70,8 @@ class Lanes extends React.PureComponent {
   }
 
   getSvg(city, vehicle) {
-    const requestURL = `${this.props.baseUrl}/static/cities/${city}/lanes/${vehicle}.svg`;
+    const areaType = this.props.modeParking ? 'parking' : 'lanes';
+    const requestURL = `${this.props.baseUrl}/static/cities/${city}/${areaType}/${vehicle}.svg`;
     this.setState({ loading: true });
     return axios.get(requestURL);
   }
@@ -133,23 +135,27 @@ class Lanes extends React.PureComponent {
   }
 
   activatePath(index = 0) {
+    const self = this;
     if (!this.state.loading) {
       const svgElement = this.element.childNodes[this.svgNodeIndex].getElementById(index);
 
-      if (this.state.lastIndex) this.element.childNodes[this.svgNodeIndex].getElementById(this.state.lastIndex).style.stroke = '';
-
-      // This super costly because it cause a repaint of everything
-      // Maybe avoid triggering it when scrolling super fast
+      // This is the most "cosly" part, we rappe the stoke color change in a timeout to avoiding
+      // wasting time repainting if we are scrolling fast
       if (svgElement) {
         clearTimeout(this.activatePathTimeout);
         this.activatePathTimeout = setTimeout(() => {
+          // Clear last stroke color
+          if (self.state.lastIndex) {
+            self.element.childNodes[self.svgNodeIndex].getElementById(self.state.lastIndex).style.stroke = "#6566CC";
+          }
+          self.setState({
+            lastIndex: parseInt(index, 10)
+          });
           svgElement.style.stroke = COLORS.ColorForegroundOrange;
         }, 50);
       }
 
       if (svgElement !== null) this.onPathSelected(svgElement);
-
-      this.setState({ lastIndex: index });
     }
   }
 

@@ -76,10 +76,8 @@ export function saveGuess(guess, citySlug) {
       axios.post(`${baseUrl}/api/v1/cities/${citySlug}/guess`, {
         guess: guess,
       }).then((response) => {
-        console.log('Success saving guess');
         resolve();
       }, (error) => {
-        console.log('Error while saving guess');
         reject(error);
       });
     });

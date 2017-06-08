@@ -57,7 +57,6 @@ export function successFetchingLaneData(laneData) {
 
 export function setParkingData(data) {
   return (dispatch) => {
-    console.log('set Parking data');
     dispatch({
       type: SET_PARKING_DATA,
       payload: data
@@ -67,14 +66,14 @@ export function setParkingData(data) {
   }
 }
 
-export function fetchLaneData(itemId, areaType) {
+export function fetchLaneData(itemId, areaType, railParking) {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
 
       // If areaType === parking, can't get the data from the API
       // There is an HACK that set the data previously from the ExplorePage
       // The SVG dom has the info
-      if(areaType === 'parking') {
+      if(areaType === 'parking' && !railParking) {
         return;
       }
 
@@ -83,12 +82,13 @@ export function fetchLaneData(itemId, areaType) {
       dispatch(setAreaType(areaType));
       dispatch(setItemId(itemId));
 
-      console.log(`Fetching itemId: ${itemId} , areaType: ${areaType}`);
-
       const baseUrl = getState().app.get('baseUrl');
 
       const currentCity = getState().city.getIn(['actual_city','slug']);
-      const activeVehicule = getState().vehicles.get('vehicle');
+      let activeVehicule = getState().vehicles.get('vehicle');
+      if(railParking) {
+        activeVehicule = 'railparking';
+      }
 
       axios.get(`${baseUrl}/api/v1/cities/${currentCity}/streets/${activeVehicule}/${itemId}`).then((response) => {
         dispatch(successFetchingLaneData(response.data));

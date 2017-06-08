@@ -26,6 +26,7 @@ const unfolder = unfold();
 class Map extends Component {
 
   static propTypes = {
+    activeVehicle: React.PropTypes.string,
     areaType: React.PropTypes.string,
     laneData: React.PropTypes.object,
     parkingData: React.PropTypes.object,
@@ -66,6 +67,11 @@ class Map extends Component {
       if (this.props.areaType === 'parking' &&
           newProps.parkingData !== null &&
           newProps.parkingData.id !== this.lastComputedId) {
+        this.renderData(newProps);
+      }
+      if (this.props.areaType === 'parking' &&
+          newProps.laneData !== null &&
+          newProps.laneData._id !== this.lastComputedId) {
         this.renderData(newProps);
       }
     }
@@ -316,8 +322,8 @@ class Map extends Component {
   }
 
   renderData(props) {
-    if (props.areaType === 'parking') {
-      if(!props.parkingData) {
+    if (props.areaType === 'parking' && this.props.activeVehicle !== 'rail') {
+      if(!props.parkingData && props.active) {
         return;
       }
       this.renderParking(props);
@@ -332,7 +338,6 @@ class Map extends Component {
   }
 
   render() {
-    console.log('rendermap')
     return (
       <ReactMapboxGl
         style={`mapbox://styles/mapbox/${this.state.activeLayer}`}

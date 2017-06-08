@@ -19,11 +19,12 @@ class MapInfoBox extends React.PureComponent {
   }
 
   render() {
-    console.log('renderMapInfoBox');
     let area;
     let headline;
 
-    if (this.props.areaType === identifiers.parkingspace) {
+    if (this.props.areaType === identifiers.parkingspace &&
+        this.props.activeVehicle !== 'rail' &&
+        this.props.parkingData) {
       const neighborhood = this.props.parkingData.get('neighborhood');
       headline = `Parkingspace in ${neighborhood}`;
       area = this.props.parkingData.get('area');

@@ -106,7 +106,6 @@ function loadStreetFromServer(id) {
         if (timeTransform < 100) {
             transformDelay = 0;
         }
-        console.log(timeUnravel, timeTransform);
 
         // Timing
         var animationTimeInMilliSeconds = timeUnravel * 2;
@@ -239,12 +238,10 @@ function getNameOfCoilSegment(data) {
 
 function coilSegment(data) {
     var vectorStreet = unfold.getStreetWithVectors(data);
-    console.log(vectorStreet);
     var vectorStreetDivided = unfold.subdivideVectorStreet(vectorStreet, 1);
 
     coil.setProperties(999, 5)
     var properties = coil.getPropertiesToSquareCoil(vectorStreetDivided.length * 1000, 5);
-    console.log(properties);
     coil.setProperties(properties.width, 5)
     var coiledStreet = coil.getCoiledStreet(vectorStreetDivided, 0, coilSetting.damping, 5);
     return {

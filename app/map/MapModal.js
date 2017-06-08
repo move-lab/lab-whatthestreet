@@ -63,7 +63,6 @@ class MapModal extends PureComponent {
   }
 
   render() {
-    console.log('render mapmodal');
     return (
       <div className={`MapWrapper ${this.props.isVisible ? 'visible' : ''}`}>
         <MapInfoBox
@@ -81,6 +80,7 @@ class MapModal extends PureComponent {
         </div>
         {this.state.showMap && this.props.areaType &&
           <Map
+            activeVehicle={this.props.activeVehicle}
             areaType={this.props.areaType}
             parkingData={this.props.parkingData && this.props.parkingData.toJS()}
             laneData={this.props.laneData && this.props.laneData.toJS()}

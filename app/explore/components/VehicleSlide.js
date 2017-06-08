@@ -48,6 +48,8 @@ class VehicleSlide extends React.PureComponent {
     this.onItemSelected = this.onItemSelected.bind(this);
     this.onLaneClicked = this.onLaneClicked.bind(this);
     this.onLaneLoaded = this.onLaneLoaded.bind(this);
+    this.onLaneParkingClicked = this.onLaneParkingClicked.bind(this);
+    this.onLaneParkingSelected = this.onLaneParkingSelected.bind(this);
   }
 
   watchScrollPosition() {
@@ -76,13 +78,14 @@ class VehicleSlide extends React.PureComponent {
     }
   }
 
-  goToMapView(areaType, id, data) {
+  goToMapView(areaType, id, data, railParkingMode) {
     this.props.showMap({
       citySlug: this.props.citySlug,
       actualVehicle: this.props.actualVehicle,
       areaType,
       id,
-      data
+      data,
+      railParking: railParkingMode
     });
   }
 
@@ -99,6 +102,17 @@ class VehicleSlide extends React.PureComponent {
 
   onLaneClicked(data, path) {
     this.goToMapView('lanes', data.id);
+  }
+
+  onLaneParkingSelected(data) {
+    const { dispatch } = this.props;
+    // TODO HERE SET SPECIAL Parking Lane in order to display in header.
+    dispatch(LaneActions.setLane(data.name, data.neighborhood, data.length, data.area, data.cumulativeArea));
+    dispatch(StreetActions.setStreetId(data.id));
+  }
+
+  onLaneParkingClicked(data, path) {
+    this.goToMapView('parking', data.id, data, true);
   }
 
   onParkingClicked(data, path) {
@@ -124,43 +138,53 @@ class VehicleSlide extends React.PureComponent {
     // TODO WHEN IMPLEMENTING SEARCH
   }
 
-  onItemSelected(isLast) {
+  onItemSelected() {
     // TODO MAYBE DELETE ?
   }
 
   renderParkingSpaces() {
-    if (this.props.vehicle === 'rails') {
-      // TODO SPECIAL CASE RAILS NEED TO CALL onPolygonselected
-      return this.renderLanes(true)
-    } else {
-      return (
-        <ParkingSpaces
-          city={this.props.citySlug}
-          vehicle={this.props.vehicle}
-          onPathClicked={this.onParkingClicked}
-          registerItemsForSearch={this.registerItemsForSearch}
-          onLoaded={this.onParkingLoaded}
-          onItemSelected={this.onItemSelected}
-          onPolygonSelected={this.onPolygonSelected}
-        />
-      );
-    }
-    
+    return (
+      <ParkingSpaces
+        city={this.props.citySlug}
+        vehicle={this.props.vehicle}
+        onPathClicked={this.onParkingClicked}
+        registerItemsForSearch={this.registerItemsForSearch}
+        onLoaded={this.onParkingLoaded}
+        onItemSelected={this.onItemSelected}
+        onPolygonSelected={this.onPolygonSelected}
+      />
+    );
   }
 
   renderLanes(parkingMode) {
-    // TODO REPLACE BERLIN BY DYNAMIC CITY
-    return (
-      <Lanes
-        city={this.props.citySlug}
-        vehicle={this.props.vehicle}
-        onPathClicked={this.onLaneClicked}
-        registerItemsForSearch={this.registerItemsForSearch}
-        onLoaded={this.onLaneLoaded}
-        onItemSelected={this.onItemSelected}
-        onLaneSelected={this.onLaneSelected}
-      />
-    )
+    // Special case of rails
+    if(parkingMode) {
+      return (
+        <Lanes
+          city={this.props.citySlug}
+          vehicle={this.props.vehicle}
+          onPathClicked={this.onLaneParkingClicked}
+          registerItemsForSearch={this.registerItemsForSearch}
+          modeParking
+          onLoaded={this.onParkingLoaded}
+          onItemSelected={this.onItemSelected}
+          onLaneSelected={this.onLaneParkingSelected}
+        />
+      )
+    } else {
+      return (
+        <Lanes
+          city={this.props.citySlug}
+          vehicle={this.props.vehicle}
+          onPathClicked={this.onLaneClicked}
+          registerItemsForSearch={this.registerItemsForSearch}
+          onLoaded={this.onLaneLoaded}
+          onItemSelected={this.onItemSelected}
+          onLaneSelected={this.onLaneSelected}
+        />
+      )
+    }
+    
   }
 
   render() {
@@ -175,7 +199,12 @@ class VehicleSlide extends React.PureComponent {
               <h3 className="Title">
                 {this.props.vehicle.charAt(0).toUpperCase() + this.props.vehicle.slice(1)} Parking
               </h3>
-              {this.renderParkingSpaces()}
+              {this.props.vehicle === 'rail' &&
+                this.renderLanes(true)
+              }
+              {this.props.vehicle !== 'rail' &&
+                this.renderParkingSpaces()
+              }
               {this.props.parkingLoaded &&
                 <VehicleSlideEndOfParkingSummary />
               }

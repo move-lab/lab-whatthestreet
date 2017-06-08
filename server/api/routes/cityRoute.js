@@ -104,6 +104,7 @@ exports.getStreetByID = (request, response) => {
     const collections = {
       bike: 'biketracks',
       rail: 'railtracks',
+      railparking: 'railtracksparking',
       car: 'streets',
     };
 
