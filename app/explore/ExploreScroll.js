@@ -33,7 +33,7 @@ class ExploreScroll extends React.PureComponent {
     this.showLaneMap = this.showLaneMap.bind(this);
     this.dismissMap = this.dismissMap.bind(this);
     this.showMap = this.showMap.bind(this);
-    this.goToResults = this.showMap.bind(this);
+    this.goToResults = this.goToResults.bind(this);
     this.selectNextVehicule = this.selectNextVehicule.bind(this);
     this.selectPreviousVehicule = this.selectPreviousVehicule.bind(this);
     this.scrollToTop = this.scrollToTop.bind(this);
