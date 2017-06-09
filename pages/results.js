@@ -48,7 +48,7 @@ class Results extends Component {
   render() {
     return (
       <Layout>
-        <Header title="Reown the city" />
+        <Header title="What the Street?!" />
         <ResultsPage />
       </Layout>
     )
