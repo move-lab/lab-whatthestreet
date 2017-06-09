@@ -156,6 +156,7 @@ class Map extends Component {
   */
 
   renderParking(props) {
+    const self = this;
     if(this.map) {
       // parking final geojson
       const parkingFinal = {
