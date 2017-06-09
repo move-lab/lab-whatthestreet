@@ -183,11 +183,11 @@ class Map extends Component {
         duration: 0
       });
 
-      // Start animating from props.parkingData.rotation to rotation = 0, in 2 s
+      // Start animating from props.parkingData.rotation to rotation = 0, in 1.6 s
       const rotationTween = new TWEEN.Tween({rotation: props.parkingData.rotation})
-                                      .to({rotation: 0}, 2000)
-                                      .easing(TWEEN.Easing.Exponential.InOut)
-                                      .delay(900);
+                                      .to({rotation: 0}, 1600)
+                                      .easing(TWEEN.Easing.Bounce.Out)
+                                      .delay(2100);
       rotationTween.onUpdate(function() {
         const parkingRotated = rotate(parkingFinal, this.rotation);
         self.map.getSource('data').setData(parkingRotated);
@@ -288,7 +288,7 @@ class Map extends Component {
       // constraint it between 1s and 5s
       let timeUnfold = calculateBendWay(props.laneData.original.vectors) * 200000;
       timeUnfold = timeUnfold > 5000 ? 5000 : timeUnfold;
-      timeUnfold = timeUnfold < 1000 ? 2000 : timeUnfold;
+      timeUnfold = timeUnfold < 1200 ? 1200 : timeUnfold;
       // This depends on how long the biggest translation is (when a street consists of multiple segments)
       // NOTE @tdurand: I didn't investivate how getLongestTranslation is computed and why
       // we multiply by magic number 200000
