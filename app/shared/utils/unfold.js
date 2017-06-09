@@ -38,8 +38,9 @@ export const unfold = function () {
       },
     };
 
-    let cursor = JSON.parse(JSON.stringify(origin));
+    // let cursor = JSON.parse(JSON.stringify(origin));
     let coordinates = [];
+    let cursor = origin;
 
     const originalGeometry = originalStreet.vectors;
     const coiledGeometry = coiledStreet.vectors;

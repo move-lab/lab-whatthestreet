@@ -3,7 +3,6 @@ import ReactMapboxGl, { ScaleControl, ZoomControl } from "react-mapbox-gl";
 import TWEEN from 'tween.js';
 import { bbox } from '@turf/turf';
 import rotate from '@turf/transform-rotate';
-import _throttle from 'lodash.throttle';
 
 import MapActions from './MapActions';
 
@@ -37,11 +36,11 @@ class Map extends Component {
     super(props);
 
     this.onMapLoaded = this.onMapLoaded.bind(this);
-    this.drawLaneFrame = this.drawLaneFrame.bind(this);
     this.zoomIn = this.zoomIn.bind(this);
     this.zoomOut = this.zoomOut.bind(this);
     this.toggleLayer = this.toggleLayer.bind(this);
     this.lastComputedId = 0;
+    this.computingGeojson = false;
     this.geojson = {
       "type": "FeatureCollection",
       "properties": {
@@ -157,7 +156,6 @@ class Map extends Component {
   */
 
   renderParking(props) {
-    const self = this;
     if(this.map) {
       // parking final geojson
       const parkingFinal = {
@@ -231,13 +229,8 @@ class Map extends Component {
     );
   }
 
-  drawLaneFrame(laneData, progressUnfold, progressStitch) {
-    const geojson = this.unfold(laneData, progressUnfold, progressStitch)
-    this.map.getSource('data').setData(geojson);
-    return geojson;
-  }
-
   renderLane(props) {
+    const self = this;
     if(this.map) {
       // Center map on coiler line coord
       let center = [
@@ -268,35 +261,89 @@ class Map extends Component {
       // Fit bounds to the street folded
       this.map.fitBounds(bboxFolded, {
         maxZoom: maxZoom,
-        padding: 100
+        padding: 100,
+        linear: true,
+        duration: 0
       });
 
+      // Wait 1s and fit to the unfolded BBOX before starting the animation
+      // Set to a fixed 1s linear because we need to know how long it takes
+      // to delay start of animation by the same amount
+      // In this case, 1s + 1s = 2s
+      // We can't move the camera during the animation, otherwise FPS drops dramaticly
+      setTimeout(() => {
+        // Fit bounds to the street folded
+        this.map.fitBounds(bboxUnfolded, {
+          maxZoom: maxZoom,
+          padding: 100,
+          linear: true,
+          duration: 1000
+        });
+      }, 1000)
+
       // This depends on how much movement is in the street geometry
-      const timeUnfold = calculateBendWay(props.laneData.original.vectors) * 200000;
+      // NOTE @tdurand: I didn't investivate how calculateBendWay is computed and why
+      // we multiply by magic number 200000
+      // constraint it between 1s and 5s
+      let timeUnfold = calculateBendWay(props.laneData.original.vectors) * 200000;
+      timeUnfold = timeUnfold > 5000 ? 5000 : timeUnfold;
+      timeUnfold = timeUnfold < 1000 ? 2000 : timeUnfold;
       // This depends on how long the biggest translation is (when a street consists of multiple segments)
-      const timeUnstitch = getLongestTranslation(props.laneData.original.vectors) * 200000;
+      // NOTE @tdurand: I didn't investivate how getLongestTranslation is computed and why
+      // we multiply by magic number 200000
+      // constraint it between 200ms and 1s
+      let timeUnstitch = getLongestTranslation(props.laneData.original.vectors) * 200000
+      timeUnstitch = timeUnstitch > 1000 ? 1000 : timeUnstitch;
+      timeUnstitch = timeUnstitch < 200 ? 200 : timeUnstitch;
       let unstitchDelay = 200;
       // When a street consists of only piece/pieces are very close together, remove the delay
-      if (timeUnstitch < 100) {
-        unstitchDelay = 0;
+      if (timeUnstitch < 300) { 
+        unstitchDelay = 0; 
       }
+      // Way 2s delay of camera zooming out from folded bbox to unfolded bbox
+      // + extra 500ms to make sure tile are loaded
+      let unfoldDelay = 2500;
 
-      // Draw it a first time
-      this.drawLaneFrame(props.laneData, 0, 0);
+      // Draw the first frame
+      this.map.getSource('data').setData(geoJsonFolded);
 
-      const throttledDrawLaneFrame = _throttle(this.drawLaneFrame, 100);
-
-      const unfoldTween = new TWEEN.Tween({progress: 0}).to({ progress: 1 }, timeUnfold).delay(1000);
+      const unfoldTween = new TWEEN.Tween({progress: 0}).to({ progress: 1 }, timeUnfold).delay(unfoldDelay);
       const stitchTween = new TWEEN.Tween({progress: 0}).to({ progress: 1 }, timeUnstitch).delay(unstitchDelay);
       unfoldTween.chain(stitchTween);
       unfoldTween.onUpdate((progressUnfold) => {
-        // TODO, the computation of the unfolding is taking too long even throttle to 100ms and
-        // drop the FPS on large geojson
-        // if time, improve unfold method to be more efficient
-        throttledDrawLaneFrame(props.laneData, progressUnfold, 0);
+        // WARNING onUpdate is called at 60 FPS or more, what goes here should be super optimized
+        // calling map.setData is the most expensive task, followed by calling unfold
+        // we make sure we do not queue setData updates and do not overload
+        // the mapbox gl buffer, otherwise FPS drop drasticly
+        // We do that by making sure previous setData has been loaded and
+        // that we are not in the middle of a unfold computation
+        if(this.map.isSourceLoaded('data') &&
+          this.computingGeojson === false) {
+
+          this.computingGeojson = true;
+          const geojson = this.unfold(props.laneData, progressUnfold, 0);
+          this.map.getSource('data').setData(geojson);
+          this.computingGeojson = false;
+        } else {
+          // Skip frame, we were not ready to handle it
+        }
       });
       stitchTween.onUpdate((progressStitch) => {
-        throttledDrawLaneFrame(props.laneData, 1, progressStitch);
+        // WARNING onUpdate is called at 60 FPS or more, what goes here should be super optimized
+        // calling map.setData is the most expensive task, followed by calling unfold
+        // we make sure we do not queue setData updates and do not overload
+        // the mapbox gl buffer, otherwise FPS drop drasticly
+        // We do that by making sure previous setData has been loaded and
+        // that we are not in the middle of a unfold computation
+        if(this.map.isSourceLoaded('data') &&
+          this.computingGeojson === false) {
+          this.computingGeojson = true;
+          const geojson = this.unfold(props.laneData, 1, progressStitch);
+          this.map.getSource('data').setData(geojson);
+          this.computingGeojson = false;
+        } else {
+          // Skip drame, we were not ready to handle it
+        }
       });
       stitchTween.onComplete(() => {
         this.animating = false;
@@ -306,20 +353,10 @@ class Map extends Component {
         TWEEN.removeAll();
       })
 
+      // NOTE: maybe a room for improvement would be to make sure tiles
+      // of viewport are loaded before starting to animate
       unfoldTween.start();
       this.animate(true);
-
-      // Move bounds to the bboxUnfolded view in
-      // the same timespan than the animation unfold
-      setTimeout(() => {
-        this.map.fitBounds(bboxUnfolded, {
-          maxZoom: maxZoom,
-          padding: 100,
-          linear: true,
-          duration: timeUnfold + timeUnstitch
-        });
-      }, 1000 + unstitchDelay);
-
     }
   }
 
