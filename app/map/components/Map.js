@@ -294,12 +294,12 @@ class Map extends Component {
       // we multiply by magic number 200000
       // constraint it between 200ms and 1s
       let timeUnstitch = getLongestTranslation(props.laneData.original.vectors) * 200000
-      timeUnstitch = timeUnstitch > 1000 ? 1000 : timeUnstitch;
-      timeUnstitch = timeUnstitch < 200 ? 200 : timeUnstitch;
+      timeUnstitch = timeUnstitch > 2000 ? 2000 : timeUnstitch;
+      timeUnstitch = timeUnstitch < 1000 ? 1000 : timeUnstitch;
       let unstitchDelay = 200;
       // When a street consists of only piece/pieces are very close together, remove the delay
-      if (timeUnstitch < 300) { 
-        unstitchDelay = 0; 
+      if (timeUnstitch < 300) {
+        unstitchDelay = 0;
       }
       // Way 2s delay of camera zooming out from folded bbox to unfolded bbox
       // + extra 500ms to make sure tile are loaded
@@ -308,8 +308,14 @@ class Map extends Component {
       // Draw the first frame
       this.map.getSource('data').setData(geoJsonFolded);
 
-      const unfoldTween = new TWEEN.Tween({progress: 0}).to({ progress: 1 }, timeUnfold).delay(unfoldDelay);
-      const stitchTween = new TWEEN.Tween({progress: 0}).to({ progress: 1 }, timeUnstitch).delay(unstitchDelay);
+      const unfoldTween = new TWEEN.Tween({progress: 0})
+                                  .to({ progress: 1 }, timeUnfold)
+                                  .easing(TWEEN.Easing.Quadratic.Out)
+                                  .delay(unfoldDelay);
+      const stitchTween = new TWEEN.Tween({progress: 0})
+                                  .to({ progress: 1 }, timeUnstitch)
+                                  .easing(TWEEN.Easing.Quadratic.Out)
+                                  .delay(unstitchDelay);
       unfoldTween.chain(stitchTween);
       unfoldTween.onUpdate((progressUnfold) => {
         // WARNING onUpdate is called at 60 FPS or more, what goes here should be super optimized
