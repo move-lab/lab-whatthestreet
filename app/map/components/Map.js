@@ -186,8 +186,9 @@ class Map extends Component {
 
       // Start animating from props.parkingData.rotation to rotation = 0, in 2 s
       const rotationTween = new TWEEN.Tween({rotation: props.parkingData.rotation})
-                                      .to({ rotation: 0 }, 1000)
-                                      .delay(1000);
+                                      .to({rotation: 0}, 2000)
+                                      .easing(TWEEN.Easing.Exponential.InOut)
+                                      .delay(900);
       rotationTween.onUpdate(function() {
         const parkingRotated = rotate(parkingFinal, this.rotation);
         self.map.getSource('data').setData(parkingRotated);
@@ -212,7 +213,7 @@ class Map extends Component {
           duration: 1000
         });
       }, 1000);
-      
+
     }
   }
 
@@ -239,8 +240,8 @@ class Map extends Component {
   renderLane(props) {
     if(this.map) {
       // Center map on coiler line coord
-      let center = [ 
-        props.laneData.properties.origin.lon, 
+      let center = [
+        props.laneData.properties.origin.lon,
         props.laneData.properties.origin.lat
       ]
       // Get max zoom lvl
@@ -276,9 +277,9 @@ class Map extends Component {
       const timeUnstitch = getLongestTranslation(props.laneData.original.vectors) * 200000;
       let unstitchDelay = 200;
       // When a street consists of only piece/pieces are very close together, remove the delay
-      if (timeUnstitch < 100) { 
-        unstitchDelay = 0; 
-      } 
+      if (timeUnstitch < 100) {
+        unstitchDelay = 0;
+      }
 
       // Draw it a first time
       this.drawLaneFrame(props.laneData, 0, 0);
@@ -289,7 +290,7 @@ class Map extends Component {
       const stitchTween = new TWEEN.Tween({progress: 0}).to({ progress: 1 }, timeUnstitch).delay(unstitchDelay);
       unfoldTween.chain(stitchTween);
       unfoldTween.onUpdate((progressUnfold) => {
-        // TODO, the computation of the unfolding is taking too long even throttle to 100ms and 
+        // TODO, the computation of the unfolding is taking too long even throttle to 100ms and
         // drop the FPS on large geojson
         // if time, improve unfold method to be more efficient
         throttledDrawLaneFrame(props.laneData, progressUnfold, 0);
@@ -318,7 +319,7 @@ class Map extends Component {
           duration: timeUnfold + timeUnstitch
         });
       }, 1000 + unstitchDelay);
-      
+
     }
   }
 
