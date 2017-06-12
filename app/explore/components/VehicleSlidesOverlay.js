@@ -46,9 +46,6 @@ class VehicleSlidesOverlay extends React.PureComponent {
 
     return (
       <div className="Overlay">
-        {this.props.showScrollUI && lanesOrParkingLoaded && 
-          <div className="PositionLine" />
-        }
         {this.props.nextVehicleName &&
           <button
             className="VehicleButton NextVehicleButton"
