@@ -47,7 +47,12 @@ class Header extends React.PureComponent {
       return (
         <div className="InfoLabel">
           <h3>{`Parking space ${this.props.parkingSpace.neighborhood ? 'in ' + this.props.parkingSpace.neighborhood : ''}`}</h3>
-          <p>{`${this.state.FH.format(Math.round(this.props.parkingSpace.area))}m² = ${this.state.FH.format(Math.round(this.props.parkingSpace.area / 12))} cars`}</p>
+          {this.props.activeVehicle !== "bike" &&
+            <p>{`${this.state.FH.format(Math.round(this.props.parkingSpace.area))}m² = ${this.state.FH.format(Math.round(this.props.parkingSpace.area / 12))} cars`}</p>
+          }
+          {this.props.activeVehicle === "bike" &&
+            <p>{`${this.state.FH.format(Math.round(this.props.parkingSpace.area))}m² = ${this.state.FH.format(Math.round(this.props.parkingSpace.area / 1.6))} bikes`}</p>
+          }
         </div>
       );
     }

@@ -57,8 +57,11 @@ class MapInfoBox extends React.PureComponent {
           {headline &&
             <p className="headline">{headline}</p>
           }
-          {area &&
+          {area && this.props.activeVehicle !== "bike" &&
             <p>{`${area}m² = ${Math.round(parseFloat(area) / 12)} cars`}</p>
+          }
+          {area && this.props.activeVehicle === "bike" &&
+            <p>{`${area}m² = ${Math.round(parseFloat(area) / 1.6)} bikes`}</p>
           }
         </div>
         <style jsx>{`
