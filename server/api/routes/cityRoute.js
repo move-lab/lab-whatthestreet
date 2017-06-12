@@ -5,6 +5,8 @@ const redis = require('redis');
 const sha1 = require('sha1');
 const geoip = require('geoip-lite');
 const maxBy = require('lodash.maxby');
+const minBy = require('lodash.minby');
+const turf = require('@turf/turf');
 
 /**
  * Gets all Cities
@@ -50,17 +52,15 @@ exports.closestCityToGuess = (request, response) => {
  * Gets nearest City by calculating IP-Location
  */
 exports.getNerestCity = (request, response) => {
-  const ip = '77.185.208.234';
-
-  // console.log('Get nearest city by IP');
-  // console.log('IP:', ip);
+  // const ip = '185.158.103.43';
+  const ip = request.params.ip;
+  console.log('Client ip is: ' + ip);
 
   const geo = geoip.lookup(ip);
 
   if (geo === null) {
     response.status(404).send(`Not Found City near ${ip}`);
   } else {
-    // console.log(geo);
     const cities = Object.keys(data);
     let city = '';
 
@@ -321,26 +321,34 @@ const getCityByPoint = (ll) => {
 
   const cities = Object.keys(data);
 
-  const reducedCities = cities.map((item) => {
+  const ipPoint = {
+    "type": "Feature",
+    "properties": {},
+    "geometry": {
+      "type": "Point",
+      "coordinates": ll
+    }
+  };
+
+  const citiesWithDistance = cities.map((item) => {
     const city = data[item];
 
-    const difference = [(((city.boundingBox[0] + city.boundingBox[2]) / 2) - latitude), (((city.boundingBox[1] + city.boundingBox[3]) / 2) - longitude)].reduce((a, b) => (a + b));
-
-    const coordinates = {
-      minimum: [city.boundingBox[0], city.boundingBox[1]],
-      maximum: [city.boundingBox[2], city.boundingBox[3]],
-      difference,
+    const cityPoint = {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [city.boundingBox[0], city.boundingBox[1]]
+      }
     };
 
-    return { slug: item, name: city.name, coordinates };
+    return { 
+      slug: item,
+      name: city.name, 
+      distance: turf.distance(cityPoint, ipPoint) 
+    };
   });
 
-  toReturn = reducedCities.sort((a, b) => {
-    if (a.coordinates.difference > b.coordinates.difference) return -1;
-    if (a.coordinates.difference === b.coordinates.difference) return 0;
-    return 1;
-  })[0];
-
-  return (toReturn !== '') ? toReturn : false;
+  return minBy(citiesWithDistance, "distance");
 };
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import withRedux from 'next-redux-wrapper';
 import { initStore } from '../app/statemanagement/store';
@@ -23,11 +24,16 @@ class Index extends Component {
       if(req && req.params.cityName) {
         await store.dispatch(CityActions.selectCity(req.params.cityName));
       } else {
-        // TODO HERE GET THE IP OF THE CLIENT AND PASS IT TO LOAD CITY TO FIGURE
-        // OUT THE CITY TO SELECT FROM IP, for now select berlin as default
-        // const ip = req.ip;
-        // console.log(ip);
-        await store.dispatch(CityActions.selectCity("berlin"));
+        const clientIP = req.ip;
+        // Try to get closest city from api
+        await axios.get(`${baseUrl}/api/v1/cities/nearest/${clientIP}`).then((response) => {
+          console.log('closest city is')
+          return store.dispatch(CityActions.selectCity(response.slug));
+        }, (error) => {
+          // default to berlin
+          console.log('default to berlin')
+          return store.dispatch(CityActions.selectCity("berlin"));
+        });
       }
       if(req && req.query.bike && req.query.rail && req.query.car) {
         await store.dispatch(GuessActions.setOwnGuess({

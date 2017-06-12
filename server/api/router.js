@@ -21,7 +21,7 @@ router.use('/cities/:city', (request, response, next) => {
   next();
 });
 
-router.route('/cities/nearest').get(cityRoute.getNerestCity);
+router.route('/cities/nearest/:ip').get(cityRoute.getNerestCity);
 router.route('/cities/:city').get(cityRoute.getInfo);
 
 router.route('/cities/:city/streets').get(cityRoute.getStreets);
