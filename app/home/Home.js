@@ -127,15 +127,14 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
       <style jsx>{`
         .HomePage {
           background-color: ${COLORS.HomePageBackgroundColor};
-          min-height: ${METRICS.MetricsSectionMinHeight};
         }
 
         .Wrapper {
           display: flex;
           width: ${METRICS.MetricsContentWidth};
           margin: 0 auto;
-          padding-top: 30px;
-          padding-bottom: ${METRICS.MetricsSectionPadding};
+          padding-top: 20px;
+          padding-bottom: 10px;
           padding-left: ${METRICS.MetricsContentPadding};
           padding-right: ${METRICS.MetricsContentPadding};
         }
