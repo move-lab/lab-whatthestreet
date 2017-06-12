@@ -38,7 +38,11 @@ class Header extends React.PureComponent {
     this.getHumanArea = this.getHumanArea.bind(this);
 
     this.state = {
-      FH : new Intl.NumberFormat('en-US')
+      FH : new Intl.NumberFormat('en-US'),
+      FH1Digit: new Intl.NumberFormat('en-US', {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1
+      })
     }
   }
 
@@ -101,21 +105,21 @@ class Header extends React.PureComponent {
   getHumanArea(area) {
     const cityLandmarkArea = this.props.cityLandmark.area;
     if (area < 225) {
-      return `${this.state.FH.format(area)} m²`;
+      return `${this.state.FH1Digit.format(area)} m²`;
     } else if (area < 71400) {
       const playgroundArea = 225;
       const nbPlayground = Math.round( area / playgroundArea * 10 ) / 10;
       const playgroundLabel = nbPlayground > 1 ? 'Playgrounds' : 'Playground';
-      return `${this.state.FH.format(nbPlayground)} ${playgroundLabel}`;
+      return `${this.state.FH1Digit.format(nbPlayground)} ${playgroundLabel}`;
     } else if (area < cityLandmarkArea) {
       const soccerFieldArea = 7140;
       const nbSoccerField = Math.round( area / soccerFieldArea * 10 ) / 10;
       const soccerFieldLabel = nbSoccerField > 1 ? 'Soccer Fields' : 'Soccer Field';
-      return `${this.state.FH.format(nbSoccerField)} ${soccerFieldLabel}`;
+      return `${this.state.FH1Digit.format(nbSoccerField)} ${soccerFieldLabel}`;
     } else {
       const nbCityLandmark = Math.round( area / cityLandmarkArea * 10 ) / 10;
       const cityLandmarkLabel = this.props.cityLandmark.name;
-      return `${this.state.FH.format(nbCityLandmark)} ${cityLandmarkLabel}`;
+      return `${this.state.FH1Digit.format(nbCityLandmark)} ${cityLandmarkLabel}`;
     }
   }
 
