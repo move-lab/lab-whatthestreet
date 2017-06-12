@@ -285,22 +285,19 @@ class Map extends Component {
       // This depends on how much movement is in the street geometry
       // NOTE @tdurand: I didn't investivate how calculateBendWay is computed and why
       // we multiply by magic number 200000
-      // constraint it between 1s and 5s
+      // constrain it between 1.3s and 5s
       let timeUnfold = calculateBendWay(props.laneData.original.vectors) * 200000;
       timeUnfold = timeUnfold > 5000 ? 5000 : timeUnfold;
-      timeUnfold = timeUnfold < 1200 ? 1200 : timeUnfold;
+      timeUnfold = timeUnfold < 1300 ? 1300 : timeUnfold;
       // This depends on how long the biggest translation is (when a street consists of multiple segments)
       // NOTE @tdurand: I didn't investivate how getLongestTranslation is computed and why
+      // NOTE @mszell: I tested this a bit and found the right limits. Before it always capped at 1s, now it is 2s for long translations which looks better.
       // we multiply by magic number 200000
-      // constraint it between 200ms and 1s
-      let timeUnstitch = getLongestTranslation(props.laneData.original.vectors) * 200000
+      // constrain it between 1s and 2s
+      let timeUnstitch = (getLongestTranslation(props.laneData.original.vectors) * 200000 - 199) * 9090 - 7000
       timeUnstitch = timeUnstitch > 2000 ? 2000 : timeUnstitch;
       timeUnstitch = timeUnstitch < 1000 ? 1000 : timeUnstitch;
-      let unstitchDelay = 200;
-      // When a street consists of only piece/pieces are very close together, remove the delay
-      if (timeUnstitch < 300) {
-        unstitchDelay = 0;
-      }
+      let unstitchDelay = 600;
       // Way 2s delay of camera zooming out from folded bbox to unfolded bbox
       // + extra 500ms to make sure tile are loaded
       let unfoldDelay = 2500;
@@ -314,7 +311,7 @@ class Map extends Component {
                                   .delay(unfoldDelay);
       const stitchTween = new TWEEN.Tween({progress: 0})
                                   .to({ progress: 1 }, timeUnstitch)
-                                  .easing(TWEEN.Easing.Quadratic.Out)
+                                  .easing(TWEEN.Easing.Cubic.Out)
                                   .delay(unstitchDelay);
       unfoldTween.chain(stitchTween);
       unfoldTween.onUpdate((progressUnfold) => {

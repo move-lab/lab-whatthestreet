@@ -55,7 +55,7 @@ class Index extends Component {
     return (
       <Layout>
         <Header
-          title="What the Street?!"
+          title="What the Street!?"
           mode="normal"
         />
         <Home />

@@ -68,7 +68,7 @@ export function getLongestTranslation(vectors){
     for (var i = 0; i < vectors.length; i++) {
         var vector = vectors[i];
         var vectorLength = vector.distance;
-        if (vector.type !== 'street') {
+        if (vector.type == 'translation') {
             if (vectorLength > longestTranslation) {
                 longestTranslation = vectorLength;
             }
