@@ -1,6 +1,36 @@
 # Lab What the street
 
-# Dev Setup
+# Deploy to Production Guide
+
+## General
+
+What the street works with
+
+- A node.js app (using express.js) that serves the front-end (this repo)
+- A mongodb server which contain the data needed for the node.js app
+
+## Env variable:
+
+You can customize those env variable to change the default:
+
+- process.env.MONGODB_HOST (default: localhost)
+- process.env.MONGODB_PORT (default: 27017)
+- process.env.PORT (default: 4000 , port the http server is listening to)
+
+## Deploy
+
+### Mongodb load data in database
+
+IN PROGRESS SCRIPT TO IMPORT DATA
+
+### Node.js front-end app deployment
+
+- Copy this repo (you can exclude the documents folder)
+- npm install
+- npm run build (takes a while)
+- npm run start 
+
+# Development Env
 
 ## Prerequisites
 
