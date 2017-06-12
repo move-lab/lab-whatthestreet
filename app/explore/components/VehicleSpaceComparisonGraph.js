@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import * as METRICS from '../../shared/style/metrics';
 import * as COLORS from '../../shared/style/colors';
 
+import { computeSvgHeights } from '../../shared/utils/svgHeights';
+
 // Images
 const tramIcon = '/static/icons/Icon_Diagram_Rail.svg';
 const bikeIcon = '/static/icons/Icon_Diagram_Bike.svg';
@@ -133,8 +135,9 @@ class VehicleSpaceComparisonGraph extends React.Component {
 }
 
 export default connect((state) => {
+  
   return {
-    svgHeights: state.cityMeta.getIn(['metaData','svg']),
+    svgHeights: computeSvgHeights(state.cityMeta),
     activeVehicle: state.vehicles.get('vehicle')
   }
 })(VehicleSpaceComparisonGraph);

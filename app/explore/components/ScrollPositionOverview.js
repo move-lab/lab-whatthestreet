@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import * as COLORS from '../../shared/style/colors';
 
+import { computeSvgHeights } from '../../shared/utils/svgHeights';
+
 class ScrollPositionOverview extends React.PureComponent {
 
   static propTypes = {
@@ -93,8 +95,9 @@ class ScrollPositionOverview extends React.PureComponent {
 }
 
 export default connect((state) => {
+
   return {
-    svgHeights: state.cityMeta.getIn(['metaData','svg']),
+    svgHeights: computeSvgHeights(state.cityMeta),
     scrollPosition: state.explore.get('scrollPosition'),
     activeVehicle: state.vehicles.get('vehicle')
   }
