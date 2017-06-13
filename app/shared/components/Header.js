@@ -295,9 +295,11 @@ class Header extends React.PureComponent {
               margin: 0;
               font-size: 38px;
               font-weight: 500;
-              max-width: 366px;
+              max-width: 500px;
               white-space: nowrap;
               text-overflow: ellipsis;
+              overflow: hidden;
+              line-height: 1.15em;
             }
 
             .ContainerRight {
