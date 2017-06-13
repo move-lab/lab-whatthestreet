@@ -5,9 +5,10 @@ import { GUESS } from '../constants';
 const initialState = fromJS({
   loading: false,
   error: false,
-  others: fromJS([{ car: 0.9, bike: 0.05, rail: 0.05 }, { car: 0.8, bike: 0.1, rail: 0.1 }, { car: 0.85, bike: 0.125, rail: 0.125 }, { car: 0.9, bike: 0.05, rail: 0.05 }]),
+  others: fromJS([]),
   own: fromJS({ car: 0.333, rail: 0.333, bike: 0.333 }),
-  actual: fromJS({ rail: 0.5, car: 0.3, bike: 0.2 }),
+  actual: fromJS({}),
+  suggestion: fromJS({})
 });
 
 export default function guessReducer(state = initialState, action) {
@@ -32,6 +33,9 @@ export default function guessReducer(state = initialState, action) {
     case GUESS.SET_ACTUAL:
       return state
       .set('actual', fromJS(action.data));
+    case GUESS.GET_SUGGESTION_SUCCESS:
+      return state
+      .set('suggestion', fromJS(action.payload));
     default:
       return state;
   }

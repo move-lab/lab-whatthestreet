@@ -406,9 +406,9 @@
             "cars": "http://www.stuttgarter-nachrichten.de/inhalt.rekord-bei-zulassungen-stuttgarter-fahren-mehr-aufs-auto-ab-als-je-zuvor.2962ab51-c57f-4b01-8fb2-a5a49f94b802.html"
         },
         "space": {
-            "rail": null,
-            "car": null,
-            "bike": null
+            "rail": 22,
+            "car": 333,
+            "bike": 11
         },
         "moving": {
             "rail": {

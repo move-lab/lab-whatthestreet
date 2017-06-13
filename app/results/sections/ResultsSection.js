@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import axios from 'axios';
 
 // Components
 import ResultsBarChart from '../components/ResultsBarChart';
@@ -21,21 +22,16 @@ class ResultsPage extends React.PureComponent {
     others: React.PropTypes.arrayOf(React.PropTypes.object),
     actual: React.PropTypes.object,
     city: React.PropTypes.object,
+    suggestion: React.PropTypes.object,
     isLoading: React.PropTypes.bool,
   }
 
-  getSuggestion() {
-    // TODO : implement endpoint on server that answer that:
-    //  : PING THAT ENDPOINT api/v1/closestCityToGuess
-    // POST 
-    // guess: { bike: 0.3, car, rails.. ...}
-    // ANSWER: 
-    // {
-    //   "score": 99,
-    //   "name": "Boston",
-    //   "slug": "boston"
-    // } 
-    return "TODO"
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      guessStrength: this.calculateGuessStrength()
+    }
   }
 
   calculateGuessStrength = () => {
@@ -68,10 +64,26 @@ class ResultsPage extends React.PureComponent {
     if (!this.props.isLoading) {
       toReturn = (
         <div>
-          <ResultsBarChart guessStrength={this.calculateGuessStrength()} suggestion={this.getSuggestion()} actual={this.props.actual} own={this.props.own} city={this.props.city.name} />
-          <DeviderImage alt="SnapDevider" background={SnapDeviderBackground} foreground={IllustrationSnap} />
+          <ResultsBarChart
+            guessStrength={this.state.guessStrength}
+            suggestion={this.props.suggestion}
+            actual={this.props.actual}
+            own={this.props.own}
+            city={this.props.city.name}
+          />
+          <DeviderImage 
+            alt="SnapDevider"
+            background={SnapDeviderBackground}
+            foreground={IllustrationSnap}
+          />
           {this.props.others && this.props.others.length > 0 &&
-            <ComparisonBarChart guessStrength={this.calculateGuessStrength()} actual={this.props.actual} own={this.props.own} others={this.props.others} city={this.props.city.name} />
+            <ComparisonBarChart
+              guessStrength={this.state.guessStrength}
+              actual={this.props.actual}
+              own={this.props.own}
+              others={this.props.others}
+              city={this.props.city.name}
+            />
           }
         </div>
       );
@@ -83,7 +95,7 @@ class ResultsPage extends React.PureComponent {
 const getPercentOfRightness = (valueA, valueB) => (100 - Math.round(Math.abs(((valueA * 100) - (valueB * 100)))));
 
 
-const mapStateToProps = createStructuredSelector({
+const structuredSelector = createStructuredSelector({
   own: GuessSelectors.makeSelectOwnGuess(),
   others: GuessSelectors.makeSelectOthersGuesses(),
   actual: GuessSelectors.makeSelectActualGuesses(),
@@ -91,4 +103,9 @@ const mapStateToProps = createStructuredSelector({
   isLoading: GuessSelectors.makeSelectGuessLoadingState(),
 });
 
-export default connect(mapStateToProps)(ResultsPage);
+export default connect((state) => {
+  return {
+    ...structuredSelector(state),
+    suggestion: state.guess.get('suggestion')
+  }
+})(ResultsPage);

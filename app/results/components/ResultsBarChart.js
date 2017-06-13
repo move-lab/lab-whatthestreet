@@ -20,18 +20,18 @@ class ResultsBarChart extends React.PureComponent {
   static propTypes = {
     city: React.PropTypes.string,
     guessStrength: React.PropTypes.number,
-    suggestion: React.PropTypes.string,
+    suggestion: React.PropTypes.object,
     own: React.PropTypes.objectOf(React.PropTypes.number),
     others: React.PropTypes.arrayOf(React.PropTypes.objectOf(React.PropTypes.number)),
     actual: React.PropTypes.objectOf(React.PropTypes.number).isRequired,
   }
 
-  renderText = (guess) => {
-    if (guess < 50) {
+  renderText = (guessStrength) => {
+    if (guessStrength < 50) {
       return (
         <div className="Container">
-          <SocialShareButtons result="bad" suggestion={this.props.suggestion} />
-          <h2 className="Title">You should move to {this.props.suggestion} <img alt="UpsideDownEmoji" src={UpsideDownEmoji} /></h2>
+          <SocialShareButtons result="bad" suggestion={this.props.suggestion.get('name')} />
+          <h2 className="Title">You should move to {this.props.suggestion.get('name')} <img alt="UpsideDownEmoji" src={UpsideDownEmoji} /></h2>
           <h3 className="SubTitle">That’s the city your guess matches best</h3>
           <style jsx>{`
             .Container {
@@ -42,22 +42,37 @@ class ResultsBarChart extends React.PureComponent {
           `}</style>
         </div>
       );
+    } else if(guessStrength >= 50 && guessStrength < 80) {
+      return (
+        <div className="Container">
+          <SocialShareButtons result="good" suggestion={this.props.suggestion.get('name')} />
+          <h2 className="Title">You can do better</h2>
+          <h3 className="SubTitle">Your could move to {this.props.suggestion.get('name')}, that’s the city your guess matches best</h3>
+          <style jsx>{`
+            .Container {
+              width: 350px;
+              transform: translate(30px, 0px);
+              padding-top: 110px;
+            }
+          `}</style>
+        </div>
+      );
+    } else {
+      return (
+        <div className="Container">
+          <SocialShareButtons result="good" suggestion={this.props.suggestion.get('name')} />
+          <h2 className="Title">You must be from {this.props.city} <img alt="ShockedEmoji" src={ShockedEmoji} /></h2>
+          <h3 className="SubTitle">Your guess was almost perfect, you mobility guru</h3>
+          <style jsx>{`
+            .Container {
+              width: 350px;
+              transform: translate(30px, 0px);
+              padding-top: 110px;
+            }
+          `}</style>
+        </div>
+      );
     }
-
-    return (
-      <div className="Container">
-        <SocialShareButtons result="good" suggestion={this.props.suggestion} />
-        <h2 className="Title">You must be from {this.props.city} <img alt="ShockedEmoji" src={ShockedEmoji} /></h2>
-        <h3 className="SubTitle">Your guess was almost perfect, you mobility guru</h3>
-        <style jsx>{`
-          .Container {
-            width: 350px;
-            transform: translate(30px, 0px);
-            padding-top: 110px;
-          }
-        `}</style>
-      </div>
-    );
   }
 
   render = () => (

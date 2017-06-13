@@ -18,6 +18,11 @@ exports.getAllCities = (request, response) => {
 exports.closestCityToGuess = (request, response) => {
   const guess = request.body.guess;
 
+  if(!guess) {
+    response.status(404).send(`No closest guest found`);
+    return;
+  }
+
   const allCitiesSpaces = Object.keys(data).map((item) => {
     const hundredPercent = data[item].space.rail + data[item].space.car + data[item].space.bike;
     const car = ((100 / hundredPercent) * data[item].space.car) / 100;

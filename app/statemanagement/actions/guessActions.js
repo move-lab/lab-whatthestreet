@@ -40,10 +40,34 @@ export function loadGuesses(citySlug) {
 }
 
 export function setOwnGuess(guess) {
-  return {
-    type: GUESS.SET_OWN_GUESS,
-    guess,
-  };
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      dispatch({
+        type: GUESS.SET_OWN_GUESS,
+        guess,
+      });
+
+      dispatch({
+        type: GUESS.GET_SUGGESTION_START
+      });
+
+      const baseUrl = getState().app.get('baseUrl');
+      axios.post(`${baseUrl}/api/v1/closestCityToGuess`, {
+        guess: guess
+      }).then((results) => {
+        dispatch({
+          type: GUESS.GET_SUGGESTION_SUCCESS,
+          payload: results.data,
+        });
+        resolve();
+      }, (error) => {
+        dispatch({
+          type: GUESS.GET_SUGGESTION_ERROR
+        });
+        reject();
+      });
+    });
+  }
 }
 
 export function setActual(data) {
