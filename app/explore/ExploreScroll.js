@@ -181,7 +181,7 @@ class ExploreScroll extends React.PureComponent {
   }
 
   scrollToTop() {
-    const parkingEndPosition = this.props.svgHeights.getIn([this.props.activeVehicle,'parking','height']) + 280;
+    const parkingEndPosition = parseInt(this.props.svgHeights.getIn([this.props.activeVehicle,'parking','height']) + 280);
     if(window.scrollY <= parkingEndPosition) {
       window.scroll({ 
         top: 0,
@@ -198,7 +198,7 @@ class ExploreScroll extends React.PureComponent {
   }
 
   scrollToEnd() {
-    const parkingEndPosition = this.props.svgHeights.getIn([this.props.activeVehicle,'parking','height']) + 280;
+    const parkingEndPosition = parseInt(this.props.svgHeights.getIn([this.props.activeVehicle,'parking','height']) + 280);
     if(window.scrollY < parkingEndPosition) {
       window.scroll({ 
         top: parkingEndPosition,
