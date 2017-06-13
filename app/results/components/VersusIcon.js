@@ -48,13 +48,21 @@ class VersusIcon extends React.PureComponent {
 
   renderGroup = (cityAndData, index) => {
     const allocatedSpace = this.getCoordinates(cityAndData.data[0]);
-    const usedSpace = this.getCoordinates(cityAndData.data[1]);
+    let usedSpace = 0;
+    if(cityAndData.data[1][0] > 0) {
+      usedSpace = this.getCoordinates(cityAndData.data[1]);
+    }
+    
 
     return (
       <g className="Group" key={index}>
-        <line className="Line" x1={allocatedSpace[0]} y1={allocatedSpace[1]} x2={usedSpace[0]} y2={usedSpace[1]} />
+        {usedSpace !== 0 &&
+          <line className="Line" x1={allocatedSpace[0]} y1={allocatedSpace[1]} x2={usedSpace[0]} y2={usedSpace[1]} />
+        }
         <circle className="BigCircle" cx={allocatedSpace[0]} cy={allocatedSpace[1]} r="15" stroke={COLORS.ColorForegroundOrange} strokeWidth="10" fill={COLORS.ColorVersusLightOrange} />
-        <circle className="SmallCircle" cx={usedSpace[0]} cy={usedSpace[1]} r="10" fill={COLORS.ColorForegroundOrange} />
+        {usedSpace !== 0 &&
+          <circle className="SmallCircle" cx={usedSpace[0]} cy={usedSpace[1]} r="10" fill={COLORS.ColorForegroundOrange} />
+        }
         <foreignObject x={allocatedSpace[0] + 25} y={allocatedSpace[1] - 50}>
           <p className="City">
             {cityAndData.city}

@@ -108,7 +108,13 @@ class VersusPage extends React.Component {
       const toReturn = { data: [], city: null };
       toReturn.city = cityData.city;
       toReturn.data[0] = this.getSpaceValue(cityData.space);
-      toReturn.data[1] = this.getMoveValue(cityData.modalsplit.car, cityData.modalsplit.public, cityData.modalsplit.bike);
+      // Exclude Johannesburg, Moscow, Jakarta... as we have no data
+      debugger;
+      if (parseFloat(cityData.modalsplit.car) <= 0) {
+        toReturn.data[1] = [0,0,0];
+      } else {
+        toReturn.data[1] = this.getMoveValue(cityData.modalsplit.car, cityData.modalsplit.public, cityData.modalsplit.bike);
+      }
       return toReturn;
     });
     return data;
@@ -129,7 +135,10 @@ class VersusPage extends React.Component {
           <h2 className="Title">
             {this.props.city.name} vs.<br />the World
           </h2>
-          <VersusTriangle triangleData={this.renderTriangleData()} />
+          <VersusTriangle
+            triangleData={this.renderTriangleData()}
+            linkMoreInformation={this.props.linkMoreInformation}
+          />
           <VersusTable tableData={this.renderTableData()} />
         </div>
         <style jsx>{`
@@ -163,11 +172,16 @@ class VersusPage extends React.Component {
   }
 }
 
-const mapStateToProps = createStructuredSelector({
+const structuredSelector = createStructuredSelector({
   city: CitySelectors.makeSelectActualCity(),
-  triangleData: VersusSelectors.makeSelectVersusData(),
+  triangleData: VersusSelectors.makeSelectVersusData()
 });
 
 const mapDispatchToProps = () => ({});
 
-export default connect(mapStateToProps, mapDispatchToProps)(VersusPage);
+export default connect((state) => {
+  return {
+    ...structuredSelector(state),
+    linkMoreInformation: state.cityMeta.getIn(['metaData','sources','modalsplit'])
+  }
+}, mapDispatchToProps)(VersusPage);

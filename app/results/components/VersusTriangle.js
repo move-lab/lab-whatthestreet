@@ -14,6 +14,7 @@ class VersusTriangle extends React.PureComponent {
 
   static propTypes = {
     triangleData: React.PropTypes.arrayOf(React.PropTypes.object),
+    linkMoreInformation: React.PropTypes.string
   }
 
   render() {
@@ -37,15 +38,19 @@ class VersusTriangle extends React.PureComponent {
             About
           </h4>
           <p className="AboutText">
-            The mobility triangle shows how people move in each city - how much by car, bike, or public transport. <a href="#">More Information</a>
+            The mobility triangle shows how people move in each city - how much by car, bike, or public transport. <a href={this.props.linkMoreInformation} target="_blank">More Information</a>
           </p>
         </div>
         <div className="Description">
           <VersusIconSmall />
-          <p className="DescriptionText">
-            How Space is allocated
-            How People move
-          </p>
+          <div>
+            <p className="DescriptionText">
+              How Space is allocated
+            </p>
+            <p className="DescriptionText">
+              How People move
+            </p>
+          </div>
         </div>
         <style jsx>{`
           .Container {
