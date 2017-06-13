@@ -237,7 +237,7 @@
 
         "landmark": {
             "name": "Johannesburg Botanical Gardens",
-            "area": 0
+            "area": 981646.57
         },
         "sources": {
             "modalsplit": "http://www.brtdata.org/indicators/systems/modal_split__public_transport",
@@ -318,7 +318,7 @@
 
         "landmark": {
             "name": "Kolomenkoye Park",
-            "area": 0
+            "area": 2540243.27
         },
         "sources": {
             "modalsplit": "https://en.wikipedia.org/wiki/Modal_share",
@@ -406,9 +406,9 @@
             "cars": "http://www.stuttgarter-nachrichten.de/inhalt.rekord-bei-zulassungen-stuttgarter-fahren-mehr-aufs-auto-ab-als-je-zuvor.2962ab51-c57f-4b01-8fb2-a5a49f94b802.html"
         },
         "space": {
-            "rail": 22,
-            "car": 333,
-            "bike": 11
+            "rail": 3244164.67,
+            "car": 11149406.34,
+            "bike": 500162.19
         },
         "moving": {
             "rail": {
