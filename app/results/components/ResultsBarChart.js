@@ -11,6 +11,7 @@ import SocialShareButtons from './SocialShareButtons';
 // Images
 const ShockedEmoji = '/static/icons/Emoji_Shocked.svg';
 const UpsideDownEmoji = '/static/icons/Emoji_UpsideDown.svg';
+const GrinningEmoji = '/static/icons/Emoji_Grinning.svg';
 
 import * as COLORS from '../../shared/style/colors';
 import * as METRICS from '../../shared/style/metrics';
@@ -46,8 +47,8 @@ class ResultsBarChart extends React.PureComponent {
       return (
         <div className="Container">
           <SocialShareButtons result="good" suggestion={this.props.suggestion.get('name')} />
-          <h2 className="Title">You can do better</h2>
-          <h3 className="SubTitle">Your could move to {this.props.suggestion.get('name')}, that’s the city your guess matches best</h3>
+          <h2 className="Title">We know you can do better than this <img alt="GrinningEmoji" src={GrinningEmoji} /></h2>
+          <h3 className="SubTitle">Your should move to {this.props.suggestion.get('name')}, that’s the city your guess matches best</h3>
           <style jsx>{`
             .Container {
               width: 350px;
