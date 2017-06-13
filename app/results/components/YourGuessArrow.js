@@ -18,7 +18,7 @@ class YourGuessArrow extends React.PureComponent {
 
   render() {
     return (
-      <div className="Container" style={{ bottom: `${(this.props.area ? 10 : -10) + ((1 - this.props.data) * 320)}px` }}>
+      <div className="Container" style={{ bottom: `${(this.props.area ? -10 : -10) + ((1 - this.props.data) * 320)}px` }}>
         <p className="Text">
           Your<br />Guess
         </p>
