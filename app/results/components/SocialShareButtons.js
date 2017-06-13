@@ -23,8 +23,8 @@ class SocialShareButtons extends React.PureComponent {
         text = 'I am a mobility expert 😀';
         break;
     }
-    text += '\n… according to ';
-    const website = 'http://mobviz.moovellab.com';
+    text += ' … according to ';
+    const website = 'http://whatthestreet.moovellab.com';
 
     return `https://twitter.com/intent/tweet?text=${encodeURI(text)}&url=${encodeURI(website)}`;
   }
@@ -42,8 +42,8 @@ class SocialShareButtons extends React.PureComponent {
         text = 'I am a mobility expert :-)';
         break;
     }
-    text += '\n… according to ';
-    const website = 'http://mobviz.moovellab.com';
+    text += ' … according to ';
+    const website = 'http://whatthestreet.moovellab.com';
 
     return `https://www.facebook.com/dialog/share?app_id=224279401377906&display=popup&href=${encodeURI(website)}&quote=${encodeURI(text)}&redirect_uri=http%3A%2F%2Flocalhost%3A3000`;
   }
@@ -56,6 +56,7 @@ class SocialShareButtons extends React.PureComponent {
         <style jsx>{`
           .List {
             display: flex;
+            margin-bottom: 10px;
           }
 
           .Button {
