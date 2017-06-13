@@ -55,10 +55,6 @@ class Map extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (this.animating) {
-      return;
-    }
-
     if (newProps.isVisible === true) {
       if (newProps.areaType === 'lanes' &&
           newProps.laneData !== null) {
@@ -74,6 +70,10 @@ class Map extends Component {
           newProps.laneData !== null) {
         this.renderData(newProps);
       }
+    } else {
+      // If we have closed it, stop animating
+      this.animating = false;
+      TWEEN.removeAll();
     }
   }
 
