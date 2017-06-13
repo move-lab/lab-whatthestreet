@@ -8,6 +8,8 @@ import Router from 'next/router';
 import * as METRICS from '../../shared/style/metrics';
 import * as COLORS from '../../shared/style/colors';
 
+import { computeSvgHeights } from '../../shared/utils/svgHeights';
+
 import { lanes, parkingspace } from '../../statemanagement/constants/identifiersConstants';
 
 import {
@@ -198,7 +200,7 @@ class VehicleSlide extends React.PureComponent {
               {this.props.vehicle !== 'rail' &&
                 this.renderParkingSpaces()
               }
-              {this.props.parkingLoaded &&
+              {this.props.parkingLoaded && this.props.parkingSvgHeight > 0 &&
                 <VehicleSlideEndOfParkingSummary />
               }
             </div>
@@ -285,6 +287,7 @@ class VehicleSlide extends React.PureComponent {
 export default connect((state) => {
   return {
     actualVehicle: state.vehicles.get('vehicle'),
-    citySlug: state.city.getIn(['actual_city','slug'])
+    citySlug: state.city.getIn(['actual_city','slug']),
+    parkingSvgHeight: computeSvgHeights(state.cityMeta).getIn(['bike', 'parking', 'height'])
   }
 })(VehicleSlide);

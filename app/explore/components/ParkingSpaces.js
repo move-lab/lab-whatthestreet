@@ -90,7 +90,9 @@ class ParkingSpaces extends React.PureComponent {
       this.reducedPolygonData = this.reducePolygonData();
       this.addClickHandler();
       this.props.onLoaded(this.element.scrollHeight);
-    }, (error) => { window.console.log(error); });
+    }, (error) => { 
+      window.console.log(error);
+    });
   }
 
   addClickHandler() {
