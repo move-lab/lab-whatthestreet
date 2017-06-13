@@ -43,7 +43,9 @@ class ParkingSpaces extends React.PureComponent {
     }
 
     if (!this.state.loading) {
-      this.doesScroll(nextProps.scrollPosition);
+      if(this.props.scrollPosition !== nextProps.scrollPosition) {
+        this.doesScroll(nextProps.scrollPosition);
+      }
     }
   }
 
@@ -94,7 +96,11 @@ class ParkingSpaces extends React.PureComponent {
   addClickHandler() {
     const polygons = this.element.childNodes[this.svgNodeIndex].getElementsByTagName('polygon');
     for (let i = 0; i < polygons.length; i += 1) {
-      polygons[i].addEventListener('click', (e) => this.props.onPathClicked(this.getPolygonData(e.target), e));
+      polygons[i].addEventListener('click', (e) => {
+        const polygonData = this.getPolygonData(e.target);
+        this.props.onPathClicked(polygonData, e)
+        this.activatePolygon(polygonData.id)
+      });
     }
   }
 
@@ -124,6 +130,8 @@ class ParkingSpaces extends React.PureComponent {
       return isInRange(item.coordinates.minY, item.coordinates.maxY, ST)
     });
 
+    console.log(lastKnownScrollPosition);
+
     if (activePolygon) {
       this.props.onItemSelected();
       this.activatePolygon(activePolygon.id);
@@ -134,7 +142,7 @@ class ParkingSpaces extends React.PureComponent {
     this.props.onPolygonSelected(this.getPolygonData(polygon))
   }
 
-  activatePolygon(id) {
+  activatePolygon(id, force) {
     if (!this.state.loading) {
       const svgElement = this.element.childNodes[this.svgNodeIndex].getElementById(id);
 

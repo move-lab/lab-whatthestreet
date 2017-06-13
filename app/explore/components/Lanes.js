@@ -45,7 +45,9 @@ class Lanes extends React.PureComponent {
     }
 
     if (!this.state.loading) {
-      this.doesScroll(nextProps.scrollPosition);
+      if(this.props.scrollPosition !== nextProps.scrollPosition) {
+        this.doesScroll(nextProps.scrollPosition);
+      }
     }
   }
 
@@ -102,7 +104,9 @@ class Lanes extends React.PureComponent {
   }
 
   pathClicked(event) {
-    this.props.onPathClicked(this.getPathData(event.target), event);
+    const pathData = this.getPathData(event.target);
+    this.props.onPathClicked(pathData, event);
+    this.activatePath(pathData.id)
   }
 
   reducePathData() {
