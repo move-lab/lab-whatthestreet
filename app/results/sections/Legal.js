@@ -33,7 +33,7 @@ class Legal extends React.Component {
                 Resident Artist
               </p>
               <p className="Name">
-                Micheal Szell
+                Michael Szell
               </p>
               <p className="Position">
                 Resident Researcher
@@ -53,7 +53,7 @@ class Legal extends React.Component {
               Concept and Coding
             </p>
             <p className="Name">
-              Micheal Szell<br />Stephan Bogner
+              Michael Szell<br />Stephan Bogner
             </p>
             <p className="Label">
               Direction
@@ -63,6 +63,9 @@ class Legal extends React.Component {
             </p>
             <p className="Label">
               Website Implementation
+            </p>
+            <p className="Name">
+              Thibault Durand
             </p>
             <p className="Name">
               Tobias Lauer
