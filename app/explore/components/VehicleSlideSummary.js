@@ -78,14 +78,14 @@ class VehicleSlideSummary extends React.PureComponent {
           After scrolling over an area of {this.state.FH.format(Math.round(this.props.cumulativeArea))} m<sup>2</sup> you ran out of {vehicleFormatted} space. This area is about {this.getHumanArea(this.props.cumulativeArea)}.
         </p>
         <div className="Summary">
-          <VehicleSpaceComparisonGraph mode="lanes" />
           <div className="SummaryCTAWrapper">
             <RoundedButton
               onClick={() => this.props.goToResults()}
               disabled={this.props.isRouting}
               loading={this.props.isRouting}
+              arrowDown
             >
-              Results
+              Go to Results
             </RoundedButton>
             <div className="SummaryCTASeparator"></div>
             {this.getNextVehicleName() &&
@@ -97,6 +97,7 @@ class VehicleSlideSummary extends React.PureComponent {
               </RoundedButton>
             }
           </div>
+          <VehicleSpaceComparisonGraph mode="lanes" />
         </div>
         
         <style jsx>{`
@@ -132,18 +133,21 @@ class VehicleSlideSummary extends React.PureComponent {
 
           .Summary {
             display: flex;
-            flex-direction: row;
-            margin-top: 60px;
+            flex-direction: column;
+            justify-content: center;
           }
 
           .SummaryCTAWrapper {
             display: flex;
-            flex-direction: column;
-            padding-top: 50px;
+            flex-direction: row;
+            margin-bottom:50px; 
+            margin-top: 30px;
+            justify-content: center;
+            align-items: center;
           }
 
           .SummaryCTASeparator {
-            height: 20px;
+            width: 20px;
           }
         `}</style>
       </section>
