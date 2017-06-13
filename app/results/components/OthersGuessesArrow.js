@@ -18,8 +18,9 @@ class OthersGuessesArrow extends React.PureComponent {
   })
 
   renderAbove() {
+    const secondItemOfSortedData = this.getSortedData(this.props.data)[1];
     return (
-      <div className="Container" style={{ bottom: `${145 + (this.getSortedData(this.props.data)[1].car * 320)}px` }}>
+      <div className="Container" style={{ bottom: `${145 + (secondItemOfSortedData && secondItemOfSortedData.car * 320)}px` }}>
         <p className="Text">
           Other<br />People’s<br />Guesses
         </p>
@@ -45,8 +46,9 @@ class OthersGuessesArrow extends React.PureComponent {
   }
 
   renderBelow() {
+    const lastItemOfSortedData = this.getSortedData(this.props.data)[this.props.data.length - 1];
     return (
-      <div className="Container" style={{ top: `${145 + ((this.getSortedData(this.props.data)[this.props.data.length - 1].car * 320) + this.props.offset)}px` }}>
+      <div className="Container" style={{ top: `${145 + (lastItemOfSortedData && lastItemOfSortedData.car * 320) + this.props.offset}px` }}>
         <img alt="ArrowOtherGuess" src={ArrowOtherGuess} style={{ transform: 'scale(1, -1)' }} />
         <p className="Text">
           Other<br />People’s<br />Guesses
