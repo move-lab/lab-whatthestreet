@@ -38,6 +38,7 @@ class StatsTableRow extends React.PureComponent {
             text-align: right;
             font-size: 24px;
             line-height: 51px;
+            width: 80px;
             font-weight: 200;
             font-family: 'LarsseitLight';
           }
