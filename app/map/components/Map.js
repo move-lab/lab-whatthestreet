@@ -177,7 +177,7 @@ class Map extends Component {
       const parkingRotatedStartBbox = bbox(parkingRotatedStart);
       const parkingEndBbox = bbox(parkingFinal);
       this.map.fitBounds(parkingRotatedStartBbox, {
-        maxZoom: 19,
+        maxZoom: 18,
         padding: 100,
         linear: true,
         duration: 0
@@ -206,7 +206,7 @@ class Map extends Component {
       // Fit bounds to end position
       setTimeout(() => {
         this.map.fitBounds(parkingEndBbox, {
-          maxZoom: 19,
+          maxZoom: 18,
           padding: 200,
           linear: true,
           duration: 1000
@@ -240,12 +240,12 @@ class Map extends Component {
       ]
       // Get max zoom lvl
       const meterPerPixel = 1.2672955975;
-      const maxZoom = getZoomLevel(props.laneData.properties.origin.lat, meterPerPixel);
+      const initZoom = getZoomLevel(props.laneData.properties.origin.lat, meterPerPixel);
 
       // Init map at the position of the street
       this.map.jumpTo({
         center: center,
-        zoom: maxZoom
+        zoom: initZoom
       });
 
       // Compute bbox start and bbox end
@@ -261,7 +261,7 @@ class Map extends Component {
 
       // Fit bounds to the street folded
       this.map.fitBounds(bboxFolded, {
-        maxZoom: maxZoom,
+        maxZoom: 18,
         padding: 100,
         linear: true,
         duration: 0
@@ -275,7 +275,7 @@ class Map extends Component {
       setTimeout(() => {
         // Fit bounds to the street folded
         this.map.fitBounds(bboxUnfolded, {
-          maxZoom: maxZoom,
+          maxZoom: 18,
           padding: 100,
           linear: true,
           duration: 1000
