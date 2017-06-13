@@ -29,6 +29,15 @@ class VehicleSlideEndOfParkingSummary extends React.PureComponent {
     }
   }
 
+  shouldComponentUpdate() {
+    // do not update after reaching end of parking space
+    if(!this.props.parkingInFocus) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   formatFirstLetterUpperCase(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
@@ -123,6 +132,7 @@ export default connect((state) => {
     activeVehicle: state.vehicles.get('vehicle'),
     isRouting: state.app.get('isRouting'),
     cityLandmark: state.cityMeta.getIn(['metaData','landmark']).toJS(),
-    cumulativeArea: state.lanes.get('cumulativeArea')
+    cumulativeArea: state.lanes.get('cumulativeArea'),
+    parkingInFocus: state.explore.get('parkingInFocus')
   }
 })(VehicleSlideEndOfParkingSummary);
