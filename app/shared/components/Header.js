@@ -106,7 +106,7 @@ class Header extends React.PureComponent {
     const cityLandmarkArea = this.props.cityLandmark.area;
     if (area < 225) {
       return `${this.state.FH1Digit.format(area)} m²`;
-    } else if (area < 71400) {
+    } else if (area < 225*1000) { // change at 1000 playgrounds
       const playgroundArea = 225;
       const nbPlayground = Math.round( area / playgroundArea * 10 ) / 10;
       const playgroundLabel = nbPlayground > 1 ? 'Playgrounds' : 'Playground';
