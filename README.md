@@ -31,6 +31,10 @@ To import the data in the mongodb, you should:
 
 - copy the mongoimport.sh script that is at the root of this repository to the folder you just downloaded.
 
+Eg: you should have this kind of tree structure:
+
+
+
 - run the script ./mongoimport.sh 
 
 - this script should unzip the data for each city and import it in the mongodb, it is also trashing any previous data to make sure we have the new data when updating.
