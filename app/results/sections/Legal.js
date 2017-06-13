@@ -53,7 +53,10 @@ class Legal extends React.Component {
               Concept and Coding
             </p>
             <p className="Name">
-              Michael Szell<br />Stephan Bogner
+              Michael Szell
+            </p>
+            <p className="Name">
+              Stephan Bogner
             </p>
             <p className="Label">
               Direction
@@ -95,14 +98,14 @@ class Legal extends React.Component {
               OpenStreetMap
             </p>
             <p className="Text">
-              <a href="#">OpenStreetMap</a> is a free alternative to services like Google Maps. Please contribute, if you notice poor data quality.
+              <a href="https://www.openstreetmap.org" target="_blank">OpenStreetMap</a> is a free alternative to services like Google Maps. Please contribute, if you notice poor data quality.
             </p>
             <p className="Text">
-              <a href="#">Modal Share</a> for
+              <a href="https://en.wikipedia.org/wiki/Modal_share" target="_blank">Modal Share</a> for {' '}
               {this.props.cities.map((city, i) => i === this.props.cities.length - 1 ? (<a href={`/${city.slug}`} key={i}>{city.name}.</a>) : (<a href={`/${city.slug}`} key={i}>{city.name}, </a>))}
             </p>
             <p className="Text">
-              Emoji provided free by <a href="#">EmojiOne.</a>
+              Emoji provided free by <a href="https://www.emojione.com/" target="_blank">EmojiOne.</a>
             </p>
           </div>
         </div>

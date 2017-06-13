@@ -19,22 +19,22 @@ class FooterBar extends React.PureComponent {
           <img alt="Logo Moovel Lab" src={logoMoovelLab} />
         </li>
         <li className="Item">
-          <FooterNavLink link="#" name="Follow us on Twitter" />
+          <FooterNavLink link="https://twitter.com/moovelLab" name="Follow us on Twitter" />
         </li>
         <li className="Item">
-          <FooterNavLink link="#" name="About" />
+          <FooterNavLink link="http://lab.moovel.com/about" name="About" />
         </li>
         <li className="Item">
-          <FooterNavLink link="#" name="Contact" />
+          <FooterNavLink link="mailto:hello@lab.moovel.com" name="Contact" />
         </li>
         <li className="Item">
-          <FooterNavLink link="#" name="Privacy Policy" />
+          <FooterNavLink link="https://www.moovel.com/en/DE/privacy-policy" name="Privacy Policy" />
         </li>
         <li className="Item">
-          <FooterNavLink link="#" name="Company" />
+          <FooterNavLink link="http://lab.moovel.com/provider" name="Company" />
         </li>
         <li className="Item">
-          <FooterNavLink link="#" name="Jobs" />
+          <FooterNavLink link="http://lab.moovel.com/jobs" name="Jobs" />
         </li>
       </ul>
       <style jsx>{`
