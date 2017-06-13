@@ -124,18 +124,18 @@ class Map extends Component {
     if(this.animating) {
       return;
     }
-    if(this.state.activeLayer === "satellite-streets-v9") {
-      const streetLayer = "streets-v9"
+    if(this.state.activeLayer === identifiers.satelliteLayer) {
+      const streetLayer = identifiers.streetLayer;
       this.setState({
         activeLayer: streetLayer
       });
-      this.map.setStyle(`mapbox://styles/mapbox/${streetLayer}`, true);
+      this.map.setStyle(`mapbox://styles/${streetLayer}`, true);
     } else {
-      const satelliteLayer = "satellite-streets-v9"
+      const satelliteLayer = identifiers.satelliteLayer
       this.setState({
         activeLayer: satelliteLayer
       });
-      this.map.setStyle(`mapbox://styles/mapbox/${satelliteLayer}`, true);
+      this.map.setStyle(`mapbox://styles/${satelliteLayer}`, true);
     }
   }
 
@@ -383,7 +383,7 @@ class Map extends Component {
   render() {
     return (
       <ReactMapboxGl
-        style={`mapbox://styles/mapbox/${this.state.activeLayer}`}
+        style={`mapbox://styles/${this.state.activeLayer}`}
         accessToken="***REMOVED***"
         containerStyle={containerStyle}
         onStyleLoad={this.onMapLoaded}

@@ -17,7 +17,7 @@ class MapActions extends React.PureComponent {
     return (
       <div className="MapActions">
         <div
-          className={`LayerSwitch ${this.props.activeLayer}`}
+          className={`LayerSwitch ${this.props.activeLayer === identifiers.satelliteLayer ? 'satellite' : 'street'}`}
           onClick={this.props.toggleLayer}
         >
           {this.props.activeLayer === identifiers.satelliteLayer &&
@@ -73,16 +73,12 @@ class MapActions extends React.PureComponent {
             cursor: pointer;
           }
 
-          .LayerSwitch.${identifiers.satelliteLayer} {
+          .LayerSwitch.satellite {
             background-image: url("/static/images/layer-road.jpg");
           }
 
-          .LayerSwitch.${identifiers.streetLayer} {
+          .LayerSwitch.street {
             background-image: url("/static/images/layer-satellite.jpg");
-          }
-
-          .LayerSwitch.${identifiers.streetLayer} .LayerSwitchText {
-            color: white;
           }
 
           .LayerSwitchText {
