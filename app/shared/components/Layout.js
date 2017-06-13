@@ -26,6 +26,7 @@ class Layout extends Component {
           <title>What the Street!? - moovel lab</title>
           <meta charset='utf-8' />
           <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+          <meta name="description" content="Who owns the city? Explore the distribution of mobility space amongst urban traffic. Discover every parking lot or street of 23 metropolises." />
           <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/4.1.0/sanitize.min.css"/>
           <link rel="shortcut icon" href="about:blank" />
         </Head>
