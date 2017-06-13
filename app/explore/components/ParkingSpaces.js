@@ -130,8 +130,6 @@ class ParkingSpaces extends React.PureComponent {
       return isInRange(item.coordinates.minY, item.coordinates.maxY, ST)
     });
 
-    console.log(lastKnownScrollPosition);
-
     if (activePolygon) {
       this.props.onItemSelected();
       this.activatePolygon(activePolygon.id);

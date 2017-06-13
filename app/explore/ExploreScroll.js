@@ -7,6 +7,8 @@ import VehicleSlide from './components/VehicleSlide';
 import VehicleSlidesOverlay from './components/VehicleSlidesOverlay';
 import VehicleSlideSummary from './components/VehicleSlideSummary';
 
+import { computeSvgHeights } from '../shared/utils/svgHeights';
+
 import MapModal from '../map/MapModal';
 
 import { lanes } from '../statemanagement/constants/identifiersConstants';
@@ -179,15 +181,33 @@ class ExploreScroll extends React.PureComponent {
   }
 
   scrollToTop() {
-    window.scroll({ 
-      top: 0,
-      left: 0,
-      behavior: 'smooth' 
-    });
+    const parkingEndPosition = this.props.svgHeights.getIn([this.props.activeVehicle,'parking','height']) + 280;
+    if(window.scrollY <= parkingEndPosition) {
+      window.scroll({ 
+        top: 0,
+        left: 0,
+        behavior: 'smooth' 
+      });
+    } else {
+      window.scroll({ 
+        top: parkingEndPosition,
+        left: 0,
+        behavior: 'smooth' 
+      });
+    } 
   }
 
   scrollToEnd() {
-    document.querySelector('.VehicleSlideSummary').scrollIntoView({ behavior: 'smooth' });
+    const parkingEndPosition = this.props.svgHeights.getIn([this.props.activeVehicle,'parking','height']) + 280;
+    if(window.scrollY < parkingEndPosition) {
+      window.scroll({ 
+        top: parkingEndPosition,
+        left: 0,
+        behavior: 'smooth' 
+      });
+    } else {
+      document.querySelector('.VehicleSlideSummary').scrollIntoView({ behavior: 'smooth' });
+    }
   }
 
   render() {
@@ -260,6 +280,7 @@ export default connect((state) => {
     selectedLaneId: state.lanes.get('id'),
     selectedLaneRailParkingId: state.lanes.getIn(['laneRailParking','id']),
     selectedParkingId: state.parking.get('id'),
-    selectedParkingData: state.parking.toJS()
+    selectedParkingData: state.parking.toJS(),
+    svgHeights: computeSvgHeights(state.cityMeta)
   }
 })(ExploreScroll);
