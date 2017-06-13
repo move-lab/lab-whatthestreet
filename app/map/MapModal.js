@@ -88,6 +88,7 @@ class MapModal extends PureComponent {
             parkingData={this.props.parkingData && this.props.parkingData.toJS()}
             laneData={this.props.laneData && this.props.laneData.toJS()}
             onMapLoaded={this.onMapLoaded}
+            isVisible={this.props.isVisible}
           />
         }
         <style jsx>{`

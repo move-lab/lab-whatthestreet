@@ -58,22 +58,22 @@ class Map extends Component {
     if (this.animating) {
       return;
     }
-    if (newProps.areaType === 'lanes' &&
-        newProps.laneData !== null &&
-        newProps.laneData._id !== this.lastComputedId) {
-      this.renderData(newProps);
-    }
-    if (newProps.areaType === 'parking' &&
-        newProps.activeVehicle !== 'rail' &&
-        newProps.parkingData !== null &&
-        newProps.parkingData.id !== this.lastComputedId) {
-      this.renderData(newProps);
-    }
-    if (newProps.areaType === 'parking' &&
-        newProps.activeVehicle === 'rail' &&
-        newProps.laneData !== null &&
-        newProps.laneData._id !== this.lastComputedId) {
-      this.renderData(newProps);
+
+    if (newProps.isVisible === true) {
+      if (newProps.areaType === 'lanes' &&
+          newProps.laneData !== null) {
+        this.renderData(newProps);
+      }
+      if (newProps.areaType === 'parking' &&
+          newProps.activeVehicle !== 'rail' &&
+          newProps.parkingData !== null) {
+        this.renderData(newProps);
+      }
+      if (newProps.areaType === 'parking' &&
+          newProps.activeVehicle === 'rail' &&
+          newProps.laneData !== null) {
+        this.renderData(newProps);
+      }
     }
   }
 
