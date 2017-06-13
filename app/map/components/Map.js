@@ -387,6 +387,7 @@ class Map extends Component {
         accessToken="***REMOVED***"
         containerStyle={containerStyle}
         onStyleLoad={this.onMapLoaded}
+        dragRotate={false}
       >
         <ScaleControl/>
         <MapActions
