@@ -309,7 +309,10 @@ class FuturePage extends React.Component {
                     </div>
                     { this.getParkingArray(true).map((item, index) => this.renderParkingIcon(item, index)) }
                   </div>
-                  <p>Based of the study <b> {studyName} </b></p>
+                  <p><a href="http://www.isv.uni-stuttgart.de/vuv/news/Downloads/MEGAFON_Abschlussbericht_V028_20161212.pdf" target="_blank">
+                      Based on this study
+                    </a>
+                  </p>
                 </section>
 
               </div>
