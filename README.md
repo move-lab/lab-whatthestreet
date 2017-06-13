@@ -33,7 +33,7 @@ To import the data in the mongodb, you should:
 
 Eg: you should have this kind of tree structure:
 
-
+![screen shot 2017-06-13 at 09 05 30](https://user-images.githubusercontent.com/533590/27068220-9621dfd6-5017-11e7-90d6-e77e99023b74.png)
 
 - run the script ./mongoimport.sh 
 
