@@ -28,7 +28,19 @@ class Layout extends Component {
           <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
           <meta name="description" content="Who owns the city? Explore the distribution of mobility space amongst urban traffic. Discover every parking lot or street of 23 metropolises." />
           <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/4.1.0/sanitize.min.css"/>
-          <link rel="shortcut icon" href="about:blank" />
+          <link rel="apple-touch-icon" href="/static/favicon/apple-touch-icon.png" />
+          <link rel="icon" type="image/png" href="/static/favicon/favicon.png" />
+          <meta property="og:title" content="What the Street!? - moovel lab" />
+          <meta property="og:url" content="http://whatthestreet.moovellab.com" />
+          <meta property="og:image" content="http://whatthestreet.moovellab.com/static/images/wts-meta@2x.png" />
+          <meta property="og:description" content="Who owns the city? Explore the distribution of mobility space amongst urban traffic. Discover every parking lot or street of 23 metropolises." />
+          <meta property="og:type" content="website" />
+          <meta property="og:site_name" content="moovel lab" />
+          <meta name="twitter:card" content="summary" />
+          <meta name="twitter:site" content="@moovelLab" />
+          <meta name="twitter:title" content="What the Street!? - moovel lab" />
+          <meta name="twitter:description" content="Who owns the city? Explore the distribution of mobility space amongst urban traffic. Discover every parking lot or street of 23 metropolises." />
+          <meta name="twitter:image" content="http://whatthestreet.moovellab.com/static/images/wts-meta@2x.png" />
         </Head>
         {this.props.children}
         <style jsx global>{`
