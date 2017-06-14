@@ -144,14 +144,14 @@ class Header extends React.PureComponent {
                 }}
               >
                 <a
-                  className="Title"
+                  className="Title Link"
                 >
                   {this.props.title}
                 </a>
               </Link>
               <Link prefetch href="/about">
                 <a
-                  className="AboutLink"
+                  className="AboutLink Link"
                 >
                   About
                 </a>
@@ -421,6 +421,10 @@ class Header extends React.PureComponent {
 
             .SearchButton:hover,.SearchButton:focus,.SearchButton:active,
             .HomeButton:hover,.HomeButton:focus,.HomeButton:active {
+              opacity: 0.5;
+            }
+
+            .Link:hover,.Link:focus,.Link:active {
               opacity: 0.5;
             }
 

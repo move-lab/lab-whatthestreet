@@ -40,6 +40,10 @@ class SocialMediaButton extends React.PureComponent {
             list-style: none;
             cursor: pointer;
           }
+
+          .Button:hover,.Button:focus,.Button:active {
+            opacity: 0.5;
+          }
         `}</style>
       </button>
     );

@@ -64,6 +64,10 @@ class SocialShareButtons extends React.PureComponent {
             cursor: pointer;
             padding: 0 5px 0 0;
           }
+
+          .Button:hover,.Button:focus,.Button:active {
+            opacity: 0.5;
+          }
         `}</style>
       </div>
     );
