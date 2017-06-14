@@ -168,11 +168,11 @@ class Header extends React.PureComponent {
                       <img alt="HomeIcon" className="HomeIcon" src={homeIcon} /><span>Home</span>
                     </button>
                   </div>
-                  <div className="SearchButton">
+                  {/*<div className="SearchButton">
                     <button onClick={() => console.log('TODO onsearch CLICK')} >
                       <img alt="SearchIcon" src={searchIcon} /><span>Search</span>
                     </button>
-                  </div>
+                  </div>*/}
                 </div>
                 <div className="SearchWrapper">
                   <div className="SearchBox">
@@ -268,6 +268,7 @@ class Header extends React.PureComponent {
             .ContainerLeft {
               align-items: flex-start;
               flex-basis: 31%;
+              height: 116px;
             }
 
             .ContainerCenter {
@@ -280,6 +281,7 @@ class Header extends React.PureComponent {
               flex-basis: 31%;
               align-items: flex-end;
               text-align: right;
+              height: 116px;
             }
 
             .VehicleAndAreaM2 {
@@ -413,13 +415,12 @@ class Header extends React.PureComponent {
             }
 
             .SearchButton,.HomeButton {
-              padding: 10px 0;
               cursor: pointer;
               margin-right: 10px;
             }
 
             .SearchButton:hover,.SearchButton:focus,.SearchButton:active,
-            .HomeButton:hover,.HomeButton:focus,.HomeButton:active, {
+            .HomeButton:hover,.HomeButton:focus,.HomeButton:active {
               opacity: 0.5;
             }
 
