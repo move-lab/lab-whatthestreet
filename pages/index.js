@@ -29,20 +29,22 @@ class Index extends Component {
       } else {
         const clientIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
         // Try to get closest city from api
-        await axios.get(`${baseUrl}/api/v1/cities/nearest/${clientIP}`,{
+        await axios.post(`${baseUrl}/api/v1/nearestCity`,{
+          ip: clientIP
+          },{
           headers: {
             "Authorization" : req.headers.authorization
           }
         }).then((response) => {
           console.log('closest city is')
-          return store.dispatch(CityActions.selectCity(response.slug));
+          return store.dispatch(CityActions.selectCity(response.data.slug));
         }, (error) => {
           // default to berlin
           console.log('default to berlin')
           return store.dispatch(CityActions.selectCity("berlin"));
         });
       }
-      if(req && req.query.bike && req.query.rail && req.query.car) {
+      if(req && req.query && req.query.bike && req.query.rail && req.query.car) {
         await store.dispatch(GuessActions.setOwnGuess({
           bike: parseFloat(req.query.bike),
           rail: parseFloat(req.query.rail),

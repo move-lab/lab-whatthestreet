@@ -58,7 +58,7 @@ exports.closestCityToGuess = (request, response) => {
  */
 exports.getNerestCity = (request, response) => {
   // const ip = '185.158.103.43';
-  const ip = request.params.ip;
+  const ip = request.body.ip;
   console.log('Client ip is: ' + ip);
 
   const geo = geoip.lookup(ip);

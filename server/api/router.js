@@ -9,6 +9,8 @@ router.get('/', require('./routes/rootRoute'));
 const cityRoute = require('./routes/cityRoute');
 const guessRoute = require('./routes/guessRoute');
 
+// NearestCity route
+router.route('/nearestCity').post(cityRoute.getNerestCity);
 
 // City Routes
 router.route('/cities/').get(require('./routes/cityRoute').getAllCities);
@@ -21,7 +23,6 @@ router.use('/cities/:city', (request, response, next) => {
   next();
 });
 
-router.route('/cities/nearest/:ip').get(cityRoute.getNerestCity);
 router.route('/cities/:city').get(cityRoute.getInfo);
 
 router.route('/cities/:city/streets').get(cityRoute.getStreets);
