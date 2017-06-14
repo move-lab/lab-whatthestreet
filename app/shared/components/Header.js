@@ -267,13 +267,19 @@ class Header extends React.PureComponent {
 
             .ContainerLeft {
               align-items: flex-start;
-              flex-basis: 35%;
+              flex-basis: 31%;
             }
 
             .ContainerCenter {
               display: flex;
-              flex-basis: 30%;
+              flex-basis: 38%;
               justify-content: center;
+            }
+
+            .ContainerRight {
+              flex-basis: 31%;
+              align-items: flex-end;
+              text-align: right;
             }
 
             .VehicleAndAreaM2 {
@@ -293,19 +299,13 @@ class Header extends React.PureComponent {
 
             .AreaHuman {
               margin: 0;
-              font-size: 38px;
+              font-size: 35px;
               font-weight: 500;
-              max-width: 500px;
+              max-width: 463.1px;
               white-space: nowrap;
               text-overflow: ellipsis;
               overflow: hidden;
               line-height: 1.15em;
-            }
-
-            .ContainerRight {
-              flex-basis: 35%;
-              align-items: flex-end;
-              text-align: right;
             }
 
             .AboutLink {
@@ -327,10 +327,11 @@ class Header extends React.PureComponent {
               margin: 0;
               font-size: 24px;
               font-weight: 500;
-              max-width: 425px;
+              max-width: 378.2px;
               white-space: nowrap;
               overflow: hidden;
               text-overflow: ellipsis;
+              line-height: 1.2em;
             }
             
             .Container :global(.InfoLabel) :global(p) {
@@ -339,7 +340,7 @@ class Header extends React.PureComponent {
               font-size: 24px;
               line-height: 1.2;
               font-weight: 300;
-              max-width: 425px;
+              max-width: 400px;
               white-space: nowrap;
               overflow: hidden;
               text-overflow: ellipsis;
