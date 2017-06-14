@@ -27,7 +27,7 @@ class Index extends Component {
       if(req && req.params.cityName) {
         await store.dispatch(CityActions.selectCity(req.params.cityName));
       } else {
-        const clientIP = req.ip;
+        const clientIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
         // Try to get closest city from api
         await axios.get(`${baseUrl}/api/v1/cities/nearest/${clientIP}`,{
           headers: {
