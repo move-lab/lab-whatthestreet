@@ -109,7 +109,6 @@ class VersusPage extends React.Component {
       toReturn.city = cityData.city;
       toReturn.data[0] = this.getSpaceValue(cityData.space);
       // Exclude Johannesburg, Moscow, Jakarta... as we have no data
-      debugger;
       if (parseFloat(cityData.modalsplit.car) <= 0) {
         toReturn.data[1] = [0,0,0];
       } else {
