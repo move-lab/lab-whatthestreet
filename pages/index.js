@@ -9,7 +9,7 @@ import Home from '../app/home/Home';
 import Header from '../app/shared/components/Header';
 
 import { CityActions, GuessActions } from '../app/statemanagement/actions';
-import { setBaseUrl, initRouterWatcher } from '../app/statemanagement/AppStateManagement';
+import { setBaseUrl, setAuthHeader, initRouterWatcher } from '../app/statemanagement/AppStateManagement';
 
 class Index extends Component {
 
@@ -19,6 +19,9 @@ class Index extends Component {
     if (isServer) {
       const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
       await store.dispatch(setBaseUrl(baseUrl));
+      if (req) {
+        await store.dispatch(setAuthHeader(req.headers.authorization))
+      }
       await store.dispatch(CityActions.loadCities());
       // We may render from city/:cityName and select that city by default
       if(req && req.params.cityName) {
@@ -26,7 +29,11 @@ class Index extends Component {
       } else {
         const clientIP = req.ip;
         // Try to get closest city from api
-        await axios.get(`${baseUrl}/api/v1/cities/nearest/${clientIP}`).then((response) => {
+        await axios.get(`${baseUrl}/api/v1/cities/nearest/${clientIP}`,{
+          headers: {
+            "Authorization" : req.headers.authorization
+          }
+        }).then((response) => {
           console.log('closest city is')
           return store.dispatch(CityActions.selectCity(response.slug));
         }, (error) => {

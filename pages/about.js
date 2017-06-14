@@ -8,7 +8,7 @@ import AboutPage from '../app/results/AboutPage';
 import Header from '../app/shared/components/Header';
 
 import { CityActions } from '../app/statemanagement/actions';
-import { setBaseUrl, initRouterWatcher } from '../app/statemanagement/AppStateManagement';
+import { setBaseUrl, setAuthHeader, initRouterWatcher } from '../app/statemanagement/AppStateManagement';
 
 class About extends Component {
 
@@ -17,6 +17,9 @@ class About extends Component {
     if (isServer) {
       const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
       await store.dispatch(setBaseUrl(baseUrl));
+      if (req) {
+        await store.dispatch(setAuthHeader(req.headers.authorization))
+      }
       await store.dispatch(CityActions.loadCities());
     }
     return;
