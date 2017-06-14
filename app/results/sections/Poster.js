@@ -35,18 +35,27 @@ class PosterSection extends React.PureComponent {
           </h2>
           <div className="Content">
             <div className="Left">
-              <div className="Poster BigPoster">
+              <div 
+                className="Poster BigPoster"
+                onClick={this.goToPosterShop}
+              >
                 <img src="/static/poster/example.png" />
                 {this.renderShoppingBtn()}
               </div>
             </div>
             <div className="Right">
               <div className="PosterGroup">
-                <div className="Poster SmallPoster Left">
+                <div
+                  className="Poster SmallPoster Left"
+                  onClick={this.goToPosterShop}
+                >
                   <img src="/static/poster/example.png" />
                   {this.renderShoppingBtn()}
                 </div>
-                <div className="Poster SmallPoster Right">
+                <div
+                  className="Poster SmallPoster Right"
+                  onClick={this.goToPosterShop}
+                >
                   <img src="/static/poster/example.png" />
                   {this.renderShoppingBtn()}
                 </div>
@@ -107,6 +116,11 @@ class PosterSection extends React.PureComponent {
           .Poster {
             margin-right: 80px;
             position: relative;
+            cursor: pointer;
+          }
+
+          .Poster:hover,.Poster:active,.Poster:focus {
+            opacity: 0.8;
           }
 
           .Poster img {

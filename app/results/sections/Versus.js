@@ -181,6 +181,6 @@ const mapDispatchToProps = () => ({});
 export default connect((state) => {
   return {
     ...structuredSelector(state),
-    linkMoreInformation: state.cityMeta.getIn(['metaData','sources','modalsplit'])
+    linkMoreInformation: "https://en.wikipedia.org/wiki/Modal_share"
   }
 }, mapDispatchToProps)(VersusPage);

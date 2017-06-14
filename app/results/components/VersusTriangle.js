@@ -110,7 +110,7 @@ class VersusTriangle extends React.PureComponent {
           }
 
           .AboutText a {
-            font-family: 'Larsseit';
+            font-family: 'LarsseitLight';
             margin: 0;
             padding-left: 3px;
           }
