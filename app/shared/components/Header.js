@@ -452,7 +452,7 @@ const mapStateToProps = (state) => {
     ownGuess: state.guess.get('own'),
     citySlug: state.city.getIn(['actual_city','slug']),
     activeVehicle: state.vehicles.get('vehicle'),
-    cityLandmark: state.cityMeta.getIn(['metaData','landmark']).toJS(),
+    cityLandmark: state.cityMeta.getIn(['metaData','landmark']) && state.cityMeta.getIn(['metaData','landmark']).toJS(),
     laneRailParking: state.lanes.get('laneRailParking').toJS(),
     parkingSpace: state.parking.toJS(),
     lane: state.lanes.toJS()

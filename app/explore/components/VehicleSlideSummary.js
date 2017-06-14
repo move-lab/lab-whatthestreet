@@ -160,7 +160,7 @@ export default connect((state) => {
     availableVehicles: state.vehicles.get('availableVehicles'),
     activeVehicle: state.vehicles.get('vehicle'),
     isRouting: state.app.get('isRouting'),
-    cityLandmark: state.cityMeta.getIn(['metaData','landmark']).toJS(),
+    cityLandmark: state.cityMeta.getIn(['metaData','landmark']) && state.cityMeta.getIn(['metaData','landmark']).toJS(),
     cumulativeArea: state.lanes.get('cumulativeArea')
   }
 })(VehicleSlideSummary);

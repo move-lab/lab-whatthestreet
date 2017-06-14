@@ -25,7 +25,15 @@ export function onLoadCitiesFailure(err) {
   };
 }
 
-export function selectCity(citySlug) {
+export function prefetchCitySvg(citySlug) {
+  return (dispatch, getState) => {
+    const baseUrl = getState().app.get('baseUrl');
+    axios.get(`${baseUrl}/static/cities/${citySlug}/lanes/car.svg`);
+    axios.get(`${baseUrl}/static/cities/${citySlug}/parking/car.svg`);
+  }
+}
+
+export function selectCity(citySlug, prefetchSvg) {
   return (dispatch, getState) => {
 
     // Select city
@@ -42,6 +50,11 @@ export function selectCity(citySlug) {
 
     // Load Guesses
     const guessData = dispatch(GuessActions.loadGuesses(citySlug));
+
+    // Prefetch svgs for car
+    if(prefetchSvg) {
+      dispatch(prefetchCitySvg(citySlug));
+    }
 
     return Promise.all([fetchCityMetaData, fetchVersusData, guessData]);
   }

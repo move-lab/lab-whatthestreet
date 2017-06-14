@@ -7,6 +7,7 @@ import { createStructuredSelector } from 'reselect';
 
 // Actions
 import { CityActions, GuessActions } from '../statemanagement/actions';
+import { prefetchCitySvg } from '../statemanagement/actions/cityActions';
 
 // Selectors
 import { CitySelectors, GuessSelectors } from '../statemanagement/selectors';
@@ -47,6 +48,11 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
   }
 
   componentDidMount() {
+    // Prefetch citySvgs for next page
+    this.props.prefetchCitySvg(this.props.city.slug);
+    // Prefetch explore page
+    Router.prefetch('/explore');
+
     Router.replace({
       pathname: '/',
       query: this.props.ownGuess
@@ -57,7 +63,7 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
   }
 
   onCityChanged = (citySlug) => {
-    this.props.selectCity(citySlug);
+    this.props.selectCity(citySlug, true);
     Router.push({
       pathname: '/',
       query: this.props.ownGuess
@@ -181,10 +187,11 @@ const propsSelector = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   loadCities: () => dispatch(CityActions.loadCities()),
-  selectCity: (identifyer) => dispatch(CityActions.selectCity(identifyer)),
+  selectCity: (identifyer, prefetch) => dispatch(CityActions.selectCity(identifyer, prefetch)),
   toggleCitySelection: () => dispatch(CityActions.toggleCitySelection()),
   setGuess: (guess) => dispatch(GuessActions.setOwnGuess(guess)),
   saveGuess: (guess) => dispatch(GuessActions.saveGuess(guess)),
+  prefetchCitySvg: (city) => dispatch(prefetchCitySvg(city))
 });
 
 export default connect((state) => {

@@ -47,6 +47,10 @@ class ExploreScroll extends React.PureComponent {
     };
   }
 
+  componentDidMount() {
+    Router.prefetch('/results');
+  }
+
   handleVehicleSlideLoaded(dataType) {
     if (dataType === lanes) {
       this.setState({ lanesLoaded: true })
