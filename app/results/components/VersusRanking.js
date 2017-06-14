@@ -55,6 +55,7 @@ class VersusRanking extends React.PureComponent {
 
           .TableRow.current {
             background-color: ${COLORS.ColorBackgroundLightBlue};
+            font-weight: 500;
           }
 
           .ColPosition {
