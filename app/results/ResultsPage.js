@@ -12,6 +12,7 @@ import OtherCities from './sections/OtherCities';
 import About from './sections/About';
 import Legal from './sections/Legal';
 import Footer from './sections/Footer';
+import Poster from './sections/Poster';
 
 class ResultsPage extends Component {
 
@@ -21,6 +22,7 @@ class ResultsPage extends Component {
         <ResultsSection />
         <Stats />
         <Versus />
+        <Poster />
         <EyesPlaceholder />
         <Future />
         <Demand />
