@@ -86,7 +86,6 @@ class VersusTriangle extends React.PureComponent {
             flex-direction: column;
             font-size: 21px;
             line-height: 27px;
-            font-family: 'LarsseitLight';
             margin: 0;
             padding-top: 5px;
           }
@@ -105,12 +104,10 @@ class VersusTriangle extends React.PureComponent {
 
           .AboutText {
             font-size: 21px;
-            font-family: 'LarsseitLight';
             margin: 0;
           }
 
           .AboutText a {
-            font-family: 'LarsseitLight';
             margin: 0;
             padding-left: 3px;
           }

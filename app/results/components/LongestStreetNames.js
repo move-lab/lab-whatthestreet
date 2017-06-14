@@ -37,7 +37,6 @@ class LongestStreetNames extends React.PureComponent {
           line-height: 27px;
           color: white;
           margin: 0 0 15px 0;
-          font-family: 'LarsseitLight';
         }
 
         .TableContainer {

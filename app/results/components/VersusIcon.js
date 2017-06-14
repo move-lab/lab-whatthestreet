@@ -84,7 +84,7 @@ class VersusIcon extends React.PureComponent {
 
           .City {
             font-size: 23px;
-            font-family: 'LarsseitMedium';
+            font-weight: 500;
             height: 50px;
             display: none;
             color: ${COLORS.ColorForegroundText};

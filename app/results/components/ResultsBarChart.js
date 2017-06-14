@@ -103,15 +103,14 @@ class ResultsBarChart extends React.PureComponent {
         .Wrapper :global(.Title) {
           font-size: 47px;
           line-height: 56px;
-          font-weight: 600;
+          font-weight: 500;
           margin: 0;
         }
 
         .Wrapper :global(.SubTitle) {
           font-size: 21px;
           line-height: 27px;
-          font-weight: 100;
-          font-family: 'LarsseitLight';
+          font-weight: 300;
           margin: 15px 0 0 0;
         }
       `}</style>

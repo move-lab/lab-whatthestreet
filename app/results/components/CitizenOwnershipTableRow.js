@@ -27,7 +27,6 @@ class CitizenOwnershipTableRow extends React.PureComponent { // eslint-disable-l
             text-align: right;
             font-size: 24px;
             line-height: 51px;
-            font-family: 'LarsseitLight';
           }
 
           .Amount {

@@ -44,7 +44,7 @@ class OtherCities extends React.Component {
 
           .Title {
             font-size: 34px;
-            font-weight: 400;
+            font-weight: 500;
             margin: 0 0 40px 0;
           }
 

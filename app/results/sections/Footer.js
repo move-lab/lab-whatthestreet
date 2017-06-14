@@ -61,7 +61,6 @@ class FooterBar extends React.PureComponent {
         }
 
         .Item a {
-          font-weight: 200;
           color: inherit;
         }
 
@@ -73,7 +72,6 @@ class FooterBar extends React.PureComponent {
           color: inherit;
           margin-right: 5px;
           font-size: 16px;
-          font-weight: 100;
         }
 
         .Footer :global(.Link) {

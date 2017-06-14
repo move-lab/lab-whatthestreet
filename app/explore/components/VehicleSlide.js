@@ -267,7 +267,7 @@ class VehicleSlide extends React.PureComponent {
             margin-top: 0;
             text-align: center;
             width: 600px;
-            font-weight: 400;
+            font-weight: 500;
             color: ${COLORS.ColorForegroundOrange};
             height: auto;
             padding-top: ${METRICS.MetricsTopSpace};

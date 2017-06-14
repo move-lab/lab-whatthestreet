@@ -213,12 +213,12 @@ class FuturePage extends React.Component {
 
           h4 {
             font-size: 40px;
-            font-weight: 400;
+            font-weight: 500;
           }
 
           .Heading {
             font-size: 47px;
-            font-weight: 400;
+            font-weight: 500;
             margin-bottom: 30px;
           }
 
@@ -306,7 +306,6 @@ class FuturePage extends React.Component {
             color: ${COLORS.ColorForegroundOrange};
             font-family: 'Sign-Painter';
             font-size: 2em;
-            font-weight: lighter;
             text-align: center;
 
             position: absolute;

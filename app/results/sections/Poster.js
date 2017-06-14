@@ -105,7 +105,6 @@ class PosterSection extends React.PureComponent {
             font-size: 21px;
             line-height: 27px;
             margin: 0 0 30px 0;
-            font-family: 'LarsseitLight';
           }
 
           .Content {

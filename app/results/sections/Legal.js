@@ -143,7 +143,7 @@ class Legal extends React.Component {
 
           .ContainerLeft .Title {
             font-size: 47px;
-            font-weight: 400;
+            font-weight: 500;
             margin: 0 0 ${METRICS.MetricsSectionPadding} 0;
             width: 100%;
           }
@@ -151,7 +151,7 @@ class Legal extends React.Component {
           .ContainerLeft .SubTitle {
             font-size: 23px;
             line-height: 27px;
-            font-weight: 400;
+            font-weight: 500;
             margin: 0;
             color: ${COLORS.ColorForegroundGrey};
             width: 100%;
@@ -165,7 +165,6 @@ class Legal extends React.Component {
             margin: 0;
             color: ${COLORS.ColorForegroundGrey};
             width: 20%;
-            font-family: 'LarsseitLight';
             text-align: right;
             padding-right: 20px;
           }
@@ -188,7 +187,6 @@ class Legal extends React.Component {
           .ContainerRight .Label {
             font-size: 13px;
             line-height: 18px;
-            font-weight: 200;
             margin: 20px 0 0 0;
             color: ${COLORS.ColorForegroundGrey};
           }
@@ -200,7 +198,6 @@ class Legal extends React.Component {
           .ContainerRight .Text {
             font-size: 13px;
             line-height: 18px;
-            font-weight: 200;
             margin: 0 0 20px 0;
             color: ${COLORS.ColorForegroundGrey};
           }

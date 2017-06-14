@@ -160,6 +160,7 @@ class GuessBarChart extends React.Component {
 
         .Header {
           font-size: 23px;
+          font-weight: 500;
           line-height: 29px;
           margin: 15px 0 0 0;
         }

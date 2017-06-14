@@ -246,6 +246,7 @@ class Header extends React.PureComponent {
               color: ${COLORS.ColorForegroundText};
               flex-grow: 1;
               text-decoration: none;
+              font-weight: 500;
             }
 
             .Content {
@@ -312,6 +313,7 @@ class Header extends React.PureComponent {
 
             .AboutLink {
               font-size: 18px;
+              font-weight: 500;
               line-height: 24px;
               color: ${COLORS.ColorForegroundOrange};
               margin-right: 15px;
@@ -341,7 +343,6 @@ class Header extends React.PureComponent {
               margin-top: 5px;
               font-size: 24px;
               line-height: 1.2;
-              font-weight: 300;
               max-width: 400px;
               white-space: nowrap;
               overflow: hidden;
@@ -406,7 +407,6 @@ class Header extends React.PureComponent {
             .Searchresultinfo {
               display: block;
               font-size: 16px;
-              font-weight: 200;
             }
 
             .NavButtons {

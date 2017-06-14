@@ -76,7 +76,7 @@ class CitySelector extends React.PureComponent {
           line-height: 56px;
           outline: none;
           padding: 0;
-          font-family: 'LarsseitMedium', sans-serif;
+          font-weight: 500;
           cursor: pointer
         }
 

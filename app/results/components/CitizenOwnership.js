@@ -56,7 +56,6 @@ class CitizenOwnership extends React.PureComponent { // eslint-disable-line reac
           line-height: 27px;
           color: white;
           margin: 0 0 15px 0;
-          font-family: 'LarsseitLight';
         }
 
         .Container {

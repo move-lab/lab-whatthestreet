@@ -101,7 +101,6 @@ class VehicleSlideEndOfParkingSummary extends React.PureComponent {
 
           .LargeText {
             font-size: 50px;
-            font-weight: 400;
             text-align: center;
             color: ${COLORS.ColorForegroundText};
             width: 350px;
@@ -118,7 +117,6 @@ class VehicleSlideEndOfParkingSummary extends React.PureComponent {
             width: 550px;
             text-align: center;
             margin: 0 auto;
-            font-weight: 200;
           }
         `}</style>
       </section>

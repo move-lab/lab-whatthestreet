@@ -42,7 +42,7 @@ class AboutSection extends React.PureComponent {
           .Title {
             font-size: 47px;
             line-height: 47px;
-            font-weight: 400;
+            font-weight: 500;
             margin: 0;
             flex-basis: 33.333333%;
           }
@@ -51,7 +51,6 @@ class AboutSection extends React.PureComponent {
             font-size: 21px;
             line-height: 27px;
             margin: 0 0 30px 0;
-            font-family: 'LarsseitLight';
           }
 
           .Text:last-child {

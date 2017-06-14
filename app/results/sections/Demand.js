@@ -39,7 +39,7 @@ class Demand extends React.PureComponent {
           .Title {
             font-size: 47px;
             line-height: 56px;
-            font-weight: 400;
+            font-weight: 500;
             width: 320px;
             margin: 0 0 ${METRICS.MetricsSectionPadding} 0;
           }
@@ -48,7 +48,6 @@ class Demand extends React.PureComponent {
             font-size: 21px;
             line-height: 27px;
             margin: 0 0 25px 0;
-            font-family: 'LarsseitLight';
             width: 560px;
             }
 

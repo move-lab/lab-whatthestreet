@@ -51,15 +51,13 @@ class ComparisonBarChart extends React.PureComponent {
             .Title {
               font-size: 47px;
               line-height: 56px;
-              font-weight: 600;
+              font-weight: 500;
               margin: 110px 0 0 0;
             }
 
             .SubTitle {
               font-size: 21px;
               line-height: 27px;
-              font-weight: 100;
-              font-family: 'LarsseitLight';
               margin: 15px 0 0 0;
             }
           `}</style>
@@ -78,15 +76,13 @@ class ComparisonBarChart extends React.PureComponent {
             .Title {
               font-size: 47px;
               line-height: 56px;
-              font-weight: 600;
+              font-weight: 500;
               margin: 110px 0 0 0;
             }
 
             .SubTitle {
               font-size: 21px;
               line-height: 27px;
-              font-weight: 100;
-              font-family: 'LarsseitLight';
               margin: 15px 0 0 0;
             }
           `}</style>
@@ -105,15 +101,13 @@ class ComparisonBarChart extends React.PureComponent {
           .Title {
             font-size: 47px;
             line-height: 56px;
-            font-weight: 600;
+            font-weight: 500;
             margin: 110px 0 0 0;
           }
 
           .SubTitle {
             font-size: 21px;
             line-height: 27px;
-            font-weight: 100;
-            font-family: 'LarsseitLight';
             margin: 15px 0 0 0;
           }
         `}</style>

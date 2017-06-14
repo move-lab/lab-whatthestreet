@@ -68,18 +68,21 @@ class Layout extends Component {
             }
           }
           @font-face {
-            font-family: 'LarsseitMedium';
+            font-family: 'Larsseit';
             src: url('/static/fonts/Larsseit/Larsseit-Medium.eot');
             src: url('/static/fonts/Larsseit/Larsseit-Medium.ttf');
             src: url('/static/fonts/Larsseit/Larsseit-Medium.woff');
             src: url('/static/fonts/Larsseit/Larsseit-Medium.woff2');
+            font-weight: 500;
           }
 
-            @font-face {
-            font-family: 'LarsseitLight';
+          @font-face {
+            font-family: 'Larsseit';
             src: url('/static/fonts/Larsseit/Larsseit-Light.eot');
+            src: url('/static/fonts/Larsseit/Larsseit-Light.ttf');
             src: url('/static/fonts/Larsseit/Larsseit-Light.woff');
             src: url('/static/fonts/Larsseit/Larsseit-Light.woff2');
+            font-weight: 300;
           }
 
           @font-face {
@@ -105,29 +108,27 @@ class Layout extends Component {
 
 
           body {
-            font-family: 'Larsseit', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-family: Larsseit, sans-serif;
             color: ${COLORS.ColorForegroundText};
-            background-color: #fafafa;
             line-height: 1;
-          }
-
-          body.fontLoaded {
-            font-family: 'Larsseit', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 300;
           }
 
           h1 {
             margin: 0;
             line-height: 1em;
             font-size: 36px;
+            font-weight: 500;
           }
 
           h2 {
             font-size: 21px;
-            font-weight: 200;
+            font-weight: 500;
           }
 
           h3 {
             margin-top: 0;
+            font-weight: 500;
           }
         `}</style>
       </div>

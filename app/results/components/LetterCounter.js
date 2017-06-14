@@ -47,7 +47,6 @@ class LetterCounter extends React.PureComponent {
           font-size: 24px;
           line-height: 30px;
           height: 50px;
-          font-family: 'LarsseitLight';
         }
 
         .TableBody :global(.Char) {

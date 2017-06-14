@@ -40,13 +40,12 @@ class FreedUp extends React.PureComponent { // eslint-disable-line react/prefer-
         .Counter {
           font-family: 'Circular';
           font-size: 80px;
-          font-weight: 600;
+          font-weight: 500;
           margin: 0;
         }
 
         .Label {
           font-size: 50px;
-          font-weight: 400;
           margin: 0;
           margin-top: 30px;
           margin-bottom: 30px;

@@ -160,7 +160,7 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
         .Title {
           font-size: 36px;
           line-height: 45px;
-          font-weight: 400;
+          font-weight: 500;
           margin: 65px 0 0 0;
           margin-bottom: 15px;
         }
@@ -168,9 +168,8 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
         .SubTitle {
           font-size: 21px;
           line-height: 27px;
-          font-weight: 200;
           margin-top: 15px;
-          font-family: 'LarsseitLight', sans-serif;
+          font-weight: 300;
         }
       `}</style>
     </section>
