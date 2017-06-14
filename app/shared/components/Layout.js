@@ -42,8 +42,31 @@ class Layout extends Component {
           <meta name="twitter:description" content="Who owns the city? Explore the distribution of mobility space amongst urban traffic. Discover every parking lot or street of 23 metropolises." />
           <meta name="twitter:image" content="http://whatthestreet.moovellab.com/static/images/wts-meta@2x.png" />
         </Head>
-        {this.props.children}
+        <div className="desktop">
+          {this.props.children}
+        </div>
+        <div className="mobile">
+          Unfortunately, What the Street!? is only compatible with desktop resolution, you should try it from your computer. 
+        </div>
         <style jsx global>{`
+          .desktop {
+            display: block;
+          }
+
+          .mobile {
+            display: none;
+            padding: 50px;
+            text-align: center;
+          }
+          @media screen and (max-width: 1279px) {
+            .desktop {
+              display: none;
+            }
+
+            .mobile {
+              display: block;
+            }
+          }
           @font-face {
             font-family: 'LarsseitMedium';
             src: url('/static/fonts/Larsseit/Larsseit-Medium.eot');
