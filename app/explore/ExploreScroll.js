@@ -275,7 +275,14 @@ class ExploreScroll extends React.PureComponent {
         />
         {this.props.showSearchBox &&
           <SearchModal
-            onSelectResult={(result) => console.log('select ' + result)}
+            onSelectResult={(result) => {
+              this.showMap({
+                id: result.id,
+                areaType: 'lanes',
+                citySlug: this.props.citySlug,
+                actualVehicle: this.props.activeVehicle
+              });
+            }}
             close={this.closeSearchBox}
             onChange={(term) => console.log(term)}
             results={[{name:'test'}, {name:'testddd'}, {name:'testawqwq'}, {name:'testadad'}, {name:'sdsd'}, {name:'adsad'}, {name:'asdasdad'}, {name:'adsada'}]}
