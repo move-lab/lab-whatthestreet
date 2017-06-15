@@ -113,7 +113,7 @@ class FuturePage extends React.Component {
 
               {/* Cars on the road */}
               <section className="ColumnLeft">
-                <p>Cars on the road</p>
+                <p className="Label">Cars on the road</p>
                 <div className="OnTheRoadWrapper">
                   <img alt="Icon" src={IconCarOnParkingSpace} />
                   <img alt="Icon" src={IconStreet} />
@@ -131,7 +131,7 @@ class FuturePage extends React.Component {
 
               {/* Parking */}
               <section className="ParkingWrapperLeft">
-                <p>Parking</p>
+                <p className="Label">Parking</p>
                 <div className="ParkingHolder">
                   <div className="EmptyParkingLotsHolder" style={this.getEmptyParkingLotTop()}>
                     <img alt="Icon" src={ArrowEmptyParkingLots} />
@@ -170,7 +170,7 @@ class FuturePage extends React.Component {
 
                 {/* Cars on the road */}
                 <section className="ColumnRight">
-                  <p>Autonomous cars on the road</p>
+                  <p className="Label">Autonomous cars on the road</p>
                   <div className="OnTheRoadWrapper">
                     <img alt="Icon" src={IconAutonomousCarOnParkingSpace} />
                     <img alt="Icon" src={IconStreet} />
@@ -180,7 +180,7 @@ class FuturePage extends React.Component {
 
               {/* Parking */}
               <section className="ParkingWrapperRight">
-                <p>Parking</p>
+                <p className="Label">Parking</p>
                 <div className="ParkingHolder">
                   {this.getParkingFutureArray().map((item, index) =>
                     this.renderParkingIcon("used", index)
@@ -286,7 +286,7 @@ class FuturePage extends React.Component {
           }
 
           div.ColumnRight section.ColumnRight, div.ColumnRight section.ParkingWrapperRight {
-            padding: 0 0 0 0px;
+            padding: 0 0 0 64px;
           }
 
           div.ColumnRight h4 {
@@ -341,12 +341,18 @@ class FuturePage extends React.Component {
 
           .Landmark {
             position: absolute;
-            top: 0px;
+            top: 30px;
             left: 0px;
           }
 
           .Landmark img {
             width: 100%;
+          }
+
+          .Label {
+            margin-bottom: 20px;
+            font-weight: 500;
+            font-size: 22px;
           }
         `}</style>
       </div>

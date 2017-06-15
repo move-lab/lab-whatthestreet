@@ -59,6 +59,7 @@ class ComparisonBarChart extends React.PureComponent {
               font-size: 21px;
               line-height: 27px;
               margin: 15px 0 0 0;
+              font-weight: 300;
             }
           `}</style>
         </div>
@@ -84,6 +85,7 @@ class ComparisonBarChart extends React.PureComponent {
               font-size: 21px;
               line-height: 27px;
               margin: 15px 0 0 0;
+              font-weight: 300;
             }
           `}</style>
         </div>
@@ -109,6 +111,7 @@ class ComparisonBarChart extends React.PureComponent {
             font-size: 21px;
             line-height: 27px;
             margin: 15px 0 0 0;
+            font-weight: 300;
           }
         `}</style>
       </div>
