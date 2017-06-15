@@ -169,11 +169,11 @@ class PosterSection extends React.PureComponent {
             cursor: pointer;
           }
 
-          :global(.BtnShopping):hover,:global(.BtnShopping):active,:global(.BtnShopping):focus {
+          :global(.BtnShopping:hover),:global(.BtnShopping:active),:global(.BtnShopping:focus) {
             background-color:#ff8b5c;
           }
 
-          :global(.BtnShopping) img {
+          :global(.BtnShopping img) {
             width: 20px;
             height: 20px;
           }

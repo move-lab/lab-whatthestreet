@@ -202,7 +202,7 @@ class Lanes extends React.PureComponent {
             cursor: pointer;
           }
 
-          .LanesSvg :global(svg) :global(path):hover {
+          .LanesSvg :global(svg) :global(path:hover) {
             stroke: rgba(255, 104, 25, 0.8);
           }
         `}</style>

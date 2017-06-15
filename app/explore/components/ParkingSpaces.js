@@ -195,14 +195,14 @@ class ParkingSpaces extends React.PureComponent {
             justify-content: center;
           }
 
-          .ParkingSpacesSvg :global(svg) :global(polygon) {
+          .ParkingSpacesSvg :global(svg polygon) {
             fill: ${COLORS.pathcolor};
             color: ${COLORS.pathcolor};
             transition: 200ms all;
             cursor: pointer;
           }
 
-          .ParkingSpacesSvg :global(svg) :global(polygon):hover {
+          .ParkingSpacesSvg :global(svg polygon:hover) {
             fill: rgba(255, 104, 25, 0.8);
           }
         `}</style>
