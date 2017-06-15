@@ -26,13 +26,8 @@ export function loadCityMetadata(citySlug) {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       const baseUrl = getState().app.get('baseUrl');
-      const authHeader = getState().app.get('authHeader');
       dispatch(startLoadCityMetaData());
-      axios.get(`${baseUrl}/api/v1/cities/${citySlug}`,{
-        headers: {
-           "Authorization" : authHeader
-        }
-      }).then((response) => {
+      axios.get(`${baseUrl}/api/v1/cities/${citySlug}`).then((response) => {
         dispatch(loadCityMetaDataSuccess(response.data));
         // Set guesses
         dispatch(GuessActions.setActual(response.data.space));
