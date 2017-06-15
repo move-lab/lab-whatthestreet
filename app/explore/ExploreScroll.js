@@ -152,8 +152,9 @@ class ExploreScroll extends React.PureComponent {
       pathname: `/${this.props.citySlug}/results`,
       query: this.props.ownGuess.toJS()
     }).then(() => {
-      const scrollingElement = document.documentElement || document.body;
-      scrollingElement.scrollTop = 0;
+      // Hack because of chrome and firefox not behaving the same way
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
     });
   }
 
