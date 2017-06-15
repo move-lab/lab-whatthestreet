@@ -34,7 +34,9 @@ class RoundedButton extends React.PureComponent {
         ${this.props.orange ? 'orange' : ''}
         ${this.props.loading ? 'loading' : ''}`}
         onClick={() => this.props.onClick()}>
+        <span className="text-wrapper">
         { this.props.children }
+        </span>
         {!this.props.hideIcon && !this.props.loading &&
           <img alt="Icon" className="Icon" src="/static/icons/Icon_ButtonArrow.svg" />
         }
@@ -108,6 +110,11 @@ class RoundedButton extends React.PureComponent {
 
           .Button.disabled {
             opacity: 0.5;
+          }
+
+          .text-wrapper {
+            position: relative;
+            top: 2px;
           }
       `}</style>
       </button>
