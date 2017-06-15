@@ -8,7 +8,8 @@ const initialState = fromJS({
   parkingBottomPosition: 1000000,
   lanesInFocus: true,
   parkingInFocus: true,
-  isScrolling: false
+  isScrolling: false,
+  showSearch: false
 });
 
 // Actions
@@ -21,6 +22,20 @@ const SET_PARKING_IN_FOCUS = 'Explore/SET_PARKING_IN_FOCUS';
 const SET_PARKING_OUT_OF_FOCUS = 'Explore/SET_PARKING_OUT_OF_FOCUS';
 const STOPED_SCROLLING = 'Explore/STOPED_SCROLLING';
 const START_SCROLLING = 'Explore/START_SCROLLING';
+const SHOW_SEARCH = 'Explore/SHOW_SEARCH';
+const CLOSE_SEARCH = 'Explore/CLOSE_SEARCH';
+
+export function showSearch() {
+  return {
+    type: SHOW_SEARCH
+  }
+}
+
+export function closeSearch() {
+  return {
+    type: CLOSE_SEARCH
+  }
+}
 
 export const scrollingMayEnd = debounce((dispatch) => {
   dispatch({
@@ -104,6 +119,10 @@ export default function ExploreStateManagement(state = initialState, action = {}
       return state.set('isScrolling', false)
     case START_SCROLLING:
       return state.set('isScrolling', true)
+    case SHOW_SEARCH:
+      return state.set('showSearch', true)
+    case CLOSE_SEARCH:
+      return state.set('showSearch', false)
     default:
       return state;
   }

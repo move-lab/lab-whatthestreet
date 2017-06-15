@@ -12,6 +12,8 @@ import VehicleIcon from './VehicleIcon';
 const searchIcon = '/static/icons/Icon_Search.svg';
 const homeIcon = '/static/icons/Icon_Home.svg';
 
+import { showSearch } from '../../statemanagement/ExploreStateManagement';
+
 import * as METRICS from '../style/metrics';
 import * as COLORS from '../style/colors';
 
@@ -133,6 +135,10 @@ class Header extends React.PureComponent {
     }, { shallow: true });
   }
 
+  showSearch() {
+    this.props.dispatch(showSearch());
+  }
+
   render() {
     return (
       <header className={this.props.mode === 'normal' ? 'NavigationBar' : 'ScrollPageNavigationBar'}>
@@ -168,11 +174,11 @@ class Header extends React.PureComponent {
                       <img alt="" className="HomeIcon" src={homeIcon} /><span>Home</span>
                     </button>
                   </div>
-                  {/*<div className="SearchButton">
-                    <button onClick={() => console.log('TODO onsearch CLICK')} >
-                      <img alt="SearchIcon" src={searchIcon} /><span>Search</span>
+                  <div className="SearchButton">
+                    <button onClick={() => this.showSearch()} >
+                      <img alt="SearchIcon" src={searchIcon} /><span>Search streets</span>
                     </button>
-                  </div>*/}
+                  </div>
                 </div>
                 <div className="SearchWrapper">
                   <div className="SearchBox">

@@ -6,6 +6,7 @@ import Router from 'next/router';
 import VehicleSlide from './components/VehicleSlide';
 import VehicleSlidesOverlay from './components/VehicleSlidesOverlay';
 import VehicleSlideSummary from './components/VehicleSlideSummary';
+import SearchModal from './components/SearchModal';
 
 import { computeSvgHeights } from '../shared/utils/svgHeights';
 
@@ -14,6 +15,8 @@ import MapModal from '../map/MapModal';
 import { lanes } from '../statemanagement/constants/identifiersConstants';
 
 import { fetchLaneData, setParkingData } from '../statemanagement/MapStateManagement';
+
+import { closeSearch } from '../statemanagement/ExploreStateManagement';
 
 import { selectVehicle } from '../statemanagement/VehiclesStateManagement';
 
@@ -40,6 +43,7 @@ class ExploreScroll extends React.PureComponent {
     this.selectPreviousVehicule = this.selectPreviousVehicule.bind(this);
     this.scrollToTop = this.scrollToTop.bind(this);
     this.scrollToEnd = this.scrollToEnd.bind(this);
+    this.closeSearchBox = this.closeSearchBox.bind(this);
 
     this.state = {
       parkingLoaded: false,
@@ -216,6 +220,10 @@ class ExploreScroll extends React.PureComponent {
     }
   }
 
+  closeSearchBox() {
+    this.props.dispatch(closeSearch());
+  }
+
   render() {
     return (
       <section>
@@ -265,6 +273,15 @@ class ExploreScroll extends React.PureComponent {
           scrollToTop={this.scrollToTop}
           scrollToEnd={this.scrollToEnd}
         />
+        {this.props.showSearchBox &&
+          <SearchModal
+            onSelectResult={(result) => console.log('select ' + result)}
+            close={this.closeSearchBox}
+            onChange={(term) => console.log(term)}
+            results={[{name:'test'}, {name:'testddd'}, {name:'testawqwq'}, {name:'testadad'}, {name:'sdsd'}, {name:'adsad'}, {name:'asdasdad'}, {name:'adsada'}]}
+            city={this.props.citySlug}
+          />
+        }
         <MapModal
           itemId={parseInt(this.props.url.query.id)}
           isVisible={this.props.url.query.id ? true : false}
@@ -287,6 +304,7 @@ export default connect((state) => {
     selectedLaneRailParkingId: state.lanes.getIn(['laneRailParking','id']),
     selectedParkingId: state.parking.get('id'),
     selectedParkingData: state.parking.toJS(),
-    svgHeights: computeSvgHeights(state.cityMeta)
+    svgHeights: computeSvgHeights(state.cityMeta),
+    showSearchBox: state.explore.get('showSearch')
   }
 })(ExploreScroll);
