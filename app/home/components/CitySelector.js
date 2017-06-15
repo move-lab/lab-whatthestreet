@@ -34,7 +34,7 @@ class CitySelector extends React.PureComponent {
   }
 
   renderCheckMarkIcon = () => (
-    <img alt="icon" src="/static/icons/Icon_Tick.svg" />
+    <img alt="" src="/static/icons/Icon_Tick.svg" />
   )
 
   renderCityItem = (city, index) => (
@@ -56,7 +56,7 @@ class CitySelector extends React.PureComponent {
         onClick={() => this.props.onButtonClick()}
       >
         {this.props.city.name} ?
-        <img alt="CityDropdownIcon" src="/static/icons/Icon_CityDropdown.svg" />
+        <img alt="" src="/static/icons/Icon_CityDropdown.svg" />
       </button>
       {this.props.selectorOpen &&
         <div className="CitySelectionModal">

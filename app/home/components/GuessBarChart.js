@@ -89,7 +89,7 @@ class GuessBarChart extends React.Component {
   render = () => (
     <div className="Chart">
       <div className="ExplainLabel">
-        <img alt="ArrowIcon" src={ArrowIcon} />
+        <img alt="" src={ArrowIcon} />
         <span>
           Take your
           <big>Best Guess</big>

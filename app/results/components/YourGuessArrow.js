@@ -26,7 +26,7 @@ class YourGuessArrow extends React.PureComponent {
         <style jsx>{`
           .Container {
             position: absolute;
-            left: calc(${METRICS.MetricsContentPadding} + 470px);
+            left: 630px;
           }
 
           .Arrow {

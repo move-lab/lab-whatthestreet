@@ -57,14 +57,14 @@ class VehicleSlidesOverlay extends React.PureComponent {
               height={60}
               width={60}
             />
-            <img alt="icon" src={angle} className="arrow" />
+            <img alt="" src={angle} className="arrow" />
           </button>
         }
         {this.props.previousVehicleName &&
           <button
             className="VehicleButton PrevVehicleButton"
             onClick={() => this.props.goToPreviousVehicle()}>
-            <img alt="icon" src={angle} className="arrow" />
+            <img alt="" src={angle} className="arrow" />
             <VehicleIcon
               vehicle={this.props.previousVehicleName}
               height={60}
@@ -114,14 +114,14 @@ class VehicleSlidesOverlay extends React.PureComponent {
               <button
                 className="ButtonGroupButton ButtonGroupButtonTop"
                 onClick={() => this.props.scrollToTop()}>
-                <img alt="ScrollIcon" src={IconArrowLeft} />
+                <img alt="" src={IconArrowLeft} />
               </button>
               <div className="ButtonGroupSeparator"></div>
               <button 
                 className="ButtonGroupButton ButtonGroupButtonBottom"
                 onClick={() => this.props.scrollToEnd()}>
                   <span className="ButtonLabel-scrolltobottom">Scroll to next</span>
-                  <img alt="ScrollIcon" className="ScrollIconRight" src={IconArrowRight} />
+                  <img alt="" className="ScrollIconRight" src={IconArrowRight} />
               </button>
             </div>
           </footer>
@@ -141,7 +141,7 @@ class VehicleSlidesOverlay extends React.PureComponent {
 
           .PositionLine {
             position: fixed;
-            top: calc(${METRICS.MetricsTopSpace} + 90px);
+            top: 290px;
             height: 7px;
             width: 100%;
             background-color: rgba(255, 104, 25, .2);

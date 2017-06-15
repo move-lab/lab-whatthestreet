@@ -152,7 +152,8 @@ class ExploreScroll extends React.PureComponent {
       pathname: `/${this.props.citySlug}/results`,
       query: this.props.ownGuess.toJS()
     }).then(() => {
-      window.document.body.scrollTop = 0;
+      const scrollingElement = document.documentElement || document.body;
+      scrollingElement.scrollTop = 0;
     });
   }
 

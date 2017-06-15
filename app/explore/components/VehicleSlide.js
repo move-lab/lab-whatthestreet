@@ -56,7 +56,8 @@ class VehicleSlide extends React.PureComponent {
 
   watchScrollPosition() {
     return window.requestAnimationFrame(() => {
-      const newScrollPosition = document.body.scrollTop;
+      const scrollingElement = document.documentElement || document.body;
+      const newScrollPosition = scrollingElement.scrollTop;
       if (this.lastKnownScrollPosition !== newScrollPosition) {
         this.lastKnownScrollPosition = newScrollPosition;
         this.props.dispatch(setScrollPosition(newScrollPosition));
@@ -67,10 +68,11 @@ class VehicleSlide extends React.PureComponent {
 
   componentDidMount() {
     this.scrollPositionWatcher = this.watchScrollPosition();
-    window.document.body.scrollTop = 0;
+    const scrollingElement = document.documentElement || document.body;
+    scrollingElement.scrollTop = 0;
     // Some hack sometimes the scrollTop doesn't work
     setTimeout(() => {
-      window.document.body.scrollTop = 0;
+      scrollingElement.scrollTop = 0;
     }, 50);
   }
 

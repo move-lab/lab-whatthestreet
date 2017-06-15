@@ -20,7 +20,7 @@
     "lodash.minby": "^4.6.0",
     "mapbox-gl": "^0.37.0",
     "mongodb": "^2.2.26",
-    "next": "^2.4.0",
+    "next": "^2.4.3",
     "next-redux-wrapper": "^1.1.2",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",

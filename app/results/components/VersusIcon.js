@@ -63,10 +63,10 @@ class VersusIcon extends React.PureComponent {
         {usedSpace !== 0 &&
           <circle className="SmallCircle" cx={usedSpace[0]} cy={usedSpace[1]} r="10" fill={COLORS.ColorForegroundOrange} />
         }
-        <foreignObject x={allocatedSpace[0] + 25} y={allocatedSpace[1] - 50}>
-          <p className="City">
+        <foreignObject className="LabelText" x={allocatedSpace[0] + 25} y={allocatedSpace[1] - 50} width="200" height="15">
+          <div xmlns="http://www.w3.org/1999/xhtml" className="City">
             {cityAndData.city}
-          </p>
+          </div>
         </foreignObject>
         <style jsx>{`
           .BigCircle {
@@ -82,11 +82,19 @@ class VersusIcon extends React.PureComponent {
             stroke-width: 2;
           }
 
+          .LabelText {
+            overflow: visible;
+            display: none;
+          }
+
+          .Group:hover .LabelText {
+            display: inline-block;
+          }
+
           .City {
             font-size: 23px;
             font-weight: 500;
             height: 50px;
-            display: none;
             color: ${COLORS.ColorForegroundText};
             margin: 0;
             padding: 10px;
@@ -95,6 +103,7 @@ class VersusIcon extends React.PureComponent {
             white-space: nowrap;
             z-index: 9999;
             position: relative;
+            display: inline;
           }
 
           .Group:hover .BigCircle {
@@ -108,10 +117,6 @@ class VersusIcon extends React.PureComponent {
 
           .Group:hover line {
             stroke: ${COLORS.ColorsVersusLightBlue};
-          }
-
-          .Group:hover foreignObject p {
-            display: inline;
           }
         `}</style>
       </g>
