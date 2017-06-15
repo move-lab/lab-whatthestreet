@@ -57,6 +57,9 @@ class VehicleSlide extends React.PureComponent {
   watchScrollPosition() {
     return window.requestAnimationFrame(() => {
       const newScrollPosition = window.scrollY || document.documentElement.scrollTop;
+      // Potential optim, only update if we moved up / down more than 10px
+      // if (newScrollPosition > (this.lastKnownScrollPosition + 10) || 
+      // newScrollPosition < (this.lastKnownScrollPosition - 10)) {
       if (this.lastKnownScrollPosition !== newScrollPosition) {
         this.lastKnownScrollPosition = newScrollPosition;
         this.props.dispatch(setScrollPosition(newScrollPosition));
