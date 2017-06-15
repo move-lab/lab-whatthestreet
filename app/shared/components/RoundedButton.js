@@ -33,7 +33,7 @@ class RoundedButton extends React.PureComponent {
         ${this.props.small ? 'small' : ''}
         ${this.props.orange ? 'orange' : ''}
         ${this.props.loading ? 'loading' : ''}`}
-        onClick={() => this.props.onClick()}>
+        onClick={() => this.props.disabled ? null : this.props.onClick()}>
         <span className="text-wrapper">
         { this.props.children }
         </span>
@@ -64,6 +64,8 @@ class RoundedButton extends React.PureComponent {
             pointer-events: auto;
           }
 
+          
+
           .Button.small {
             padding: 10px;
             padding-left: 15px;
@@ -75,12 +77,19 @@ class RoundedButton extends React.PureComponent {
             background-color: ${COLORS.ColorForegroundOrange};
           }
 
-          .Button.orange:not(.disabled):hover {
+          .Button.orange:hover {
             background-color: ${COLORS.ColorForegroundOrangeDarker};
           }
 
-          .Button:not(.disabled):hover {
+          .Button.disabled:hover {
+            background-color: ${COLORS.ColorForegroundOrange};
+          }
+
+          .Button:hover {
             background-color: ${COLORS.ButtonBackgroundColorDarker};
+          }
+          .Button.disabled:hover {
+            background-color: ${COLORS.ButtonBackgroundColor};
           }
 
           .Icon {
