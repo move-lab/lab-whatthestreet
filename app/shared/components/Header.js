@@ -165,7 +165,7 @@ class Header extends React.PureComponent {
                 <div className="NavButtons">
                   <div className="HomeButton">
                     <button onClick={() => this.goToHomePage()} >
-                      <img alt="HomeIcon" className="HomeIcon" src={homeIcon} /><span>Home</span>
+                      <img alt="" className="HomeIcon" src={homeIcon} /><span>Home</span>
                     </button>
                   </div>
                   {/*<div className="SearchButton">

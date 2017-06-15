@@ -117,6 +117,7 @@ class Layout extends Component {
 
           button {
             font-family: "Larsseit", sans-serif;
+            cursor: pointer;
           }
 
           h1 {
