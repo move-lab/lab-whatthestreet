@@ -118,7 +118,7 @@ class Lanes extends React.PureComponent {
     for (let i = 0; i < paths.length; i += 1) {
       const path = paths[i];
       const coordinates = path.getBBox();
-      searchableItems.push({ id: path.getAttribute('id'), name: path.getAttribute('moovel_name'), coordinates: { minY: coordinates.y, maxY: coordinates.y + coordinates.height } });
+      searchableItems.push({ id: parseInt(path.getAttribute('id')), name: path.getAttribute('moovel_name'), coordinates: { minY: coordinates.y, maxY: coordinates.y + coordinates.height } });
       importantPaths.push({ id: path.getAttribute('id'), coordinates: { minY: coordinates.y, maxY: coordinates.y + coordinates.height } });
     }
 

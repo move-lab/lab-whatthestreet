@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { reducer as searchReducer } from 'redux-search'
 
 import cityReducer from'./reducers/cityReducer';
 import vehiclesStateManagement from './VehiclesStateManagement';
@@ -11,6 +12,7 @@ import appStateManagement from './AppStateManagement';
 import exploreStateManagement from './ExploreStateManagement';
 import versusReducer from './reducers/versusReducer';
 import laneReducer from './reducers/laneReducer';
+import searchableStreetsReducer from './SearchableStreetsStateManagement';
 // import pageReducer from './reducers/pageReducer';
 // import searchReducer from './reducers/searchReducer';
 
@@ -26,6 +28,8 @@ export default combineReducers({
   guess: guessReducer,
   map: mapStateManagement,
   cityMeta: cityMetaReducer,
-  versus: versusReducer
+  versus: versusReducer,
+  search: searchReducer,
+  searchableStreets: searchableStreetsReducer
   // search: searchReducer
 });

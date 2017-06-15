@@ -1,6 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { createSelector } from 'reselect'
+import { getSearchSelectors } from 'redux-search';
 
 const SearchIcon = '/static/icons/Icon_Search.svg';
+
+import { search, setData } from '../../statemanagement/SearchableStreetsStateManagement';
 
 // Styles
 import * as METRICS from '../../shared/style/metrics';
@@ -9,7 +14,6 @@ import * as COLORS from '../../shared/style/colors';
 class SearchModal extends React.PureComponent {
 
   static propTypes = {
-    results: React.PropTypes.arrayOf(React.PropTypes.object),
     close: React.PropTypes.func,
     onChange: React.PropTypes.func,
     onSelectResult: React.PropTypes.func,
@@ -20,6 +24,7 @@ class SearchModal extends React.PureComponent {
     super();
     this.state = {
       focusedResult: 0,
+      searchText: "",
       suggestion: { name: '' },
     };
   }
@@ -32,6 +37,17 @@ class SearchModal extends React.PureComponent {
       if (event.keyCode === 40) this.focusNextResult();
       if (event.keyCode === 13) this.selectResult(this.state.focusedResult);
     });
+
+    // this.props.dispatch(setData({
+    //   99: {
+    //     name: "street blablabal",
+    //     id: 99
+    //   },
+    //   992: {
+    //     name: "street truc truc turc",
+    //     id: 992
+    //   }
+    // }))
   }
 
   componentWillReceiveProps = (newprops, oldprops) => {
@@ -44,7 +60,12 @@ class SearchModal extends React.PureComponent {
   }
 
   onChange(event) {
-    this.props.onChange(event.target.value)
+    // TODO DEBOUNCE
+    this.setState({
+      searchText: event.target.value
+    });
+    console.log(this.state.searchText);
+    this.props.dispatch(search(event.target.value));
   } 
 
   selectResult = (index) => {
@@ -124,7 +145,7 @@ class SearchModal extends React.PureComponent {
         <ul
           ref={(element) => { this.resultsElement = element; }}
           className="Results">
-          {this.props.results.length > 0 && this.props.results.map((result, index) => 
+          {this.state.searchText !== "" && this.props.results.length > 0 && this.props.results.map((result, index) => 
             this.renderResult(result, index)
           )}
         </ul>
@@ -148,6 +169,8 @@ class SearchModal extends React.PureComponent {
           position: relative;
           background: #fff;
           padding: 50px;
+          height: 373px;
+          width: 500px;
           position: fixed;
           box-shadow: ${COLORS.boxshadow};
         }
@@ -196,4 +219,22 @@ class SearchModal extends React.PureComponent {
 
 }
 
-export default SearchModal;
+// Limit to 100 results
+const result = state => state.search.carStreets.result.slice(0, 100);
+
+const carStreets = state => state.searchableStreets.get('carStreets')
+
+const carStreetsResults = createSelector(
+  [result, carStreets],
+  (resultsIds, carStreets) => {
+    return resultsIds.map((id) => {
+      return carStreets[id];
+    });
+  }
+)
+
+export default connect((state) => {
+  return {
+    results: carStreetsResults(state)
+  }
+})(SearchModal);

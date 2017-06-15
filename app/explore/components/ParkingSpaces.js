@@ -121,7 +121,7 @@ class ParkingSpaces extends React.PureComponent {
       if (coordinates.x > 150 && coordinates.width + coordinates.height > 10) importantPolygons.push({ id: path.getAttribute('id'), coordinates: { minY: coordinates.y, maxY: coordinates.y + coordinates.height } });
     }
 
-    this.props.registerItemsForSearch(searchableItems);
+    // this.props.registerItemsForSearch(searchableItems);
 
     return importantPolygons;
   }

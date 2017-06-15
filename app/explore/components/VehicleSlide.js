@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import keyBy from 'lodash.keyby';
 
 import Router from 'next/router';
 
@@ -19,6 +20,8 @@ import {
 } from '../../statemanagement/ExploreStateManagement';
 
 import { setParkingData } from '../../statemanagement/MapStateManagement';
+
+import { setData } from '../../statemanagement/SearchableStreetsStateManagement';
 
 import { LaneActions, ParkingActions } from '../../statemanagement/actions';
 
@@ -137,8 +140,11 @@ class VehicleSlide extends React.PureComponent {
     this.props.dispatch(setLanesBottomPosition(scrollHeight));
   }
 
-  registerItemsForSearch(items) {
-    // TODO WHEN IMPLEMENTING SEARCH
+  registerItemsForSearch(streets) {
+    // Only register car lanes
+    if(this.props.vehicle === 'car') {
+      this.props.dispatch(setData(keyBy(streets, (street) => street.id)));
+    }
   }
 
   onItemSelected() {

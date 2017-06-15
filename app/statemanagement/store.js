@@ -2,6 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import Immutable from 'immutable';
 import thunkMiddleware from 'redux-thunk';
 import reducers from './reducers';
+import { reduxSearch } from 'redux-search'
 
 const composeEnhancers =
     process.env.NODE_ENV !== 'production' &&
@@ -12,8 +13,17 @@ const composeEnhancers =
       }) : compose;
 
 const enhancer = composeEnhancers(
-  applyMiddleware(thunkMiddleware)
-  // other store enhancers if any
+  applyMiddleware(thunkMiddleware),
+  reduxSearch({
+    // Configure redux-search by telling it which resources to index for searching
+    resourceIndexes: {
+      carStreets: ['name']
+    },
+    // This selector is responsible for returning each collection of searchable resources
+    resourceSelector: (resourceName, state) => {
+      return state.searchableStreets.get(resourceName);
+    }
+  })
 );
 
 
