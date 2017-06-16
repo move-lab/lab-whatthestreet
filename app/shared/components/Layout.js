@@ -45,7 +45,7 @@ class Layout extends Component {
           {this.props.children}
         </div>
         <div className="mobile">
-          What the Street!? is unfortunately not working in this resolution 😢. Sorry! Please visit us again with your desktop browser.
+          What the Street!? is unfortunately not working in this resolution 😢. Sorry! Please visit us again with your desktop browser or increase your window size (min. 1280px).
         </div>
         <style jsx global>{`
           .desktop {
