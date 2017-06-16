@@ -77,6 +77,10 @@ class MapActions extends React.PureComponent {
             background-image: url("/static/images/layer-road.jpg");
           }
 
+          .LayerSwitch.street .LayerSwitchText {
+            color: white;
+          }
+
           .LayerSwitch.street {
             background-image: url("/static/images/layer-satellite.jpg");
           }
