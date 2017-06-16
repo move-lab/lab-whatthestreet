@@ -110,7 +110,7 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
               city={this.props.city}
               onChange={this.onCityChanged}
             />
-            <h3 className="SubTitle">How much space do bikes, trams</h3>
+            <h3 className="SubTitle">City space is limited! What do you think, how much space is allocated to the different ways of moving through the city?</h3>
           </div>
           <div className="Container"></div>
         </div>
