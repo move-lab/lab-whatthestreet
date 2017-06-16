@@ -20,7 +20,10 @@ class AboutSection extends React.PureComponent {
               What the Street!? was made out of open-source software and resources. Thanks to the OpenStreetMap contributors and many other pieces we put together the puzzle of urban mobility space seen above.
             </p>
             <p className="Text">
-              Read more about the technical details behind The Mobility Space Report: What the Street!? on our blog: <a href="http://lab.moovel.com/blog/about-what-the-street">http://lab.moovel.com/blog/about-what-the-street</a>
+              Read more about the technical details behind The Mobility Space Report: What the Street!? on our blog:
+            </p>
+            <p className="Text">
+              <a href="http://lab.moovel.com/blog/about-what-the-street" target="_blank">http://lab.moovel.com/blog/about-what-the-street</a>
             </p>
           </div>
         </div>
