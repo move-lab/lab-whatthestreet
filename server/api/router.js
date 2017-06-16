@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Db = require('mongodb').Db;
 const Server = require('mongodb').Server;
+const RateLimit = require('express-rate-limit');
+
 
 router.get('/', require('./routes/rootRoute'));
 
@@ -49,7 +51,16 @@ router.use('/cities/:city/:vehicle', (request, response, next) => {
 });
 
 // Guesses
+
+// Save guess limiter
+var saveGuessLimiter = new RateLimit({
+  windowMs: 60000, // 1 min
+  max: 1, // start blocking after 1 requests 
+  message: "Too many guesses are being recorded from that IP address"
+});
+
+router.post('/cities/:city/guess', saveGuessLimiter, guessRoute.insertGuess);
 router.route('/cities/:city/guess').get(guessRoute.getAllGuesses);
-router.route('/cities/:city/guess').post(guessRoute.insertGuess);
+
 
 module.exports = router;
