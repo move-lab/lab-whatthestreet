@@ -77,7 +77,12 @@ export function getCitiesbyIp() {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       const baseUrl = getState().app.get('baseUrl');
-      axios.get(`${baseUrl}/api/v1/cities/nearest`).then((response) => {
+      const authHeader = getState().app.get('authHeader');
+      axios.get(`${baseUrl}/api/v1/cities/nearest`, {
+        headers: {
+           "Authorization" : authHeader
+        }
+      }).then((response) => {
         dispatch(setNearestCity(response.data));
         resolve();
       }, (error) => {
@@ -92,7 +97,12 @@ export function loadCities() {
     return new Promise((resolve, reject) => {
       dispatch(startLoadingCities());
       const baseUrl = getState().app.get('baseUrl');
-      axios.get(`${baseUrl}/api/v1/cities`).then((response) => {
+      const authHeader = getState().app.get('authHeader');
+      axios.get(`${baseUrl}/api/v1/cities`, {
+        headers: {
+           "Authorization" : authHeader
+        }
+      }).then((response) => {
         dispatch(onLoadCitiesSuccess(response.data));
         resolve();
       }, (error) => {

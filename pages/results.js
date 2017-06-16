@@ -8,7 +8,7 @@ import Header from '../app/shared/components/Header';
 import ResultsPage from '../app/results/ResultsPage';
 
 import { CityActions, GuessActions } from '../app/statemanagement/actions';
-import { setBaseUrl, initRouterWatcher } from '../app/statemanagement/AppStateManagement';
+import { setBaseUrl, setAuthHeader, initRouterWatcher } from '../app/statemanagement/AppStateManagement';
 
 class Results extends Component {
 
@@ -19,6 +19,9 @@ class Results extends Component {
     if (isServer) {
       const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
       await store.dispatch(setBaseUrl(baseUrl));
+      if (req) {
+        await store.dispatch(setAuthHeader(req.headers.authorization))
+      }
       await store.dispatch(CityActions.loadCities());
       // Select city from url
       // Todo handle city do not exists

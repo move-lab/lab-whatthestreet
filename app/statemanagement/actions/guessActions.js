@@ -26,9 +26,14 @@ export function loadGuesses(citySlug) {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       const baseUrl = getState().app.get('baseUrl');
+      const authHeader = getState().app.get('authHeader');
       dispatch(startLoadGuesses());
 
-      axios.get(`${baseUrl}/api/v1/cities/${citySlug}/guess`).then((response) => {
+      axios.get(`${baseUrl}/api/v1/cities/${citySlug}/guess`,{
+        headers: {
+           "Authorization" : authHeader
+        }
+      }).then((response) => {
         dispatch(onLoadGuessesSuccess(response.data));
         resolve();
       }, (error) => {
@@ -52,8 +57,13 @@ export function setOwnGuess(guess) {
       });
 
       const baseUrl = getState().app.get('baseUrl');
+      const authHeader = getState().app.get('authHeader');
       axios.post(`${baseUrl}/api/v1/closestCityToGuess`, {
         guess: guess
+      },{
+        headers: {
+           "Authorization" : authHeader
+        }
       }).then((results) => {
         dispatch({
           type: GUESS.GET_SUGGESTION_SUCCESS,
@@ -96,9 +106,14 @@ export function saveGuess(guess, citySlug) {
     return new Promise((resolve, reject) => {
       const baseUrl = getState().app.get('baseUrl');
       const citySlug = getState().city.getIn(['actual_city', 'slug']);
+      const authHeader = getState().app.get('authHeader');
       dispatch(startSavingGuess());
       axios.post(`${baseUrl}/api/v1/cities/${citySlug}/guess`, {
         guess: guess,
+      },{
+        headers: {
+           "Authorization" : authHeader
+        }
       }).then((response) => {
         resolve();
       }, (error) => {
