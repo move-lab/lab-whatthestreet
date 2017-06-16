@@ -59,18 +59,23 @@ class VersusIcon extends React.PureComponent {
         {usedSpace !== 0 &&
           <line className="Line" x1={allocatedSpace[0]} y1={allocatedSpace[1]} x2={usedSpace[0]} y2={usedSpace[1]} />
         }
-        <circle className="BigCircle" cx={allocatedSpace[0]} cy={allocatedSpace[1]} r="15" stroke={COLORS.ColorForegroundOrange} strokeWidth="10" fill={COLORS.ColorVersusLightOrange} />
+        <circle className={`BigCircle ${usedSpace === 0 ? 'disabled' : ''}`} cx={allocatedSpace[0]} cy={allocatedSpace[1]} r="15" stroke={COLORS.ColorForegroundOrange} strokeWidth="10" fill={COLORS.ColorVersusLightOrange} />
         {usedSpace !== 0 &&
           <circle className="SmallCircle" cx={usedSpace[0]} cy={usedSpace[1]} r="10" fill={COLORS.ColorForegroundOrange} />
         }
         <foreignObject className="LabelText" x={allocatedSpace[0] + 25} y={allocatedSpace[1] - 50} width="200" height="15">
           <div xmlns="http://www.w3.org/1999/xhtml" className="City">
-            {cityAndData.city}
+            {`${cityAndData.city} ${usedSpace === 0 ? '(no modal split data)' : ''}`}
           </div>
         </foreignObject>
         <style jsx>{`
           .BigCircle {
             box-shadow: 0 6px 10px 0 rgba(0,0,0,0.08);
+          }
+
+          .BigCircle.disabled {
+            fill: rgba(128,128,128,0.5);
+            stroke: grey;
           }
 
           .SmallCircle {
