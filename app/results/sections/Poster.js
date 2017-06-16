@@ -31,7 +31,7 @@ class PosterSection extends React.PureComponent {
       <div className="PosterSection">
         <div className="Wrapper">
           <h2 className="Title">
-            Abstract Art for your Wall
+            Abstract art for your wall
           </h2>
           <div className="Content">
             <div className="Left">

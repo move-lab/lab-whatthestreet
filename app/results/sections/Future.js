@@ -93,13 +93,14 @@ class FuturePage extends React.Component {
 
   render() {
     const city = this.props.city.slug;
+    const cityName = this.props.city.name;
 
     return (
       <div>
         <div className="MainContainer">
           <div className="Wrapper Heading">
             <h2 className="Heading">
-              What a Waste <br /> of Space
+              What a waste <br /> of space
             </h2>
             <p className="Text">In a not so distance future cities might not have to deal with parking issues anymore. Self-driving cars about to drive through our cities. Imagine all cars are shared and autonomous. You can call for any car and it will bring you wherever you might want.</p>
             <p className="Text">Since these cars don't need to park anymore, lots of space could be freed up in cities around the world. The intensified use of cars will allow less cars on the road and even less parking, just like illustrated here.</p>
@@ -110,7 +111,7 @@ class FuturePage extends React.Component {
 
               {/* Column Heading */}
               <h4>
-                Today's {city}
+                Today's {cityName}
               </h4>
 
               {/* Cars on the road */}
@@ -166,7 +167,7 @@ class FuturePage extends React.Component {
               <div>
                 {/* Column Heading */}
                 <h4>
-                  Future {city}
+                  Future {cityName}
                 </h4>
 
                 {/* Cars on the road */}

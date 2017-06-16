@@ -13,7 +13,7 @@ class LongestStreetNames extends React.PureComponent {
   render = () => (
     <div>
       <h2 className="Title">
-        Longest Street Names
+        Longest street names
       </h2>
       <h3 className="SubTitle">
         Here's a Scrabble joker for you! These are the longest street names of {this.props.city}.

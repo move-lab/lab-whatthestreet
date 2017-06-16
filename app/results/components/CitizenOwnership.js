@@ -17,7 +17,7 @@ class CitizenOwnership extends React.PureComponent { // eslint-disable-line reac
   render = () => (
     <div>
       <h2 className="Title">
-        Citizen Ownership
+        Citizen ownership
       </h2>
       <h3 className="SubTitle">
         If every citizen of {this.props.city} would own it’s fair share of each type of mobility.

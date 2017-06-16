@@ -132,7 +132,7 @@ class VersusPage extends React.Component {
       <div className="MainContainer">
         <div className="Wrapper">
           <h2 className="Title">
-            {this.props.city.name} vs.<br />the World
+            {this.props.city.name} vs.<br />the world
           </h2>
           <VersusTriangle
             triangleData={this.renderTriangleData()}
