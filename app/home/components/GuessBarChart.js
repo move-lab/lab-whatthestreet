@@ -168,7 +168,7 @@ class GuessBarChart extends React.Component {
         .ExplainLabel {
           position: absolute;
           left: -200px;
-          top: 240px;
+          top: 280px;
           display: flex;
           flex-direction: column;
           width: 300px;
