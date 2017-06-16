@@ -165,12 +165,12 @@ class PosterSection extends React.PureComponent {
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: ${COLORS.ColorVersusLightOrange};
+            background-color: ${COLORS.ColorBlue};
             cursor: pointer;
           }
 
           :global(.BtnShopping:hover),:global(.BtnShopping:active),:global(.BtnShopping:focus) {
-            background-color:#ff8b5c;
+            background-color: ${COLORS.ButtonBackgroundColorDarker};
           }
 
           :global(.BtnShopping img) {
