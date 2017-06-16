@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect'
 import { getSearchSelectors } from 'redux-search';
+import debounce from 'lodash.debounce';
 
 const SearchIcon = '/static/icons/Icon_Search.svg';
 
@@ -15,13 +16,15 @@ class SearchModal extends React.PureComponent {
 
   static propTypes = {
     close: React.PropTypes.func,
-    onChange: React.PropTypes.func,
     onSelectResult: React.PropTypes.func,
     city: React.PropTypes.string,
   }
 
   constructor() {
     super();
+
+    this.debouncedSearchStreet = debounce(this.searchStreet, 300).bind(this);
+
     this.state = {
       focusedResult: 0,
       searchText: "",
@@ -37,17 +40,6 @@ class SearchModal extends React.PureComponent {
       if (event.keyCode === 40) this.focusNextResult();
       if (event.keyCode === 13) this.selectResult(this.state.focusedResult);
     });
-
-    // this.props.dispatch(setData({
-    //   99: {
-    //     name: "street blablabal",
-    //     id: 99
-    //   },
-    //   992: {
-    //     name: "street truc truc turc",
-    //     id: 992
-    //   }
-    // }))
   }
 
   componentWillReceiveProps = (newprops, oldprops) => {
@@ -59,13 +51,16 @@ class SearchModal extends React.PureComponent {
     }
   }
 
-  onChange(event) {
-    // TODO DEBOUNCE
+  searchStreet(searchText) {
+    console.log('search street');
     this.setState({
-      searchText: event.target.value
+      searchText: searchText
     });
-    console.log(this.state.searchText);
-    this.props.dispatch(search(event.target.value));
+    this.props.dispatch(search(searchText));
+  }
+
+  onChange(event) {
+    this.debouncedSearchStreet(event.target.value);
   } 
 
   selectResult = (index) => {
@@ -105,6 +100,7 @@ class SearchModal extends React.PureComponent {
 
         .Result.focused {
           border-left: 2px solid blue;
+          background-color: rgba(0,0,255,0.05);
         }
 
         .Title {
@@ -129,6 +125,12 @@ class SearchModal extends React.PureComponent {
         ref={(element) => { this.box = element; }}
         className="Searchbox"
       >
+        <div
+          className="CloseBtn"
+          onClick={() => this.props.close()}
+        >
+          <img src="/static/icons/Icon_Cross.svg" alt=""/>
+        </div>
         <form
           onSubmit={(event) => { event.preventDefault(); }}
           className="Searchform"
@@ -192,6 +194,7 @@ class SearchModal extends React.PureComponent {
           padding: 5px 0;
           font-size: 25px;
           flex-grow: 1;
+          outline: none;
         }
 
         .Suggestion {
@@ -213,14 +216,31 @@ class SearchModal extends React.PureComponent {
           max-height: 200px;
           overflow: auto;
         }
+
+        .CloseBtn {
+          position: absolute;
+          top: 8px;
+          right: 8px;
+          width: 25px;
+          height: 25px;
+          cursor: pointer;
+        }
+
+        .CloseBtn:hover,.CloseBtn:active,.CloseBtn:focus {
+          opacity: 0.5;
+        }
+
+        .CloseBtn img {
+          width: 100%;
+        }
       `}</style>
     </div>
   )
 
 }
 
-// Limit to 100 results
-const result = state => state.search.carStreets.result.slice(0, 100);
+// Limit to 50 results
+const result = state => state.search.carStreets.result.slice(0, 50);
 
 const carStreets = state => state.searchableStreets.get('carStreets')
 

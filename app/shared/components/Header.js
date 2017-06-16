@@ -174,19 +174,13 @@ class Header extends React.PureComponent {
                       <img alt="" className="HomeIcon" src={homeIcon} /><span>Home</span>
                     </button>
                   </div>
-                  <div className="SearchButton">
-                    <button onClick={() => this.showSearch()} >
-                      <img alt="SearchIcon" src={searchIcon} /><span>Search streets</span>
-                    </button>
-                  </div>
-                </div>
-                <div className="SearchWrapper">
-                  <div className="SearchBox">
-                    <input
-                      className="SearchInput"
-                      type="search"
-                      placeholder="Search..." />
-                  </div>
+                  {this.props.activeVehicle === "car" &&
+                    <div className="SearchButton">
+                      <button onClick={() => this.showSearch()} >
+                        <img alt="" src={searchIcon} /><span>Search Streets</span>
+                      </button>
+                    </div>
+                  }
                 </div>
                 {this.props.activeVehicle === 'rail' &&
                   this.renderLaneRailParkingInfo()
@@ -446,6 +440,11 @@ class Header extends React.PureComponent {
 
             .SearchButton span,.HomeButton span {
               margin-left: 5px;
+            }
+
+            .SearchButton {
+              position: relative;
+              top: 4px;
             }
           `}</style>
       </header>

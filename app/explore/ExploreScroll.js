@@ -44,6 +44,7 @@ class ExploreScroll extends React.PureComponent {
     this.scrollToTop = this.scrollToTop.bind(this);
     this.scrollToEnd = this.scrollToEnd.bind(this);
     this.closeSearchBox = this.closeSearchBox.bind(this);
+    this.selectSearchResult = this.selectSearchResult.bind(this);
 
     this.state = {
       parkingLoaded: false,
@@ -224,6 +225,15 @@ class ExploreScroll extends React.PureComponent {
     this.props.dispatch(closeSearch());
   }
 
+  selectSearchResult(result) {
+    this.showMap({
+      id: result.id,
+      areaType: 'lanes',
+      citySlug: this.props.citySlug,
+      actualVehicle: this.props.activeVehicle
+    });
+  }
+
   render() {
     return (
       <section>
@@ -275,17 +285,8 @@ class ExploreScroll extends React.PureComponent {
         />
         {this.props.showSearchBox &&
           <SearchModal
-            onSelectResult={(result) => {
-              this.showMap({
-                id: result.id,
-                areaType: 'lanes',
-                citySlug: this.props.citySlug,
-                actualVehicle: this.props.activeVehicle
-              });
-            }}
+            onSelectResult={this.selectSearchResult}
             close={this.closeSearchBox}
-            onChange={(term) => console.log(term)}
-            results={[{name:'test'}, {name:'testddd'}, {name:'testawqwq'}, {name:'testadad'}, {name:'sdsd'}, {name:'adsad'}, {name:'asdasdad'}, {name:'adsada'}]}
             city={this.props.citySlug}
           />
         }
