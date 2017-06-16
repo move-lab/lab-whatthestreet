@@ -12,6 +12,9 @@ const guessRoute = require('./routes/guessRoute');
 // NearestCity route
 router.route('/nearestCity').post(cityRoute.getNerestCity);
 
+// Closest city to guesss
+router.route('/closestCityToGuess').post(cityRoute.closestCityToGuess);
+
 // City Routes
 router.route('/cities/').get(require('./routes/cityRoute').getAllCities);
 
@@ -32,14 +35,12 @@ router.route('/cities/:city/versus').get(cityRoute.getVersus);
 router.route('/cities/:city/landmark').get(cityRoute.getLandmark);
 
 // Searching
-router.route('/cities/:city/search_street/:term').get(cityRoute.searchStreets);
-
-router.route('/closestCityToGuess').post(cityRoute.closestCityToGuess);
+// router.route('/cities/:city/search_street/:term').get(cityRoute.searchStreets);
 
 // Gif
-router.route('/gif/:city/:street/gif').get(cityRoute.generateGif);
-router.route('/gif/:city/:street/poster').get(cityRoute.generatePoster);
-router.route('/gif/:city/:street/movie').get(cityRoute.generateMovie);
+// router.route('/gif/:city/:street/gif').get(cityRoute.generateGif);
+// router.route('/gif/:city/:street/poster').get(cityRoute.generatePoster);
+// router.route('/gif/:city/:street/movie').get(cityRoute.generateMovie);
 
 // Validate Params
 router.use('/cities/:city/:vehicle', (request, response, next) => {
