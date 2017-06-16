@@ -60,6 +60,8 @@ class ComparisonBarChart extends React.PureComponent {
               line-height: 27px;
               margin: 15px 0 0 0;
               font-weight: 300;
+              overflow: visible;
+              width: 110%;
             }
           `}</style>
         </div>
@@ -86,6 +88,8 @@ class ComparisonBarChart extends React.PureComponent {
               line-height: 27px;
               margin: 15px 0 0 0;
               font-weight: 300;
+              overflow: visible;
+              width: 110%;
             }
           `}</style>
         </div>
@@ -112,6 +116,8 @@ class ComparisonBarChart extends React.PureComponent {
             line-height: 27px;
             margin: 15px 0 0 0;
             font-weight: 300;
+            overflow: visible;
+            width: 110%;
           }
         `}</style>
       </div>

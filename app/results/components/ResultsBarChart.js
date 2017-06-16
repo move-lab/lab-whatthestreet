@@ -112,6 +112,8 @@ class ResultsBarChart extends React.PureComponent {
           line-height: 27px;
           font-weight: 300;
           margin: 15px 0 0 0;
+          overflow: visible;
+          width: 110%;
         }
       `}</style>
     </div>
