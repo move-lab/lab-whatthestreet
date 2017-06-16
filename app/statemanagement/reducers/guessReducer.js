@@ -6,7 +6,7 @@ const initialState = fromJS({
   loading: false,
   error: false,
   others: fromJS([]),
-  own: fromJS({ car: 0.333, rail: 0.333, bike: 0.333 }),
+  own: fromJS({ car: 0.33, rail: 0.33, bike: 0.33 }),
   actual: fromJS({}),
   suggestion: fromJS({})
 });

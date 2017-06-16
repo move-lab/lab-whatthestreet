@@ -66,7 +66,7 @@ class Bar extends React.Component {
           .Bar :global(.Others) {
             width: ${METRICS.MetricsBarWidth};
             height: 1px;
-            background-color: rgba(0, 0, 255, 0.7);
+            background-color: rgba(0, 0, 255, 0.2);
             position: absolute;
           }
         `}</style>

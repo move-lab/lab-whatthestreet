@@ -60,6 +60,11 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
       pathname: `/${this.props.city.slug}`,
       query: this.props.ownGuess
     }, { shallow: true });
+
+    // Set time page loaded
+    this.setState({
+      timeStarted: window.performance.now()
+    });
   }
 
   onCityChanged = (citySlug) => {
@@ -86,7 +91,13 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
   }
 
   solved = () => {
-    this.props.saveGuess(this.props.ownGuess, this.props.city.slug);
+    // Do not save guess if
+    // -- didn't move the handles
+    // -- time between load page and click on get started is less than 8s
+    const timeSincePageLoaded = window.performance.now() - this.state.timeStarted;
+    if(this.state.guessed && timeSincePageLoaded > 8000) {
+      this.props.saveGuess(this.props.ownGuess, this.props.city.slug);
+    }
     Router.push({
       pathname: '/explore',
       query: this.props.ownGuess
@@ -121,7 +132,7 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
           />
           <div className="CenteredContent">
             <RoundedButton
-              disabled={(!this.state.guessed || this.props.isRouting)}
+              disabled={this.props.isRouting}
               loading={this.props.isRouting}
               onClick={() => this.solved()}
             >
