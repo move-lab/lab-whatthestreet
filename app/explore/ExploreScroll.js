@@ -18,6 +18,8 @@ import { fetchLaneData, setParkingData } from '../statemanagement/MapStateManage
 
 import { closeSearch } from '../statemanagement/ExploreStateManagement';
 
+import { selectResult, resetSelectedResult } from '../statemanagement/SearchableStreetsStateManagement';
+
 import { selectVehicle } from '../statemanagement/VehiclesStateManagement';
 
 class ExploreScroll extends React.PureComponent {
@@ -226,12 +228,14 @@ class ExploreScroll extends React.PureComponent {
   }
 
   selectSearchResult(result) {
+    this.props.dispatch(selectResult(result));
     this.showMap({
       id: result.id,
       areaType: 'lanes',
       citySlug: this.props.citySlug,
       actualVehicle: this.props.activeVehicle
     });
+    this.props.dispatch(resetSelectedResult());
   }
 
   render() {

@@ -52,7 +52,6 @@ class SearchModal extends React.PureComponent {
   }
 
   searchStreet(searchText) {
-    console.log('search street');
     this.setState({
       searchText: searchText
     });

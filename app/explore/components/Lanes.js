@@ -16,6 +16,7 @@ class Lanes extends React.PureComponent {
     vehicle: React.PropTypes.string,
     city: React.PropTypes.string,
     baseUrl: React.PropTypes.string,
+    selectedResult: React.PropTypes.object,
     modeParking: React.PropTypes.bool,
     onItemSelected: React.PropTypes.func,
     onLoaded: React.PropTypes.func,
@@ -47,6 +48,23 @@ class Lanes extends React.PureComponent {
     if (!this.state.loading) {
       if(this.props.scrollPosition !== nextProps.scrollPosition) {
         this.doesScroll(nextProps.scrollPosition);
+      }
+
+      if (nextProps.selectedResult !== null) {
+        if(this.props.selectedResult === null ||
+          nextProps.selectedResult.id !== this.props.selectedResult.id) {
+          // Scroll to result
+          window.scroll({ 
+            top: nextProps.selectedResult.coordinates.maxY,
+            left: 0
+          });
+
+          // Active path after a little timeout because the scrolling 
+          // action will trigger the activation of other path
+          setTimeout(() => {
+            this.activatePath(nextProps.selectedResult.id);
+          }, 200);
+        }
       }
     }
   }
@@ -219,6 +237,7 @@ function isInRange(rangeMin, rangeMax, value) {
 export default connect((state) => {
   return {
     baseUrl: state.app.get('baseUrl'),
-    scrollPosition: state.explore.get('scrollPosition')
+    scrollPosition: state.explore.get('scrollPosition'),
+    selectedResult: state.searchableStreets.get('selectedResult')
   }
 })(Lanes);
