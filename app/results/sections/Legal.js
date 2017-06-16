@@ -27,13 +27,17 @@ class Legal extends React.Component {
             </p>
             <div className="NameBox">
               <p className="Name">
-                Stephan Bogner
+                <a href="http://lab.moovel.com/people/stephan-bogner">
+                  Stephan Bogner
+                </a>
               </p>
               <p className="Position">
                 Resident Artist
               </p>
               <p className="Name">
-                Michael Szell
+                <a href="http://lab.moovel.com/people/michael-szell">
+                  Michael Szell
+                </a>
               </p>
               <p className="Position">
                 Resident Researcher
@@ -44,7 +48,9 @@ class Legal extends React.Component {
             </p>
             <div className="NameBox">
               <p className="Name">
-                The Residency Program<br />Technical Making of What the Street!?<br />Source Code
+                <a href="http://lab.moovel.com/residency">The Residency Program</a><br />
+                <a href="http://lab.moovel.com/blog/about-what-the-street">Technical Making of What the Street!?</a><br />
+                <a href="https://github.com/moovel/lab-what-the-street">Source Code</a>
               </p>
             </div>
           </div>
@@ -53,22 +59,33 @@ class Legal extends React.Component {
               Concept and Coding
             </p>
             <p className="Name">
-              Michael Szell
+              <a href="http://lab.moovel.com/people/michael-szell">
+                Michael Szell
+              </a>
             </p>
             <p className="Name">
-              Stephan Bogner
+              <a href="http://lab.moovel.com/people/stephan-bogner">
+                Stephan Bogner
+              </a>
             </p>
             <p className="Label">
               Direction
             </p>
             <p className="Name">
-              Benedikt Groß
+              <a href="http://lab.moovel.com/people/benedikt-gross">
+                Benedikt Groß
+              </a>
             </p>
             <p className="Label">
-              Website Implementation
+              Website Front & Backend Engineering
             </p>
             <p className="Name">
-              Thibault Durand
+              <a href="http://thibault-durand.fr/">
+                Thibault Durand
+              </a>
+            </p>
+            <p className="Label">
+              Website Implementation Assistant
             </p>
             <p className="Name">
               Tobias Lauer
@@ -77,25 +94,34 @@ class Legal extends React.Component {
               Visual Design
             </p>
             <p className="Name">
-              Anagrama
+              <a href="http://thibault-durand.fr/">
+                Anagrama
+              </a>
             </p>
             <p className="Label">
               Extended Team
             </p>
             <p className="Name">
-              Tilman Häuser<br />Raphael Reimann<br />Daniel Schmid<br />Joey Lee
+              <a href="http://lab.moovel.com/people/raphael-reimann">Raphael Reimann</a><br />
+              <a href="http://lab.moovel.com/people/joey-lee">Joey Lee</a><br />
+              <a href="http://lab.moovel.com/people/danie-schmid">Daniel Schmid</a><br />
+              <a href="http://lab.moovel.com/people/tilman-haeuser">Tilman Häuser</a><br />
             </p>
             <p className="Label">
               City Data Wrangling Assistant
             </p>
             <p className="Name">
-              Johannes Wachs
+              <a href="http://johanneswachs.com/">
+                Johannes Wachs
+              </a>
             </p>
             <p className="Label">
               Data Sources
             </p>
             <p className="Name">
-              OpenStreetMap
+              <a href="https://www.openstreetmap.org/">
+                OpenStreetMap
+              </a>
             </p>
             <p className="Text">
               <a href="https://www.openstreetmap.org" target="_blank">OpenStreetMap</a> is a free alternative to services like Google Maps. Please contribute, if you notice poor data quality.

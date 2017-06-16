@@ -68,6 +68,7 @@ class CitizenOwnership extends React.PureComponent { // eslint-disable-line reac
           color: white;
           border-top: 1px solid ${COLORS.ColorLightYellow};
           padding-top: 10px;
+          margin-bottom: 150px;
         }
 
         .TableHalf {

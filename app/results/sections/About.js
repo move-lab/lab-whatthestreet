@@ -14,10 +14,13 @@ class AboutSection extends React.PureComponent {
           </h2>
           <div className="Container">
             <p className="Text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lobortis risus sagittis mauris scelerisque ullamcorper. Etiam egestas lacus massa, non luctus tellus dictum non.
+              What the Street!? was derived out of the question “How do new and old mobility concepts change our cities?”. It was raised by Michael Szell and Stephan Bogner during their residency at moovel lab. With support of the lab team they set out to wrangle data of cities around the world to develop and design this unique Mobility Space Report.
             </p>
             <p className="Text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lobortis risus sagittis mauris scelerisque ullamcorper. Etiam egestas lacus massa, non luctus tellus dictum non.
+              What the Street!? was made out of open-source software and resources. Thanks to the OpenStreetMap contributors and many other pieces we put together the puzzle of urban mobility space seen above.
+            </p>
+            <p className="Text">
+              Read more about the technical details behind The Mobility Space Report: What the Street!? on our blog: <a href="http://lab.moovel.com/blog/about-what-the-street">http://lab.moovel.com/blog/about-what-the-street</a>
             </p>
           </div>
         </div>

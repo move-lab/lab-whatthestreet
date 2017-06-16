@@ -33,7 +33,7 @@ class ResultsBarChart extends React.PureComponent {
         <div className="Container">
           <SocialShareButtons result="bad" suggestion={this.props.suggestion.get('name')} />
           <h2 className="Title">You should move to {this.props.suggestion.get('name')} <img alt="UpsideDownEmoji" src={UpsideDownEmoji} /></h2>
-          <h3 className="SubTitle">That’s the city your guess matches best</h3>
+          <h3 className="SubTitle">That’s the city your guess matches best.</h3>
           <style jsx>{`
             .Container {
               width: 350px;
@@ -48,7 +48,7 @@ class ResultsBarChart extends React.PureComponent {
         <div className="Container">
           <SocialShareButtons result="good" suggestion={this.props.suggestion.get('name')} />
           <h2 className="Title">We know you can do better than this <img alt="GrinningEmoji" src={GrinningEmoji} /></h2>
-          <h3 className="SubTitle">Your should move to {this.props.suggestion.get('name')}, that’s the city your guess matches best</h3>
+          <h3 className="SubTitle">Your should move to {this.props.suggestion.get('name')}, that’s the city your guess matches best.</h3>
           <style jsx>{`
             .Container {
               width: 350px;
@@ -63,7 +63,7 @@ class ResultsBarChart extends React.PureComponent {
         <div className="Container">
           <SocialShareButtons result="good" suggestion={this.props.suggestion.get('name')} />
           <h2 className="Title">You must be from {this.props.city} <img alt="ShockedEmoji" src={ShockedEmoji} /></h2>
-          <h3 className="SubTitle">Your guess was almost perfect, you mobility guru</h3>
+          <h3 className="SubTitle">Your guess was almost perfect, you mobility guru.</h3>
           <style jsx>{`
             .Container {
               width: 350px;

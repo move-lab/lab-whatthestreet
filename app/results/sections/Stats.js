@@ -50,9 +50,9 @@ class Stats extends React.Component {
             <br />
             {this.props.cityMetaData.name}
           </h2>
-          <LongestStreets city={this.props.cityMetaData.name} streets={this.props.cityMetaData.streets.longestStreets} />
-          <LongestStreetNames streets={this.props.cityMetaData.streets.longestNames} />
           <CitizenOwnership city={this.props.cityMetaData.name} data={this.calculateOwnership()} />
+          <LongestStreets city={this.props.cityMetaData.name} streets={this.props.cityMetaData.streets.longestStreets} />
+          <LongestStreetNames city={this.props.cityMetaData.name} streets={this.props.cityMetaData.streets.longestNames} />
         </div>
         <style jsx>{`
           .MainContainer {

@@ -16,7 +16,7 @@ class LongestStreetNames extends React.PureComponent {
         Longest Street Names
       </h2>
       <h3 className="SubTitle">
-        Or did you wonder which are the longest street names?
+        Here's a Scrabble joker for you! These are the longest street names of {this.props.city}.
       </h3>
       <div className="TableContainer">
         <table className="Table">

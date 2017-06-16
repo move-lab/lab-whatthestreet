@@ -42,7 +42,7 @@ class ComparisonBarChart extends React.PureComponent {
       return (
         <div className="Container">
           <h2 className="Title">We know you can do better than this <img alt="GrinningEmoji" src={GrinningEmoji} /></h2>
-          <h3 className="SubTitle">Unfortunately your guess was far off</h3>
+          <h3 className="SubTitle">Unfortunately your guess was far off.</h3>
           <style jsx>{`
             .Container {
               width: 320px;
@@ -68,7 +68,7 @@ class ComparisonBarChart extends React.PureComponent {
       return (
         <div className="Container">
           <h2 className="Title">Not a bad guess for the first time <img alt="GrinningEmoji" src={GrinningEmoji} /></h2>
-          <h3 className="SubTitle">Your guess was similar to {Math.round(guess)}% of all other people</h3>
+          <h3 className="SubTitle">Your guess was similar to {Math.round(guess)}% of all other people.</h3>
           <style jsx>{`
             .Container {
               width: 320px;
@@ -94,7 +94,7 @@ class ComparisonBarChart extends React.PureComponent {
     return (
       <div className="Container">
         <h2 className="Title">You guessed better than most <img alt="HappyEmoji" src={HappyEmoji} /></h2>
-        <h3 className="SubTitle">Your guess was more precise than {Math.round(guess)}% of all other people</h3>
+        <h3 className="SubTitle">Your guess was more precise than {Math.round(guess)}% of all other people.</h3>
         <style jsx>{`
           .Container {
               width: 320px;

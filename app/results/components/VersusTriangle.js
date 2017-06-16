@@ -38,7 +38,7 @@ class VersusTriangle extends React.PureComponent {
             About
           </h4>
           <p className="AboutText">
-            The mobility triangle shows how people move in each city - how much by car, bike, or public transport. <a href={this.props.linkMoreInformation} target="_blank">More Information</a>
+            The mobility triangle shows how people <i>actually</i> move in each city. It also compares this to how much city space is allocated to the different modes of transport. <a href="http://lab.moovel.com/blog/about-what-the-street#how-to-interpret-the-mobility-triangle-the-arrogance-of-space" target="_blank">More Information</a>
           </p>
         </div>
         <div className="Description">

@@ -97,10 +97,12 @@ class FuturePage extends React.Component {
     return (
       <div>
         <div className="MainContainer">
-          <div className="Wrapper">
+          <div className="Wrapper Heading">
             <h2 className="Heading">
               What a Waste <br /> of Space
             </h2>
+            <p className="Text">In a not so distance future cities might not have to deal with parking issues anymore. Self-driving cars about to drive through our cities. Imagine all cars are shared and autonomous. You can call for any car and it will bring you wherever you might want.</p>
+            <p className="Text">Since these cars don't need to park anymore, lots of space could be freed up in cities around the world. The intensified use of cars will allow less cars on the road and even less parking, just like illustrated here.</p>
           </div>
           <div className="Wrapper">
 
@@ -154,9 +156,8 @@ class FuturePage extends React.Component {
                     this.renderParkingIcon("used", index)
                   )}
                 </div>
-                <p><a href="http://www.isv.uni-stuttgart.de/vuv/news/Downloads/MEGAFON_Abschlussbericht_V028_20161212.pdf" target="_blank">
-                    Based on this study
-                  </a>
+                <p>
+                  Based on the study of ISV Stuttgart <a href="http://www.isv.uni-stuttgart.de/vuv/news/Downloads/MEGAFON_Abschlussbericht_V028_20161212.pdf" target="_blank">MEGAFON</a> by Max Hartl.
                 </p>
               </section>
 
@@ -222,6 +223,14 @@ class FuturePage extends React.Component {
             margin-bottom: 30px;
           }
 
+          .Text {
+            font-size: 21px;
+            line-height: 27px;
+            margin: 0 0 25px 0;
+            width: 560px;
+            font-weight: 300;
+          }
+
           .Wrapper {
             padding: 0 240px;
             margin: 0 auto;
@@ -230,6 +239,10 @@ class FuturePage extends React.Component {
             margin: 0 auto;
             display: flex;
             align-items: flex-start;
+          }
+
+          .Wrapper.Heading {
+            display: block;
           }
 
 
