@@ -1,4 +1,4 @@
-cities=( "berlin" "boston" "johannesburg" "moscow" "stuttgart" )
+cities=( "berlin" "boston" "johannesburg" "moscow" "stuttgart" "amsterdam" "budapest" "copenhagen" "rome" "singapore" "tokyo" )
 
 for city in "${cities[@]}"
 do
