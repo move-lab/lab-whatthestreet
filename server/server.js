@@ -1,4 +1,5 @@
 const express = require('express')
+const basicAuth = require('express-basic-auth')
 const next = require('next')
 const compression = require('compression');
 const bodyParser = require('body-parser');
@@ -16,6 +17,15 @@ app.prepare()
   server.use(bodyParser.urlencoded({ extended: true }));
   server.use(bodyParser.json());
   server.use(compression());
+
+  // Credentials allowed
+  server.use(basicAuth({
+    users: {
+      moovellab: "moovellab"
+    },
+    challenge: true,
+    realm: 'what_the_street'
+  }));
 
   server.get('/about', (req, res) => {
     console.log('handled by /about');
