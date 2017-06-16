@@ -48,8 +48,12 @@ class Legal extends React.Component {
             </p>
             <div className="NameBox">
               <p className="Name">
-                <a href="http://lab.moovel.com/residency">The Residency Program</a><br />
-                <a href="http://lab.moovel.com/blog/about-what-the-street">Technical Making of What the Street!?</a><br />
+                <a href="http://lab.moovel.com/residency">The Residency Program</a>
+              </p>
+              <p className="Name">
+                <a href="http://lab.moovel.com/blog/about-what-the-street">Technical Making of What the Street!?</a>
+              </p>
+              <p className="Name">
                 <a href="https://github.com/moovel/lab-what-the-street">Source Code</a>
               </p>
             </div>
@@ -153,7 +157,6 @@ class Legal extends React.Component {
           }
 
           .ContainerLeft.Container {
-            margin-top: 150px;
             flex-basis: 50%;
             margin-left: 80px;
             display: flex;
@@ -241,7 +244,8 @@ class Legal extends React.Component {
           .Name {
             font-size: 23px;
             line-height: 27px;
-            margin: 0 0 0 0;
+            margin: 0;
+            margin-bottom: 10px;
           }
 
         `}</style>
