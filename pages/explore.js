@@ -8,7 +8,7 @@ import Header from '../app/shared/components/Header';
 import ExploreScroll from '../app/explore/ExploreScroll';
 
 import { CityActions, GuessActions } from '../app/statemanagement/actions';
-import { setBaseUrl, setAuthHeader, initRouterWatcher } from '../app/statemanagement/AppStateManagement';
+import { setBaseUrl, initRouterWatcher } from '../app/statemanagement/AppStateManagement';
 import { selectVehicle } from '../app/statemanagement/VehiclesStateManagement';
 
 class Explore extends PureComponent {
@@ -20,9 +20,6 @@ class Explore extends PureComponent {
     if (isServer) {
       const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
       await store.dispatch(setBaseUrl(baseUrl));
-      if (req) {
-        await store.dispatch(setAuthHeader(req.headers.authorization))
-      }
       await store.dispatch(CityActions.loadCities());
       // Select city from url
       // Todo handle city do not exists
