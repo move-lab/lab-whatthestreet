@@ -131,7 +131,7 @@ exports.getVersus = (request, response) => {
 
   const toReturn = [data[cityName]];
 
-  for (let i = 0; i < 5; i += 1) {
+  for (let i = 0; i < Object.keys(data).length; i += 1) {
     if (Object.keys(data)[i] !== cityName) {
       toReturn.push(data[Object.keys(data)[i]]);
     }

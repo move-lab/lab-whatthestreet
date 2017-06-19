@@ -13,8 +13,8 @@ const IconBike = '/static/icons/Icon_SpaceAllocation_Bike.svg';
 class VersusTriangle extends React.PureComponent {
 
   static propTypes = {
-    triangleData: React.PropTypes.arrayOf(React.PropTypes.object),
-    linkMoreInformation: React.PropTypes.string
+    currentCity: React.PropTypes.object,
+    triangleData: React.PropTypes.array
   }
 
   render() {
@@ -26,7 +26,9 @@ class VersusTriangle extends React.PureComponent {
         <div className="ContainerRow">
           <div className="TriangleContainer">
             <img className="Triangle" alt="IconTriangle" src={IconTriangle} />
-            <VersusIcon cityAndData={this.props.triangleData} />
+            <VersusIcon
+              currentCity={this.props.currentCity}
+              triangleData={this.props.triangleData} />
           </div>
         </div>
         <div className="ContainerRow bottom">
@@ -87,7 +89,8 @@ class VersusTriangle extends React.PureComponent {
             font-size: 21px;
             line-height: 27px;
             margin: 0;
-            padding-top: 5px;
+            padding-top: 18px;
+            padding-left: 10px;
           }
 
           .About {

@@ -5,7 +5,10 @@ import * as COLORS from '../../shared/style/colors';
 class VersusIconSmall extends React.PureComponent {
   render = () => (
     <div className="Container">
-      <div className="BigBall"></div>
+      <div className="BigBall">
+        <div className="BigBallInside">
+        </div>
+      </div>
       <div className="Line"></div>
       <div className="SmallBall"></div>
       <style jsx>{`
@@ -20,15 +23,26 @@ class VersusIconSmall extends React.PureComponent {
 
           .BigBall {
             background-color: ${COLORS.ColorForegroundOrange};
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            position: relative;
+          }
+
+          .BigBallInside {
+            position: absolute;
+            background-color: rgb(255, 149, 92);
             height: 20px;
             width: 20px;
+            top: 10px;
+            left: 10px;
             border-radius: 50%;
           }
 
           .SmallBall {
             background-color: ${COLORS.ColorForegroundOrange};
-            height: 10px;
-            width: 10px;
+            height: 20px;
+            width: 20px;
             border-radius: 50%;
           }
 
