@@ -72,10 +72,10 @@ class VehicleSlideSummary extends React.PureComponent {
     return (
       <section className="Container VehicleSlideSummary">
         <h3 className="LargeText">
-          You ran out of {vehicleFormatted} Space
+          You ran out of {vehicleFormatted} space
         </h3>
         <p className="Text">
-          After scrolling over an area of {this.state.FH.format(Math.round(this.props.cumulativeArea))} m<sup>2</sup> you ran out of {vehicleFormatted} space. This area is about {this.getHumanArea(this.props.cumulativeArea)}.
+          After scrolling over an area of {this.state.FH.format(Math.round(this.props.cumulativeArea))} m<sup>2</sup> you ran out of {this.props.activeVehicle} space. This area is about {this.getHumanArea(this.props.cumulativeArea)}.
         </p>
         <div className="Summary">
           <div className="SummaryCTAWrapper">

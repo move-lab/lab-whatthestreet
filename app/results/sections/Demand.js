@@ -15,7 +15,7 @@ class Demand extends React.PureComponent {
             Demand<br />better mobility
           </h2>
           <p className="Text">
-            You can change how your city looks by your everyday transportation decisions. Citizen demand, urban policy and planning combined with innovative design and services can transform how your get from A to B. It is our goal to make urban mobility smarter. With this project the moovel lab contributes in understanding and analyzing mobility infrastructure around the globe.
+            You can change how your city looks by your everyday transportation decisions. Citizen demand, urban policy and planning combined with innovative design and services can transform how you get from A to B. It is our goal to make urban mobility smarter. With this project the moovel lab contributes in understanding and analyzing mobility infrastructure around the globe.
           </p>
           <p className="Text">
             You are never stuck in traffic — you are part of it.

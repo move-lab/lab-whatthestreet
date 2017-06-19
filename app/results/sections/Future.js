@@ -102,8 +102,8 @@ class FuturePage extends React.Component {
             <h2 className="Heading">
               What a waste <br /> of space
             </h2>
-            <p className="Text">In a not so distance future cities might not have to deal with parking issues anymore. Self-driving cars about to drive through our cities. Imagine all cars are shared and autonomous. You can call for any car and it will bring you wherever you might want.</p>
-            <p className="Text">Since these cars don't need to park anymore, lots of space could be freed up in cities around the world. The intensified use of cars will allow less cars on the road and even less parking, just like illustrated here.</p>
+            <p className="Text">In a not so distance future cities might not have to deal with parking issues anymore. Self-driving cars are about to drive through our cities. Imagine all cars are shared and autonomous. You can call for any car and it will bring you wherever you want.</p>
+            <p className="Text">Since these cars don't need to park anymore, lots of space could be freed up in cities around the world. The more efficient use of cars will allow less cars on the road and even less parking, just like illustrated here.</p>
           </div>
           <div className="Wrapper">
 
@@ -166,7 +166,7 @@ class FuturePage extends React.Component {
             <div className="ColumnRight">
               <div>
                 {/* Column Heading */}
-                <h4>
+                <h4 className="HeadingFuture">
                   Future {cityName}
                 </h4>
 
@@ -367,6 +367,11 @@ class FuturePage extends React.Component {
             margin-bottom: 20px;
             font-weight: 500;
             font-size: 22px;
+          }
+
+          .HeadingFuture {
+            overflow: visible;
+            white-space: nowrap;
           }
         `}</style>
       </div>

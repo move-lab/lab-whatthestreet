@@ -65,7 +65,7 @@ class Header extends React.PureComponent {
 
     return (
       <div className="InfoLabel">
-        <h3>No Parking Selected</h3>
+        <h3>No parking selected</h3>
       </div>
     );
   }
@@ -82,7 +82,7 @@ class Header extends React.PureComponent {
 
     return (
       <div className="InfoLabel">
-        <h3>No Rail Parking Selected</h3>
+        <h3>No rail parking selected</h3>
       </div>
     );
   }
@@ -99,7 +99,7 @@ class Header extends React.PureComponent {
 
     return (
       <div className="InfoLabel">
-        <h3>No Lane Selected</h3>
+        <h3>No lane selected</h3>
       </div>
     );
   }
@@ -177,7 +177,7 @@ class Header extends React.PureComponent {
                   {this.props.activeVehicle === "car" &&
                     <div className="SearchButton">
                       <button onClick={() => this.showSearch()} >
-                        <img alt="" src={searchIcon} /><span>Search Streets</span>
+                        <img alt="" src={searchIcon} /><span>Search streets</span>
                       </button>
                     </div>
                   }

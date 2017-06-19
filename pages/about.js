@@ -34,7 +34,7 @@ class About extends Component {
     return (
       <Layout>
         <Header
-          title="What the Street!?"
+          title="The Mobility Space Report: What the Street!?"
           mode="normal"
         />
         <AboutPage />

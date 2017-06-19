@@ -206,7 +206,7 @@ class VehicleSlide extends React.PureComponent {
           <div className="Wrapper">
             <div className="Container ContainerLeft">
               <h3 className="Title">
-                {this.props.vehicle.charAt(0).toUpperCase() + this.props.vehicle.slice(1)} Parking
+                {this.props.vehicle.charAt(0).toUpperCase() + this.props.vehicle.slice(1)} parking
               </h3>
               {this.props.vehicle === 'rail' &&
                 this.renderLanes(true)
@@ -221,7 +221,7 @@ class VehicleSlide extends React.PureComponent {
             <div className="ToolBoxColumn" />
             <div className="Container ContainerRight">
               <h3 className="Title">
-                {this.props.vehicle.charAt(0).toUpperCase() + this.props.vehicle.slice(1)} Lanes
+                {this.props.vehicle.charAt(0).toUpperCase() + this.props.vehicle.slice(1)} lanes
               </h3>
               {this.renderLanes()}
             </div>
@@ -302,6 +302,6 @@ export default connect((state) => {
   return {
     actualVehicle: state.vehicles.get('vehicle'),
     citySlug: state.city.getIn(['actual_city','slug']),
-    parkingSvgHeight: computeSvgHeights(state.cityMeta).getIn(['bike', 'parking', 'height'])
+    parkingSvgHeight: computeSvgHeights(state.cityMeta).getIn([state.vehicles.get('vehicle'), 'parking', 'height'])
   }
 })(VehicleSlide);
