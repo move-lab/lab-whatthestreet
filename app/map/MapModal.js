@@ -16,6 +16,7 @@ class MapModal extends PureComponent {
     onDismiss: React.PropTypes.func,
     isVisible: React.PropTypes.bool,
     citySlug: React.PropTypes.string,
+    cityName: React.PropTypes.string,
     activeVehicle: React.PropTypes.string,
     ownGuess: React.PropTypes.object,
     itemId: React.PropTypes.number,
@@ -76,6 +77,7 @@ class MapModal extends PureComponent {
           laneData={this.props.laneData}
           activeVehicle={this.props.activeVehicle}
           citySlug={this.props.citySlug}
+          cityName={this.props.cityName}
         />
         <div className="BtnCloseMap" onClick={this.closeModal}>
           <img src="/static/icons/Icon_Cross.svg" alt="close map"/>
@@ -158,6 +160,7 @@ class MapModal extends PureComponent {
 export default connect((state) => {
   return {
     citySlug: state.city.getIn(['actual_city','slug']),
+    cityName: state.city.getIn(['actual_city','name']),
     activeVehicle: state.vehicles.get('vehicle'),
     ownGuess: state.guess.get('own'),
     laneData: state.map.get('laneData'),

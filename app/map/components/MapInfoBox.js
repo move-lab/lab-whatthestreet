@@ -15,53 +15,104 @@ class MapInfoBox extends React.PureComponent {
     parkingData: React.PropTypes.object,
     laneData: React.PropTypes.object,
     activeVehicle: React.PropTypes.string,
-    citySlug: React.PropTypes.string
+    citySlug: React.PropTypes.string,
+    cityName: React.PropTypes.string
+  }
+
+  constructor() {
+    super();
+
+    this.state = {
+      FH : new Intl.NumberFormat('en-US')
+    }
+  }
+
+  getTypeOfMobilityLabel(mobilityType) {
+    if(mobilityType === "car") {
+      return "Street";
+    } else if(mobilityType === "bike") {
+      return "Biketrack";
+    } else if(mobilityType === "rail") {
+      return "Railtrack";
+    }
+  }
+
+  getLaneLabel(laneName, neighborhoodName, mobilityType, cityName) {
+    let laneLabel;
+    if(laneName) {
+      laneLabel = laneName;
+    } else if(neighborhoodName) {
+      laneLabel = `${this.getTypeOfMobilityLabel(mobilityType)} in ${neighborhoodName}`;
+    } else {
+      laneLabel = `${this.getTypeOfMobilityLabel(mobilityType)} in ${cityName}`;
+    }
+    return laneLabel;
+  }
+
+  getLaneSubLabel(laneLenght, laneArea) {
+    return `${this.state.FH.format(Math.round(laneLenght))}m = ${this.state.FH.format(Math.round(laneArea))}m²`;
+  }
+
+  getParkingLabel(neighborhood, cityName) {
+    if(neighborhood) {
+      return `Parking space in ${neighborhood}`;
+    } else {
+      return `Parking space in ${cityName}`;
+    }
+  }
+
+  getParkingSubLabel(mobilityType, parkingArea) {
+    if(mobilityType === "car") {
+      return `${this.state.FH.format(Math.round(parkingArea))}m² = ${this.state.FH.format(Math.round(parkingArea / 12))} cars`;
+    } else if(mobilityType === "bike") {
+      return `${this.state.FH.format(Math.round(parkingArea))}m² = ${this.state.FH.format(Math.round(parkingArea / 1.6))} bikes`;
+    } else if(mobilityType === "rail") {
+      return `${this.state.FH.format(Math.round(parkingArea))}m² = ${this.state.FH.format(Math.round(parkingArea / 30))} wagons`;
+    }
   }
 
   render() {
-    let area;
-    let headline;
-
-    if (this.props.areaType === identifiers.parkingspace &&
-        this.props.activeVehicle !== 'rail' &&
-        this.props.parkingData) {
-      const neighborhood = this.props.parkingData.get('neighborhood');
-      if(neighborhood) {
-        headline = `Parking space in ${neighborhood}`;
-      } else {
-        headline = `Parking space`;
-      }
-      area = this.props.parkingData.get('area');
-    } else if(this.props.areaType === identifiers.parkingspace &&
-        this.props.activeVehicle === 'rail' &&
-        this.props.laneData) {
-        const neighborhood = this.props.laneData.getIn(['properties','neighborhood']);
-        if(neighborhood) {
-          headline = `Parking space in ${neighborhood}`;
-        } else {
-          headline = `Parking space`;
-        }
-        area = this.props.laneData.getIn(['properties','area']);
-    } else if(this.props.laneData) {
-      headline = this.props.laneData.getIn(['properties','name']);
-      if(!headline) {
-        headline = "Lane";
-      }
-      area = this.props.laneData.getIn(['properties','area']);
-    }
 
     return (
       <div className="MapInfoBox">
         <div className="MapInfoContent">
           <VehicleIcon height={60} width={60} vehicle={this.props.activeVehicle} />
-          {headline &&
-            <p className="headline">{headline}</p>
+          {this.props.areaType === identifiers.parkingspace &&
+           this.props.activeVehicle === 'rail' &&
+           this.props.laneData &&
+            <div>
+              <p className="headline">
+                {this.getParkingLabel(this.props.laneData.getIn(['properties','neighborhood']),
+                                      this.props.cityName)}
+              </p>
+              <p>{this.getParkingSubLabel(this.props.activeVehicle ,
+                                          this.props.laneData.getIn(['properties','area']))}</p>
+            </div>
           }
-          {area && this.props.activeVehicle !== "bike" &&
-            <p>{`${area}m² = ${Math.round(parseFloat(area) / 12)} cars`}</p>
+          {this.props.areaType === identifiers.parkingspace &&
+           this.props.activeVehicle !== 'rail' &&
+           this.props.parkingData &&
+            <div>
+              <p className="headline">
+                {this.getParkingLabel(this.props.parkingData.get('neighborhood'),
+                                      this.props.cityName)}
+              </p>
+              <p>{this.getParkingSubLabel(this.props.activeVehicle ,
+                                          this.props.parkingData.get('area'))}</p>
+            </div>
           }
-          {area && this.props.activeVehicle === "bike" &&
-            <p>{`${area}m² = ${Math.round(parseFloat(area) / 1.6)} bikes`}</p>
+          {this.props.areaType === identifiers.lanes &&
+          this.props.laneData &&
+            <div>
+              <p className="headline">
+                {this.getLaneLabel(this.props.laneData.getIn(['properties','name']),
+                                   this.props.laneData.getIn(['properties','neighborhood']),
+                                   this.props.activeVehicle,
+                                   this.props.cityName)}
+              </p>
+              <p>{this.getLaneSubLabel(this.props.laneData.getIn(['properties','length']),
+                                       this.props.laneData.getIn(['properties','area']))}</p>
+            </div>
           }
         </div>
         <style jsx>{`
