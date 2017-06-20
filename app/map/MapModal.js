@@ -117,7 +117,7 @@ class MapModal extends PureComponent {
             align-items: center;
             justify-content: center;
             position: absolute;
-            z-index: 1;
+            z-index: 1001;
             width: 100%;
             background-color: rgba(230, 228, 224, 0.50);
           }
