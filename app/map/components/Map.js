@@ -243,6 +243,7 @@ class Map extends Component {
 
       // Init map and fit to initial parking geojson
       this.map.getSource('data').setData(parkingRotatedStart);
+      this.map.setLayoutProperty('data', 'visibility', 'visible');
       // Clear previous canvas if any
       this.clearCanvas();
       const parkingRotatedStartBbox = bbox(parkingRotatedStart);
@@ -263,6 +264,7 @@ class Map extends Component {
         //Clear geojson of mapbox to render on the overlaying canvas
         self.renderOnCanvas(parkingRotatedStart);
         self.map.getSource('data').setData(this.emptyGeoJson);
+        self.map.setLayoutProperty('data', 'visibility', 'none');
       });
       rotationTween.onUpdate(function() {
         const parkingRotated = rotate(parkingFinal, this.rotation);
@@ -276,6 +278,7 @@ class Map extends Component {
         TWEEN.removeAll();
         // Clear canvas and render geojson on the mapbox canvas
         self.map.getSource('data').setData(this.geojson);
+        self.map.setLayoutProperty('data', 'visibility', 'visible');
         setTimeout(() => {
           self.clearCanvas();
         }, 200);
@@ -385,6 +388,7 @@ class Map extends Component {
 
       // Draw the first frame
       this.map.getSource('data').setData(geoJsonFolded);
+      this.map.setLayoutProperty('data', 'visibility', 'visible');
       // Clear previous canvas if any
       this.clearCanvas();
 
@@ -401,6 +405,7 @@ class Map extends Component {
         //Clear geojson of mapbox to render on the overlaying canvas
         this.renderOnCanvas(this.geoJsonFolded);
         this.map.getSource('data').setData(this.emptyGeoJson);
+        this.map.setLayoutProperty('data', 'visibility', 'none');
       });
       unfoldTween.onUpdate((progressUnfold) => {
         // WARNING onUpdate is called at 60 FPS or more, what goes here should be super optimized
@@ -443,6 +448,7 @@ class Map extends Component {
         this.geojson = geoJsonUnfolded;
         // Clear canvas and render geojson on the mapbox canvas
         this.map.getSource('data').setData(this.geojson);
+        this.map.setLayoutProperty('data', 'visibility', 'visible');
         setTimeout(() => {
           this.clearCanvas();
         }, 200);
