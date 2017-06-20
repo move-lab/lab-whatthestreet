@@ -7,13 +7,11 @@ const initialState = fromJS({
   isRouting: false,
   routerWatcherInitialized: false,
   urlRoutingTo: "",
-  errorWhileRouting: false,
-  authHeader: null
+  errorWhileRouting: false
 });
 
 // Actions
 const SET_BASEURL = 'App/SET_BASE_URL';
-const SET_AUTHHEADER = 'App/SET_AUTHHEADER';
 const SET_ROUTER_WATCHER_INITIALIZED = 'App/SET_ROUTER_WATCHER_INITIALIZED';
 const START_ROUTING = 'App/START_ROUTING';
 const ERROR_ROUTING = 'App/ERROR_ROUTING';
@@ -23,13 +21,6 @@ export function setBaseUrl(baseUrl) {
   return {
     type: SET_BASEURL,
     payload: baseUrl
-  }
-}
-
-export function setAuthHeader(authHeader) {
-  return {
-    type: SET_AUTHHEADER,
-    payload: authHeader
   }
 }
 
@@ -78,8 +69,6 @@ export default function AppStateManagement(state = initialState, action = {}) {
   switch (action.type) {
     case SET_BASEURL:
       return state.set('baseUrl', action.payload);
-    case SET_AUTHHEADER:
-      return state.set('authHeader', action.payload);
     case SET_ROUTER_WATCHER_INITIALIZED:
       return state.set('routerWatcherInitialized', true);
     case START_ROUTING:
