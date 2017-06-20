@@ -3,6 +3,7 @@ import ReactMapboxGl, { ScaleControl, ZoomControl } from "react-mapbox-gl";
 import TWEEN from 'tween.js';
 import { bbox } from '@turf/turf';
 import rotate from '@turf/transform-rotate';
+import Config from '../../../config.json';
 
 import MapActions from './MapActions';
 
@@ -416,7 +417,7 @@ class Map extends Component {
     return (
       <ReactMapboxGl
         style={`mapbox://styles/${this.state.activeLayer}`}
-        accessToken="***REMOVED***"
+        accessToken={Config.mapboxToken}
         containerStyle={containerStyle}
         onStyleLoad={this.onMapLoaded}
         dragRotate={false}

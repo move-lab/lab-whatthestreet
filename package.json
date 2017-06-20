@@ -27,6 +27,7 @@
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-ga": "^2.2.0",
     "react-mapbox-gl": "^1.11.0",
     "react-redux": "^5.0.4",
     "redis": "^2.7.1",

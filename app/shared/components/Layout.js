@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
+import Router from 'next/router';
 import PropTypes from 'prop-types';
+import Config from '../../../config.json';
+import ReactGA from 'react-ga';
 
 import * as METRICS from '../style/metrics';
 import * as COLORS from '../style/colors';
@@ -17,6 +20,9 @@ class Layout extends Component {
 
   componentDidMount() {
     require('smoothscroll-polyfill').polyfill();
+    ReactGA.initialize(Config.gaID);
+    ReactGA.set({ page: Router.pathname });
+    ReactGA.pageview(Router.pathname);
   }
 
   render() {
