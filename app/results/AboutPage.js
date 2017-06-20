@@ -4,7 +4,7 @@ import Router from 'next/router';
 
 import About from './sections/About';
 import Legal from './sections/Legal';
-import Footer from './sections/Footer';
+import Footer from '../shared/components/Footer';
 
 class AboutPage extends Component {
 

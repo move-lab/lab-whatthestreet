@@ -4,6 +4,7 @@ import Router from 'next/router';
 import PropTypes from 'prop-types';
 import Config from '../../../config.json';
 import ReactGA from 'react-ga';
+import Footer from './Footer';
 
 import * as METRICS from '../style/metrics';
 import * as COLORS from '../style/colors';

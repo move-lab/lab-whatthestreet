@@ -11,7 +11,7 @@ import Demand from './sections/Demand';
 import OtherCities from './sections/OtherCities';
 import About from './sections/About';
 import Legal from './sections/Legal';
-import Footer from './sections/Footer';
+import Footer from '../shared/components/Footer';
 import Poster from './sections/Poster';
 
 class ResultsPage extends Component {
