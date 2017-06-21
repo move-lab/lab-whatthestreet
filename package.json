@@ -20,6 +20,7 @@
     "lodash.keyby": "^4.6.0",
     "lodash.maxby": "^4.6.0",
     "lodash.minby": "^4.6.0",
+    "lodash.sample": "^4.2.1",
     "mapbox-gl": "^0.37.0",
     "mongodb": "^2.2.26",
     "next": "^2.4.3",
