@@ -24,6 +24,7 @@ const unfolder = unfold();
 
 let ReactMapboxGl;
 
+
 class Map extends Component {
 
   static propTypes = {
@@ -84,10 +85,12 @@ class Map extends Component {
 
   componentDidMount() {
     // Do not render on server
-    ReactMapboxGl = require('react-mapbox-gl').default;
+    require('mapbox.js').default;
     this.setState({ 
       showMap: true 
     });
+    L.mapbox.accessToken = Config.mapboxToken;
+    this.map = L.mapbox.map('map', 'mapbox.satellite').setView([40, -74.50], 9);
   }
 
   initCanvas() {
@@ -490,32 +493,25 @@ class Map extends Component {
   render() {
     return (
       <div>
-        {this.state.showMap &&
-          <ReactMapboxGl
-            style={`mapbox://styles/${this.state.activeLayer}`}
-            accessToken={Config.mapboxToken}
-            containerStyle={containerStyle}
-            onStyleLoad={this.onMapLoaded}
-            dragRotate={false}
-          >
-            <canvas
-              ref={(el) => this.d3canvas = el} className="d3"></canvas>
-            <style jsx>{`
-              .d3 {
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                right: 0;
-                left: 0;
-                z-index: 1000;
-                pointer-events: none;
-              }
-            `}</style>
-          </ReactMapboxGl>
-        }
-        {!this.state.showMap &&
-          <div>Loading</div>
-        }
+        <div>
+          <div id="map"></div>
+          <canvas ref={(el) => this.d3canvas = el} className="d3"></canvas>
+        </div>
+        <style jsx>{`
+          #map {
+            width: 500px;
+            height: 500px;
+          }
+          .d3 {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            z-index: 1000;
+            pointer-events: none;
+          }
+        `}</style>
       </div>
     );
   }

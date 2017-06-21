@@ -82,6 +82,7 @@ class Explore extends Component {
           <meta name="twitter:title" content="What the Street!? - moovel lab" />
           <meta name="twitter:description" content="Who owns the city? Explore the distribution of mobility space amongst urban traffic. Discover every parking lot or street of 23 metropolises." />
           <meta name="twitter:image" content="http://whatthestreet.moovellab.com/static/images/wts-meta@2x.png" />
+          <link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
         </Head>
         <MapMobile
           activeVehicle={this.props.activeVehicle}
