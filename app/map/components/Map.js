@@ -497,6 +497,9 @@ class Map extends Component {
         />
         <canvas
           ref={(el) => this.d3canvas = el} className="d3"></canvas>
+        <div className="MapAttribution">
+          Map Data: © OpenStreetMap contributors
+        </div>
         <style jsx>{`
           .d3 {
             position: absolute;
@@ -506,6 +509,18 @@ class Map extends Component {
             left: 0;
             z-index: 1000;
             pointer-events: none;
+          }
+
+          .MapAttribution {
+            position: absolute;
+            bottom: 3px;
+            left: 3px;
+            padding: 3px;
+            font-size: 12px;
+            background-color: hsla(0,0%,100%,.7);
+            overflow: hidden;
+            border-radius: 3px;
+            z-index: 2;
           }
         `}</style>
       </ReactMapboxGl>
