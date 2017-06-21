@@ -72,16 +72,16 @@ class VersusIcon extends React.PureComponent {
           className={`BigCircle ${usedSpace === 0 ? 'disabled' : ''}`}
           cx={allocatedSpace.x}
           cy={TRIANGLE_H_LENGTH - allocatedSpace.y} 
-          r="15" 
+          r="10" 
           stroke={COLORS.ColorForegroundOrange} 
-          strokeWidth="10" 
+          strokeWidth="5" 
           fill={COLORS.ColorVersusLightOrange}
         />
         {usedSpace !== 0 &&
           <circle className="SmallCircle"
             cx={usedSpace.x}
             cy={TRIANGLE_H_LENGTH - usedSpace.y}
-            r="10"
+            r="5"
             fill={COLORS.ColorForegroundOrange}
           />
         }

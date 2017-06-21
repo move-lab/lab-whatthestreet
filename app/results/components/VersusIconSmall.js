@@ -23,32 +23,33 @@ class VersusIconSmall extends React.PureComponent {
 
           .BigBall {
             background-color: ${COLORS.ColorForegroundOrange};
-            height: 40px;
-            width: 40px;
+            height: 25px;
+            width: 25px;
             border-radius: 50%;
             position: relative;
+            top: 5px;
           }
 
           .BigBallInside {
             position: absolute;
             background-color: rgb(255, 149, 92);
-            height: 20px;
-            width: 20px;
-            top: 10px;
-            left: 10px;
+            height: 15px;
+            width: 15px;
+            top: 5px;
+            left: 5px;
             border-radius: 50%;
           }
 
           .SmallBall {
             background-color: ${COLORS.ColorForegroundOrange};
-            height: 20px;
-            width: 20px;
+            height: 10px;
+            width: 10px;
             border-radius: 50%;
           }
 
           .Line {
             background-color:${COLORS.ColorVersusLightOrange};
-            height: 20px;
+            height: 35px;
             width: 2px;
           }
       `}</style>
