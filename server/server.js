@@ -22,6 +22,11 @@ app.prepare()
     return app.render(req, res, '/about', req.query);
   })
 
+  server.get('/:cityName/mapmobile/:vehicleType/:areaType/:itemId', (req, res) => {
+    console.log('handled by /:cityName/mapmobile/:vehicleType/:areaType/:itemId');
+    return app.render(req, res, '/mapmobile', req.query);
+  })
+
   server.get('/:cityName/explore/:vehicleType/:areaType/:itemId', (req, res) => {
     console.log('handled by /:cityName/explore/:vehicleType/:areaType/:itemId');
     return app.render(req, res, '/map', req.query);
