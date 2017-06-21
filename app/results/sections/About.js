@@ -25,6 +25,9 @@ class AboutSection extends React.PureComponent {
             <p className="Text">
               <a href="http://lab.moovel.com/blog/about-what-the-street" target="_blank">http://lab.moovel.com/blog/about-what-the-street</a>
             </p>
+            <p className="Text">
+              <a href="/static/presskit/WhatTheStreet_presskit.zip" target="_blank">Download the Press Kit</a>
+            </p>
           </div>
         </div>
         <style jsx>{`
