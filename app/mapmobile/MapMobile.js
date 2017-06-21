@@ -90,14 +90,20 @@ class Map extends Component {
       showMap: true 
     });
     L.mapbox.accessToken = Config.mapboxToken;
-    this.map = L.mapbox.map('map', 'mapbox.satellite').setView([40, -74.50], 9);
+    this.map = L.mapbox.map('map', null, { zoomControl:false });
+    const styleLayer = L.mapbox.styleLayer("mapbox://styles/moovellab/cj3puddkq00002skevihhyt07").addTo(this.map);
+    this.map.setView([40, -74.50], 9);
+    styleLayer.on('tileload', () => {
+      styleLayer.off('tileload');
+      this.onMapLoaded();
+    })
   }
 
   initCanvas() {
     const self = this;
     this.transform = d3geo.geoTransform({
       point: function(lon, lat) {
-        const pointOnCanvas = self.map.project([lon,lat]);
+        const pointOnCanvas = self.map.project(L.latLng(lat, lon));
         this.stream.point(pointOnCanvas.x, pointOnCanvas.y);
       }
     });
@@ -124,36 +130,18 @@ class Map extends Component {
     this.renderingOnCanvas = false;
   }
 
-  onMapLoaded(map) {
-    this.map = map;
-    // Set up event handler for style switching
-    this.map.on('style.load', () => {
-      this.addBaseLayer();
-    });
+  onMapLoaded() {
     this.addBaseLayer();
     this.initCanvas();
-    debugger;
     this.renderData(this.props);
+
   }
 
   addBaseLayer() {
-    // Add a layer we will use to draw animation and streets
-    this.map.addLayer({
-      id: 'data',
-      type: 'line',
-      source: {
-        type: 'geojson',
-        data: this.geojson
-      },
-      paint: {
-        "line-color": "#FF6819",
-        "line-width": 5
-      },
-      layout: {
-        "line-join": "round",
-        "line-cap": "round"
-      }
-    });
+    // Init geojson layer
+    this.streetDataLayer = L.geoJSON();
+    this.streetDataLayer.addTo(this.map);
+    this.setDataToLayer(this.geojson);
   }
 
   zoomIn() {
@@ -200,118 +188,6 @@ class Map extends Component {
   }
 
   /*
-    RENDER PARKING
-  */
-
-  renderParking(props) {
-    const self = this;
-    if(this.map) {
-
-      // Special case for small polygon (bike), display a marker
-      // const firstCoordinate = props.parkingData.coordinates[0];
-      // const differentValue = props.parkingData.coordinates.filter((value) => {
-      //   return value[0] !== firstCoordinate[0] && value[1] !== firstCoordinate[1]
-      // });
-
-      // Display as marker
-      // TODO This is not working yet
-      // if(differentValue.length === 0) {
-      //   const parkingFinal = {
-      //     type: 'Feature',
-      //     properties: {
-      //       "title": "...",
-      //       "marker-symbol": "marker"
-      //     },
-      //     geometry: {
-      //       type: 'Point',
-      //       coordinates: props.parkingData.coordinates[0],
-      //     }
-      //   }
-
-      //   this.map.getSource('data').setData(parkingFinal);
-      //   this.map.jumpTo({
-      //     center: props.parkingData.coordinates[0],
-      //     zoom: 18
-      //   });
-      //   return;
-      // }
-
-
-      // parking final geojson
-      const parkingFinal = {
-        type: 'Feature',
-        properties: {
-          "name": "..."
-        },
-        geometry: {
-          type: 'Polygon',
-          coordinates: [props.parkingData.coordinates],
-        }
-      }
-
-      // initial parking geojson (like it is in the scroll experience)
-      const parkingRotatedStart = rotate(parkingFinal, props.parkingData.rotation);
-
-      // Init map and fit to initial parking geojson
-      this.map.getSource('data').setData(parkingRotatedStart);
-      this.map.setLayoutProperty('data', 'visibility', 'visible');
-      // Clear previous canvas if any
-      this.clearCanvas();
-      const parkingRotatedStartBbox = bbox(parkingRotatedStart);
-      const parkingEndBbox = bbox(parkingFinal);
-      this.map.fitBounds(parkingRotatedStartBbox, {
-        maxZoom: 18,
-        padding: 100,
-        linear: true,
-        duration: 0
-      });
-
-      // Start animating from props.parkingData.rotation to rotation = 0, in 1.6 s
-      const rotationTween = new TWEEN.Tween({rotation: props.parkingData.rotation})
-                                      .to({rotation: 0}, 1600)
-                                      .easing(TWEEN.Easing.Bounce.Out)
-                                      .delay(2100);
-      rotationTween.onStart(() => {
-        //Clear geojson of mapbox to render on the overlaying canvas
-        self.renderOnCanvas(parkingRotatedStart);
-        self.map.getSource('data').setData(this.emptyGeoJson);
-        self.map.setLayoutProperty('data', 'visibility', 'none');
-      });
-      rotationTween.onUpdate(function() {
-        const parkingRotated = rotate(parkingFinal, this.rotation);
-        self.renderOnCanvas(parkingRotated);
-      });
-      rotationTween.onComplete(() => {
-        this.animating = false;
-        // Register final animation state in case we switch layer style
-        this.geojson = parkingFinal;
-        // Clean listener because it can trigger onComplete afterwise if not
-        TWEEN.removeAll();
-        // Clear canvas and render geojson on the mapbox canvas
-        self.map.getSource('data').setData(this.geojson);
-        self.map.setLayoutProperty('data', 'visibility', 'visible');
-        setTimeout(() => {
-          self.clearCanvas();
-        }, 200);
-      })
-
-      rotationTween.start();
-      this.animate(true);
-
-      // Fit bounds to end position
-      setTimeout(() => {
-        this.map.fitBounds(parkingEndBbox, {
-          maxZoom: 18,
-          padding: 200,
-          linear: true,
-          duration: 1000
-        });
-      }, 1000);
-
-    }
-  }
-
-  /*
     RENDER STREET UTILITIES
    */
 
@@ -325,23 +201,39 @@ class Map extends Component {
     );
   }
 
+  setDataToLayer(newData) {
+    this.streetDataLayer.clearLayers(); 
+    this.streetDataLayer.addData(newData);
+    this.streetDataLayer.setStyle({
+        "lineCap": "round",
+        "lineJoin": "round",
+        "color": "#FF6819",
+        "weight": 5
+    });
+  }
+
+  getBoundsFromBBox(bbox) {
+    var p1 = L.latLng(bbox[1], bbox[0]);
+    var p2 = L.latLng(bbox[3], bbox[2]);
+    var bounds = L.latLngBounds(p1, p2);
+    return bounds;
+  }
+
+
   renderLane(props) {
     const self = this;
     if(this.map) {
       // Center map on coiler line coord
       let center = [
-        props.laneData.properties.origin.lon,
-        props.laneData.properties.origin.lat
+        props.laneData.properties.origin.lat,
+        props.laneData.properties.origin.lon
       ]
       // Get max zoom lvl
       const meterPerPixel = 1.2672955975;
       const initZoom = getZoomLevel(props.laneData.properties.origin.lat, meterPerPixel);
 
       // Init map at the position of the street
-      this.map.jumpTo({
-        center: center,
-        zoom: initZoom
-      });
+      this.map.setView(center,initZoom);
 
       // Compute bbox start and bbox end
       const geoJsonFolded = this.unfold(props.laneData, 0, 0);
@@ -349,18 +241,17 @@ class Map extends Component {
 
       const bboxFolded = bbox(geoJsonFolded);
       const bboxUnfolded = bbox(geoJsonUnfolded);
-      const dLonWest = bboxFolded[0] - bboxUnfolded[0];
-      const dLonEast = bboxFolded[2] - bboxUnfolded[2];
-      const dLatNorth = bboxFolded[1] - bboxUnfolded[1];
-      const dLatSouth = bboxFolded[3] - bboxUnfolded[3];
 
       // Fit bounds to the street folded
-      this.map.fitBounds(bboxFolded, {
+      this.map.fitBounds(this.getBoundsFromBBox(bboxFolded), {
+        animate: false,
         maxZoom: 18,
-        padding: 100,
-        linear: true,
-        duration: 0
+        padding: [50, 50]
       });
+        // maxZoom: 18,
+        // padding: 100,
+        // linear: true,
+        // duration: 0
 
       // Wait 1s and fit to the unfolded BBOX before starting the animation
       // Set to a fixed 1s linear because we need to know how long it takes
@@ -369,13 +260,13 @@ class Map extends Component {
       // We can't move the camera during the animation, otherwise FPS drops dramaticly
       setTimeout(() => {
         // Fit bounds to the street folded
-        this.map.fitBounds(bboxUnfolded, {
+        this.map.fitBounds(this.getBoundsFromBBox(bboxUnfolded), {
           maxZoom: 18,
-          padding: 100,
-          linear: true,
-          duration: 1000
+          padding: [20, 20],
+          animate: true,
+          duration: 1
         });
-      }, 1000)
+      }, 2000)
 
       // This depends on how much movement is in the street geometry
       // NOTE @tdurand: I didn't investivate how calculateBendWay is computed and why
@@ -398,8 +289,8 @@ class Map extends Component {
       let unfoldDelay = 3000;
 
       // Draw the first frame
-      this.map.getSource('data').setData(geoJsonFolded);
-      this.map.setLayoutProperty('data', 'visibility', 'visible');
+      this.setDataToLayer(geoJsonFolded);
+      // this.map.setLayoutProperty('data', 'visibility', 'visible');
       // Clear previous canvas if any
       this.clearCanvas();
 
@@ -414,9 +305,9 @@ class Map extends Component {
       unfoldTween.chain(stitchTween);
       unfoldTween.onStart(() => {
         //Clear geojson of mapbox to render on the overlaying canvas
-        this.renderOnCanvas(this.geoJsonFolded);
-        this.map.getSource('data').setData(this.emptyGeoJson);
-        this.map.setLayoutProperty('data', 'visibility', 'none');
+        // this.renderOnCanvas(this.geoJsonFolded);
+        this.setDataToLayer(this.emptyGeoJson);
+        // this.map.setLayoutProperty('data', 'visibility', 'none');
       });
       unfoldTween.onUpdate((progressUnfold) => {
         // WARNING onUpdate is called at 60 FPS or more, what goes here should be super optimized
@@ -430,7 +321,8 @@ class Map extends Component {
 
           this.computingGeojson = true;
           const geojson = this.unfold(props.laneData, progressUnfold, 0);
-          this.renderOnCanvas(geojson);
+          this.setDataToLayer(geojson);
+          // this.renderOnCanvas(geojson);
           this.computingGeojson = false;
         } else {
           // Skip frame, we were not ready to handle it
@@ -447,7 +339,8 @@ class Map extends Component {
           this.computingGeojson === false) {
           this.computingGeojson = true;
           const geojson = this.unfold(props.laneData, 1, progressStitch);
-          this.renderOnCanvas(geojson);
+          this.setDataToLayer(geojson);
+          // this.renderOnCanvas(geojson);
           this.computingGeojson = false;
         } else {
           // Skip drame, we were not ready to handle it
@@ -458,11 +351,12 @@ class Map extends Component {
         // Register geojson final in case we stich layers
         this.geojson = geoJsonUnfolded;
         // Clear canvas and render geojson on the mapbox canvas
-        this.map.getSource('data').setData(this.geojson);
-        this.map.setLayoutProperty('data', 'visibility', 'visible');
-        setTimeout(() => {
-          this.clearCanvas();
-        }, 200);
+        // this.setDataToLayer(this.geojson);
+        // this.map.getSource('data').setData(this.geojson);
+        // this.map.setLayoutProperty('data', 'visibility', 'visible');
+        // setTimeout(() => {
+        //   this.clearCanvas();
+        // }, 200);
         // Clean listener because it can trigger onComplete afterwise if not
         TWEEN.removeAll();
       })
@@ -475,19 +369,11 @@ class Map extends Component {
   }
 
   renderData(props) {
-    if (props.areaType === 'parking' && this.props.activeVehicle !== 'rail') {
-      if(!props.parkingData) {
-        return;
-      }
-      this.renderParking(props);
-      this.lastComputedId = props.parkingData.id;
-    } else {
-      if(!props.laneData) {
-        return;
-      }
-      this.renderLane(props);
-      this.lastComputedId = props.laneData._id;
+    if(!props.laneData) {
+      return;
     }
+    this.renderLane(props);
+    this.lastComputedId = props.laneData._id;
   }
 
   render() {
@@ -499,8 +385,8 @@ class Map extends Component {
         </div>
         <style jsx>{`
           #map {
-            width: 500px;
-            height: 500px;
+            width: 512px;
+            height: 512px;
           }
           .d3 {
             position: absolute;
