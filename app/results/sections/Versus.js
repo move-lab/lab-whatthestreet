@@ -106,6 +106,7 @@ class VersusPage extends React.Component {
             padding: 0 ${METRICS.MetricsContentPadding};
             margin: 0 auto;
             position: relative;
+            padding-bottom: 70px;
           }
 
           .Title {
