@@ -197,33 +197,33 @@ class Map extends Component {
     if(this.map) {
 
       // Special case for small polygon (bike), display a marker
-      const firstCoordinate = props.parkingData.coordinates[0];
-      const differentValue = props.parkingData.coordinates.filter((value) => {
-        return value[0] !== firstCoordinate[0] && value[1] !== firstCoordinate[1]
-      });
+      // const firstCoordinate = props.parkingData.coordinates[0];
+      // const differentValue = props.parkingData.coordinates.filter((value) => {
+      //   return value[0] !== firstCoordinate[0] && value[1] !== firstCoordinate[1]
+      // });
 
       // Display as marker
       // TODO This is not working yet
-      if(differentValue.length === 0) {
-        const parkingFinal = {
-          type: 'Feature',
-          properties: {
-            "title": "...",
-            "marker-symbol": "marker"
-          },
-          geometry: {
-            type: 'Point',
-            coordinates: props.parkingData.coordinates[0],
-          }
-        }
+      // if(differentValue.length === 0) {
+      //   const parkingFinal = {
+      //     type: 'Feature',
+      //     properties: {
+      //       "title": "...",
+      //       "marker-symbol": "marker"
+      //     },
+      //     geometry: {
+      //       type: 'Point',
+      //       coordinates: props.parkingData.coordinates[0],
+      //     }
+      //   }
 
-        this.map.getSource('data').setData(parkingFinal);
-        this.map.jumpTo({
-          center: props.parkingData.coordinates[0],
-          zoom: 18
-        });
-        return;
-      }
+      //   this.map.getSource('data').setData(parkingFinal);
+      //   this.map.jumpTo({
+      //     center: props.parkingData.coordinates[0],
+      //     zoom: 18
+      //   });
+      //   return;
+      // }
 
 
       // parking final geojson
@@ -521,6 +521,7 @@ class Map extends Component {
             overflow: hidden;
             border-radius: 3px;
             z-index: 2;
+            color: black;
           }
         `}</style>
       </ReactMapboxGl>
