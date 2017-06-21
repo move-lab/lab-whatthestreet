@@ -88,10 +88,10 @@ class VersusIcon extends React.PureComponent {
         <foreignObject className="LabelText"
           x={this.props.currentCity.name !== triangleData.city ? allocatedSpace.x + 25 : allocatedSpace.x - 200}
           y={TRIANGLE_H_LENGTH - allocatedSpace.y}
-          width="200" height="15"
+          width="400" height="15"
         >
           <div xmlns="http://www.w3.org/1999/xhtml" className="City">
-            {`${triangleData.city} ${usedSpace === 0 ? '(no used space data)' : ''}`}
+            {`${triangleData.city} ${usedSpace === 0 ? '(no move data)' : ''}`}
           </div>
         </foreignObject>
         <style jsx>{`
