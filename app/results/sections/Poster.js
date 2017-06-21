@@ -105,7 +105,7 @@ class PosterSection extends React.PureComponent {
               </div>
               <div className="CTAWrapper">
                 <div className="Text">
-                  We teamed up with RedBubble to bring the fight of cities' mobility modes to your living room
+                  Get posters of your favorite cities' mobility patterns for your living room!
                 </div>
                 <RoundedButton
                   onClick={this.goToPosterShop}
