@@ -30,17 +30,16 @@ class ResultsPage extends React.PureComponent {
     super(props);
 
     this.state = {
-      guessStrength: this.calculateGuessStrength()
+      guessStrength: this.calculateGuessStrength(props)
     }
   }
 
-  calculateGuessStrength = () => {
-    const actual = this.props.actual;
+  calculateGuessStrength = (props) => {
+    const actual = props.actual;
 
     // Get correctness of each guess point
-    let others = this.props.others.map((item) => ({ bike: getPercentOfRightness(actual.bike, item.bike), car: getPercentOfRightness(actual.car, item.car), rail: getPercentOfRightness(actual.rail, item.rail) }));
-    let own = { bike: getPercentOfRightness(actual.bike, this.props.own.bike), car: getPercentOfRightness(actual.car, this.props.own.car), rail: getPercentOfRightness(actual.rail, this.props.own.rail) };
-
+    let others = props.others.map((item) => ({ bike: getPercentOfRightness(actual.bike, item.bike), car: getPercentOfRightness(actual.car, item.car), rail: getPercentOfRightness(actual.rail, item.rail) }));
+    let own = { bike: getPercentOfRightness(actual.bike, props.own.bike), car: getPercentOfRightness(actual.car, props.own.car), rail: getPercentOfRightness(actual.rail, props.own.rail) };
 
     others = others.map((item) => (Math.round((item.bike + item.car + item.rail) / 3)));
     own = Math.round((own.bike + own.car + own.rail) / 3);
@@ -55,7 +54,10 @@ class ResultsPage extends React.PureComponent {
     }
     const result = (100 / others.length) * i;
 
-    return result;
+    return {
+      own: own,
+      ownAgainstOther: result
+    };
   }
 
   render = () => {
@@ -65,7 +67,7 @@ class ResultsPage extends React.PureComponent {
       toReturn = (
         <div>
           <ResultsBarChart
-            guessStrength={this.state.guessStrength}
+            guessStrength={this.state.guessStrength.own}
             suggestion={this.props.suggestion}
             actual={this.props.actual}
             own={this.props.own}
@@ -78,7 +80,7 @@ class ResultsPage extends React.PureComponent {
           />
           {this.props.others && this.props.others.length > 0 &&
             <ComparisonBarChart
-              guessStrength={this.state.guessStrength}
+              guessStrength={this.state.guessStrength.ownAgainstOther}
               actual={this.props.actual}
               own={this.props.own}
               others={this.props.others}
