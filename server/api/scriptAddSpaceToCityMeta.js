@@ -9,6 +9,7 @@ fs.readFile(srcPath, 'utf8', function (err, cityMetaData) {
 
    Object.keys(jsonData).map((cityKey) => {
       var city = jsonData[cityKey];
+      console.log(cityKey);
       jsonData[cityKey]["space"] = {
         car: city.parking.car.offStreet.area + city.moving.car.area,
         bike: city.parking.bike.area + city.moving.bike.area,
