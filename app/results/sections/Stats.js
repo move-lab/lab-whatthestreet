@@ -52,7 +52,9 @@ class Stats extends React.Component {
           </h2>
           <CitizenOwnership city={this.props.cityMetaData.name} data={this.calculateOwnership()} />
           <LongestStreets city={this.props.cityMetaData.name} streets={this.props.cityMetaData.streets.longestStreets} />
-          <LongestStreetNames city={this.props.cityMetaData.name} streets={this.props.cityMetaData.streets.longestNames} />
+          {this.props.cityMetaData.name !== "Tokyo" &&
+            <LongestStreetNames city={this.props.cityMetaData.name} streets={this.props.cityMetaData.streets.longestNames} />
+          }
         </div>
         <style jsx>{`
           .MainContainer {
