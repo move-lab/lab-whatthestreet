@@ -18,7 +18,7 @@ class OtherCities extends React.Component {
 
   render() {
     return (
-      <div className="MainContainer" style={{ backgroundImage: `url(/api/v1/cities/${this.props.city.slug}/background)` }}>
+      <div className="MainContainer" style={{ backgroundImage: `url(/api/v1/cities/${this.props.city.name.replace(/\s+/g, '')}/background)` }}>
         <div className="Wrapper">
           <h2 className="Title">
             More Cities to discover
