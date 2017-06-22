@@ -260,7 +260,21 @@ class Map extends Component {
         console.log('tiles bboxFolded Loaded');
         console.log('notify we are phantom ready to animate');
         if (typeof window.callPhantom === "function") {
-          window.callPhantom({type: "readyToAnimate"});
+          // Get timings of the animation to communicate them to phantomjs:
+          let timeUnfold = calculateBendWay(props.laneData.original.vectors) * 200000;
+          timeUnfold = timeUnfold > 5000 ? 5000 : timeUnfold;
+          timeUnfold = timeUnfold < 1300 ? 1300 : timeUnfold;
+
+          let timeUnstitch = (getLongestTranslation(props.laneData.original.vectors) * 200000 - 199) * 9090 - 7000
+          timeUnstitch = timeUnstitch > 2000 ? 2000 : timeUnstitch;
+          timeUnstitch = timeUnstitch < 1000 ? 1000 : timeUnstitch;
+          let unstitchDelay = 600;
+          let unfoldDelay = 2000;
+
+          window.callPhantom({
+            type: "readyToAnimate",
+            animationDuration: timeUnfold + unfoldDelay + timeUnstitch + unstitchDelay
+          });
         } else {
           // We are in normal browser, renderAnimation
           window.renderAnimation();
