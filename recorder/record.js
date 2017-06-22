@@ -17,7 +17,8 @@ var animationDuration = 0;
 var currentFrame = 0;
 var stop = false;
 var TARGET_FPS = 30;
-var getFrameEvery = (1000 / TARGET_FPS) * SLOW_DOWN_FACTOR 
+var getFrameEvery = (1000 / TARGET_FPS) * SLOW_DOWN_FACTOR;
+var readyToAnimateFired = false;
 
 function getFrame() {
   page.render(PATH+"/"+PATH +"_"+ currentFrame + ".png", { format: "png" });
@@ -33,6 +34,7 @@ function getFrame() {
 
 page.onCallback = function(event){
     if(event.type === "readyToAnimate") {
+      readyToAnimateFired = true;
       console.log(SLOW_DOWN_FACTOR);
       console.log('Ready To animate, start it, animation duration will be:');
       animationDuration = event.animationDuration * SLOW_DOWN_FACTOR;
@@ -52,4 +54,18 @@ page.onCallback = function(event){
     }
 };
 
-page.open("http://localhost:4000/" + CITY + "/mapmobile/" + MOBILITY_TYPE + "/lanes/" + STREET_ID + "?bike=0.34&rail=0.32&car=0.33");
+page.open("http://localhost:4000/" + CITY + "/mapmobile/" + MOBILITY_TYPE + "/lanes/" + STREET_ID + "?bike=0.34&rail=0.32&car=0.33", function(status) {
+  if (status !== "success") {
+    console.log("Unable to access http://localhost:4000/" + CITY + "/mapmobile/" + MOBILITY_TYPE + "/lanes/" + STREET_ID + "?bike=0.34&rail=0.32&car=0.33");
+    phantom.exit();
+  } else {
+    //Hard timeout if readyToAnimate now fired in 10s
+    // Can happen for street that does not render
+    setTimeout(function() {
+      if(!readyToAnimateFired) {
+        console.log("Animation does not start, hard timeout stop");
+        phantom.exit();
+      }
+    }, 10000);
+  }
+});
