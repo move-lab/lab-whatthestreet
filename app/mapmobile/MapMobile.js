@@ -207,7 +207,7 @@ class Map extends Component {
         "lineCap": "round",
         "lineJoin": "round",
         "color": "#FF6819",
-        "weight": 5
+        "weight": 4
     });
   }
 
@@ -243,7 +243,7 @@ class Map extends Component {
     this.map.fitBounds(this.getBoundsFromBBox(bboxUnfolded), {
       animate: false,
       maxZoom: 18,
-      padding: [50, 50]
+      padding: [5, 5]
     });
 
     this.styleLayer.once('load', () => {
@@ -251,7 +251,7 @@ class Map extends Component {
       //Go to the folded once we have loaded the unfolded tiles 
       this.map.flyToBounds(this.getBoundsFromBBox(bboxFolded), {
         maxZoom: 18,
-        padding: [20, 20],
+        padding: [10, 10],
         animate: true,
         duration: 0.5
       });
@@ -284,7 +284,7 @@ class Map extends Component {
           });
         } else {
           // We are in normal browser, renderAnimation
-          window.renderAnimation(3);
+          window.renderAnimation(1);
         }
         
       });
@@ -338,7 +338,7 @@ class Map extends Component {
         // Fit bounds to the street folded
         this.map.flyToBounds(this.getBoundsFromBBox(bboxUnfolded), {
           maxZoom: 18,
-          padding: [20, 20],
+          padding: [5, 5],
           animate: true,
           duration: 0.5
         });
