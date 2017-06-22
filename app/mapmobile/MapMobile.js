@@ -259,25 +259,32 @@ class Map extends Component {
       this.styleLayer.once('load', () => {
         console.log('tiles bboxFolded Loaded');
         console.log('notify we are phantom ready to animate');
+        // Get timings of the animations
+        let timeUnfold = calculateBendWay(props.laneData.original.vectors) * 200000;
+        timeUnfold = timeUnfold > 5000 ? 5000 : timeUnfold;
+        timeUnfold = timeUnfold < 1300 ? 1300 : timeUnfold;
+
+        let timeUnstitch = (getLongestTranslation(props.laneData.original.vectors) * 200000 - 199) * 9090 - 7000
+        timeUnstitch = timeUnstitch > 2000 ? 2000 : timeUnstitch;
+        timeUnstitch = timeUnstitch < 1000 ? 1000 : timeUnstitch;
+        let unstitchDelay = 600;
+        let unfoldDelay = 2000;
+
+        this.animationTimings = {
+          timeUnfold,
+          timeUnstitch,
+          unstitchDelay,
+          unfoldDelay
+        }
+
         if (typeof window.callPhantom === "function") {
-          // Get timings of the animation to communicate them to phantomjs:
-          let timeUnfold = calculateBendWay(props.laneData.original.vectors) * 200000;
-          timeUnfold = timeUnfold > 5000 ? 5000 : timeUnfold;
-          timeUnfold = timeUnfold < 1300 ? 1300 : timeUnfold;
-
-          let timeUnstitch = (getLongestTranslation(props.laneData.original.vectors) * 200000 - 199) * 9090 - 7000
-          timeUnstitch = timeUnstitch > 2000 ? 2000 : timeUnstitch;
-          timeUnstitch = timeUnstitch < 1000 ? 1000 : timeUnstitch;
-          let unstitchDelay = 600;
-          let unfoldDelay = 2000;
-
           window.callPhantom({
             type: "readyToAnimate",
             animationDuration: timeUnfold + unfoldDelay + timeUnstitch + unstitchDelay
           });
         } else {
           // We are in normal browser, renderAnimation
-          window.renderAnimation();
+          window.renderAnimation(3);
         }
         
       });
@@ -286,7 +293,7 @@ class Map extends Component {
   }
 
 
-  renderAnimation() {
+  renderAnimation(slowDownFactor) {
     const self = this;
     const props = this.props;
     if(this.map) {
@@ -305,15 +312,22 @@ class Map extends Component {
 
       const bboxFolded = bbox(geoJsonFolded);
       const bboxUnfolded = bbox(geoJsonUnfolded);
-
-      this.styleLayer.on('load', () => {
-        this.styleLayer.off('load');
-        console.log('all visible tile loaded');
-      })
         // maxZoom: 18,
         // padding: 100,
         // linear: true,
         // duration: 0
+
+      
+      let timeUnfold = this.animationTimings.timeUnfold * slowDownFactor;
+      let timeUnstitch = this.animationTimings.timeUnstitch * slowDownFactor;
+      let unstitchDelay = this.animationTimings.unstitchDelay * slowDownFactor;
+      let unfoldDelay = this.animationTimings.unfoldDelay * slowDownFactor;
+
+      // Draw the first frame
+      this.setDataToLayer(geoJsonFolded);
+      // this.map.setLayoutProperty('data', 'visibility', 'visible');
+      // Clear previous canvas if any
+      this.clearCanvas();
 
       // Wait 1s and fit to the unfolded BBOX before starting the animation
       // Set to a fixed 1s linear because we need to know how long it takes
@@ -328,33 +342,7 @@ class Map extends Component {
           animate: true,
           duration: 0.5
         });
-      }, 1000)
-
-      // This depends on how much movement is in the street geometry
-      // NOTE @tdurand: I didn't investivate how calculateBendWay is computed and why
-      // we multiply by magic number 200000
-      // constrain it between 1.3s and 5s
-      let timeUnfold = calculateBendWay(props.laneData.original.vectors) * 200000;
-      timeUnfold = timeUnfold > 5000 ? 5000 : timeUnfold;
-      timeUnfold = timeUnfold < 1300 ? 1300 : timeUnfold;
-      // This depends on how long the biggest translation is (when a street consists of multiple segments)
-      // NOTE @tdurand: I didn't investivate how getLongestTranslation is computed and why
-      // NOTE @mszell: I tested this a bit and found the right limits. Before it always capped at 1s, now it is 2s for long translations which looks better.
-      // we multiply by magic number 200000
-      // constrain it between 1s and 2s
-      let timeUnstitch = (getLongestTranslation(props.laneData.original.vectors) * 200000 - 199) * 9090 - 7000
-      timeUnstitch = timeUnstitch > 2000 ? 2000 : timeUnstitch;
-      timeUnstitch = timeUnstitch < 1000 ? 1000 : timeUnstitch;
-      let unstitchDelay = 600;
-      // Way 2s delay of camera zooming out from folded bbox to unfolded bbox
-      // + 1s to make sure tile are loaded
-      let unfoldDelay = 2000;
-
-      // Draw the first frame
-      this.setDataToLayer(geoJsonFolded);
-      // this.map.setLayoutProperty('data', 'visibility', 'visible');
-      // Clear previous canvas if any
-      this.clearCanvas();
+      }, unfoldDelay / 2);
 
       const unfoldTween = new TWEEN.Tween({progress: 0})
                                   .to({ progress: 1 }, timeUnfold)
