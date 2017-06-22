@@ -38,7 +38,7 @@ export const unfold = function () {
       if (originalGeometry[j][2] != 0) {
         coordinates.push(cursor.geometry.coordinates);
       }
-      console.log(cursor.geometry.coordinates);
+      // console.log(cursor.geometry.coordinates);
 
       angleCounter += vector[1] + angleDiff * progressUnfold;
 

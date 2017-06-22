@@ -389,7 +389,7 @@ coil = (function() {
             partPosition = modulo - coil.width * 2 - coil.curveLength;
             pivot = 2;
         } else {
-            console.log('this should not happen', modulo);
+            // console.log('this should not happen', modulo);
         }
 
         var x;

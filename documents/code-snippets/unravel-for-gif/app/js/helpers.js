@@ -57,7 +57,7 @@ function calculateBendWay(vectors){
         var bendWay = Math.abs(circleFraction);
         entireBendWay += bendWay;
         if (isNaN(entireBendWay)) {
-            console.log(i);
+            // console.log(i);
         };
     }
     return entireBendWay;
