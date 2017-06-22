@@ -72,26 +72,26 @@ class VersusIcon extends React.PureComponent {
           className={`BigCircle ${usedSpace === 0 ? 'disabled' : ''}`}
           cx={allocatedSpace.x}
           cy={TRIANGLE_H_LENGTH - allocatedSpace.y} 
-          r="15" 
+          r="10" 
           stroke={COLORS.ColorForegroundOrange} 
-          strokeWidth="10" 
+          strokeWidth="5" 
           fill={COLORS.ColorVersusLightOrange}
         />
         {usedSpace !== 0 &&
           <circle className="SmallCircle"
             cx={usedSpace.x}
             cy={TRIANGLE_H_LENGTH - usedSpace.y}
-            r="10"
+            r="5"
             fill={COLORS.ColorForegroundOrange}
           />
         }
         <foreignObject className="LabelText"
           x={this.props.currentCity.name !== triangleData.city ? allocatedSpace.x + 25 : allocatedSpace.x - 200}
           y={TRIANGLE_H_LENGTH - allocatedSpace.y}
-          width="200" height="15"
+          width="400" height="15"
         >
           <div xmlns="http://www.w3.org/1999/xhtml" className="City">
-            {`${triangleData.city} ${usedSpace === 0 ? '(no used space data)' : ''}`}
+            {`${triangleData.city} ${usedSpace === 0 ? '(no move data)' : ''}`}
           </div>
         </foreignObject>
         <style jsx>{`

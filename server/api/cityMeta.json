@@ -135,6 +135,142 @@
       "rail": 3915783
     }
   },
+  "beijing": {
+    "name": "Beijing",
+    "country": "China",
+    "boundingBox": [
+      39.6896,
+      116.1058,
+      40.1224,
+      116.67
+    ],
+    "population": 11716620,
+    "cars": 1663760,
+    "onStreetParkingSpots": 0,
+    "modalsplit": {
+      "foot": 0.21,
+      "bike": 0.32,
+      "public": 0.26,
+      "car": 0.21
+    },
+    "streets": {
+      "longestNames": [
+        "三里河南六巷南侧路",
+        "鹫峰园内盘山公路",
+        "测试一下创建道路"
+      ],
+      "staffPicks": [
+        "",
+        "",
+        ""
+      ],
+      "longestStreets": [
+        {
+          "length": 42922.89,
+          "name": "南中轴路",
+          "id": 891
+        },
+        {
+          "length": 33653.25,
+          "name": "朝阳北路",
+          "id": 1155
+        },
+        {
+          "length": 28324.9,
+          "name": "建国路",
+          "id": 367
+        },
+        {
+          "length": 28202.39,
+          "name": "左堤路",
+          "id": 340
+        },
+        {
+          "length": 26341.35,
+          "name": "复兴路",
+          "id": 279
+        },
+        {
+          "length": 24082.65,
+          "name": "朝阳路",
+          "id": 433
+        },
+        {
+          "length": 24037.68,
+          "name": "安立路",
+          "id": 310
+        },
+        {
+          "length": 23565.13,
+          "name": "京开高速辅路",
+          "id": 2097
+        },
+        {
+          "length": 23507.28,
+          "name": "旱河路",
+          "id": 415
+        },
+        {
+          "length": 23452.14,
+          "name": "张采路",
+          "id": 374
+        }
+      ]
+    },
+    "landmark": {
+      "name": "Forbidden City",
+      "area": 983078
+    },
+    "sources": {
+      "modalsplit": "https://en.wikipedia.org/wiki/Modal_share",
+      "cars": "https://www.lta.gov.sg/ltaacademy/doc/13Sep105-Pan_KeyTransportStatistics.pdf",
+      "onStreetParkingSpots": ""
+    },
+    "moving": {
+      "rail": {
+        "area": 8079483,
+        "length": 1711041,
+        "svgHeight": 11788
+      },
+      "car": {
+        "area": 24627214,
+        "length": 4959753,
+        "svgHeight": 39119
+      },
+      "bike": {
+        "area": 1324050,
+        "length": 265446,
+        "svgHeight": 1945
+      }
+    },
+    "parking": {
+      "car": {
+        "onStreet": {
+          "number": null
+        },
+        "offStreet": {
+          "number": 423,
+          "area": 2177509.53,
+          "svgHeight": 3207
+        }
+      },
+      "bike": {
+        "number": 40,
+        "area": 11286.89,
+        "svgHeight": 38.82
+      },
+      "rail": {
+        "area": 3259962,
+        "length": 651548,
+        "svgHeight": 5122
+      }
+    },
+    "space": {
+      "car": 26804723.53,
+      "bike": 1335336.89,
+      "rail": 11339445
+    }
+  },
   "berlin": {
     "name": "Berlin",
     "country": "Germany",
@@ -681,6 +817,278 @@
       "rail": 1274886
     }
   },
+  "hongkong": {
+    "name": "Hong Kong",
+    "country": "China",
+    "boundingBox": [
+      22.1942,
+      114.1163,
+      22.2952,
+      114.2614
+    ],
+    "population": 7188000,
+    "cars": 455000,
+    "onStreetParkingSpots": 0,
+    "modalsplit": {
+      "foot": 0.01,
+      "bike": 0,
+      "public": 0.81,
+      "car": 0.18
+    },
+    "streets": {
+      "longestNames": [
+        "將軍澳華人永遠墳場連接路 Tseung Kwan O Chinese Permanent Cemetery Road",
+        "將軍澳華人永遠墳場通道 Junk Bay Chinese Permanent Cemetery access road",
+        "青衣西北交匯處 North West Tsing Yi Interchange"
+      ],
+      "staffPicks": [
+        "",
+        "",
+        ""
+      ],
+      "longestStreets": [
+        {
+          "length": 19666.87,
+          "name": "清水灣道 Clear Water Bay Road",
+          "id": 2653
+        },
+        {
+          "length": 14936.89,
+          "name": "汀角路 Ting Kok Road",
+          "id": 2079
+        },
+        {
+          "length": 14684.01,
+          "name": "嶼南道 South Lantau Road",
+          "id": 1907
+        },
+        {
+          "length": 14411.77,
+          "name": "西沙路 Sai Sha Road",
+          "id": 1672
+        },
+        {
+          "length": 13218.7,
+          "name": "蓮麻坑路 Lin Ma Hang Road",
+          "id": 2804
+        },
+        {
+          "length": 11938.02,
+          "name": "龍門路 Lung Mun Road",
+          "id": 1205
+        },
+        {
+          "length": 11599.18,
+          "name": "荃錦公路 Route Twisk",
+          "id": 2937
+        },
+        {
+          "length": 10977.28,
+          "name": "翔東路 Cheung Tung Road",
+          "id": 198
+        },
+        {
+          "length": 10515.87,
+          "name": "青山公路－葵涌段 Castle Peak Road – Kwai Chung",
+          "id": 3394
+        },
+        {
+          "length": 9729.69,
+          "name": "薄扶林道 Pok Fu Lam Road",
+          "id": 2920
+        }
+      ]
+    },
+    "landmark": {
+      "name": "Disney Land",
+      "area": 3272494
+    },
+    "sources": {
+      "modalsplit": "https://www.lta.gov.sg/ltaacademy/doc/J14Nov_p54ReferenceModeShares.pdf",
+      "cars": "https://www.lta.gov.sg/ltaacademy/doc/13Sep105-Pan_KeyTransportStatistics.pdf",
+      "onStreetParkingSpots": ""
+    },
+    "moving": {
+      "rail": {
+        "area": 2443925,
+        "length": 525748,
+        "svgHeight": 2680
+      },
+      "car": {
+        "area": 19359966,
+        "length": 2468219,
+        "svgHeight": 19598
+      },
+      "bike": {
+        "area": 870274,
+        "length": 241092,
+        "svgHeight": 877
+      }
+    },
+    "parking": {
+      "car": {
+        "onStreet": {
+          "number": null
+        },
+        "offStreet": {
+          "number": 711,
+          "area": 1793753.56,
+          "svgHeight": 1992
+        }
+      },
+      "bike": {
+        "number": 150,
+        "area": 30913.32,
+        "svgHeight": 60.91
+      },
+      "rail": {
+        "area": 504037,
+        "length": 108666,
+        "svgHeight": 567
+      }
+    },
+    "space": {
+      "car": 21153719.56,
+      "bike": 901187.32,
+      "rail": 2947962
+    }
+  },
+  "jakarta": {
+    "name": "Jakarta",
+    "country": "Indonesia",
+    "boundingBox": [
+      -6.423,
+      106.5759,
+      -6.0892,
+      107.0426
+    ],
+    "population": 9608000,
+    "cars": 2132976,
+    "onStreetParkingSpots": 0,
+    "modalsplit": {
+      "foot": 0,
+      "bike": 0,
+      "public": 0.36,
+      "car": 0
+    },
+    "streets": {
+      "longestNames": [
+        "Jalan Prof. Dr. Sudjono D Pusponegoro",
+        "",
+        ""
+      ],
+      "staffPicks": [
+        "",
+        "",
+        ""
+      ],
+      "longestStreets": [
+        {
+          "length": 17754.67,
+          "name": "TransJakarta Busway Koridor 9",
+          "id": 8798
+        },
+        {
+          "length": 14513.06,
+          "name": "Jalan H.R. Rasuna Said",
+          "id": 2765
+        },
+        {
+          "length": 13194.62,
+          "name": "Jalan Inspeksi Kanal Timur",
+          "id": 2816
+        },
+        {
+          "length": 13106.25,
+          "name": "Jalan Panjang Raya",
+          "id": 3567
+        },
+        {
+          "length": 11879.66,
+          "name": "Jalan Raya Pasar Minggu",
+          "id": 3882
+        },
+        {
+          "length": 10609.85,
+          "name": "Jalan RS Fatmawati",
+          "id": 3825
+        },
+        {
+          "length": 10577.72,
+          "name": "Jalan I Gusti Ngurah Rai",
+          "id": 2807
+        },
+        {
+          "length": 10523.38,
+          "name": "Jalan Tubagus Angke",
+          "id": 4336
+        },
+        {
+          "length": 10111.41,
+          "name": "Jalan Benyamin Sueb",
+          "id": 2367
+        },
+        {
+          "length": 9913.62,
+          "name": "Jalan Gunung Sahari",
+          "id": 2717
+        }
+      ]
+    },
+    "landmark": {
+      "name": "National Monument",
+      "area": 792440
+    },
+    "sources": {
+      "modalsplit": "http://www.brtdata.org/indicators/systems/modal_split__public_transport",
+      "cars": "http://www.eria.org/RPR_FY2012_No.29_Chapter_2.pdf",
+      "onStreetParkingSpots": ""
+    },
+    "moving": {
+      "rail": {
+        "area": 913455,
+        "length": 178195,
+        "svgHeight": 2729
+      },
+      "car": {
+        "area": 24062890,
+        "length": 3994129,
+        "svgHeight": 78064
+      },
+      "bike": {
+        "area": 103771,
+        "length": 10934,
+        "svgHeight": 393
+      }
+    },
+    "parking": {
+      "car": {
+        "onStreet": {
+          "number": null
+        },
+        "offStreet": {
+          "number": 245,
+          "area": 1366919.62,
+          "svgHeight": 4487
+        }
+      },
+      "bike": {
+        "number": 7,
+        "area": 547.97,
+        "svgHeight": 1.59
+      },
+      "rail": {
+        "area": 91790,
+        "length": 17650,
+        "svgHeight": 308
+      }
+    },
+    "space": {
+      "car": 25429809.62,
+      "bike": 104318.97,
+      "rail": 1005245
+    }
+  },
   "johannesburg": {
     "name": "Johannesburg",
     "country": "South Africa",
@@ -953,6 +1361,142 @@
       "rail": 15892950
     }
   },
+  "newyork": {
+    "name": "New York City",
+    "country": "USA",
+    "boundingBox": [
+      40.496044,
+      -74.255735,
+      40.915256,
+      -73.700272
+    ],
+    "onStreetParkingSpots": 0,
+    "modalsplit": {
+      "foot": 0.1,
+      "bike": 0.01,
+      "public": 0.55,
+      "car": 0.29
+    },
+    "streets": {
+      "longestNames": [
+        "Whitestone Expressway South Service Road",
+        "Manhattan Bridge lower level (reversible)",
+        "Whitestone Expressway Service Road West"
+      ],
+      "staffPicks": [
+        "Broadway",
+        "Riverside Drive",
+        "Belt Parkway"
+      ],
+      "longestStreets": [
+        {
+          "length": 37940.2,
+          "name": "Linden Boulevard",
+          "id": 4920
+        },
+        {
+          "length": 32569.17,
+          "name": "3rd Avenue",
+          "id": 527
+        },
+        {
+          "length": 30819.13,
+          "name": "Hylan Boulevard",
+          "id": 4414
+        },
+        {
+          "length": 28713.75,
+          "name": "Union Turnpike",
+          "id": 7480
+        },
+        {
+          "length": 27135.76,
+          "name": "Francis Lewis Boulevard",
+          "id": 3697
+        },
+        {
+          "length": 25214.63,
+          "name": "Ocean Parkway",
+          "id": 5783
+        },
+        {
+          "length": 23053.07,
+          "name": "Kings Highway",
+          "id": 4688
+        },
+        {
+          "length": 21865.12,
+          "name": "Northern Boulevard",
+          "id": 5723
+        },
+        {
+          "length": 21557.81,
+          "name": "5th Avenue",
+          "id": 619
+        },
+        {
+          "length": 21381.53,
+          "name": "Horace Harding Expressway",
+          "id": 4337
+        }
+      ]
+    },
+    "population": 8406000,
+    "cars": 1879000,
+    "landmark": {
+      "name": "Central Park",
+      "area": 3504491
+    },
+    "sources": {
+      "modalsplit": "https://en.wikipedia.org/wiki/Modal_share",
+      "cars": "http://www.nyc.gov/html/dot/downloads/pdf/mobility-report-2016-screen-optimized.pdf",
+      "onStreetParkingSpots": "http://www.streetsblog.org/2011/03/22/new-york-has-81875-metered-parking-spaces-and-millions-of-free-ones/"
+    },
+    "moving": {
+      "rail": {
+        "area": 6084096.06,
+        "length": 1304354.83,
+        "svgHeight": 8694
+      },
+      "car": {
+        "area": 103187508.94,
+        "length": 9459873.6,
+        "svgHeight": 174101
+      },
+      "bike": {
+        "area": 1781903.86,
+        "length": 302807.43,
+        "svgHeight": 2695
+      }
+    },
+    "parking": {
+      "car": {
+        "onStreet": {
+          "number": null
+        },
+        "offStreet": {
+          "number": 0,
+          "area": 6438190.23,
+          "svgHeight": 9758
+        }
+      },
+      "bike": {
+        "number": 0,
+        "area": 25943.94,
+        "svgHeight": 358.81
+      },
+      "rail": {
+        "area": 2211269.09,
+        "length": 458764.04,
+        "svgHeight": 3334
+      }
+    },
+    "space": {
+      "car": 109625699.17,
+      "bike": 1807847.8,
+      "rail": 8295365.149999999
+    }
+  },
   "rome": {
     "name": "Rome",
     "country": "Italy",
@@ -973,9 +1517,9 @@
     },
     "streets": {
       "longestNames": [
-        "",
-        "",
-        ""
+        "Viale dei Caduti nella Guerra di Liberazione",
+        "Lungotevere Grande Ammiraglio Thaon di Revel",
+        "Piazza Santa Maria Josefa del Cuore di Gesù"
       ],
       "staffPicks": [
         "",

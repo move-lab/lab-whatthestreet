@@ -1,4 +1,5 @@
 import React from 'react';
+import sample from 'lodash.sample';
 
 import RoundedButton from '../../shared/components/RoundedButton';
 
@@ -9,19 +10,79 @@ class PosterSection extends React.PureComponent {
   
   constructor(props) {
     super(props);
-    this.goToPosterShop = this.goToPosterShop.bind(this)
+    this.goToPosterShop = this.goToPosterShop.bind(this);
+
+    this.state = {
+      posters: [{
+        city: "berlin",
+        shopLink: "https://www.redbubble.com/people/moovel/works/26889657-what-the-street-berlin"
+      },
+      {
+        city: "tokyo",
+        shopLink: "https://www.redbubble.com/people/moovel/works/26889136-what-the-street-tokyo"
+      },
+      {
+        city: "amsterdam",
+        shopLink: "https://www.redbubble.com/people/moovel/works/26888779-what-the-street-amsterdam"
+      },
+      {
+        city: "beijing",
+        shopLink: "https://www.redbubble.com/people/moovel/works/26888850-what-the-street-beijing"
+      },
+      {
+        city: "boston",
+        shopLink: "https://www.redbubble.com/people/moovel/works/26888898-what-the-street-boston"
+      },
+      {
+        city: "budapest",
+        shopLink: "https://www.redbubble.com/people/moovel/works/26889010-what-the-street-budapest"
+      },
+      {
+        city: "copenhagen",
+        shopLink: "https://www.redbubble.com/people/moovel/works/26889042-what-the-street-copenhagen"
+      },
+      {
+        city: "stuttgart",
+        shopLink: "https://www.redbubble.com/people/moovel/works/26889190-what-the-street-stuttgart"
+      },
+      {
+        city: "hongkong",
+        shopLink: "https://www.redbubble.com/people/moovel/works/26889190-what-the-street-stuttgart"
+      },
+      {
+        city: "rome",
+        shopLink: "https://www.redbubble.com/people/moovel/works/26889243-what-the-street-rome"
+      }
+      ]
+    }
   }
 
   goToPosterShop() {
-    window.open("https://www.redbubble.com", "_blank");
+    window.open("https://www.redbubble.com/fr/people/moovel/shop", "_blank");
   }
 
-  renderShoppingBtn() {
+  goToPosterShopItem(shopLink) {
+    window.open(shopLink, "_blank");
+  }
+
+  renderShoppingBtn(shopLink) {
     return (
       <div className="BtnShopping"
-        onClick={this.goToPosterShop}
+        onClick={() => this.goToPosterShopItem(shopLink)}
       >
           <img src="/static/icons/Icon_ShoppingCart.svg" />
+      </div>
+    )
+  }
+
+  renderPoster(posterData, classPosition) {
+    return (
+      <div 
+        className={`Poster ${classPosition}`}
+        onClick={() => this.goToPosterShopItem(posterData.shopLink)}
+      >
+        <img src={`/static/poster/WTS_${posterData.city}.jpeg`} />
+        {this.renderShoppingBtn(posterData.shopLink)}
       </div>
     )
   }
@@ -35,34 +96,16 @@ class PosterSection extends React.PureComponent {
           </h2>
           <div className="Content">
             <div className="Left">
-              <div 
-                className="Poster BigPoster"
-                onClick={this.goToPosterShop}
-              >
-                <img src="/static/poster/example.png" />
-                {this.renderShoppingBtn()}
-              </div>
+              {this.renderPoster(sample(this.state.posters), "BigPoster")}
             </div>
             <div className="Right">
               <div className="PosterGroup">
-                <div
-                  className="Poster SmallPoster Left"
-                  onClick={this.goToPosterShop}
-                >
-                  <img src="/static/poster/example.png" />
-                  {this.renderShoppingBtn()}
-                </div>
-                <div
-                  className="Poster SmallPoster Right"
-                  onClick={this.goToPosterShop}
-                >
-                  <img src="/static/poster/example.png" />
-                  {this.renderShoppingBtn()}
-                </div>
+                {this.renderPoster(sample(this.state.posters), "SmallPoster Left")}
+                {this.renderPoster(sample(this.state.posters), "SmallPoster Right")}
               </div>
               <div className="CTAWrapper">
                 <div className="Text">
-                  We teamed up with RedBubble to bring the fight of cities' mobility modes to your living room
+                  Get posters of your favorite cities' mobility patterns for your living room!
                 </div>
                 <RoundedButton
                   onClick={this.goToPosterShop}
@@ -112,17 +155,17 @@ class PosterSection extends React.PureComponent {
             flex-direction: row;
           }
 
-          .Poster {
+          .Wrapper :global(.Poster) {
             margin-right: 80px;
             position: relative;
             cursor: pointer;
           }
 
-          .Poster:hover,.Poster:active,.Poster:focus {
+          .Wrapper :global(.Poster:hover,.Poster:active,.Poster:focus) {
             opacity: 0.8;
           }
 
-          .Poster img {
+          .Wrapper :global(.Poster img) {
             width: 100%;
           }
 
@@ -131,27 +174,27 @@ class PosterSection extends React.PureComponent {
             flex-direction: row;
           }
 
-          .BigPoster {
+          .Wrapper :global(.BigPoster) {
             margin-top: 120px;
             width: 320px;
             max-height: 478px;
           }
 
-          .SmallPoster {
+          .Wrapper :global(.SmallPoster) {
             width: 240px;
             max-height: 358px;
           }
 
-          .SmallPoster.Left {
+          .Wrapper :global(.SmallPoster.Left) {
             margin-top: 50px;
           }
 
-          .SmallPoster.Right {
+          .Wrapper :global(.SmallPoster.Right) {
             position: relative;
             top: -20px;
           }
 
-          .SmallPoster.Right :global(.BtnShopping) {
+          .Wrapper :global(.SmallPoster.Right) :global(.BtnShopping) {
             bottom: -10px;
           }
 

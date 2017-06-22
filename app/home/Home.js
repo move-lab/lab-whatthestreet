@@ -181,6 +181,7 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
           line-height: 27px;
           margin-top: 15px;
           font-weight: 300;
+          margin-right: 50px;
         }
       `}</style>
     </section>

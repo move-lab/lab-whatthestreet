@@ -20,7 +20,7 @@ class Stats extends React.Component {
     longestStreets: React.PropTypes.arrayOf(React.PropTypes.object),
   }
 
-  getBackground = (city) => (`/api/v1/cities/${city}/background`)
+  getBackground = (city) => (`/api/v1/cities/${city.replace(/\s+/g, '')}/background`)
 
   calculateOwnership = () => {
     const population = this.props.cityMetaData.population;
@@ -29,14 +29,14 @@ class Stats extends React.Component {
 
     return {
       moving: {
-        bike: Math.round((moving.bike.length / population) * 10) / 10,
-        rails: Math.round((moving.rail.length / population) * 10) / 10,
-        road: Math.round((moving.rail.length / population) * 10) / 10,
+        bike: Math.round((moving.bike.length / population) * 100) / 100,
+        rails: Math.round((moving.rail.length / population) * 100) / 100,
+        road: Math.round((moving.car.length / population) * 100) / 100,
       },
       parking: {
-        bike: Math.round((parking.bike.number / population) * 10) / 10,
-        rails: Math.round((parking.rail.length / population) * 10) / 10,
-        road: Math.round(((parking.car.onStreet.number + parking.car.offStreet.number) / population) * 10) / 10,
+        bike: Math.round((parking.bike.area / population / 1.6) * 100) / 100,
+        rails: Math.round((parking.rail.area / population / 30) * 100) / 100,
+        road: Math.round((parking.car.offStreet.area / population / 12) * 100) / 100,
       },
     };
   }
@@ -52,7 +52,9 @@ class Stats extends React.Component {
           </h2>
           <CitizenOwnership city={this.props.cityMetaData.name} data={this.calculateOwnership()} />
           <LongestStreets city={this.props.cityMetaData.name} streets={this.props.cityMetaData.streets.longestStreets} />
-          <LongestStreetNames city={this.props.cityMetaData.name} streets={this.props.cityMetaData.streets.longestNames} />
+          {this.props.cityMetaData.name !== "Tokyo" &&
+            <LongestStreetNames city={this.props.cityMetaData.name} streets={this.props.cityMetaData.streets.longestNames} />
+          }
         </div>
         <style jsx>{`
           .MainContainer {

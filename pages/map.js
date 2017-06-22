@@ -7,7 +7,7 @@ import Layout from '../app/shared/components/Layout';
 import MapModal from '../app/map/MapModal';
 
 import { CityActions, GuessActions } from '../app/statemanagement/actions';
-import { setBaseUrl, setAuthHeader, initRouterWatcher } from '../app/statemanagement/AppStateManagement';
+import { setBaseUrl, initRouterWatcher } from '../app/statemanagement/AppStateManagement';
 import { fetchLaneData } from '../app/statemanagement/MapStateManagement';
 import { selectVehicle } from '../app/statemanagement/VehiclesStateManagement';
 
@@ -20,9 +20,6 @@ class Explore extends Component {
     if (isServer) {
       const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
       await store.dispatch(setBaseUrl(baseUrl));
-      if (req) {
-        await store.dispatch(setAuthHeader(req.headers.authorization))
-      }
       await store.dispatch(CityActions.loadCities());
       // Select city from url
       // Todo handle city do not exists

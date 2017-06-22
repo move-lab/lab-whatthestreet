@@ -25,14 +25,9 @@ export function loadVersusData(citySlug) {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       const baseUrl = getState().app.get('baseUrl');
-      const authHeader = getState().app.get('authHeader');
       dispatch(startLoadVersusData());
 
-      axios.get(`${baseUrl}/api/v1/cities/${citySlug}/versus`,{
-        headers: {
-           "Authorization" : authHeader
-        }
-      }).then((response) => {
+      axios.get(`${baseUrl}/api/v1/cities/${citySlug}/versus`).then((response) => {
         dispatch(loadVersusDataSuccess(response.data));
         resolve();
       }, (error) => {

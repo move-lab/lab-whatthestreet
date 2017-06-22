@@ -45,7 +45,7 @@ class SocialShareButtons extends React.PureComponent {
     text += ' … according to ';
     const website = 'http://whatthestreet.moovellab.com';
 
-    return `https://www.facebook.com/dialog/share?app_id=224279401377906&display=popup&href=${encodeURI(website)}&quote=${encodeURI(text)}&redirect_uri=http%3A%2F%2Flocalhost%3A3000`;
+    return `https://www.facebook.com/sharer.php?u=${encodeURI(website)}`;
   }
 
   render() {

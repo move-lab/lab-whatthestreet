@@ -16,7 +16,7 @@ class SocialMediaButton extends React.PureComponent {
   }
 
   onButtonPress() {
-    const url = (this.props.provider === 'facebook') ? 'http://facebook.com/moovel' : 'http://twitter.com/moovelLab';
+    const url = (this.props.provider === 'facebook') ? 'https://www.facebook.com/moovelDE' : 'http://twitter.com/moovelLab';
     window.open(url);
   }
 

@@ -197,33 +197,33 @@ class Map extends Component {
     if(this.map) {
 
       // Special case for small polygon (bike), display a marker
-      const firstCoordinate = props.parkingData.coordinates[0];
-      const differentValue = props.parkingData.coordinates.filter((value) => {
-        return value[0] !== firstCoordinate[0] && value[1] !== firstCoordinate[1]
-      });
+      // const firstCoordinate = props.parkingData.coordinates[0];
+      // const differentValue = props.parkingData.coordinates.filter((value) => {
+      //   return value[0] !== firstCoordinate[0] && value[1] !== firstCoordinate[1]
+      // });
 
       // Display as marker
       // TODO This is not working yet
-      if(differentValue.length === 0) {
-        const parkingFinal = {
-          type: 'Feature',
-          properties: {
-            "title": "...",
-            "marker-symbol": "marker"
-          },
-          geometry: {
-            type: 'Point',
-            coordinates: props.parkingData.coordinates[0],
-          }
-        }
+      // if(differentValue.length === 0) {
+      //   const parkingFinal = {
+      //     type: 'Feature',
+      //     properties: {
+      //       "title": "...",
+      //       "marker-symbol": "marker"
+      //     },
+      //     geometry: {
+      //       type: 'Point',
+      //       coordinates: props.parkingData.coordinates[0],
+      //     }
+      //   }
 
-        this.map.getSource('data').setData(parkingFinal);
-        this.map.jumpTo({
-          center: props.parkingData.coordinates[0],
-          zoom: 18
-        });
-        return;
-      }
+      //   this.map.getSource('data').setData(parkingFinal);
+      //   this.map.jumpTo({
+      //     center: props.parkingData.coordinates[0],
+      //     zoom: 18
+      //   });
+      //   return;
+      // }
 
 
       // parking final geojson
@@ -497,6 +497,9 @@ class Map extends Component {
         />
         <canvas
           ref={(el) => this.d3canvas = el} className="d3"></canvas>
+        <div className="MapAttribution">
+          Map Data: © OpenStreetMap contributors
+        </div>
         <style jsx>{`
           .d3 {
             position: absolute;
@@ -506,6 +509,19 @@ class Map extends Component {
             left: 0;
             z-index: 1000;
             pointer-events: none;
+          }
+
+          .MapAttribution {
+            position: absolute;
+            bottom: 3px;
+            left: 3px;
+            padding: 3px;
+            font-size: 12px;
+            background-color: hsla(0,0%,100%,.7);
+            overflow: hidden;
+            border-radius: 3px;
+            z-index: 2;
+            color: black;
           }
         `}</style>
       </ReactMapboxGl>

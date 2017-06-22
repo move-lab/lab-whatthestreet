@@ -7,7 +7,7 @@ class SocialMediaButtons extends React.PureComponent { // eslint-disable-line re
     return (
       <div className="List">
         <SocialMediaButton provider="twitter" icon="Icon_Social_Twitter" />
-        {/*<SocialMediaButton provider="facebook" icon="Icon_Social_Facebook" />*/}
+        <SocialMediaButton provider="facebook" icon="Icon_Social_Facebook" />
         <style jsx>{`
           .List {
             display: flex;

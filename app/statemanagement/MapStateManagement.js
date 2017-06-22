@@ -83,7 +83,6 @@ export function fetchLaneData(itemId, areaType, railParking) {
       dispatch(setItemId(itemId));
 
       const baseUrl = getState().app.get('baseUrl');
-      const authHeader = getState().app.get('authHeader');
 
       const currentCity = getState().city.getIn(['actual_city','slug']);
       let activeVehicule = getState().vehicles.get('vehicle');
@@ -91,11 +90,7 @@ export function fetchLaneData(itemId, areaType, railParking) {
         activeVehicule = 'railparking';
       }
 
-      axios.get(`${baseUrl}/api/v1/cities/${currentCity}/streets/${activeVehicule}/${itemId}`,{
-        headers: {
-           "Authorization" : authHeader
-        }
-      }).then((response) => {
+      axios.get(`${baseUrl}/api/v1/cities/${currentCity}/streets/${activeVehicule}/${itemId}`).then((response) => {
         dispatch(successFetchingLaneData(response.data));
         resolve();
       }, (error) => {
