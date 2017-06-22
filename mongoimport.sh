@@ -1,11 +1,7 @@
-cities=( "berlin" "boston" "johannesburg" "moscow" "stuttgart" "amsterdam" "budapest" "copenhagen" "rome" "singapore" "tokyo" )
-#new cities
-cities=( "barcelona" "beijing" "helsinki" "hongkong" "jakarta" "newyork" "portland" "sanfrancisco" "vienna" )
+cities=( "berlin" "boston" "johannesburg" "moscow" "stuttgart" "amsterdam" "budapest" "copenhagen" "rome" "singapore" "tokyo" "barcelona" "beijing" "helsinki" "hongkong" "jakarta" "newyork" "portland" "sanfrancisco" "vienna" "chicago" )
+# cities=( "berlin" "boston" "johannesburg" "moscow" "stuttgart" "amsterdam" "budapest" "copenhagen" "rome" "singapore" "tokyo" )
+
 for city in "${cities[@]}"
 do
-#   unzip ${city}/coils\ MongoDB\ Dump/${city}_coiled.zip
-   mongorestore --drop -d ${city}_coiled ${city}_coiled/streets.bson
-   mongorestore --drop -d ${city}_coiled ${city}_coiled/railtracks.bson
-   mongorestore --drop -d ${city}_coiled ${city}_coiled/railtracksparking.bson
-   mongorestore --drop -d ${city}_coiled ${city}_coiled/biketracks.bson
+  mongorestore --nsInclude ${city}'_coiled.*' --nsFrom ${city}'_coiled.$collection$' --nsTo ${city}'_coiled_2.$collection$' --gzip --archive=${city}/coils\ MongoDB\ Dump/${city}_coiled.gz
 done
