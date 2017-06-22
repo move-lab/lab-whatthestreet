@@ -61,26 +61,26 @@ class Map extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.isVisible === true) {
-      if (newProps.areaType === 'lanes' &&
-          newProps.laneData !== null) {
-        this.renderData(newProps);
-      }
-      if (newProps.areaType === 'parking' &&
-          newProps.activeVehicle !== 'rail' &&
-          newProps.parkingData !== null) {
-        this.renderData(newProps);
-      }
-      if (newProps.areaType === 'parking' &&
-          newProps.activeVehicle === 'rail' &&
-          newProps.laneData !== null) {
-        this.renderData(newProps);
-      }
-    } else {
-      // If we have closed it, stop animating
-      this.animating = false;
-      TWEEN.removeAll();
-    }
+    // if (newProps.isVisible === true) {
+    //   if (newProps.areaType === 'lanes' &&
+    //       newProps.laneData !== null) {
+    //     this.renderData(newProps);
+    //   }
+    //   if (newProps.areaType === 'parking' &&
+    //       newProps.activeVehicle !== 'rail' &&
+    //       newProps.parkingData !== null) {
+    //     this.renderData(newProps);
+    //   }
+    //   if (newProps.areaType === 'parking' &&
+    //       newProps.activeVehicle === 'rail' &&
+    //       newProps.laneData !== null) {
+    //     this.renderData(newProps);
+    //   }
+    // } else {
+    //   // If we have closed it, stop animating
+    //   this.animating = false;
+    //   TWEEN.removeAll();
+    // }
   }
 
   componentDidMount() {
@@ -91,12 +91,11 @@ class Map extends Component {
     });
     L.mapbox.accessToken = Config.mapboxToken;
     this.map = L.mapbox.map('map', null, { zoomControl:false });
-    const styleLayer = L.mapbox.styleLayer("mapbox://styles/moovellab/cj3puddkq00002skevihhyt07").addTo(this.map);
+    this.styleLayer = L.mapbox.styleLayer("mapbox://styles/moovellab/cj3puddkq00002skevihhyt07").addTo(this.map);
     this.map.setView([40, -74.50], 9);
-    styleLayer.on('tileload', () => {
-      styleLayer.off('tileload');
-      this.onMapLoaded();
-    })
+    this.onMapLoaded();
+    // Expose renderAnimation function for phantomjs
+    window.renderAnimation =  this.renderAnimation.bind(this);
   }
 
   initCanvas() {
@@ -133,8 +132,8 @@ class Map extends Component {
   onMapLoaded() {
     this.addBaseLayer();
     this.initCanvas();
-    this.renderData(this.props);
-
+    this.prepareAnimation(this.props);
+    // console.log('MapLoaded');
   }
 
   addBaseLayer() {
@@ -219,9 +218,63 @@ class Map extends Component {
     return bounds;
   }
 
+  prepareAnimation(props) {
+    // Zoom in and zoom out to both location to preload tiles
+    // Center map on coiler line coord
+    let center = [
+      props.laneData.properties.origin.lat,
+      props.laneData.properties.origin.lon
+    ]
+    // Get max zoom lvl
+    const meterPerPixel = 1.2672955975;
+    const initZoom = getZoomLevel(props.laneData.properties.origin.lat, meterPerPixel);
 
-  renderLane(props) {
+    // Init map at the position of the street
+    this.map.setView(center,initZoom);
+
+    // Compute bbox start and bbox end
+    const geoJsonFolded = this.unfold(props.laneData, 0, 0);
+    const geoJsonUnfolded = this.unfold(props.laneData, 1, 1);
+
+    const bboxFolded = bbox(geoJsonFolded);
+    const bboxUnfolded = bbox(geoJsonUnfolded);
+
+    // Fit bounds to the street folded
+    this.map.fitBounds(this.getBoundsFromBBox(bboxUnfolded), {
+      animate: false,
+      maxZoom: 18,
+      padding: [50, 50]
+    });
+
+    this.styleLayer.once('load', () => {
+      console.log('tiles bboxUnfolded Loaded')
+      //Go to the folded once we have loaded the unfolded tiles 
+      this.map.flyToBounds(this.getBoundsFromBBox(bboxFolded), {
+        maxZoom: 18,
+        padding: [20, 20],
+        animate: true,
+        duration: 0.5
+      });
+
+      this.styleLayer.once('load', () => {
+        console.log('tiles bboxFolded Loaded');
+        console.log('notify we are phantom ready to animate');
+        if (typeof window.callPhantom === "function") {
+          window.callPhantom({type: "readyToAnimate"});
+        } else {
+          // We are in normal browser, renderAnimation
+          window.renderAnimation();
+        }
+        
+      });
+      
+    });
+  }
+
+
+  renderAnimation() {
     const self = this;
+    const props = this.props;
     if(this.map) {
       // Center map on coiler line coord
       let center = [
@@ -232,9 +285,6 @@ class Map extends Component {
       const meterPerPixel = 1.2672955975;
       const initZoom = getZoomLevel(props.laneData.properties.origin.lat, meterPerPixel);
 
-      // Init map at the position of the street
-      this.map.setView(center,initZoom);
-
       // Compute bbox start and bbox end
       const geoJsonFolded = this.unfold(props.laneData, 0, 0);
       const geoJsonUnfolded = this.unfold(props.laneData, 1, 1);
@@ -242,12 +292,10 @@ class Map extends Component {
       const bboxFolded = bbox(geoJsonFolded);
       const bboxUnfolded = bbox(geoJsonUnfolded);
 
-      // Fit bounds to the street folded
-      this.map.fitBounds(this.getBoundsFromBBox(bboxFolded), {
-        animate: false,
-        maxZoom: 18,
-        padding: [50, 50]
-      });
+      this.styleLayer.on('load', () => {
+        this.styleLayer.off('load');
+        console.log('all visible tile loaded');
+      })
         // maxZoom: 18,
         // padding: 100,
         // linear: true,
@@ -260,13 +308,13 @@ class Map extends Component {
       // We can't move the camera during the animation, otherwise FPS drops dramaticly
       setTimeout(() => {
         // Fit bounds to the street folded
-        this.map.fitBounds(this.getBoundsFromBBox(bboxUnfolded), {
+        this.map.flyToBounds(this.getBoundsFromBBox(bboxUnfolded), {
           maxZoom: 18,
           padding: [20, 20],
           animate: true,
-          duration: 1
+          duration: 0.5
         });
-      }, 2000)
+      }, 1000)
 
       // This depends on how much movement is in the street geometry
       // NOTE @tdurand: I didn't investivate how calculateBendWay is computed and why
@@ -286,7 +334,7 @@ class Map extends Component {
       let unstitchDelay = 600;
       // Way 2s delay of camera zooming out from folded bbox to unfolded bbox
       // + 1s to make sure tile are loaded
-      let unfoldDelay = 3000;
+      let unfoldDelay = 2000;
 
       // Draw the first frame
       this.setDataToLayer(geoJsonFolded);
