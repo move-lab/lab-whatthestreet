@@ -261,7 +261,7 @@ class Map extends Component {
         console.log('notify we are phantom ready to animate');
         // Get timings of the animations
         let timeUnfold = calculateBendWay(props.laneData.original.vectors) * 200000;
-        timeUnfold = timeUnfold > 4000 ? 4000 : timeUnfold;
+        timeUnfold = timeUnfold > 5000 ? 5000 : timeUnfold;
         timeUnfold = timeUnfold < 1300 ? 1300 : timeUnfold;
 
         let timeUnstitch = (getLongestTranslation(props.laneData.original.vectors) * 200000 - 199) * 9090 - 7000
