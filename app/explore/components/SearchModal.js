@@ -139,7 +139,7 @@ class SearchModal extends React.PureComponent {
               ref={(element) => { this.searchbox = element; }}
               onChange={(event) => this.onChange(event)}
               type="text"
-              placeholder="Search streets" />
+              placeholder="Search Streets" />
             <img className="Icon" alt="SearchIcon" src={SearchIcon} />
           </div>
         </form>

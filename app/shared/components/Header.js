@@ -223,7 +223,7 @@ class Header extends React.PureComponent {
                   {this.props.activeVehicle === "car" &&
                     <div className="SearchButton">
                       <button onClick={() => this.showSearch()} >
-                        <img alt="" src={searchIcon} /><span>Search streets</span>
+                        <img alt="" src={searchIcon} /><span>Search Streets</span>
                       </button>
                     </div>
                   }
