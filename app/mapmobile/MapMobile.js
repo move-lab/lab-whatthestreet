@@ -433,7 +433,7 @@ class Map extends Component {
           <div id="map"></div>
           <canvas ref={(el) => this.d3canvas = el} className="d3"></canvas>
           <div className="LabelContainer">
-            <div className="Label">#WhatTheStreet</div>
+            <img src="/static/recorder/label.jpg" />
           </div>
         </div>
         <style jsx>{`
@@ -448,19 +448,17 @@ class Map extends Component {
           }
 
           .LabelContainer {
-            position:absolute;
+            position: absolute;
             bottom: 5px;
             right: 5px;
             z-index: 2;
-            background-color: white;
-            font-family: sans-serif;
-            
+            padding: 1px;
+            background-color: rgba(255,255,255,0.2);
+            height: 23px;
+            border: 0;
+            margin: 0;
           }
 
-          .Label {
-            padding: 5px;
-            color: blue;
-          }
           .d3 {
             position: absolute;
             top: 0;
