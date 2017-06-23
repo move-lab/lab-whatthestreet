@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="603px" height="19534px"  viewport="0 0 603 19534" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="603px" height="6587px"  viewport="0 0 603 6587" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <path id="1" stroke-linecap="round" stroke="#6566CC" stroke-width="4.688099891493872" fill="none" moovel_name="Betriebsgleis" moovel_neighborhood="Simmering" moovel_area="691.25" moovel_cumulative_area="691.25" moovel_length="373.65" d="M17.5,5.5 L31.5,5 L352.5,5 " />
 <path id="2" stroke-linecap="round" stroke="#6566CC" stroke-width="4.688099891493872" fill="none" moovel_neighborhood="Simmering" moovel_area="442.56" moovel_cumulative_area="1133.81" moovel_length="239.22" d="M360,5.5 L361.5,5 L572,5.5 L574,5.5 " />
 <path id="3" stroke-linecap="round" stroke="#6566CC" stroke-width="4.688099891493872" fill="none" moovel_neighborhood="Favoriten" moovel_area="94.53" moovel_cumulative_area="1228.34" moovel_length="51.10" d="M581.5,5.5 L591.5,6 L592.5,6.5 L593,8 L593,10 L592,11 L591,11.5 L589.5,12 L563.5,12 " />

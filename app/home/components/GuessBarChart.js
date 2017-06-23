@@ -202,6 +202,7 @@ class GuessBarChart extends React.Component {
           font-family: 'Circular', sans-serif;
           width: 100%;
           text-align: center;
+          pointer-events: none;
         }
 
         .Chart :global(.Value) small {

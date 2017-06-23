@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="603px" height="73298px"  viewport="0 0 603 73298" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="603px" height="4602px"  viewport="0 0 603 4602" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <path id="1" stroke-linecap="round" stroke="#6566CC" stroke-width="5.89566209728277" fill="none" moovel_neighborhood="Munkkiniemi" moovel_area="329.85" moovel_cumulative_area="329.85" moovel_length="94.38" d="M18.5,6 L130.5,6 " />
 <path id="2" stroke-linecap="round" stroke="#6566CC" stroke-width="5.89566209728277" fill="none" moovel_neighborhood="Taka-Töölö" moovel_area="121.95" moovel_cumulative_area="451.80" moovel_length="34.89" d="M139,6 L179,6 " />
 <path id="3" stroke-linecap="round" stroke="#6566CC" stroke-width="5.89566209728277" fill="none" moovel_neighborhood="Alppiharju" moovel_area="112.05" moovel_cumulative_area="563.85" moovel_length="32.06" d="M188,6 L225,6 " />

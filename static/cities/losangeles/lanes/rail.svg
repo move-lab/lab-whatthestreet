@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="603px" height="50172px"  viewport="0 0 603 50172" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="603px" height="3264px"  viewport="0 0 603 3264" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <path id="1" stroke-linecap="round" stroke="#6566CC" stroke-width="3.817578870913284" fill="none" moovel_name="Waterfront Red Car Line" moovel_neighborhood="San Pedro" moovel_area="5133.57" moovel_cumulative_area="5133.57" moovel_length="1271.81" d="M16,5 L272,5.5 L560,6 L593,7 L593,8.5 L593,9.5 L592,10.5 L590.5,11 L427,10.5 L252.5,10.5 " />
 <path id="2" stroke-linecap="round" stroke="#6566CC" stroke-width="3.817578870913284" fill="none" moovel_name="Getty Center Tram" moovel_neighborhood="Brentwood" moovel_area="3542.06" moovel_cumulative_area="8675.63" moovel_length="877.52" d="M247,10.5 L13.5,11 L12.5,12 L12,13 L12.5,14.5 L13.5,15.5 L14.5,16 L45.5,15.5 L94,16 L176.5,15.5 L408.5,15 " />
 <path id="3" stroke-linecap="round" stroke="#6566CC" stroke-width="3.817578870913284" fill="none" moovel_name="Getty Center Tram" moovel_neighborhood="Brentwood" moovel_area="841.29" moovel_cumulative_area="9516.92" moovel_length="208.42" d="M415,15.5 L483,16 L564.5,16 " />

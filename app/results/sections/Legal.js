@@ -98,7 +98,7 @@ class Legal extends React.Component {
               Visual Design
             </p>
             <p className="Name">
-              <a href="http://thibault-durand.fr/">
+              <a href="https://www.anagrama.ro/">
                 Anagrama
               </a>
             </p>
@@ -108,7 +108,7 @@ class Legal extends React.Component {
             <p className="Name">
               <a href="http://lab.moovel.com/people/raphael-reimann">Raphael Reimann</a><br />
               <a href="http://lab.moovel.com/people/joey-lee">Joey Lee</a><br />
-              <a href="http://lab.moovel.com/people/danie-schmid">Daniel Schmid</a><br />
+              <a href="http://lab.moovel.com/people/daniel-schmid">Daniel Schmid</a><br />
               <a href="http://lab.moovel.com/people/tilman-haeuser">Tilman Häuser</a><br />
             </p>
             <p className="Label">

@@ -85,17 +85,17 @@
     "moving": {
       "car": {
         "length": 5011870,
-        "svgHeight": "39199",
+        "svgHeight": 39199,
         "area": 24827914
       },
       "bike": {
         "length": 265447,
-        "svgHeight": "26358",
+        "svgHeight": 1947,
         "area": 1324051
       },
       "rail": {
         "length": 1711041,
-        "svgHeight": "26358",
+        "svgHeight": 10910,
         "area": 8079483
       }
     },
@@ -124,7 +124,7 @@
       },
       "rail": {
         "length": 651548,
-        "svgHeight": "26358",
+        "svgHeight": 5126,
         "area": 3259962
       }
     },
@@ -221,17 +221,17 @@
     "moving": {
       "car": {
         "length": 1519467,
-        "svgHeight": "19534",
+        "svgHeight": 19534,
         "area": 11585811
       },
       "bike": {
         "length": 89058,
-        "svgHeight": "1030",
+        "svgHeight": 1030,
         "area": 614864
       },
       "rail": {
         "length": 264969,
-        "svgHeight": "2765",
+        "svgHeight": 2765,
         "area": 1587998
       }
     },
@@ -260,7 +260,7 @@
       },
       "rail": {
         "length": 76480,
-        "svgHeight": "2765",
+        "svgHeight": 661,
         "area": 390748
       }
     },
@@ -271,97 +271,12 @@
       "rail": 1978746
     }
   },
-  "london": {
-    "onStreetParkingSpots": 0,
-    "name": "London",
-    "sources": {
-      "cars": "https://www.lta.gov.sg/ltaacademy/doc/13Sep105-Pan_KeyTransportStatistics.pdf",
-      "onStreetParkingSpots": "",
-      "modalsplit": "https://en.wikipedia.org/wiki/Modal_share"
-    },
-    "country": "UK",
-    "streets": {
-      "longestStreets": [],
-      "longestNames": [
-        "",
-        "",
-        ""
-      ],
-      "staffPicks": [
-        "",
-        "",
-        ""
-      ]
-    },
-    "modalsplit": {
-      "foot": 0.21,
-      "car": 0.34,
-      "bike": 0.02,
-      "public": 0.44
-    },
-    "landmark": {
-      "name": "Hyde Park",
-      "area": 2638718
-    },
-    "moving": {
-      "car": {
-        "length": 0,
-        "svgHeight": null,
-        "area": 0
-      },
-      "bike": {
-        "length": 0,
-        "svgHeight": null,
-        "area": 0
-      },
-      "rail": {
-        "length": 0,
-        "svgHeight": null,
-        "area": 0
-      }
-    },
-    "cars": 2645570,
-    "boundingBox": [
-      51.2868,
-      -0.5103,
-      51.6923,
-      0.334
-    ],
-    "parking": {
-      "car": {
-        "offStreet": {
-          "number": 5699,
-          "svgHeight": 25822,
-          "area": 11001870.06
-        },
-        "onStreet": {
-          "number": null
-        }
-      },
-      "bike": {
-        "number": 4124,
-        "svgHeight": 401.75,
-        "area": 60962.17
-      },
-      "rail": {
-        "length": 0,
-        "svgHeight": null,
-        "area": 0
-      }
-    },
-    "population": 8674000,
-    "space": {
-      "car": 11001870.06,
-      "bike": 60962.17,
-      "rail": 0
-    }
-  },
   "amsterdam": {
     "onStreetParkingSpots": 265225,
     "name": "Amsterdam",
     "sources": {
       "onStreetParkingSpots": "http://dirkmjk.nl/nl/2016/06/amsterdam-heeft-ruimte-voor-nog-eens-21-miljoen-fietsenrekken",
-      "cars": "http://www.nationmaster.com/country-info/stats/Transport/Passenger-cars/Per-1%2C000-people",
+      "cars": "http://www.nationmaster.com/country-info/stats/Transport/Passenger-cars/Per-1,000-people",
       "modalsplit": "https://en.wikipedia.org/wiki/Modal_share"
     },
     "country": "Netherlands",
@@ -442,17 +357,17 @@
     "moving": {
       "car": {
         "length": 1809210,
-        "svgHeight": "117685",
+        "svgHeight": 18271,
         "area": 7656989
       },
       "bike": {
         "length": 824994,
-        "svgHeight": "117685",
+        "svgHeight": 6970,
         "area": 3121326
       },
       "rail": {
         "length": 483715,
-        "svgHeight": "117685",
+        "svgHeight": 7541,
         "area": 3181414
       }
     },
@@ -481,7 +396,7 @@
       },
       "rail": {
         "length": 142827,
-        "svgHeight": "117685",
+        "svgHeight": 1756,
         "area": 734370
       }
     },
@@ -578,17 +493,17 @@
     "moving": {
       "car": {
         "length": 3595126,
-        "svgHeight": "50172",
+        "svgHeight": 50169,
         "area": 27466350
       },
       "bike": {
         "length": 1388120,
-        "svgHeight": "15800",
+        "svgHeight": 15798,
         "area": 8794897
       },
       "rail": {
         "length": 323646,
-        "svgHeight": "15800",
+        "svgHeight": 2910,
         "area": 1584292
       }
     },
@@ -617,7 +532,7 @@
       },
       "rail": {
         "length": 444624,
-        "svgHeight": "15800",
+        "svgHeight": 4218,
         "area": 2309657
       }
     },
@@ -632,8 +547,8 @@
     "onStreetParkingSpots": 2000,
     "name": "Copenhagen",
     "sources": {
-      "cars": "http://www.nationmaster.com/country-info/stats/Transport/Passenger-cars/Per-1%2C000-people",
-      "onStreetParkingSpots": "http://www.akershus.no/file/c112a084c81172d57c8dba94e41113cc/091217_Cph_Guide%20(2).pdf",
+      "cars": "http://www.nationmaster.com/country-info/stats/Transport/Passenger-cars/Per-1,000-people",
+      "onStreetParkingSpots": "http://www.akershus.no/file/c112a084c81172d57c8dba94e41113cc/091217_Cph_Guide (2).pdf",
       "modalsplit": "http://www.copenhagenize.com/2014/07/the-greatest-urban-experiment-right-now.html"
     },
     "areaParkingSpots": 1194750.2885362897,
@@ -715,17 +630,17 @@
     "moving": {
       "car": {
         "length": 1168899,
-        "svgHeight": "26358",
+        "svgHeight": 20793,
         "area": 6747291
       },
       "bike": {
         "length": 400586,
-        "svgHeight": "26358",
+        "svgHeight": 5039,
         "area": 1673029
       },
       "rail": {
         "length": 193311,
-        "svgHeight": "26358",
+        "svgHeight": 2831,
         "area": 928864
       }
     },
@@ -755,7 +670,7 @@
       },
       "rail": {
         "length": 69528,
-        "svgHeight": "26358",
+        "svgHeight": 1056,
         "area": 346023
       }
     },
@@ -852,17 +767,17 @@
     "moving": {
       "car": {
         "length": 5923917,
-        "svgHeight": "73298",
+        "svgHeight": 73298,
         "area": 47253792
       },
       "bike": {
         "length": 653945,
-        "svgHeight": "4450",
+        "svgHeight": 4450,
         "area": 2656699
       },
       "rail": {
         "length": 1369131,
-        "svgHeight": "11467",
+        "svgHeight": 11466,
         "area": 6978605
       }
     },
@@ -891,7 +806,7 @@
       },
       "rail": {
         "length": 987188,
-        "svgHeight": "11467",
+        "svgHeight": 8274,
         "area": 5102996
       }
     },
@@ -988,17 +903,17 @@
     "moving": {
       "car": {
         "length": 2468219,
-        "svgHeight": "73298",
+        "svgHeight": 19495,
         "area": 19359966
       },
       "bike": {
         "length": 241093,
-        "svgHeight": "73298",
+        "svgHeight": 876,
         "area": 870274
       },
       "rail": {
         "length": 525748,
-        "svgHeight": "73298",
+        "svgHeight": 2696,
         "area": 2443926
       }
     },
@@ -1027,7 +942,7 @@
       },
       "rail": {
         "length": 108666,
-        "svgHeight": "73298",
+        "svgHeight": 571,
         "area": 504037
       }
     },
@@ -1042,7 +957,7 @@
     "onStreetParkingSpots": 0,
     "name": "Johannesburg",
     "sources": {
-      "cars": "http://www.nationmaster.com/country-info/stats/Transport/Passenger-cars/Per-1%2C000-people",
+      "cars": "http://www.nationmaster.com/country-info/stats/Transport/Passenger-cars/Per-1,000-people",
       "onStreetParkingSpots": "",
       "modalsplit": "http://www.brtdata.org/indicators/systems/modal_split__public_transport"
     },
@@ -1124,17 +1039,17 @@
     "moving": {
       "car": {
         "length": 6880529,
-        "svgHeight": "73298",
+        "svgHeight": 58767,
         "area": 54869864
       },
       "bike": {
         "length": 66827,
-        "svgHeight": "73298",
+        "svgHeight": 391,
         "area": 311979
       },
       "rail": {
         "length": 375697,
-        "svgHeight": "73298",
+        "svgHeight": 2326,
         "area": 1953569
       }
     },
@@ -1163,7 +1078,7 @@
       },
       "rail": {
         "length": 153043,
-        "svgHeight": "73298",
+        "svgHeight": 963,
         "area": 795879
       }
     },
@@ -1260,17 +1175,17 @@
     "moving": {
       "car": {
         "length": 2892280,
-        "svgHeight": "26358",
+        "svgHeight": 26357,
         "area": 12638033
       },
       "bike": {
         "length": 554833,
-        "svgHeight": "19534",
+        "svgHeight": 4821,
         "area": 2481023
       },
       "rail": {
         "length": 963027,
-        "svgHeight": "19534",
+        "svgHeight": 7680,
         "area": 3625591
       }
     },
@@ -1299,7 +1214,7 @@
       },
       "rail": {
         "length": 620946,
-        "svgHeight": "19534",
+        "svgHeight": 6587,
         "area": 3074550
       }
     },
@@ -1396,17 +1311,17 @@
     "moving": {
       "car": {
         "length": 11471929,
-        "svgHeight": "140547",
+        "svgHeight": 140545,
         "area": 104220271
       },
       "bike": {
         "length": 348146,
-        "svgHeight": "50172",
+        "svgHeight": 4241,
         "area": 3024031
       },
       "rail": {
         "length": 483137,
-        "svgHeight": "50172",
+        "svgHeight": 3264,
         "area": 2672744
       }
     },
@@ -1435,7 +1350,7 @@
       },
       "rail": {
         "length": 375456,
-        "svgHeight": "50172",
+        "svgHeight": 2541,
         "area": 1943139
       }
     },
@@ -1532,17 +1447,17 @@
     "moving": {
       "car": {
         "length": 3384385,
-        "svgHeight": "23249",
+        "svgHeight": 23247,
         "area": 26849572
       },
       "bike": {
         "length": 284979,
-        "svgHeight": "1263",
+        "svgHeight": 1263,
         "area": 1274852
       },
       "rail": {
         "length": 352682,
-        "svgHeight": "1391",
+        "svgHeight": 1392,
         "area": 1397803
       }
     },
@@ -1571,7 +1486,7 @@
       },
       "rail": {
         "length": 25664,
-        "svgHeight": "1391",
+        "svgHeight": 123,
         "area": 110994
       }
     },
@@ -1668,17 +1583,17 @@
     "moving": {
       "car": {
         "length": 9853851,
-        "svgHeight": "117685",
+        "svgHeight": 116936,
         "area": 85734434
       },
       "bike": {
         "length": 302807,
-        "svgHeight": "117685",
+        "svgHeight": 2682,
         "area": 1781904
       },
       "rail": {
         "length": 1304355,
-        "svgHeight": "117685",
+        "svgHeight": 8517,
         "area": 6084096
       }
     },
@@ -1707,7 +1622,7 @@
       },
       "rail": {
         "length": 458764,
-        "svgHeight": "117685",
+        "svgHeight": 3030,
         "area": 2211269
       }
     },
@@ -1804,17 +1719,17 @@
     "moving": {
       "car": {
         "length": 3941661,
-        "svgHeight": "84961",
+        "svgHeight": 84957,
         "area": 28818885
       },
       "bike": {
         "length": 156052,
-        "svgHeight": "73298",
+        "svgHeight": 1952,
         "area": 699606
       },
       "rail": {
         "length": 1904189,
-        "svgHeight": "73298",
+        "svgHeight": 22621,
         "area": 8886518
       }
     },
@@ -1843,7 +1758,7 @@
       },
       "rail": {
         "length": 1372219,
-        "svgHeight": "73298",
+        "svgHeight": 20079,
         "area": 7006434
       }
     },
@@ -1940,17 +1855,17 @@
     "moving": {
       "car": {
         "length": 6301867,
-        "svgHeight": "117685",
+        "svgHeight": 117681,
         "area": 48154445
       },
       "bike": {
         "length": 1276774,
-        "svgHeight": "10763",
+        "svgHeight": 10762,
         "area": 4664543
       },
       "rail": {
         "length": 1781531,
-        "svgHeight": "22536",
+        "svgHeight": 22535,
         "area": 8290311
       }
     },
@@ -1979,7 +1894,7 @@
       },
       "rail": {
         "length": 550394,
-        "svgHeight": "22536",
+        "svgHeight": 7077,
         "area": 2697359
       }
     },
@@ -2076,17 +1991,17 @@
     "moving": {
       "car": {
         "length": 4285958,
-        "svgHeight": "43182",
+        "svgHeight": 43182,
         "area": 20081637
       },
       "bike": {
         "length": 197626,
-        "svgHeight": "39199",
+        "svgHeight": 1512,
         "area": 750367
       },
       "rail": {
         "length": 829069,
-        "svgHeight": "39199",
+        "svgHeight": 6830,
         "area": 3344657
       }
     },
@@ -2115,7 +2030,7 @@
       },
       "rail": {
         "length": 593244,
-        "svgHeight": "39199",
+        "svgHeight": 5957,
         "area": 2954534
       }
     },
@@ -2212,17 +2127,17 @@
     "moving": {
       "car": {
         "length": 1747533,
-        "svgHeight": "140547",
+        "svgHeight": 22094,
         "area": 13869831
       },
       "bike": {
         "length": 69628,
-        "svgHeight": "140547",
+        "svgHeight": 833,
         "area": 531475
       },
       "rail": {
         "length": 189936,
-        "svgHeight": "140547",
+        "svgHeight": 1724,
         "area": 1117488
       }
     },
@@ -2251,7 +2166,7 @@
       },
       "rail": {
         "length": 31319,
-        "svgHeight": "140547",
+        "svgHeight": 260,
         "area": 162014
       }
     },
@@ -2348,17 +2263,17 @@
     "moving": {
       "car": {
         "length": 1249652,
-        "svgHeight": "73298",
+        "svgHeight": 28645,
         "area": 7541439
       },
       "bike": {
         "length": 1224652,
-        "svgHeight": "73298",
+        "svgHeight": 29637,
         "area": 7330887
       },
       "rail": {
         "length": 291432,
-        "svgHeight": "73298",
+        "svgHeight": 4602,
         "area": 1281383
       }
     },
@@ -2387,7 +2302,7 @@
       },
       "rail": {
         "length": 116798,
-        "svgHeight": "73298",
+        "svgHeight": 2305,
         "area": 595005
       }
     },
@@ -2484,17 +2399,17 @@
     "moving": {
       "car": {
         "length": 3998634,
-        "svgHeight": "73298",
+        "svgHeight": 63574,
         "area": 19269460
       },
       "bike": {
         "length": 10934,
-        "svgHeight": "73298",
+        "svgHeight": 228,
         "area": 62263
       },
       "rail": {
         "length": 178195,
-        "svgHeight": "73298",
+        "svgHeight": 2373,
         "area": 730764
       }
     },
@@ -2523,7 +2438,7 @@
       },
       "rail": {
         "length": 17651,
-        "svgHeight": "73298",
+        "svgHeight": 254,
         "area": 73432
       }
     },
@@ -2620,17 +2535,17 @@
     "moving": {
       "car": {
         "length": 3247113,
-        "svgHeight": "27513",
+        "svgHeight": 27512,
         "area": 17756107
       },
       "bike": {
         "length": 340743,
-        "svgHeight": "23249",
+        "svgHeight": 1906,
         "area": 1250608
       },
       "rail": {
         "length": 2131263,
-        "svgHeight": "23249",
+        "svgHeight": 14804,
         "area": 10448002
       }
     },
@@ -2659,7 +2574,7 @@
       },
       "rail": {
         "length": 596560,
-        "svgHeight": "23249",
+        "svgHeight": 4216,
         "area": 3012665
       }
     },
@@ -2756,17 +2671,17 @@
     "moving": {
       "car": {
         "length": 1148926,
-        "svgHeight": "26358",
+        "svgHeight": 11633,
         "area": 6935096
       },
       "bike": {
         "length": 142708,
-        "svgHeight": "26358",
+        "svgHeight": 952,
         "area": 589602
       },
       "rail": {
         "length": 306934,
-        "svgHeight": "26358",
+        "svgHeight": 2526,
         "area": 1438550
       }
     },
@@ -2795,7 +2710,7 @@
       },
       "rail": {
         "length": 94762,
-        "svgHeight": "26358",
+        "svgHeight": 710,
         "area": 438561
       }
     },
@@ -2892,17 +2807,17 @@
     "moving": {
       "car": {
         "length": 1399216,
-        "svgHeight": "14983",
+        "svgHeight": 14981,
         "area": 9078050
       },
       "bike": {
         "length": 152836,
-        "svgHeight": "835",
+        "svgHeight": 836,
         "area": 488112
       },
       "rail": {
         "length": 500785,
-        "svgHeight": "4397",
+        "svgHeight": 4396,
         "area": 2441643
       }
     },
@@ -2931,7 +2846,7 @@
       },
       "rail": {
         "length": 157191,
-        "svgHeight": "4397",
+        "svgHeight": 1403,
         "area": 802522
       }
     },
@@ -3028,17 +2943,17 @@
     "moving": {
       "car": {
         "length": 6186870,
-        "svgHeight": "84961",
+        "svgHeight": 63467,
         "area": 37829121
       },
       "bike": {
         "length": 171377,
-        "svgHeight": "84961",
+        "svgHeight": 1188,
         "area": 688914
       },
       "rail": {
         "length": 745477,
-        "svgHeight": "84961",
+        "svgHeight": 6251,
         "area": 3947237
       }
     },
@@ -3067,7 +2982,7 @@
       },
       "rail": {
         "length": 255102,
-        "svgHeight": "84961",
+        "svgHeight": 2169,
         "area": 1284562
       }
     },

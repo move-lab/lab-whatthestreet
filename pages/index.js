@@ -43,6 +43,12 @@ class Index extends Component {
           rail: parseFloat(req.query.rail),
           car: parseFloat(req.query.car)
         }));
+      } else {
+        await store.dispatch(GuessActions.setOwnGuess({
+          bike: 0.33,
+          rail: 0.33,
+          car: 0.33
+        }));
       }
     }
     return;

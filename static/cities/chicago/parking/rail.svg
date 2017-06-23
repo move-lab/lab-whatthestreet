@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="603px" height="11467px"  viewport="0 0 603 11467" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="603px" height="8274px"  viewport="0 0 603 8274" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <path id="1" stroke-linecap="round" stroke="#6566CC" stroke-width="3.9004627622791697" fill="none" moovel_neighborhood="O'Hare" moovel_area="407.09" moovel_cumulative_area="407.09" moovel_length="78.28" d="M16.5,5 L78,5 " />
 <path id="2" stroke-linecap="round" stroke="#6566CC" stroke-width="3.9004627622791697" fill="none" moovel_name="Track 9" moovel_neighborhood="West Loop" moovel_area="1330.58" moovel_cumulative_area="1737.67" moovel_length="255.86" d="M84,5 L289,5 " />
 <path id="3" stroke-linecap="round" stroke="#6566CC" stroke-width="3.9004627622791697" fill="none" moovel_name="Track 6" moovel_neighborhood="West Loop" moovel_area="1287.37" moovel_cumulative_area="3025.04" moovel_length="247.55" d="M295,5 L493.5,5 " />

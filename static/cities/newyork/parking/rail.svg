@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="603px" height="117685px"  viewport="0 0 603 117685" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="603px" height="3030px"  viewport="0 0 603 3030" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <path id="1" stroke-linecap="round" stroke="#6566CC" stroke-width="3.2627278373655164" fill="none" moovel_name="Bay Ridge Branch" moovel_neighborhood="Sunset Park West" moovel_area="3405.63" moovel_cumulative_area="3405.63" moovel_length="654.88" d="M15.5,4.5 L530,4.5 " />
 <path id="2" stroke-linecap="round" stroke="#6566CC" stroke-width="3.2627278373655164" fill="none" moovel_name="Oak Point Link" moovel_neighborhood="Mott Haven-Port Morris" moovel_area="1302.44" moovel_cumulative_area="4708.07" moovel_length="250.45" d="M535,4.5 L562.5,5 L591.5,6.5 L591.5,8 L590.5,9 L589,9.5 L561,9 L469,9.5 L455,9.5 " />
 <path id="3" stroke-linecap="round" stroke="#6566CC" stroke-width="3.2627278373655164" fill="none" moovel_neighborhood="Hunts Point" moovel_area="5974.63" moovel_cumulative_area="10682.70" moovel_length="1148.89" d="M449,9.5 L292,10 L12,11 L12,12.5 L12.5,13.5 L13.5,14 L475,14 " />
