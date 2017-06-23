@@ -3,9 +3,7 @@ exports.getAllGuesses = (request, response) => {
     const collection = db.collection('guesses').aggregate(
       [ { $sample: { size: 500 } } ]
     ).toArray((error, items) => {
-      console.log(items);
       if(!items) {
-        console.log('returning empty array');
         response.json([]);
         db.close();
       } else {
