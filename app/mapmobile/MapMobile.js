@@ -429,14 +429,37 @@ class Map extends Component {
   render() {
     return (
       <div>
-        <div>
+        <div className="wrapper">
           <div id="map"></div>
           <canvas ref={(el) => this.d3canvas = el} className="d3"></canvas>
+          <div className="LabelContainer">
+            <div className="Label">#WhatTheStreet</div>
+          </div>
         </div>
         <style jsx>{`
-          #map {
+          :global(.leaflet-control-attribution) {
+            display: none;
+          }
+
+          #map,.wrapper {
             width: 512px;
             height: 512px;
+            position: relative;
+          }
+
+          .LabelContainer {
+            position:absolute;
+            bottom: 5px;
+            right: 5px;
+            z-index: 2;
+            background-color: white;
+            font-family: sans-serif;
+            
+          }
+
+          .Label {
+            padding: 5px;
+            color: blue;
           }
           .d3 {
             position: absolute;
