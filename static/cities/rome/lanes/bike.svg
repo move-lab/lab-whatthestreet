@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="603px" height="84961px"  viewport="0 0 603 84961" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="603px" height="1188px"  viewport="0 0 603 1188" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <path id="1" stroke-linecap="round" stroke="#6566CC" stroke-width="2.8730798475618267" fill="none" moovel_neighborhood="Centro Storico" moovel_area="2355.70" moovel_cumulative_area="2355.70" moovel_length="782.66" d="M15,4.5 L591,5.5 L591.5,7 L591,8 L589.5,9 L574.5,9.5 L540,9.5 " />
 <path id="2" stroke-linecap="round" stroke="#6566CC" stroke-width="2.8730798475618267" fill="none" moovel_neighborhood="Centro Storico" moovel_area="15.35" moovel_cumulative_area="2371.05" moovel_length="5.10" d="M535,9.5 L532.5,9.5 " />
 <path id="3" stroke-linecap="round" stroke="#6566CC" stroke-width="2.8730798475618267" fill="none" moovel_neighborhood="Centro Storico" moovel_area="2024.65" moovel_cumulative_area="4395.70" moovel_length="672.67" d="M527.5,9.5 L523,9 L13,9.5 L11.5,10.5 L11.5,12 L12,13.5 L13.5,14 L33.5,14 " />

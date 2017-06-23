@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="603px" height="84961px"  viewport="0 0 603 84961" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="603px" height="6251px"  viewport="0 0 603 6251" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <path id="1" stroke-linecap="round" stroke="#6566CC" stroke-width="4.425388173488919" fill="none" moovel_name="Via Daniele Manin" moovel_neighborhood="Centro Storico" moovel_area="359.49" moovel_cumulative_area="359.49" moovel_length="89.06" d="M16.5,5 L87,5 " />
 <path id="2" stroke-linecap="round" stroke="#6566CC" stroke-width="4.425388173488919" fill="none" moovel_neighborhood="Centro Storico" moovel_area="44.14" moovel_cumulative_area="403.63" moovel_length="10.93" d="M93.5,5 L101,5 " />
 <path id="3" stroke-linecap="round" stroke="#6566CC" stroke-width="4.425388173488919" fill="none" moovel_name="Via Emanuele Filiberto" moovel_neighborhood="Centro Storico" moovel_area="30.89" moovel_cumulative_area="434.52" moovel_length="7.65" d="M108,5 L112.5,5 " />

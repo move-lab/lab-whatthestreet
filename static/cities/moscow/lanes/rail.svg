@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="603px" height="73298px"  viewport="0 0 603 73298" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="603px" height="22621px"  viewport="0 0 603 22621" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <path id="1" stroke-linecap="round" stroke="#6566CC" stroke-width="5.129290546063649" fill="none" moovel_neighborhood="район Богородское" moovel_area="286.83" moovel_cumulative_area="286.83" moovel_length="71.06" d="M18,5.5 L91.5,5.5 " />
 <path id="2" stroke-linecap="round" stroke="#6566CC" stroke-width="5.129290546063649" fill="none" moovel_neighborhood="Останкинский район" moovel_area="799.47" moovel_cumulative_area="1086.30" moovel_length="198.06" d="M99.5,5.5 L195.5,5 L275.5,5.5 L308,5.5 " />
 <path id="3" stroke-linecap="round" stroke="#6566CC" stroke-width="5.129290546063649" fill="none" moovel_neighborhood="район Соколиная Гора" moovel_area="174.22" moovel_cumulative_area="1260.52" moovel_length="43.16" d="M316.5,5.5 L360,5.5 " />

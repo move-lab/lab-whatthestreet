@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="603px" height="39199px"  viewport="0 0 603 39199" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="603px" height="1512px"  viewport="0 0 603 1512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <path id="1" stroke-linecap="round" stroke="#6566CC" stroke-width="2.9153522946402752" fill="none" moovel_area="4971.18" moovel_cumulative_area="4971.18" moovel_length="1327.70" d="M15.5,4.5 L135.5,5 L590,6.5 L590,8.5 L589.5,9.5 L587.5,10 L353,9.5 L12,10.5 L11.5,12 L12.5,13.5 L14,14 L25.5,14 " />
 <path id="2" stroke-linecap="round" stroke="#6566CC" stroke-width="2.9153522946402752" fill="none" moovel_neighborhood="Újpest" moovel_area="73.53" moovel_cumulative_area="5044.71" moovel_length="19.64" d="M30.5,14 L46.5,14 " />
 <path id="3" stroke-linecap="round" stroke="#6566CC" stroke-width="2.9153522946402752" fill="none" moovel_neighborhood="Óbuda-Békásmegyer" moovel_area="274.23" moovel_cumulative_area="5318.94" moovel_length="73.24" d="M52,14 L55.5,14.5 L110.5,14 L115,14 " />
