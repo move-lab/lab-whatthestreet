@@ -1,13 +1,13 @@
 exports.getAllGuesses = (request, response) => {
   request.db.open((err, db) => {
-    if (!db.collection('guesses').exists()) {
-      response.json([]);
-      db.close();
-      return;
-    }
     const collection = db.collection('guesses').aggregate(
       [ { $sample: { size: 500 } } ]
     ).toArray((error, items) => {
+      if(items.length === 0) {
+        response.json([]);
+        db.close();
+        return;
+      }
       const result = items.map((item) => (item.guess));
       const d = {};
       const out = [];
