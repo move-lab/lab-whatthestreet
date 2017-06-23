@@ -3,27 +3,29 @@ exports.getAllGuesses = (request, response) => {
     const collection = db.collection('guesses').aggregate(
       [ { $sample: { size: 500 } } ]
     ).toArray((error, items) => {
-      if(items === "undefined") {
+      console.log(items);
+      if(!items) {
+        console.log('returning empty array');
         response.json([]);
         db.close();
-        return;
-      }
-      const result = items.map((item) => (item.guess));
-      const d = {};
-      const out = [];
+      } else {
+        const result = items.map((item) => (item.guess));
+        const d = {};
+        const out = [];
 
-      for (let i = 0; i < result.length; i += 1) {
-        const item = result[i];
-        const rep = item.toString();
+        for (let i = 0; i < result.length; i += 1) {
+          const item = result[i];
+          const rep = item.toString();
 
-        if (!d[rep]) {
-          d[rep] = true;
-          out.push(item);
+          if (!d[rep]) {
+            d[rep] = true;
+            out.push(item);
+          }
         }
-      }
 
-      response.json(out.map((item) => ({ car: item[0], bike: item[1], rail: item[2] })));
-      db.close();
+        response.json(out.map((item) => ({ car: item[0], bike: item[1], rail: item[2] })));
+        db.close();
+      }
     });
   });
 };
