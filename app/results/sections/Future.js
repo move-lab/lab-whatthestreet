@@ -158,7 +158,7 @@ class FuturePage extends React.Component {
                   )}
                 </div>
                 <p>
-                  Based on the study of ISV Stuttgart <a href="http://www.isv.uni-stuttgart.de/vuv/news/Downloads/MEGAFON_Abschlussbericht_V028_20161212.pdf" target="_blank">MEGAFON</a> by Max Hartl.
+                  Based on the the study <a href="http://www.isv.uni-stuttgart.de/vuv/news/Downloads/MEGAFON_Abschlussbericht_V028_20161212.pdf" target="_blank">MEGAFON</a> of ISV, University of Stuttgart, by Friedrich and Hartl.
                 </p>
               </section>
 
