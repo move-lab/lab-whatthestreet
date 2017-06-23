@@ -1,8 +1,9 @@
 var AWS = require('aws-sdk'),
     fs = require('fs');
+var RECORDER_CONF = require('RECORDER_CONF.js'); 
 
 const myConfig = new AWS.Config(); 
-myConfig.update({ accessKeyId: '', secretAccessKey: '' });
+myConfig.update({ accessKeyId: RECORDER_CONF.AWS_ACCESS_KEY_ID, secretAccessKey: RECORDER_CONF.AWS_SECRET_ACCESS_KEY });
 
 var s3 = new AWS.S3(myConfig);
 
