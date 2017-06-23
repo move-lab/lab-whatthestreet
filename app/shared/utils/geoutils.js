@@ -49,8 +49,8 @@ export function calculateBendWay(vectors){
     var entireBendWay = 0;
     for (var i = 0; i < vectors.length; i++) {
         var vector = vectors[i];
-        var vectorLength = vector.distance;
-        var deltaAngle = vector.deltaBearing;
+        var vectorLength = vector[0];
+        var deltaAngle = vector[1];
         var radius = vectorLength;
         var circumference = radius * 2 * Math.PI;
         var circleFraction = circumference/360*deltaAngle;
@@ -67,8 +67,8 @@ export function getLongestTranslation(vectors){
     var longestTranslation = 0;
     for (var i = 0; i < vectors.length; i++) {
         var vector = vectors[i];
-        var vectorLength = vector.distance;
-        if (vector.type == 'translation') {
+        var vectorLength = vector[0];
+        if (vector[2] === 0) {
             if (vectorLength > longestTranslation) {
                 longestTranslation = vectorLength;
             }
