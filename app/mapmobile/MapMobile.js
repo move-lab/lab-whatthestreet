@@ -86,8 +86,8 @@ class Map extends Component {
   componentDidMount() {
     // Do not render on server
     require('mapbox.js').default;
-    this.setState({ 
-      showMap: true 
+    this.setState({
+      showMap: true
     });
     L.mapbox.accessToken = Config.mapboxToken;
     this.map = L.mapbox.map('map', null, { zoomControl:false });
@@ -201,13 +201,13 @@ class Map extends Component {
   }
 
   setDataToLayer(newData) {
-    this.streetDataLayer.clearLayers(); 
+    this.streetDataLayer.clearLayers();
     this.streetDataLayer.addData(newData);
     this.streetDataLayer.setStyle({
         "lineCap": "round",
         "lineJoin": "round",
         "color": "#FF6819",
-        "weight": 4
+        "weight": 5
     });
   }
 
@@ -248,7 +248,7 @@ class Map extends Component {
 
     this.styleLayer.once('load', () => {
       console.log('tiles bboxUnfolded Loaded')
-      //Go to the folded once we have loaded the unfolded tiles 
+      //Go to the folded once we have loaded the unfolded tiles
       this.map.flyToBounds(this.getBoundsFromBBox(bboxFolded), {
         maxZoom: 18,
         padding: [10, 10],
@@ -261,13 +261,13 @@ class Map extends Component {
         console.log('notify we are phantom ready to animate');
         // Get timings of the animations
         let timeUnfold = calculateBendWay(props.laneData.original.vectors) * 200000;
-        timeUnfold = timeUnfold > 5000 ? 5000 : timeUnfold;
+        timeUnfold = timeUnfold > 4000 ? 4000 : timeUnfold;
         timeUnfold = timeUnfold < 1300 ? 1300 : timeUnfold;
 
         let timeUnstitch = (getLongestTranslation(props.laneData.original.vectors) * 200000 - 199) * 9090 - 7000
-        timeUnstitch = timeUnstitch > 2000 ? 2000 : timeUnstitch;
+        timeUnstitch = timeUnstitch > 1500 ? 1500 : timeUnstitch;
         timeUnstitch = timeUnstitch < 1000 ? 1000 : timeUnstitch;
-        let unstitchDelay = 600;
+        let unstitchDelay = 100;
         let unfoldDelay = 2000;
 
         this.animationTimings = {
@@ -286,9 +286,9 @@ class Map extends Component {
           // We are in normal browser, renderAnimation
           window.renderAnimation(1);
         }
-        
+
       });
-      
+
     });
   }
 
@@ -317,7 +317,7 @@ class Map extends Component {
         // linear: true,
         // duration: 0
 
-      
+
       let timeUnfold = this.animationTimings.timeUnfold * slowDownFactor;
       let timeUnstitch = this.animationTimings.timeUnstitch * slowDownFactor;
       let unstitchDelay = this.animationTimings.unstitchDelay * slowDownFactor;
@@ -346,11 +346,11 @@ class Map extends Component {
 
       const unfoldTween = new TWEEN.Tween({progress: 0})
                                   .to({ progress: 1 }, timeUnfold)
-                                  .easing(TWEEN.Easing.Quadratic.Out)
+                                  .easing(TWEEN.Easing.Quintic.Out)
                                   .delay(unfoldDelay);
       const stitchTween = new TWEEN.Tween({progress: 0})
                                   .to({ progress: 1 }, timeUnstitch)
-                                  .easing(TWEEN.Easing.Cubic.Out)
+                                  .easing(TWEEN.Easing.Bounce.Out)
                                   .delay(unstitchDelay);
       unfoldTween.chain(stitchTween);
       unfoldTween.onStart(() => {
