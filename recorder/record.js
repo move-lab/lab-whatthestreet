@@ -6,7 +6,8 @@ var CITY = args[1] || "berlin";
 var MOBILITY_TYPE = args[2] || "car";
 var STREET_ID = args[3] || "1645";
 
-var PATH = CITY + "_" + MOBILITY_TYPE + "_" + STREET_ID;
+var PATH_TO_FILE_FOLDER = "data/" + CITY + "/" + MOBILITY_TYPE;
+var PATH_TO_FILE_TEMP_FRAME = PATH_TO_FILE_FOLDER + "/frames_street_" + STREET_ID;
 
 page.viewportSize = { width: 512, height: 512 };
 
@@ -21,8 +22,8 @@ var getFrameEvery = (1000 / TARGET_FPS) * SLOW_DOWN_FACTOR;
 var readyToAnimateFired = false;
 
 function getFrame() {
-  page.render(PATH+"/"+PATH +"_"+ currentFrame + ".png", { format: "png" });
-  console.log(currentFrame);
+  page.render(PATH_TO_FILE_TEMP_FRAME +"/frame_"+ currentFrame + ".png", { format: "png" });
+  console.log("rendering frame nº" + currentFrame);
   if (stop) {
     phantom.exit();
   }
@@ -54,9 +55,9 @@ page.onCallback = function(event){
     }
 };
 
-page.open("http://localhost:4000/" + CITY + "/mapmobile/" + MOBILITY_TYPE + "/lanes/" + STREET_ID + "?bike=0.34&rail=0.32&car=0.33", function(status) {
+page.open("http://whatthestreet.moovellab.com/" + CITY + "/mapmobile/" + MOBILITY_TYPE + "/lanes/" + STREET_ID + "?bike=0.34&rail=0.32&car=0.33", function(status) {
   if (status !== "success") {
-    console.log("Unable to access http://localhost:4000/" + CITY + "/mapmobile/" + MOBILITY_TYPE + "/lanes/" + STREET_ID + "?bike=0.34&rail=0.32&car=0.33");
+    console.log("Unable to access http://whatthestreet.moovellab.com/" + CITY + "/mapmobile/" + MOBILITY_TYPE + "/lanes/" + STREET_ID + "?bike=0.34&rail=0.32&car=0.33");
     phantom.exit();
   } else {
     //Hard timeout if readyToAnimate now fired in 10s
