@@ -1,4 +1,4 @@
-for i in {1..1000}
+for i in {1..8828}
 do
-   ./command.sh berlin car $i
+   ./main.sh berlin car $i
 done
