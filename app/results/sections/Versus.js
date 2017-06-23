@@ -93,6 +93,9 @@ class VersusPage extends React.Component {
             currentCity={this.props.city}
             triangleData={this.props.triangleData}
           />
+          <h4 className="VersusTableTitle">
+              Space distribution champions
+          </h4>
           <VersusTable tableData={this.renderTableData()} />
         </div>
         <style jsx>{`
@@ -120,6 +123,15 @@ class VersusPage extends React.Component {
             top: 0;
             left: ${METRICS.MetricsContentPadding};
             width: 320px;
+          }
+
+          .VersusTableTitle {
+            font-size: 40px;
+            margin: auto;
+            margin-bottom: 50px;
+            text-align: center;
+            width: 500px;
+            line-height: 1.2em;
           }
         `}</style>
       </div>
