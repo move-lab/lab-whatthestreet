@@ -344,7 +344,7 @@ class FuturePage extends React.Component {
             position: relative;
           }
 
-          .ParkingImg {
+          :global(.ParkingImg) {
             margin: 1px;
           }
 
