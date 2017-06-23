@@ -40,8 +40,8 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
   }
 
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       guessed : false
     }
