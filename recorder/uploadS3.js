@@ -1,24 +1,28 @@
 var AWS = require('aws-sdk'),
     fs = require('fs');
 
-// For dev purposes only
-AWS.config.update({ accessKeyId: '...', secretAccessKey: '...' });
+const myConfig = new AWS.Config(); 
+myConfig.update({ accessKeyId: '', secretAccessKey: '' });
 
-// Read in the file, convert it to base64, store to S3
-fs.readFile('del.txt', function (err, data) {
-  if (err) { throw err; }
+var s3 = new AWS.S3(myConfig);
 
-  var base64data = new Buffer(data, 'binary');
+fs.readFile("berlin_car_14.mp4", function (err, data) {
+    if (err) { 
+        console.log('fs error'+ err);
+    } else {
+        var putParams = {
+            Bucket: "whatthestreet-tdurand",
+            Key: "berlin_car_14.mp4",
+            Body: data,
+            ContentType: 'video/mp4'
+        };
 
-  var s3 = new AWS.S3();
-  s3.client.putObject({
-    Bucket: 'banners-adxs',
-    Key: 'del2.txt',
-    Body: base64data,
-    ACL: 'public-read'
-  },function (resp) {
-    console.log(arguments);
-    console.log('Successfully uploaded package.');
-  });
-
+        s3.putObject(putParams, function(err, data) {
+            if (err) { 
+                console.log('Error putting object on S3: ', err); 
+            } else { 
+                console.log('Placed object on S3: ', data); 
+            }  
+        });
+    }
 });
