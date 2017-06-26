@@ -16,6 +16,9 @@ class SocialShareButtons extends React.PureComponent {
       case 'good':
         text = 'I am a mobility expert 😀';
         break;
+      case 'average':
+        text = `I should move to ${this.props.suggestion} 🙃`;
+        break;
       case 'bad':
         text = `I should move to ${this.props.suggestion} 🙃`;
         break;
