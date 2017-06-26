@@ -143,13 +143,10 @@ class FuturePage extends React.Component {
                         {this.getNumberOfCarsOnRoad()}
                       </p>
                       <p className="EmptyParkingLotsTextBig">
-                        EMPTY
+                        PARKED
                       </p>
                       <p className="EmptyParkingLotsText">
-                        PARKING
-                      </p>
-                      <p className="EmptyParkingLotsText">
-                        LOTS
+                        CARS
                       </p>
                     </div>
                   </div>
@@ -269,7 +266,7 @@ class FuturePage extends React.Component {
 
           .EmptyParkingLotsTextHolder {
             position: absolute;
-            top: -55px;
+            top: -34px;
             left: -30px;
           }
 
