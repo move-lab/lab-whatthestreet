@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 import Link from 'next/link';
 
@@ -8,6 +9,8 @@ import * as COLORS from '../../shared/style/colors';
 
 import VehicleIcon from '../../shared/components/VehicleIcon';
 import ShareBtn from '../../shared/components/ShareBtn';
+
+import GifData from '../../../gifgallery.json';
 
 
 class MapInfoBox extends React.PureComponent {
@@ -21,14 +24,15 @@ class MapInfoBox extends React.PureComponent {
     cityName: React.PropTypes.string
   }
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.playVideo = this.playVideo.bind(this);
     this.stopVideo = this.stopVideo.bind(this);
 
     this.state = {
-      FH : new Intl.NumberFormat('en-US')
+      FH : new Intl.NumberFormat('en-US'),
+      displayVideo: false
     }
   }
 
@@ -84,6 +88,28 @@ class MapInfoBox extends React.PureComponent {
     this.video.pause()
   }
 
+  componentWillReceiveProps(newProps) {
+    if(newProps.laneData !== null) {
+      // Check if gif exists before displaying it
+      const urlVideoUncoil = `${GifData.baseUrl}/${this.props.citySlug}/${this.props.activeVehicle}/${newProps.laneData.get('_id')}.mp4`;
+      axios.head(urlVideoUncoil).then(() => {
+        console.log('video exists');
+        this.setState({
+          displayVideo: true,
+          urlVideoUncoil
+        });
+      }, () => {
+        // TODO REMOVE THAT CALLBACK WHEN CORS WILL BE WORKING
+        this.setState({
+          displayVideo: true,
+          urlVideoUncoil
+        });
+      });
+    } else {
+      this.setState({ displayVideo: false });
+    }
+  }
+
   render() {
 
     return (
@@ -128,21 +154,23 @@ class MapInfoBox extends React.PureComponent {
             </div>
           }
         </div>
-        <div className="MapInfoGif">
-          <ShareBtn
-            onMouseOver={this.playVideo}
-            onMouseOut={this.stopVideo}
-            bottom={50}
-          />
-          <video 
-            ref={(el) => this.video = el}
-            src="/static/gifs/94.mp4"
-            loop
-            onMouseOver={this.playVideo}
-            onMouseOut={this.stopVideo}
-          >
-          </video>
-        </div>
+        {this.state.displayVideo &&
+          <div className="MapInfoGif">
+            <ShareBtn
+              onMouseOver={this.playVideo}
+              onMouseOut={this.stopVideo}
+              bottom={50}
+            />
+            <video 
+              ref={(el) => this.video = el}
+              src={this.state.urlVideoUncoil}
+              loop
+              onMouseOver={this.playVideo}
+              onMouseOut={this.stopVideo}
+            >
+            </video>
+          </div>
+        }
         <style jsx>{`
           .MapInfoBox {
             position: absolute;
