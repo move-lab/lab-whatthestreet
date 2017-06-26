@@ -8,16 +8,26 @@ class ShareBtn extends React.PureComponent {
   static propTypes = {
     bottom: React.PropTypes.number,
     small: React.PropTypes.bool,
+    urlToShare: React.PropTypes.string,
+    textToShare: React.PropTypes.string,
     onMouseOut: React.PropTypes.func,
-    onMouseOver: React.PropTypes.func,
-    onClick: React.PropTypes.func
+    onMouseOver: React.PropTypes.func
+  }
+
+  constructor(props) {
+    super(props);
+    this.onShareTwitter = this.onShareTwitter.bind(this);
+  }
+
+  onShareTwitter() {
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(this.props.textToShare)}&url=${encodeURIComponent(this.props.urlToShare)}`,'_blank');
   }
 
   render() { 
     return (
       <div
         className={`BtnShare bottom-${this.props.bottom} ${this.props.small ? 'small' : ''}`}
-        onClick={this.props.onClick}
+        onClick={this.onShareTwitter}
         onMouseOver={this.props.onMouseOver}
         onMouseOut={this.props.onMouseOut}
       >

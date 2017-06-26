@@ -47,9 +47,12 @@ class Explore extends Component {
           car: parseFloat(req.query.car)
         }));
       } else {
-        // Redirect to home
-        res.writeHead(302, { Location: `/${req.params.cityName}` })
-        res.end()
+        // Set 0.33 , 0.33, 0.33s
+        await store.dispatch(GuessActions.setOwnGuess({
+          bike: 0.33,
+          rail: 0.33,
+          car: 0.33
+        }));
       }
     }
     return;
