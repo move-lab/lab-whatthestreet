@@ -1,25 +1,577 @@
 {
   "baseUrl": "https://s3-eu-west-1.amazonaws.com/gif.whatthestreet.moovellab.com",
-  "staffPicks": [{
-      "id": 4102,
-      "streetName": "Pulverstampfstraße",
-      "citySlug": "vienna",
-      "cityName": "Vienna"
-    },{
+  "staffPicks": [
+    {
+      "id": 102,
+      "streetName": "Camí de Can Castellví",
+      "citySlug": "barcelona",
+      "cityName": "Barcelona"
+    },
+    {
+      "id": 2252,
+      "streetName": "Passeig de la Vimetera",
+      "citySlug": "barcelona",
+      "cityName": "Barcelona"
+    },
+    {
+      "id": 2293,
+      "streetName": "Plaça de Catalunya",
+      "citySlug": "barcelona",
+      "cityName": "Barcelona"
+    },
+    {
+      "id": 2056,
+      "streetName": "Carretera del Carmel",
+      "citySlug": "barcelona",
+      "cityName": "Barcelona"
+    },
+    {
+      "id": 109,
+      "streetName": "Camí de Vallvidrera al Tibidabo",
+      "citySlug": "barcelona",
+      "cityName": "Barcelona"
+    },
+    {
+      "id": 181,
+      "streetName": "京良路",
+      "citySlug": "beijing",
+      "cityName": "Beijing"
+    },
+    {
+      "id": 244,
+      "streetName": "博兴路",
+      "citySlug": "beijing",
+      "cityName": "Beijing"
+    },
+    {
+      "id": 284,
+      "streetName": "大屯路",
+      "citySlug": "beijing",
+      "cityName": "Beijing"
+    },
+    {
+      "id": 1416,
+      "streetName": "西大望路",
+      "citySlug": "beijing",
+      "cityName": "Beijing"
+    },
+    {
+      "id": 1562,
+      "streetName": "万盛南街 (wànshèng nán jiē)",
+      "citySlug": "beijing",
+      "cityName": "Beijing"
+    },
+    
+    {
+      "id": 30,
+      "streetName": "Adlergestell",
+      "citySlug": "berlin",
+      "cityName": "Berlin"
+    },
+    {
+      "id": 3284,
+      "streetName": "Havelchaussee",
+      "citySlug": "berlin",
+      "cityName": "Berlin"
+    },
+    {
+      "id": 4476,
+      "streetName": "Kurfürstendamm",
+      "citySlug": "berlin",
+      "cityName": "Berlin"
+    },
+    {
+      "id": 3922,
+      "streetName": "Johannisthaler Chaussee",
+      "citySlug": "berlin",
+      "cityName": "Berlin"
+    },
+    {
+      "id": 29,
+      "streetName": "Adickesstraße",
+      "citySlug": "berlin",
+      "cityName": "Berlin"
+    },
+    {
+      "id": 2340,
+      "streetName": "Massachusetts Avenue",
+      "citySlug": "boston",
+      "cityName": "Boston"
+    },
+    {
+      "id": 1928,
+      "streetName": "Jamaica Street",
+      "citySlug": "boston",
+      "cityName": "Boston"
+    },
+    {
+      "id": 3221,
+      "streetName": "Saratoga Street",
+      "citySlug": "boston",
+      "cityName": "Boston"
+    },
+    {
+      "id": 3743,
+      "streetName": "Washington Street",
+      "citySlug": "boston",
+      "cityName": "Boston"
+    },
+    {
+      "id": 3907,
+      "streetName": "William Day Boulevard",
+      "citySlug": "boston",
+      "cityName": "Boston"
+    },
+    {
+      "id": 5996,
+      "streetName": "Váci út",
+      "citySlug": "budapest",
+      "cityName": "Budapest"
+    },
+    {
+      "id": 6510,
+      "streetName": "Üllői út",
+      "citySlug": "budapest",
+      "cityName": "Budapest"
+    },
+    {
+      "id": 4218,
+      "streetName": "Palota út",
+      "citySlug": "budapest",
+      "cityName": "Budapest"
+    },
+    {
+      "id": 1315,
+      "streetName": "Egér út",
+      "citySlug": "budapest",
+      "cityName": "Budapest"
+    },
+    {
+      "id": 4437,
+      "streetName": "Pusztaszeri út",
+      "citySlug": "budapest",
+      "cityName": "Budapest"
+    },
+    {
+      "id": 48,
+      "streetName": "East 100th Street",
+      "citySlug": "chicago",
+      "cityName": "Chicago"
+    },
+    {
+      "id": 652,
+      "streetName": "North Lincoln Avenue",
+      "citySlug": "chicago",
+      "cityName": "Chicago"
+    },
+    {
+      "id": 400,
+      "streetName": "Music Court Circle",
+      "citySlug": "chicago",
+      "cityName": "Chicago"
+    },
+    {
+      "id": 456,
+      "streetName": "North Central Avenue",
+      "citySlug": "chicago",
+      "cityName": "Chicago"
+    },
+    {
+      "id": 500,
+      "streetName": "North Drake Avenue",
+      "citySlug": "chicago",
+      "cityName": "Chicago"
+    },
+    {
+      "id": 806,
+      "streetName": "H.C. Andersens Boulevard",
+      "citySlug": "copenhagen",
+      "cityName": "Copenhagen"
+    },
+    {
+      "id": 2610,
+      "streetName": "Voldboligerne",
+      "citySlug": "copenhagen",
+      "cityName": "Copenhagen"
+    },
+    {
+      "id": 2683,
+      "streetName": "Ørestads Boulevard",
+      "citySlug": "copenhagen",
+      "cityName": "Copenhagen"
+    },
+    {
+      "id": 408,
+      "streetName": "Dampfærgevej",
+      "citySlug": "copenhagen",
+      "cityName": "Copenhagen"
+    },
+    {
+      "id": 2490,
+      "streetName": "Vasbygade",
+      "citySlug": "copenhagen",
+      "cityName": "Copenhagen"
+    },
+    {
+      "id": 165,
+      "streetName": "Eliel Saarisen tie",
+      "citySlug": "helsinki",
+      "cityName": "Helsinki"
+    },
+    {
+      "id": 2581,
+      "streetName": "Temppelikatu",
+      "citySlug": "helsinki",
+      "cityName": "Helsinki"
+    },
+    {
+      "id": 670,
+      "streetName": "Kallvikintie",
+      "citySlug": "helsinki",
+      "cityName": "Helsinki"
+    },
+    {
+      "id": 880,
+      "streetName": "Kivikonkaari",
+      "citySlug": "helsinki",
+      "cityName": "Helsinki"
+    },
+    {
+      "id": 1178,
+      "streetName": "Lapinmäentie",
+      "citySlug": "helsinki",
+      "cityName": "Helsinki"
+    },
+    {
+      "id": 69,
+      "streetName": "機場路 Airport Road",
+      "citySlug": "hongkong",
+      "cityName": "Hong Kong"
+    },
+    {
+      "id": 133,
+      "streetName": "青山道 Castle Peak Road",
+      "citySlug": "hongkong",
+      "cityName": "Hong Kong"
+    },
+    {
+      "id": 124,
+      "streetName": "鶴咀道 Cape D'Aguilar Road",
+      "citySlug": "hongkong",
+      "cityName": "Hong Kong"
+    },
+    {
+      "id": 1672,
+      "streetName": "西沙路 Sai Sha Road",
+      "citySlug": "hongkong",
+      "cityName": "Hong Kong"
+    },
+    {
+      "id": 1907,
+      "streetName": "嶼南道 South Lantau Road",
+      "citySlug": "hongkong",
+      "cityName": "Hong Kong"
+    },
+    {
+      "id": 212,
+      "streetName": "Anggrek",
+      "citySlug": "jakarta",
+      "cityName": "Jakarta"
+    },
+    {
+      "id": 5032,
+      "streetName": "Kebayoran Lama",
+      "citySlug": "jakarta",
+      "cityName": "Jakarta"
+    },
+    {
+      "id": 8867,
+      "streetName": "Ulujami Raya",
+      "citySlug": "jakarta",
+      "cityName": "Jakarta"
+    },
+    {
+      "id": 3476,
+      "streetName": "Jalan Mohamad Kahfi 1",
+      "citySlug": "jakarta",
+      "cityName": "Jakarta"
+    },
+    {
+      "id": 3557,
+      "streetName": "Jalan Pangeran Antasari",
+      "citySlug": "jakarta",
+      "cityName": "Jakarta"
+    },
+    {
+      "id": 37,
+      "streetName": "1st Road",
+      "citySlug": "johannesburg",
+      "cityName": "Johannesburg"
+    },
+    {
+      "id": 52,
+      "streetName": "2nd Avenue",
+      "citySlug": "johannesburg",
+      "cityName": "Johannesburg"
+    },
+    {
+      "id": 2836,
+      "streetName": "Golden Highway",
+      "citySlug": "johannesburg",
+      "cityName": "Johannesburg"
+    },
+    {
+      "id": 3395,
+      "streetName": "Immink Drive",
+      "citySlug": "johannesburg",
+      "cityName": "Johannesburg"
+    },
+    {
+      "id": 4478,
+      "streetName": "Louw Geldenhuis Drive",
+      "citySlug": "johannesburg",
+      "cityName": "Johannesburg"
+    },
+    {
+      "id": 203,
+      "streetName": "16-я Парковая улица",
+      "citySlug": "moscow",
+      "cityName": "Moscow"
+    },
+    {
+      "id": 598,
+      "streetName": "9-я Парковая улица",
+      "citySlug": "moscow",
+      "cityName": "Moscow"
+    },
+    {
+      "id": 781,
+      "streetName": "улица Капотня",
+      "citySlug": "moscow",
+      "cityName": "Moscow"
+    },
+    {
+      "id": 1288,
+      "streetName": "улица Лобачевского",
+      "citySlug": "moscow",
+      "cityName": "Moscow"
+    },
+    {
+      "id": 1443,
+      "streetName": "Третье Транспортное кольцо",
+      "citySlug": "moscow",
+      "cityName": "Moscow"
+    },
+    
+    {
+      "id": 1865,
+      "streetName": "Broadway",
+      "citySlug": "newyork",
+      "cityName": "New York City"
+    },
+    {
+      "id": 6453,
+      "streetName": "Riverside Drive",
+      "citySlug": "newyork",
+      "cityName": "New York City"
+    },
+    {
+      "id": 4688,
+      "streetName": "Kings Highway",
+      "citySlug": "newyork",
+      "cityName": "New York City"
+    },
+    {
+      "id": 1655,
+      "streetName": "Beverley Road",
+      "citySlug": "newyork",
+      "cityName": "New York City"
+    },
+    {
+      "id": 3653,
+      "streetName": "Forest Park Drive",
+      "citySlug": "newyork",
+      "cityName": "New York City"
+    },
+    {
       "id": 2786,
       "streetName": "Southwest Terwilliger Boulevard",
       "citySlug": "portland",
       "cityName": "Portland"
-    },{
+    },
+    {
+      "id": 1357,
+      "streetName": "Northwest Skyline Boulevard",
+      "citySlug": "portland",
+      "cityName": "Portland"
+    },
+    {
+      "id": 2525,
+      "streetName": "Southwest Kingston Drive",
+      "citySlug": "portland",
+      "cityName": "Portland"
+    },
+    {
+      "id": 2745,
+      "streetName": "Southwest Skyline Boulevard",
+      "citySlug": "portland",
+      "cityName": "Portland"
+    },
+    {
+      "id": 2835,
+      "streetName": "Southwest Westwood Drive",
+      "citySlug": "portland",
+      "cityName": "Portland"
+    },
+    {
+      "id": 1076,
+      "streetName": "Lombard Street",
+      "citySlug": "sanfrancisco",
+      "cityName": "San Francisco"
+    },
+    {
+      "id": 1175,
+      "streetName": "Medical Center Way",
+      "citySlug": "sanfrancisco",
+      "cityName": "San Francisco"
+    },
+    {
+      "id": 1146,
+      "streetName": "Martin Luther King Jr Drive",
+      "citySlug": "sanfrancisco",
+      "cityName": "San Francisco"
+    },
+    {
+      "id": 1866,
+      "streetName": "Washington Boulevard",
+      "citySlug": "sanfrancisco",
+      "cityName": "San Francisco"
+    },
+    {
+      "id": 1801,
+      "streetName": "Twin Peaks Boulevard",
+      "citySlug": "sanfrancisco",
+      "cityName": "San Francisco"
+    },
+    {
+      "id": 1992,
+      "streetName": "Lim Chu Kang Road",
+      "citySlug": "singapore",
+      "cityName": "Singapore"
+    },
+    {
+      "id": 2395,
+      "streetName": "Nanyang Circle",
+      "citySlug": "singapore",
+      "cityName": "Singapore"
+    },
+    {
+      "id": 2285,
+      "streetName": "Media Circle",
+      "citySlug": "singapore",
+      "cityName": "Singapore"
+    },
+    {
+      "id": 3582,
+      "streetName": "Upper Aljunied Road",
+      "citySlug": "singapore",
+      "cityName": "Singapore"
+    },
+    {
+      "id": 395,
+      "streetName": "Cairnhill Circle",
+      "citySlug": "singapore",
+      "cityName": "Singapore"
+    },
+    {
       "id": 2202,
       "streetName": "Richard-von-Weizsäcker-Planie",
       "citySlug": "stuttgart",
       "cityName": "Stuttgart"
-    },{
+    },
+    {
       "id": 580,
       "streetName": "Eduard-Pfeiffer-Straße",
       "citySlug": "stuttgart",
       "cityName": "Stuttgart"
+    },
+    {
+      "id": 1926,
+      "streetName": "Neue Weinsteige",
+      "citySlug": "stuttgart",
+      "cityName": "Stuttgart"
+    },
+    {
+      "id": 1835,
+      "streetName": "Mittlere Filderstraße",
+      "citySlug": "stuttgart",
+      "cityName": "Stuttgart"
+    },
+    {
+      "id": 558,
+      "streetName": "Dürrbachkreisel",
+      "citySlug": "stuttgart",
+      "cityName": "Stuttgart"
+    },
+    {
+      "id": 708,
+      "streetName": "人見街道",
+      "citySlug": "tokyo",
+      "cityName": "Tokyo"
+    },
+    {
+      "id": 929,
+      "streetName": "明治通り",
+      "citySlug": "tokyo",
+      "cityName": "Tokyo"
+    },
+    {
+      "id": 969,
+      "streetName": "柚木街道",
+      "citySlug": "tokyo",
+      "cityName": "Tokyo"
+    },
+    {
+      "id": 1179,
+      "streetName": "高尾街道",
+      "citySlug": "tokyo",
+      "cityName": "Tokyo"
+    },
+    {
+      "id": 1278,
+      "streetName": "東京都道449号新荒川堤防線",
+      "citySlug": "tokyo",
+      "cityName": "Tokyo"
+    },
+    {
+      "id": 4102,
+      "streetName": "Pulverstampfstraße",
+      "citySlug": "vienna",
+      "cityName": "Vienna"
+    },
+    {
+      "id": 2254,
+      "streetName": "Höhenstraße",
+      "citySlug": "vienna",
+      "cityName": "Vienna"
+    },
+    {
+      "id": 773,
+      "streetName": "Cobenzlgasse",
+      "citySlug": "vienna",
+      "cityName": "Vienna"
+    },
+    {
+      "id": 1170,
+      "streetName": "Erzherzog-Karl-Straße",
+      "citySlug": "vienna",
+      "cityName": "Vienna"
+    },
+    {
+      "id": 4058,
+      "streetName": "Praterstern",
+      "citySlug": "vienna",
+      "cityName": "Vienna"
     }
   ]
 }

@@ -5,6 +5,7 @@ var args = require('system').args;
 var CITY = args[1] || "berlin";
 var MOBILITY_TYPE = args[2] || "car";
 var STREET_ID = args[3] || "1645";
+var TIMEOUT = 10000
 
 var PATH_TO_FILE_FOLDER = "data/" + CITY + "/" + MOBILITY_TYPE;
 var PATH_TO_FILE_TEMP_FRAME = PATH_TO_FILE_FOLDER + "/frames_street_" + STREET_ID;
@@ -67,6 +68,6 @@ page.open("http://whatthestreet.moovellab.com/" + CITY + "/mapmobile/" + MOBILIT
         console.log("Animation does not start, hard timeout stop");
         phantom.exit();
       }
-    }, 10000);
+    }, TIMEOUT);
   }
 });
