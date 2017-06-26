@@ -7,6 +7,8 @@ import * as identifiers from '../../statemanagement/constants/identifiersConstan
 import * as COLORS from '../../shared/style/colors';
 
 import VehicleIcon from '../../shared/components/VehicleIcon';
+import ShareBtn from '../../shared/components/ShareBtn';
+
 
 class MapInfoBox extends React.PureComponent {
 
@@ -21,6 +23,9 @@ class MapInfoBox extends React.PureComponent {
 
   constructor() {
     super();
+
+    this.playVideo = this.playVideo.bind(this);
+    this.stopVideo = this.stopVideo.bind(this);
 
     this.state = {
       FH : new Intl.NumberFormat('en-US')
@@ -71,6 +76,14 @@ class MapInfoBox extends React.PureComponent {
     }
   }
 
+  playVideo() {
+    this.video.play()
+  }
+
+  stopVideo() {
+    this.video.pause()
+  }
+
   render() {
 
     return (
@@ -115,6 +128,21 @@ class MapInfoBox extends React.PureComponent {
             </div>
           }
         </div>
+        <div className="MapInfoGif">
+          <ShareBtn
+            onMouseOver={this.playVideo}
+            onMouseOut={this.stopVideo}
+            bottom={50}
+          />
+          <video 
+            ref={(el) => this.video = el}
+            src="/static/gifs/94.mp4"
+            loop
+            onMouseOver={this.playVideo}
+            onMouseOut={this.stopVideo}
+          >
+          </video>
+        </div>
         <style jsx>{`
           .MapInfoBox {
             position: absolute;
@@ -125,7 +153,7 @@ class MapInfoBox extends React.PureComponent {
             left: 70px;
             z-index: 100000000;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             box-shadow: ${COLORS.boxshadow};
           }
 
@@ -149,6 +177,16 @@ class MapInfoBox extends React.PureComponent {
             font-weight: 500;
             margin-bottom: 10px;
             margin-top: 10px;
+          }
+
+          .MapInfoGif {
+            width: 160px;
+            padding: 10px;
+            cursor: pointer;
+          }
+
+          .MapInfoGif video {
+            width: 100%;
           }
         `}</style>
       </div>

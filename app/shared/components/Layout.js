@@ -95,7 +95,7 @@ class Layout extends Component {
           <p>In the meantime you might want to read the <a href="https://lab.moovel.com/blog/about-what-the-street">About What the Street!? blog post</a> or watch a speedy screen recording walkthrough of What The Street project. Hold tight 👊 </p>
 
           <div className="videoWrapper">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/QxRr3CSfp8E?rel=0&amp;showinfo=0?ecver=1" frameborder="0" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/QxRr3CSfp8E?rel=0&amp;showinfo=0?ecver=1" frameBorder="0" allowFullScreen></iframe>
           </div>
         </div>
         <style jsx global>{`
