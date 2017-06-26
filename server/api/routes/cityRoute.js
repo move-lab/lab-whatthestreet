@@ -12,7 +12,7 @@ const turf = require('@turf/turf');
  * Gets all Cities
  */
 exports.getAllCities = (request, response) => {
-  response.json(Object.keys(data).map((item) => ({ slug: item, name: data[item].name })));
+  response.json(Object.keys(data).sort().map((item) => ({ slug: item, name: data[item].name })));
 };
 
 exports.closestCityToGuess = (request, response) => {
