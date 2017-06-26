@@ -19,7 +19,7 @@ class FreedUp extends React.PureComponent { // eslint-disable-line react/prefer-
         <img alt="Rocking Hand" className="Arrow" src={FreedUpImg} />
         <h2 className="Counter">{this.props.amount.toLocaleString('en')}</h2>
         <p className="Label">
-          Parking Spaces <br /> could be freed up.
+          Parking spaces <br /> could be freed up.
         </p>
         <img alt="Illustration Rocks Icon" src={IllustrationRocks} />
       </div>

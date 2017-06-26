@@ -21,7 +21,7 @@ class OtherCities extends React.Component {
       <div className="MainContainer" style={{ backgroundImage: `url(/api/v1/cities/${this.props.city.name.replace(/\s+/g, '')}/background)` }}>
         <div className="Wrapper">
           <h2 className="Title">
-            More Cities to discover
+            More cities to discover
           </h2>
           <ul className="List">
             {this.props.cities.map((city, index) => this.renderCityLink(city, index))}
