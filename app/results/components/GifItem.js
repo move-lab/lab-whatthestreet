@@ -11,6 +11,8 @@ class GifItem extends React.PureComponent {
     shareUrl: React.PropTypes.string,
     videoUrl: React.PropTypes.string,
     name: React.PropTypes.string,
+    streetName: React.PropTypes.string,
+    cityName: React.PropTypes.string,
     big : React.PropTypes.bool
   }
   
@@ -40,6 +42,8 @@ class GifItem extends React.PureComponent {
         <ShareBtn
           onMouseOver={this.playVideo}
           onMouseOut={this.stopVideo}
+          urlToShare={this.props.shareUrl}
+          textToShare={`👉🚗 👀  ${this.props.streetName} in ${this.props.cityName}! #WhatTheStreet`}
         />
         <video 
           ref={(el) => this.video = el}

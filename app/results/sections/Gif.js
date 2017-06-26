@@ -58,6 +58,8 @@ class GifSection extends React.PureComponent {
                   <GifItem
                     big
                     name={bigPick.streetName}
+                    streetName={bigPick.streetName}
+                    cityName={bigPick.cityName}
                     shareUrl={this.getShareUrl(bigPick)}
                     videoUrl={this.getVideoUrl(bigPick)}
                   />
@@ -65,7 +67,10 @@ class GifSection extends React.PureComponent {
                 <div className="CityGifWrapper">
                   {fourSmallPicks.map((staffPickData) =>
                     <GifItem
+                      key={staffPickData.id}
                       name={staffPickData.streetName}
+                      streetName={staffPickData.streetName}
+                      cityName={staffPickData.cityName}
                       shareUrl={this.getShareUrl(staffPickData)}
                       videoUrl={this.getVideoUrl(staffPickData)}
                     />
@@ -81,7 +86,10 @@ class GifSection extends React.PureComponent {
             <div className="OtherCityContainer">
               {fiveAllCityRandom.map((staffPickData) =>
                 <GifItem
+                  key={staffPickData.id}
                   name={staffPickData.cityName}
+                  streetName={staffPickData.streetName}
+                  cityName={staffPickData.cityName}
                   shareUrl={this.getShareUrl(staffPickData)}
                   videoUrl={this.getVideoUrl(staffPickData)}
                 />

@@ -93,7 +93,6 @@ class MapInfoBox extends React.PureComponent {
       // Check if gif exists before displaying it
       const urlVideoUncoil = `${GifData.baseUrl}/${this.props.citySlug}/${this.props.activeVehicle}/${newProps.laneData.get('_id')}.mp4`;
       axios.head(urlVideoUncoil).then(() => {
-        console.log('video exists');
         this.setState({
           displayVideo: true,
           urlVideoUncoil
