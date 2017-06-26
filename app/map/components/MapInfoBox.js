@@ -98,12 +98,6 @@ class MapInfoBox extends React.PureComponent {
           displayVideo: true,
           urlVideoUncoil
         });
-      }, () => {
-        // TODO REMOVE THAT CALLBACK WHEN CORS WILL BE WORKING
-        this.setState({
-          displayVideo: true,
-          urlVideoUncoil
-        });
       });
     } else {
       this.setState({ displayVideo: false });

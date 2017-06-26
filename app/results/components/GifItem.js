@@ -19,6 +19,7 @@ class GifItem extends React.PureComponent {
 
     this.playVideo = this.playVideo.bind(this);
     this.stopVideo = this.stopVideo.bind(this);
+    this.goToMap = this.goToMap.bind(this);
   }
 
   playVideo() {
@@ -27,6 +28,10 @@ class GifItem extends React.PureComponent {
 
   stopVideo() {
     this.video.pause()
+  }
+
+  goToMap() {
+    window.open(this.props.shareUrl, "_self");
   }
 
   render() {
@@ -42,6 +47,7 @@ class GifItem extends React.PureComponent {
           loop
           onMouseOver={this.playVideo}
           onMouseOut={this.stopVideo}
+          onClick={this.goToMap}
         >
         </video>
         <div className="StreetName">
@@ -75,6 +81,7 @@ class GifItem extends React.PureComponent {
             font-size: 19px;
             font-weight: 500;
             text-align: center;
+            white-space: nowrap;
           }
         `}</style>
       </div>

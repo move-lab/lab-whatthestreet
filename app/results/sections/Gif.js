@@ -1,11 +1,15 @@
 import React from 'react';
 import Router from 'next/router';
+import _find from 'lodash.find';
+import _sampleSize from 'lodash.samplesize';
 
 import * as COLORS from '../../shared/style/colors';
 import * as METRICS from '../../shared/style/metrics';
 
 import GifItem from '../components/GifItem';
 import RoundedButton from '../../shared/components/RoundedButton';
+
+import GifData from '../../../gifgallery.json';
 
 class GifSection extends React.PureComponent {
 
@@ -18,80 +22,70 @@ class GifSection extends React.PureComponent {
     super(props);
   }
 
+  getVideoUrl(staffPickData) {
+   return `${GifData.baseUrl}/${staffPickData.citySlug}/car/${staffPickData.id}.mp4`; 
+  }
+
+  getShareUrl(staffPickData) {
+   return `http://whatthestreet.moovellab.com/${staffPickData.citySlug}/explore/car/lanes/${staffPickData.id}`; 
+  }
+
+  getShareText(staffPickData) {
+    return `👉🚗 👀  ${staffPickData.streetName} in ${staffPickData.cityName}! #WhatTheStreet`;
+  }
+
   render() {
+
+    const staffPickForThisCity = _find(GifData.staffPicks, { cityName: this.props.city.name});
+    const fiveCityPicksRandom = _sampleSize(staffPickForThisCity, 5);
+    const bigPick = fiveCityPicksRandom[0];
+    const fourSmallPicks = fiveCityPicksRandom.splice(0,1);
+    const fiveAllCityRandom = _sampleSize(GifData.staffPicks, 5);
+
     return (
       <div className="GifSection">
         <div className="Wrapper">
           <h2 className="Title">
             Street sausage gif gallery
           </h2>
-          <div className="CitySection">
-            <h4 className="SubTitle">
-              {this.props.city.name}
-            </h4>
-            <div className="CityGifContainer">
-              <div className="CityGifBig">
-                <GifItem
-                  big
-                  name="Street blablabla"
-                  shareUrl="/static/gifs/94.mp4"
-                  videoUrl="/static/gifs/94.mp4"
-                />
-              </div>
-              <div className="CityGifWrapper">
-                <GifItem
-                  name="Street blablabla"
-                  shareUrl="/static/gifs/94.mp4"
-                  videoUrl="/static/gifs/94.mp4"
-                />
-                <GifItem
-                  name="Street blablabla"
-                  shareUrl="/static/gifs/94.mp4"
-                  videoUrl="/static/gifs/94.mp4"
-                />
-                <GifItem
-                  name="Street blablabla"
-                  shareUrl="/static/gifs/94.mp4"
-                  videoUrl="/static/gifs/94.mp4"
-                />
-                <GifItem
-                  name="Street blablabla"
-                  shareUrl="/static/gifs/94.mp4"
-                  videoUrl="/static/gifs/94.mp4"
-                />
+          {staffPickForThisCity && staffPickForThisCity.length >= 5 &&
+            <div className="CitySection">
+              <h4 className="SubTitle">
+                {this.props.city.name}
+              </h4>
+              <div className="CityGifContainer">
+                <div className="CityGifBig">
+                  <GifItem
+                    big
+                    name={bigPick.streetName}
+                    shareUrl={this.getShareUrl(bigPick)}
+                    videoUrl={this.getVideoUrl(bigPick)}
+                  />
+                </div>
+                <div className="CityGifWrapper">
+                  {fourSmallPicks.map((staffPickData) =>
+                    <GifItem
+                      name={staffPickData.streetName}
+                      shareUrl={this.getShareUrl(staffPickData)}
+                      videoUrl={this.getVideoUrl(staffPickData)}
+                    />
+                  )}
+                </div>
               </div>
             </div>
-          </div>
+          }
           <div className="OtherCitySection">
             <h4 className="SubTitle">
               Across the world
             </h4>
             <div className="OtherCityContainer">
-              <GifItem
-                name="Street blablabla"
-                shareUrl="/static/gifs/94.mp4"
-                videoUrl="/static/gifs/94.mp4"
-              />
-              <GifItem
-                name="Street blablabla"
-                shareUrl="/static/gifs/94.mp4"
-                videoUrl="/static/gifs/94.mp4"
-              />
-              <GifItem
-                name="Street blablabla"
-                shareUrl="/static/gifs/94.mp4"
-                videoUrl="/static/gifs/94.mp4"
-              />
-              <GifItem
-                name="Street blablabla"
-                shareUrl="/static/gifs/94.mp4"
-                videoUrl="/static/gifs/94.mp4"
-              />
-              <GifItem
-                name="Street blablabla"
-                shareUrl="/static/gifs/94.mp4"
-                videoUrl="/static/gifs/94.mp4"
-              />
+              {fiveAllCityRandom.map((staffPickData) =>
+                <GifItem
+                  name={staffPickData.cityName}
+                  shareUrl={this.getShareUrl(staffPickData)}
+                  videoUrl={this.getVideoUrl(staffPickData)}
+                />
+              )}
             </div>
           </div>
           <div className="OtherCitySection">

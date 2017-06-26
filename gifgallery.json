@@ -1,4 +1,25 @@
 {
-  "baseUrl": "https://s3-eu-west-1.amazonaws.com/gif.whatthestreet.moovellab.com"
-  
+  "baseUrl": "https://s3-eu-west-1.amazonaws.com/gif.whatthestreet.moovellab.com",
+  "staffPicks": [{
+      "id": 4102,
+      "streetName": "Pulverstampfstraße",
+      "citySlug": "vienna",
+      "cityName": "Vienna"
+    },{
+      "id": 2786,
+      "streetName": "Southwest Terwilliger Boulevard",
+      "citySlug": "portland",
+      "cityName": "Portland"
+    },{
+      "id": 2202,
+      "streetName": "Richard-von-Weizsäcker-Planie",
+      "citySlug": "stuttgart",
+      "cityName": "Stuttgart"
+    },{
+      "id": 580,
+      "streetName": "Eduard-Pfeiffer-Straße",
+      "citySlug": "stuttgart",
+      "cityName": "Stuttgart"
+    }
+  ]
 }

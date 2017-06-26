@@ -3,6 +3,9 @@ import React from 'react';
 import * as METRICS from '../style/metrics';
 import * as COLORS from '../style/colors';
 
+const FacebookIconWhite = '/static/icons/Icon_Social_Facebook_White.svg';
+const TwitterIconWhite = '/static/icons/Icon_Social_Twitter_White.svg';
+
 class ShareBtn extends React.PureComponent {
 
   static propTypes = {
@@ -16,11 +19,16 @@ class ShareBtn extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.onShareTwitter = this.onShareTwitter.bind(this);
+    this.twitterUrl = this.twitterUrl.bind(this);
+    this.facebookUrl = this.facebookUrl.bind(this);
   }
 
-  onShareTwitter() {
-    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(this.props.textToShare)}&url=${encodeURIComponent(this.props.urlToShare)}`,'_blank');
+  twitterUrl() {
+    return `https://twitter.com/intent/tweet?text=${encodeURIComponent(this.props.textToShare)}&url=${encodeURIComponent(this.props.urlToShare)}`;
+  }
+
+  facebookUrl() {
+    return `https://www.facebook.com/sharer.php?u=${encodeURIComponent(this.props.urlToShare)}`;
   }
 
   render() { 
@@ -31,7 +39,15 @@ class ShareBtn extends React.PureComponent {
         onMouseOver={this.props.onMouseOver}
         onMouseOut={this.props.onMouseOut}
       >
-        <img src="/static/icons/Icon_Share.svg" />
+        <img className="ShareIcon" src="/static/icons/Icon_Share.svg" />
+        <div className="List">
+          <a className="Button" href={this.twitterUrl()} target="_blank">
+            <img alt="TwitterIconWhite" src={TwitterIconWhite} />
+          </a>
+          <a className="Button" href={this.facebookUrl()} target="_blank">
+            <img alt="FacebookIconWhite" src={FacebookIconWhite} />
+          </a>
+        </div>
         <style jsx>{`
           .BtnShare {
             position: absolute;
@@ -45,6 +61,8 @@ class ShareBtn extends React.PureComponent {
             align-items: center;
             background-color: ${COLORS.ColorVersusLightOrange};
             cursor: pointer;
+            transition: all 200ms ease;
+            z-index: 2;
           }
 
           .BtnShare.bottom-50 {
@@ -56,13 +74,42 @@ class ShareBtn extends React.PureComponent {
             height: 30px;
           }
 
-          .BtnShare:hover,.BtnShare:active,.BtnShare:focus {
-            background-color: ${COLORS.ColorForegroundOrangeDarker};
-          }
-
           .BtnShare img {
             width: 25px;
             height: 25px;
+          }
+
+          .BtnShare:hover,.BtnShare:active,.BtnShare:focus {
+            justify-content: flex-start;
+            padding-left: 10px;
+            width: 120px;
+            right: -90px;
+          }
+
+          .BtnShare:hover .List,.BtnShare:active .List,.BtnShare:focus .List {
+            opacity: 1;
+            display: flex;
+          }
+
+          .List {
+            width: 15px;
+            display: flex;
+            display: none;
+          }
+
+          .Button {
+            list-style: none;
+            cursor: pointer;
+            margin: 0 5px;
+            line-height: 1;
+          }
+
+          .Button img {
+            transition: all 200ms ease;
+          }
+
+          .Button img:hover {
+            transform: scale(1.4);
           }
         `}</style>
       </div>
