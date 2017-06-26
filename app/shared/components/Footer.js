@@ -45,7 +45,7 @@ class FooterBar extends React.PureComponent {
                 </a>
               </p>
               <p className="reversed">
-                <small>© 2016 moovel Group GmbH — All rights reversed</small>
+                <small>© {new Date().getFullYear()} moovel Group GmbH — All rights reversed</small>
               </p>	
             </div>
           </div>
