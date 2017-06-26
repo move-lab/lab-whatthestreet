@@ -64,7 +64,7 @@ class Layout extends Component {
             <link rel="apple-touch-icon" href="/static/favicon/apple-touch-icon.png" />
             <link rel="icon" type="image/png" href="/static/favicon/favicon.png" />
             <meta property="og:title" content="What the Street!? - moovel lab" />
-            <meta property="og:url" content="http://whatthestreet.moovellab.com" />
+            <meta property="og:url" content={`http://whatthestreet.moovellab.com/berlin/explore/${this.props.activeVehicle}/lanes/${this.props.streetId}`} />
             <meta property="og:image" content="http://whatthestreet.moovellab.com/static/images/wts-meta@2x.png" />
             <meta property="og:description" content="Who owns the city? Explore the distribution of mobility space amongst urban traffic. Discover every parking lot or street of 23 metropolises." />
             <meta property="og:type" content="video" />
