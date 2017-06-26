@@ -52,7 +52,13 @@ class Layout extends Component {
           {this.props.children}
         </div>
         <div className="mobile">
-          What the Street!? is unfortunately not working in this resolution 😢. Sorry! Please visit us again with your desktop browser or increase your window size (min. 1280px).
+          <p>What the Street!? is unfortunately not working in this resolution 😢. Sorry! Please visit us again with your desktop browser or increase your window size (min. 1280px).</p>
+
+          <p>In the meantime you might want to read the <a href="https://lab.moovel.com/blog/about-what-the-street">About What the Street!? blog post</a> or watch a speedy screen recording walkthrough of What The Street project. Hold tight 👊 </p>
+
+          <div className="videoWrapper">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/QxRr3CSfp8E?rel=0&amp;showinfo=0?ecver=1" frameborder="0" allowfullscreen></iframe>
+          </div>
         </div>
         <style jsx global>{`
           .desktop {
@@ -61,9 +67,25 @@ class Layout extends Component {
 
           .mobile {
             display: none;
-            padding: 50px;
+            padding: 30px;
             text-align: center;
+            line-height: 1.2em;
           }
+
+          .videoWrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            padding-top: 25px;
+            height: 0;
+          }
+          .videoWrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          }
+
           @media screen and (max-width: 1279px) {
             .desktop {
               display: none;
