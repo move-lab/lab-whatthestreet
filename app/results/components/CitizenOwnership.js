@@ -14,6 +14,10 @@ class CitizenOwnership extends React.PureComponent { // eslint-disable-line reac
     data: React.PropTypes.object,
   }
 
+  roundTo2Decimals(number) {
+    return Math.round(number * 100) / 100
+  }
+
   render = () => (
     <div>
       <h2 className="Title">
@@ -26,18 +30,18 @@ class CitizenOwnership extends React.PureComponent { // eslint-disable-line reac
         <div className="TableContainer">
           <table className="TableHalf">
             <tbody>
-              <CitizenOwnershipTableRow name="Bike Lanes" amount={this.props.data.moving.bike} unit="m" />
-              <CitizenOwnershipTableRow name="Rails" amount={this.props.data.moving.rails} unit="m" />
-              <CitizenOwnershipTableRow name="Road" amount={this.props.data.moving.road} unit="m" />
+              <CitizenOwnershipTableRow name="Bike Lanes" amount={this.roundTo2Decimals(this.props.data.moving.bike)} unit="m" />
+              <CitizenOwnershipTableRow name="Rails" amount={this.roundTo2Decimals(this.props.data.moving.rails)} unit="m" />
+              <CitizenOwnershipTableRow name="Road" amount={this.roundTo2Decimals(this.props.data.moving.road)} unit="m" />
             </tbody>
           </table>
         </div>
         <div className="TableContainer">
           <table className="TableHalf">
             <tbody>
-              <CitizenOwnershipTableRow name={"Bike Parking"} amount={this.props.data.parking.bike} unit={"bike"} />
-              <CitizenOwnershipTableRow name={"Rail Parking"} amount={this.props.data.parking.rails} unit={"wagons"} />
-              <CitizenOwnershipTableRow name={"Car Parking"} amount={this.props.data.parking.road} unit={"car"} />
+              <CitizenOwnershipTableRow name={"Bike Parking"} amount={this.roundTo2Decimals(this.props.data.parking.bike)} unit={"bikes"} />
+              <CitizenOwnershipTableRow name={"Rail Parking"} amount={this.roundTo2Decimals(this.props.data.parking.rails)} unit={"wagons"} />
+              <CitizenOwnershipTableRow name={"Car Parking"} amount={this.roundTo2Decimals(this.props.data.parking.road)} unit={"cars"} />
             </tbody>
           </table>
         </div>
