@@ -231,6 +231,14 @@ class Legal extends React.Component {
             color: ${COLORS.ColorForegroundGrey};
           }
 
+          a {
+            text-decoration: none;
+          }
+
+          a:active,a:focus,a:hover {
+            text-decoration: underline;
+          }
+
           .ContainerRight .Text a:active,
           .ContainerRight .Text a:focus,
           .ContainerRight .Text a:hover,
@@ -238,7 +246,6 @@ class Legal extends React.Component {
           .ContainerRight .Text a:visited {
             color: ${COLORS.ColorBlack};
             font-weight: 500;
-            text-decoration: none;
           }
 
           .Name {
