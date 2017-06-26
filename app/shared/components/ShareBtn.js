@@ -7,6 +7,7 @@ class ShareBtn extends React.PureComponent {
 
   static propTypes = {
     bottom: React.PropTypes.number,
+    small: React.PropTypes.bool,
     onMouseOut: React.PropTypes.func,
     onMouseOver: React.PropTypes.func,
     onClick: React.PropTypes.func
@@ -15,7 +16,7 @@ class ShareBtn extends React.PureComponent {
   render() { 
     return (
       <div
-        className={`BtnShare bottom-${this.props.bottom}`}
+        className={`BtnShare bottom-${this.props.bottom} ${this.props.small ? 'small' : ''}`}
         onClick={this.props.onClick}
         onMouseOver={this.props.onMouseOver}
         onMouseOut={this.props.onMouseOut}
@@ -40,13 +41,18 @@ class ShareBtn extends React.PureComponent {
             bottom: 50px;
           }
 
+          .BtnShare.small {
+            width: 30px;
+            height: 30px;
+          }
+
           .BtnShare:hover,.BtnShare:active,.BtnShare:focus {
             background-color: ${COLORS.ColorForegroundOrangeDarker};
           }
 
           .BtnShare img {
-            width: 20px;
-            height: 20px;
+            width: 25px;
+            height: 25px;
           }
         `}</style>
       </div>

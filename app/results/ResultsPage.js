@@ -13,6 +13,7 @@ import About from './sections/About';
 import Legal from './sections/Legal';
 import Footer from '../shared/components/Footer';
 import Poster from './sections/Poster';
+import Gif from './sections/Gif';
 
 class ResultsPage extends Component {
 
@@ -22,6 +23,10 @@ class ResultsPage extends Component {
         <ResultsSection />
         <Stats />
         <Versus />
+        <Gif
+          city={this.props.city}
+          ownGuess={this.props.ownGuess}
+        />
         <Poster />
         <EyesPlaceholder />
         <Future />
@@ -41,6 +46,7 @@ class ResultsPage extends Component {
 export default connect((state) => {
   return {
     availableCities: state.city.get('availableCities').toJS(),
-    city: state.city.get('actual_city').toJS()
+    city: state.city.get('actual_city').toJS(),
+    ownGuess: state.guess.get('own').toJS()
   }
 })(ResultsPage)
