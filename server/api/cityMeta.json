@@ -271,6 +271,142 @@
       "rail": 1978746
     }
   },
+  "london": {
+    "onStreetParkingSpots": 0,
+    "name": "London",
+    "sources": {
+      "cars": "https://www.lta.gov.sg/ltaacademy/doc/13Sep105-Pan_KeyTransportStatistics.pdf",
+      "onStreetParkingSpots": "",
+      "modalsplit": "https://en.wikipedia.org/wiki/Modal_share"
+    },
+    "country": "UK",
+    "streets": {
+      "longestStreets": [
+        {
+          "length": 31404.09,
+          "name": "Uxbridge Road",
+          "id": 33921
+        },
+        {
+          "length": 26798.77,
+          "name": "High Road",
+          "id": 16458
+        },
+        {
+          "length": 20309.95,
+          "name": "Green Lane",
+          "id": 14480
+        },
+        {
+          "length": 16513.52,
+          "name": "The Ridgeway",
+          "id": 32669
+        },
+        {
+          "length": 14176.96,
+          "name": "Harrow Road",
+          "id": 15516
+        },
+        {
+          "length": 12892.99,
+          "name": "Forest Road",
+          "id": 12703
+        },
+        {
+          "length": 11684.41,
+          "name": "Main Road",
+          "id": 21066
+        },
+        {
+          "length": 11383.26,
+          "name": "Long Lane",
+          "id": 20453
+        },
+        {
+          "length": 10967.1,
+          "name": "Richmond Road",
+          "id": 27481
+        },
+        {
+          "length": 10950.26,
+          "name": "Wood Lane",
+          "id": 36215
+        }
+      ],
+      "longestNames": [
+        "Eastern Gateway Grade Separation Bridge",
+        "Western Perimeter Road Roundabout",
+        "Edgware Road West Hendon Broadway"
+      ],
+      "staffPicks": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "modalsplit": {
+      "foot": 0.21,
+      "car": 0.34,
+      "bike": 0.02,
+      "public": 0.44
+    },
+    "landmark": {
+      "name": "Hyde Park",
+      "area": 2638718
+    },
+    "moving": {
+      "car": {
+        "length": 14079774,
+        "svgHeight": 142241,
+        "area": 66282739
+      },
+      "bike": {
+        "length": 786731,
+        "svgHeight": 9656,
+        "area": 4297797
+      },
+      "rail": {
+        "length": 3133119,
+        "svgHeight": 51827,
+        "area": 22227784
+      }
+    },
+    "cars": 2645570,
+    "boundingBox": [
+      51.2868,
+      -0.5103,
+      51.6923,
+      0.334
+    ],
+    "parking": {
+      "car": {
+        "offStreet": {
+          "number": 5699,
+          "svgHeight": 25822,
+          "area": 11001870.06
+        },
+        "onStreet": {
+          "number": null
+        }
+      },
+      "bike": {
+        "number": 4124,
+        "svgHeight": 401.75,
+        "area": 60962.17
+      },
+      "rail": {
+        "length": 695250,
+        "svgHeight": 8375,
+        "area": 3557167
+      }
+    },
+    "population": 8674000,
+    "space": {
+      "car": 77284609.06,
+      "bike": 4358759.17,
+      "rail": 25784951
+    }
+  },
   "amsterdam": {
     "onStreetParkingSpots": 265225,
     "name": "Amsterdam",
