@@ -56,34 +56,35 @@ Eg: you should have this kind of tree structure:
 - npm run build (takes a while)
 - npm run start (will listen on the PORT variable or on 4000 is not set)
 
-## Credits
+## Team
 
-##### Concept and Coding
+#### Concept and Coding
 - Michael Szell
 - Stephan Bogner
 
-##### Direction
+#### Direction
 Benedikt Groß
 
-##### Website Front & Backend Engineering
+#### Website Front & Backend Engineering
 Thibault Durand
 
-##### Website Implementation Assistant
+#### Website Implementation Assistant
 Tobias Lauer
 
-##### Visual Design
+#### Visual Design
 Anagrama
 
-##### Extended Team
+#### Extended Team
 
 - Raphael Reimann
 - Joey Lee
 - Daniel Schmid
 - Tilman Häuser
 
-##### City Data Wrangling Assistant
+#### City Data Wrangling Assistant
 Johannes Wachs
 
-##### Data Sources
-OpenStreetMap
-OpenStreetMap is a free alternative to services like Google Maps. Please contribute, if you notice poor data quality.
+#### Data Sources
+OpenStreetMap, a free alternative to services like Google Maps. Please contribute, if you notice poor data quality.
+
+https://donate.openstreetmap.org/
