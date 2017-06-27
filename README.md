@@ -58,31 +58,32 @@ Eg: you should have this kind of tree structure:
 
 ## Credits
 
-### Concept and Coding
-Michael Szell
-Stephan Bogner
+##### Concept and Coding
+- Michael Szell
+- Stephan Bogner
 
-### Direction
+##### Direction
 Benedikt Groß
 
-### Website Front & Backend Engineering
+##### Website Front & Backend Engineering
 Thibault Durand
 
-### Website Implementation Assistant
+##### Website Implementation Assistant
 Tobias Lauer
 
-### Visual Design
+##### Visual Design
 Anagrama
 
-### Extended Team
-Raphael Reimann
-Joey Lee
-Daniel Schmid
-Tilman Häuser
+##### Extended Team
 
-### City Data Wrangling Assistant
+- Raphael Reimann
+- Joey Lee
+- Daniel Schmid
+- Tilman Häuser
+
+##### City Data Wrangling Assistant
 Johannes Wachs
 
-### Data Sources
+##### Data Sources
 OpenStreetMap
 OpenStreetMap is a free alternative to services like Google Maps. Please contribute, if you notice poor data quality.
