@@ -398,7 +398,7 @@ class Map extends Component {
                                   .delay(unfoldDelay);
       const stitchTween = new TWEEN.Tween({progress: 0})
                                   .to({ progress: 1 }, timeUnstitch)
-                                  .easing(TWEEN.Easing.Cubic.Out)
+                                  .easing(TWEEN.Easing.Bounce.Out)
                                   .delay(unstitchDelay);
       unfoldTween.chain(stitchTween);
       unfoldTween.onStart(() => {
