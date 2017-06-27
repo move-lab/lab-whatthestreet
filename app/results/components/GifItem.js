@@ -43,6 +43,7 @@ class GifItem extends React.PureComponent {
           onMouseOver={this.playVideo}
           onMouseOut={this.stopVideo}
           urlToShare={this.props.shareUrl}
+          urlToDownload={this.props.videoUrl}
           textToShare={`👉🚗 👀  ${this.props.streetName} in ${this.props.cityName}! #WhatTheStreet`}
         />
         <video 

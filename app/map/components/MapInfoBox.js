@@ -152,6 +152,7 @@ class MapInfoBox extends React.PureComponent {
             <ShareBtn
               onMouseOver={this.playVideo}
               onMouseOut={this.stopVideo}
+              urlToDownload={this.state.urlVideoUncoil}
               urlToShare={window.location.href.split("?")[0]}
               textToShare={`👉🚗 👀  ${this.props.laneData.getIn(['properties','name'])} in ${this.props.cityName}! #WhatTheStreet`}
               bottom={50}

@@ -5,6 +5,7 @@ import * as COLORS from '../style/colors';
 
 const FacebookIconWhite = '/static/icons/Icon_Social_Facebook_White.svg';
 const TwitterIconWhite = '/static/icons/Icon_Social_Twitter_White.svg';
+const IconDownload = '/static/icons/Icon_Download.svg';
 
 class ShareBtn extends React.PureComponent {
 
@@ -12,6 +13,7 @@ class ShareBtn extends React.PureComponent {
     bottom: React.PropTypes.number,
     small: React.PropTypes.bool,
     urlToShare: React.PropTypes.string,
+    urlToDownload: React.PropTypes.string,
     textToShare: React.PropTypes.string,
     onMouseOut: React.PropTypes.func,
     onMouseOver: React.PropTypes.func
@@ -46,6 +48,9 @@ class ShareBtn extends React.PureComponent {
           </a>
           <a className="Button" href={this.facebookUrl()} target="_blank">
             <img alt="FacebookIconWhite" src={FacebookIconWhite} />
+          </a>
+          <a className="Button" href={this.props.urlToDownload} download target="_blank">
+            <img className="IconDownload" alt="IconDownload" src={IconDownload} />
           </a>
         </div>
         <style jsx>{`
@@ -82,8 +87,8 @@ class ShareBtn extends React.PureComponent {
           .BtnShare:hover,.BtnShare:active,.BtnShare:focus {
             justify-content: flex-start;
             padding-left: 10px;
-            width: 120px;
-            right: -90px;
+            width: 145px;
+            right: -115px;
           }
 
           .BtnShare:hover .List,.BtnShare:active .List,.BtnShare:focus .List {
@@ -106,6 +111,13 @@ class ShareBtn extends React.PureComponent {
 
           .Button img {
             transition: all 200ms ease;
+          }
+
+          .Button .IconDownload {
+            height: 18px;
+            width: 18px;
+            top: 3px;
+            position:relative;
           }
 
           .Button img:hover {
