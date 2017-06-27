@@ -60,13 +60,13 @@ class Layout extends Component {
             <title>What the Street!? - moovel lab</title>
             <meta charset='utf-8' />
             <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
-            <meta name="description" content="Who owns the city? Explore the distribution of mobility space amongst urban traffic. Discover every parking lot or street of 23 metropolises." />
+            <meta name="description" content={`👉🚗 👀  ${this.props.streetName} in ${this.props.city.get('name')}! #WhatTheStreet`} />
             <link rel="apple-touch-icon" href="/static/favicon/apple-touch-icon.png" />
             <link rel="icon" type="image/png" href="/static/favicon/favicon.png" />
             <meta property="og:title" content="What the Street!? - moovel lab" />
             <meta property="og:url" content={`http://whatthestreet.moovellab.com/berlin/explore/${this.props.activeVehicle}/lanes/${this.props.streetId}`} />
-            <meta property="og:image" content="http://whatthestreet.moovellab.com/static/images/wts-meta@2x.png" />
-            <meta property="og:description" content="Who owns the city? Explore the distribution of mobility space amongst urban traffic. Discover every parking lot or street of 23 metropolises." />
+            <meta property="og:image" content="http://whatthestreet.moovellab.com/static/recorder/firstframe.jpg" />
+            <meta property="og:description" content={`👉🚗 👀  ${this.props.streetName} in ${this.props.city.get('name')}! #WhatTheStreet`} />
             <meta property="og:type" content="video" />
             <meta property="og:site_name" content="moovel lab" />
             <meta property="og:video" content={`https://s3-eu-west-1.amazonaws.com/gif.whatthestreet.moovellab.com/${this.props.city.get('slug')}/${this.props.activeVehicle}/${this.props.streetId}.mp4`} />
@@ -77,8 +77,8 @@ class Layout extends Component {
             <meta name="twitter:card" content="player" />
             <meta name="twitter:site" content="@moovellab" />
             <meta name="twitter:title" content="What the Street!? - moovel lab" />
-            <meta name="twitter:description" content="Who owns the city? Explore the distribution of mobility space amongst urban traffic. Discover every parking lot or street of 23 metropolises." />
-            <meta name="twitter:image" content="https://s3-eu-west-1.amazonaws.com/gif.whatthestreet.moovellab.com/wts-meta.jpg" />
+            <meta name="twitter:description" content={`👉🚗 👀  ${this.props.streetName} in ${this.props.city.get('name')}! #WhatTheStreet`} />
+            <meta name="twitter:image" content="http://whatthestreet.moovellab.com/static/recorder/firstframe.jpg" />
             <meta name="twitter:player" content={`https://lab.moovel.com/wts-card-video.php?id=${this.props.streetId}&type=${this.props.activeVehicle}&city=${this.props.city.get('slug')}`} />
             <meta name="twitter:player:width" content="512" />
             <meta name="twitter:player:height" content="512" />
@@ -221,6 +221,7 @@ export default connect((state) => {
   return {
     city: state.city.get('actual_city'),
     activeVehicle: state.vehicles.get('vehicle'),
-    streetId: state.map.getIn(['laneData', '_id'])
+    streetId: state.map.getIn(['laneData', '_id']),
+    streetName: state.map.getIn(['laneData','properties','name'])
   }
 })(Layout);
