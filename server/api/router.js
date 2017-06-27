@@ -39,14 +39,6 @@ router.route('/cities/:city/background').get(cityRoute.getCityBackground);
 router.route('/cities/:city/versus').get(cityRoute.getVersus);
 router.route('/cities/:city/landmark').get(cityRoute.getLandmark);
 
-// Searching
-// router.route('/cities/:city/search_street/:term').get(cityRoute.searchStreets);
-
-// Gif
-// router.route('/gif/:city/:street/gif').get(cityRoute.generateGif);
-// router.route('/gif/:city/:street/poster').get(cityRoute.generatePoster);
-// router.route('/gif/:city/:street/movie').get(cityRoute.generateMovie);
-
 // Validate Params
 router.use('/cities/:city/:vehicle', (request, response, next) => {
   request.params.vehicle = request.params.vehicle.toLowerCase();

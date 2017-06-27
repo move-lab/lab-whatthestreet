@@ -31,12 +31,21 @@ exports.getAllGuesses = (request, response) => {
 exports.insertGuess = (request, response) => {
   request.db.open((err, db) => {
     const collection = db.collection('guesses');
-
-    const savedValue = [request.body.guess.car, request.body.guess.bike, request.body.guess.rail];
+    let savedValue = {};
+    if(request.body.guess) {
+      savedValue = [request.body.guess.car, request.body.guess.bike, request.body.guess.rail];
+    } else {
+      response.json({ message: 'incorrect format' });
+      db.close();
+    }
 
     collection.insertOne({ guess: savedValue }, (error, result) => {
-      if (error) response.json({ message: 'faild saved', error });
-      response.json({ message: 'sucsessfull saved', result });
+      if (error) {
+        response.json({ message: 'faild saved', error });
+        db.close();
+      };
+      response.json({ message: 'sucsessfull saved', result });+
+      db.close();
     });
   });
 };
