@@ -2,6 +2,14 @@
 
 ![screen shot 2017-06-27 at 19 11 42](https://user-images.githubusercontent.com/533590/27597962-b001f55c-5b6c-11e7-97e4-d3fef2033637.png)
 
+What the Street!? was derived out of the question “How do new and old mobility concepts change our cities?”. It was raised by Michael Szell and Stephan Bogner during their residency at moovel lab. With support of the lab team they set out to wrangle data of cities around the world to develop and design this unique Mobility Space Report.
+
+What the Street!? was made out of open-source software and resources. Thanks to the OpenStreetMap contributors and many other pieces we put together the puzzle of urban mobility space seen above.
+
+Read more about the technical details behind The Mobility Space Report: What the Street!? on our blog
+
+http://lab.moovel.com/blog/about-what-the-street
+
 [Demo Video](https://www.youtube.com/watch?v=QxRr3CSfp8E)
 
 ## General
@@ -47,3 +55,34 @@ Eg: you should have this kind of tree structure:
 - npm install
 - npm run build (takes a while)
 - npm run start (will listen on the PORT variable or on 4000 is not set)
+
+## Credits
+
+### Concept and Coding
+Michael Szell
+Stephan Bogner
+
+### Direction
+Benedikt Groß
+
+### Website Front & Backend Engineering
+Thibault Durand
+
+### Website Implementation Assistant
+Tobias Lauer
+
+### Visual Design
+Anagrama
+
+### Extended Team
+Raphael Reimann
+Joey Lee
+Daniel Schmid
+Tilman Häuser
+
+### City Data Wrangling Assistant
+Johannes Wachs
+
+### Data Sources
+OpenStreetMap
+OpenStreetMap is a free alternative to services like Google Maps. Please contribute, if you notice poor data quality.
