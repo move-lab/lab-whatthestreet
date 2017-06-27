@@ -36,10 +36,10 @@ class GifSection extends React.PureComponent {
 
   render() {
 
-    const staffPickForThisCity = _find(GifData.staffPicks, { cityName: this.props.city.name});
+    const staffPickForThisCity = GifData.staffPicks.filter((staffPick) => staffPick.citySlug === this.props.city.slug);
     const fiveCityPicksRandom = _sampleSize(staffPickForThisCity, 5);
+    const fourSmallPicks = fiveCityPicksRandom.splice(1, 5);
     const bigPick = fiveCityPicksRandom[0];
-    const fourSmallPicks = fiveCityPicksRandom.splice(0,1);
     const fiveAllCityRandom = _sampleSize(GifData.staffPicks, 5);
 
     return (
