@@ -20,6 +20,19 @@ class GifSection extends React.PureComponent {
   
   constructor(props) {
     super(props);
+
+    const staffPickForThisCity = GifData.staffPicks.filter((staffPick) => staffPick.citySlug === this.props.city.slug);
+    const fiveCityPicksRandom = _sampleSize(staffPickForThisCity, 5);
+    const fourSmallPicks = fiveCityPicksRandom.splice(1, 5);
+    const bigPick = fiveCityPicksRandom[0];
+    const fiveAllCityRandom = _sampleSize(GifData.staffPicks, 5);
+
+    this.state = {
+      staffPickForThisCity,
+      fourSmallPicks,
+      fiveAllCityRandom,
+      bigPick
+    };
   }
 
   getVideoUrl(staffPickData) {
@@ -35,20 +48,13 @@ class GifSection extends React.PureComponent {
   }
 
   render() {
-
-    const staffPickForThisCity = GifData.staffPicks.filter((staffPick) => staffPick.citySlug === this.props.city.slug);
-    const fiveCityPicksRandom = _sampleSize(staffPickForThisCity, 5);
-    const fourSmallPicks = fiveCityPicksRandom.splice(1, 5);
-    const bigPick = fiveCityPicksRandom[0];
-    const fiveAllCityRandom = _sampleSize(GifData.staffPicks, 5);
-
     return (
       <div className="GifSection">
         <div className="Wrapper">
           <h2 className="Title">
             Street sausage gif gallery
           </h2>
-          {staffPickForThisCity && staffPickForThisCity.length >= 5 &&
+          {this.state.staffPickForThisCity && this.state.staffPickForThisCity.length >= 5 &&
             <div className="CitySection">
               <h4 className="SubTitle">
                 {this.props.city.name}
@@ -57,15 +63,15 @@ class GifSection extends React.PureComponent {
                 <div className="CityGifBig">
                   <GifItem
                     big
-                    name={bigPick.streetName}
-                    streetName={bigPick.streetName}
-                    cityName={bigPick.cityName}
-                    shareUrl={this.getShareUrl(bigPick)}
-                    videoUrl={this.getVideoUrl(bigPick)}
+                    name={this.state.bigPick.streetName}
+                    streetName={this.state.bigPick.streetName}
+                    cityName={this.state.bigPick.cityName}
+                    shareUrl={this.getShareUrl(this.state.bigPick)}
+                    videoUrl={this.getVideoUrl(this.state.bigPick)}
                   />
                 </div>
                 <div className="CityGifWrapper">
-                  {fourSmallPicks.map((staffPickData) =>
+                  {this.state.fourSmallPicks.map((staffPickData) =>
                     <GifItem
                       key={staffPickData.id}
                       name={staffPickData.streetName}
@@ -84,7 +90,7 @@ class GifSection extends React.PureComponent {
               Across the world
             </h4>
             <div className="OtherCityContainer">
-              {fiveAllCityRandom.map((staffPickData) =>
+              {this.state.fiveAllCityRandom.map((staffPickData) =>
                 <GifItem
                   key={staffPickData.id}
                   name={staffPickData.cityName}
