@@ -2,6 +2,36 @@
   "baseUrl": "https://s3-eu-west-1.amazonaws.com/gif.whatthestreet.moovellab.com",
   "staffPicks": [
     {
+      "id": 206,
+      "streetName": "Archangelkade",
+      "citySlug": "amsterdam",
+      "cityName": "Amsterdam"
+    },
+    {
+      "id": 317,
+      "streetName": "Beethovenstraat",
+      "citySlug": "amsterdam",
+      "cityName": "Amsterdam"
+    },
+    {
+      "id": 2195,
+      "streetName": "Leidsegracht",
+      "citySlug": "amsterdam",
+      "cityName": "Amsterdam"
+    },
+    {
+      "id": 2414,
+      "streetName": "Meer en Vaart",
+      "citySlug": "amsterdam",
+      "cityName": "Amsterdam"
+    },
+    {
+      "id": 2590,
+      "streetName": "Nieuwe Hemweg",
+      "citySlug": "amsterdam",
+      "cityName": "Amsterdam"
+    },
+    {
       "id": 102,
       "streetName": "Camí de Can Castellví",
       "citySlug": "barcelona",
@@ -26,8 +56,8 @@
       "cityName": "Barcelona"
     },
     {
-      "id": 109,
-      "streetName": "Camí de Vallvidrera al Tibidabo",
+      "id": 2047,
+      "streetName": "Carretera de Sant Cugat",
       "citySlug": "barcelona",
       "cityName": "Barcelona"
     },
@@ -331,6 +361,36 @@
       "streetName": "Louw Geldenhuis Drive",
       "citySlug": "johannesburg",
       "cityName": "Johannesburg"
+    },
+    {
+      "id": 5911,
+      "streetName": "Mount Hollywood Drive",
+      "citySlug": "losangeles",
+      "cityName": "Los Angeles"
+    },
+    {
+      "id": 5933,
+      "streetName": "Mulholland Drive",
+      "citySlug": "losangeles",
+      "cityName": "Los Angeles"
+    },
+    {
+      "id": 9233,
+      "streetName": "Vista del Valle Drive",
+      "citySlug": "losangeles",
+      "cityName": "Los Angeles"
+    },
+    {
+      "id": 6691,
+      "streetName": "Oxnard Street",
+      "citySlug": "losangeles",
+      "cityName": "Los Angeles"
+    },
+    {
+      "id": 4257,
+      "streetName": "Hollywood Boulevard",
+      "citySlug": "losangeles",
+      "cityName": "Los Angeles"
     },
     {
       "id": 203,
