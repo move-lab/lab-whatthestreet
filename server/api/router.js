@@ -23,7 +23,7 @@ router.route('/cities/').get(require('./routes/cityRoute').getAllCities);
 // Select Database and Validate Params
 router.use('/cities/:city', (request, response, next) => {
   if(Object.keys(data).find((city) => request.params.city === city)) {
-    request.db = new Db(`${request.params.city}_coiled`, new Server(process.env.MONGODB_HOST || 'localhost', process.env.MONGODB_PORT || 27017));
+    request.db = new Db(`${request.params.city}_coiled_2`, new Server(process.env.MONGODB_HOST || 'localhost', process.env.MONGODB_PORT || 27017));
     request.limit = parseInt(request.query.limit, 10) || 10;
     request.params.city = request.params.city.toLowerCase();
     next();
