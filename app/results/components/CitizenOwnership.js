@@ -24,7 +24,7 @@ class CitizenOwnership extends React.PureComponent { // eslint-disable-line reac
         Citizen ownership
       </h2>
       <h3 className="SubTitle">
-        If every citizen of {this.props.city} would own it’s fair share of each type of mobility.
+        If every citizen of {this.props.city} owned their fair share of each type of mobility.
       </h3>
       <div className="Container">
         <div className="TableContainer">

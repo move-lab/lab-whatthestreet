@@ -108,7 +108,7 @@ class GifSection extends React.PureComponent {
             </h4>
             <div className="OtherCityContent">
               <div className="Text">
-                Create your own gif by on any of the streets you encountered before
+                Create your own gif by clicking on any of the streets you encountered before
               </div>
               <div>
                 <RoundedButton

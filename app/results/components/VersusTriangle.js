@@ -40,17 +40,17 @@ class VersusTriangle extends React.PureComponent {
             About
           </h4>
           <p className="AboutText">
-            The mobility triangle shows how people <i>actually</i> move in each city. It also compares this to how much city space is allocated to the different modes of transport. <a href="http://lab.moovel.com/blog/about-what-the-street#how-to-interpret-the-mobility-triangle-the-arrogance-of-space" target="_blank">More Information</a>
+            The mobility triangle shows how people <i>actually</i> move in each city. It also compares this to how much city space is allocated to the different modes of transport. <br /> <a href="http://lab.moovel.com/blog/about-what-the-street#how-to-interpret-the-mobility-triangle-the-arrogance-of-space" target="_blank">More Information</a>
           </p>
         </div>
         <div className="Description">
           <VersusIconSmall />
           <div>
             <p className="DescriptionText">
-              How Space is allocated
+              How space is allocated
             </p>
             <p className="DescriptionText">
-              How People move
+              How people move
             </p>
           </div>
         </div>
