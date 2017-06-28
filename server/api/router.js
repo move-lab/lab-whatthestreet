@@ -3,7 +3,7 @@ const router = express.Router();
 const Db = require('mongodb').Db;
 const Server = require('mongodb').Server;
 const RateLimit = require('express-rate-limit');
-
+const data = require('./cityMeta.json');
 
 router.get('/', require('./routes/rootRoute'));
 
@@ -22,13 +22,14 @@ router.route('/cities/').get(require('./routes/cityRoute').getAllCities);
 
 // Select Database and Validate Params
 router.use('/cities/:city', (request, response, next) => {
-  if(request.params.city === 'favicon.ico') {
-    return;
+  if(Object.keys(data).find((city) => request.params.city === city)) {
+    request.db = new Db(`${request.params.city}_coiled`, new Server(process.env.MONGODB_HOST || 'localhost', process.env.MONGODB_PORT || 27017));
+    request.limit = parseInt(request.query.limit, 10) || 10;
+    request.params.city = request.params.city.toLowerCase();
+    next();
+  } else {
+    response.status(404).send(`This city does not exists`);
   }
-  request.db = new Db(`${request.params.city}_coiled_2`, new Server(process.env.MONGODB_HOST || 'localhost', process.env.MONGODB_PORT || 27017));
-  request.limit = parseInt(request.query.limit, 10) || 10;
-  request.params.city = request.params.city.toLowerCase();
-  next();
 });
 
 router.route('/cities/:city').get(cityRoute.getInfo);
