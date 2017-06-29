@@ -51,11 +51,11 @@ To import the data into the mongodb, you should:
 
 ```
 mongorestore
-   --nsInclude 'london_coiled.*' 
-   --nsFrom 'london_coiled.$collection$' 
-   --nsTo 'london_coiled_2.$collection$' 
+   --nsInclude 'stuttgart_coiled.*' 
+   --nsFrom 'stuttgart_coiled.$collection$' 
+   --nsTo 'stuttgart_coiled_2.$collection$' 
    --gzip 
-   --archive=london/coils\ MongoDB\ Dump/london_coiled.gz
+   --archive=stuttgart_coiled.gz
 ```
 
 - Double check the data is imported by running
@@ -66,7 +66,7 @@ show dbs
 ```
 You should see something like:
 ```
-london_coiled_2      0.802GB
+stuttgart_coiled_2      0.202GB
 ```
 
 ### Node.js front-end app deployment
