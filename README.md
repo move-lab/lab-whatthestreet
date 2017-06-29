@@ -45,7 +45,7 @@ Mongodb is not auth configured (no password / username)
 
 To import the data into the mongodb, you should:
 
-- download an example city from that link TODO REPLACE LINK HERE , AND REPLACE CITY NAME BELOW
+- download an example city from that link TODO REPLACE LINK HERE
 
 - import  the data with this command (you need to import each city in this db name schema:  ${cityname}_coiled_2 )
 
@@ -66,7 +66,7 @@ show dbs
 ```
 You should see something like:
 ```
-berlin_coiled_2      0.192GB
+london_coiled_2      0.802GB
 ```
 
 ### Node.js front-end app deployment
