@@ -36,9 +36,10 @@ router.route('/cities/:city').get(cityRoute.getInfo);
 
 router.route('/cities/:city/streets').get(cityRoute.getStreets);
 router.route('/cities/:city/streets/:vehicle/:id').get(cityRoute.getStreetByID);
-router.route('/cities/:city/background').get(cityRoute.getCityBackground);
 router.route('/cities/:city/versus').get(cityRoute.getVersus);
 router.route('/cities/:city/landmark').get(cityRoute.getLandmark);
+
+router.route('/citiesBackground/:city').get(cityRoute.getCityBackground);
 
 // Validate Params
 router.use('/cities/:city/:vehicle', (request, response, next) => {

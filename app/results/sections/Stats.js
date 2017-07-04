@@ -20,7 +20,7 @@ class Stats extends React.Component {
     longestStreets: React.PropTypes.arrayOf(React.PropTypes.object),
   }
 
-  getBackground = (city) => (`/api/v1/cities/${city.replace(/\s+/g, '')}/background`)
+  getBackground = (city) => (`/api/v1/citiesBackground/${city.replace(/\s+/g, '')}`)
 
   calculateOwnership = () => {
     const population = this.props.cityMetaData.population;
