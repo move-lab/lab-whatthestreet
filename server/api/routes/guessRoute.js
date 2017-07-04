@@ -39,7 +39,12 @@ exports.insertGuess = (request, response) => {
       db.close();
     }
 
-    collection.insertOne({ guess: savedValue }, (error, result) => {
+    var clientIP = request.headers['x-forwarded-for'] || request.connection.remoteAddress;
+
+    collection.insertOne({ 
+      guess: savedValue,
+      clientIP: clientIP
+    }, (error, result) => {
       if (error) {
         response.json({ message: 'faild saved', error });
         db.close();
