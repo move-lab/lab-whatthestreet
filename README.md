@@ -45,8 +45,7 @@ Mongodb is not auth configured (no password / username)
 
 To import the data into the mongodb, you should:
 
-- download an example city from that link TODO REPLACE LINK HERE
-
+- download an example city from that here: https://gif.whatthestreet.moovellab.com.s3.amazonaws.com/data/stuttgart_coiled.gz
 - import  the data with this command (you need to import each city in this db name schema:  ${cityname}_coiled_2 )
 
 ```
