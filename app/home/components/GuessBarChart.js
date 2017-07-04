@@ -28,10 +28,11 @@ class GuessBarChart extends React.Component {
   onChange = () => this.props.onChange(this.state.guess);
 
   positionChanged = (procentualPosition, key) => {
+    console.log(procentualPosition);
     const guess = this.state.guess;
 
     if (procentualPosition >= 1.0) guess[key] = 1;
-    else if (procentualPosition < 0.09) guess[key] = 0.0;
+    else if (procentualPosition < 0.01) guess[key] = 0.0;
     else guess[key] = procentualPosition;
 
     let guessSum = guess.bike + guess.car + guess.rail;
