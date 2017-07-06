@@ -21,6 +21,21 @@ The complete codebase consist of two independent parts:
 
 This is part 2. You can find part 1 here: [https://github.com/moovel/lab-what-the-street-datawrangling](https://github.com/moovel/lab-what-the-street-datawrangling)
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+##Table of Contents
+
+- [General architecture](#general-architecture)
+- [Note about code quality](#note-about-code-quality)
+- [Deployment guide](#deployment-guide)
+  - [Loading data into the mongodb database](#loading-data-into-the-mongodb-database)
+  - [Node.js front-end app deployment](#nodejs-front-end-app-deployment)
+  - [Env variable](#env-variable)
+- ["GIF" recorder](#gif-recorder)
+- [Team](#team)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## General architecture
 
 *What the Street!?* runs with:
