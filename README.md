@@ -19,7 +19,7 @@ The complete codebase consist of two independent parts:
 1. Data Wrangling
 2. Front & Backend
 
-This is part 2. You can find part 1 here: TODO URL
+This is part 2. You can find part 1 here: [https://github.com/moovel/lab-what-the-street-datawrangling](https://github.com/moovel/lab-what-the-street-datawrangling)
 
 ## General architecture
 
