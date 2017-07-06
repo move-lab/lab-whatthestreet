@@ -23,7 +23,7 @@ This is part 2. You can find part 1 here: [https://github.com/moovel/lab-what-th
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-##Table of Contents
+## Table of Contents
 
 - [General architecture](#general-architecture)
 - [Note about code quality](#note-about-code-quality)
