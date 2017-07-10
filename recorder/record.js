@@ -56,9 +56,9 @@ page.onCallback = function(event){
     }
 };
 
-page.open("http://whatthestreet.moovellab.com/" + CITY + "/mapmobile/" + MOBILITY_TYPE + "/lanes/" + STREET_ID + "?bike=0.34&rail=0.32&car=0.33", function(status) {
+page.open("https://whatthestreet.moovellab.com/" + CITY + "/mapmobile/" + MOBILITY_TYPE + "/lanes/" + STREET_ID + "?bike=0.34&rail=0.32&car=0.33", function(status) {
   if (status !== "success") {
-    console.log("Unable to access http://whatthestreet.moovellab.com/" + CITY + "/mapmobile/" + MOBILITY_TYPE + "/lanes/" + STREET_ID + "?bike=0.34&rail=0.32&car=0.33");
+    console.log("Unable to access https://whatthestreet.moovellab.com/" + CITY + "/mapmobile/" + MOBILITY_TYPE + "/lanes/" + STREET_ID + "?bike=0.34&rail=0.32&car=0.33");
     phantom.exit();
   } else {
     //Hard timeout if readyToAnimate now fired in 10s

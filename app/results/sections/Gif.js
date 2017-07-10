@@ -40,7 +40,7 @@ class GifSection extends React.PureComponent {
   }
 
   getShareUrl(staffPickData) {
-   return `http://whatthestreet.moovellab.com/${staffPickData.citySlug}/explore/car/lanes/${staffPickData.id}`; 
+   return `https://whatthestreet.moovellab.com/${staffPickData.citySlug}/explore/car/lanes/${staffPickData.id}`; 
   }
 
   getShareText(staffPickData) {

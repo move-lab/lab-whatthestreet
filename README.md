@@ -3,11 +3,11 @@
 
 ![screen shot 2017-06-27 at 19 11 42](https://user-images.githubusercontent.com/533590/27597962-b001f55c-5b6c-11e7-97e4-d3fef2033637.png)
 
-[*What the Street!?*](http://whatthestreet.moovellab.com/) was derived out of the question “How do new and old mobility concepts change our cities?”. It was raised by [Michael Szell](http://lab.moovel.com/people/michael-szell) and [Stephan Bogner](http://lab.moovel.com/people/stephan-bogner) during their residency at [moovel lab](http://lab.moovel.com/). With support of the lab team they set out to wrangle data of cities around the world to develop and design this unique *Mobility Space Report*.
+[*What the Street!?*](https://whatthestreet.moovellab.com/) was derived out of the question “How do new and old mobility concepts change our cities?”. It was raised by [Michael Szell](http://lab.moovel.com/people/michael-szell) and [Stephan Bogner](http://lab.moovel.com/people/stephan-bogner) during their residency at [moovel lab](http://lab.moovel.com/). With support of the lab team they set out to wrangle data of cities around the world to develop and design this unique *Mobility Space Report*.
 
 *What the Street!?* was made out of open-source software and resources. Thanks to the OpenStreetMap contributors and many other pieces we put together the puzzle of urban mobility space seen above.
 
-Implemented project URL: [http://whatthestreet.moovellab.com/](http://whatthestreet.moovellab.com/)
+Implemented project URL: [https://whatthestreet.moovellab.com/](https://whatthestreet.moovellab.com/)
 
 Read more about the technical details behind *The Mobility Space Report: What the Street!?* on our blog: [http://lab.moovel.com/blog/about-what-the-street](http://lab.moovel.com/blog/about-what-the-street)
 
@@ -124,7 +124,7 @@ It will output the video file in the `recorder/data/${city}` folder.
 
 The core of the script is [https://github.com/moovel/lab-what-the-street/blob/master/recorder/record.js](https://github.com/moovel/lab-what-the-street/blob/master/recorder/record.js), the principle of recording an animation with phantom are:
 
-- Implement the animation with a slowdow factor because phantomjs can't get frames at 30 FPS (the separate implementation can be found here: [https://github.com/moovel/lab-what-the-street/blob/master/app/mapmobile/MapMobile.js](https://github.com/moovel/lab-what-the-street/blob/master/app/mapmobile/MapMobile.js), and here [you can see it](http://whatthestreet.moovellab.com/berlin/mapmobile/car/lanes/41?bike=0.33&rail=0.33&car=0.33))
+- Implement the animation with a slowdow factor because phantomjs can't get frames at 30 FPS (the separate implementation can be found here: [https://github.com/moovel/lab-what-the-street/blob/master/app/mapmobile/MapMobile.js](https://github.com/moovel/lab-what-the-street/blob/master/app/mapmobile/MapMobile.js), and here [you can see it](https://whatthestreet.moovellab.com/berlin/mapmobile/car/lanes/41?bike=0.33&rail=0.33&car=0.33))
 
 - Notify phantom when we are ready to animate ([https://github.com/moovel/lab-what-the-street/blob/master/app/mapmobile/MapMobile.js#L281](https://github.com/moovel/lab-what-the-street/blob/master/app/mapmobile/MapMobile.js#L281))
 
