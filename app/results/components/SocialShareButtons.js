@@ -27,7 +27,7 @@ class SocialShareButtons extends React.PureComponent {
         break;
     }
     text += ' … according to ';
-    const website = 'http://whatthestreet.moovellab.com';
+    const website = 'https://whatthestreet.moovellab.com';
 
     return `https://twitter.com/intent/tweet?text=${encodeURI(text)}&url=${encodeURI(website)}`;
   }
@@ -46,7 +46,7 @@ class SocialShareButtons extends React.PureComponent {
         break;
     }
     text += ' … according to ';
-    const website = 'http://whatthestreet.moovellab.com';
+    const website = 'https://whatthestreet.moovellab.com';
 
     return `https://www.facebook.com/sharer.php?u=${encodeURI(website)}`;
   }
