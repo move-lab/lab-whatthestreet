@@ -91,7 +91,7 @@ class Map extends Component {
     });
     L.mapbox.accessToken = Config.mapboxToken;
     this.map = L.mapbox.map('map', null, { zoomControl:false });
-    this.styleLayer = L.mapbox.styleLayer("mapbox://styles/moovellab/cj3puddkq00002skevihhyt07").addTo(this.map);
+    this.styleLayer = L.mapbox.styleLayer("mapbox://styles/moovelgroup/cj4zn0igf0v4j2rnf1s3lptvk").addTo(this.map);
     this.map.setView([40, -74.50], 9);
     this.onMapLoaded();
     // Expose renderAnimation function for phantomjs

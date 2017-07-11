@@ -6,5 +6,5 @@ export const twitter = 'twitter';
 export const parkingspace = 'parking';
 export const lanes = 'lanes';
 
-export const satelliteLayer = 'moovellab/cj3ptz8yh00092sovmj3n1cm2';
+export const satelliteLayer = 'moovelgroup/cj4zmu0jw0upr2rljue9him1r';
 export const streetLayer = 'mapbox/streets-v9';
