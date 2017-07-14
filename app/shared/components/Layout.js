@@ -84,6 +84,7 @@ class Layout extends Component {
             <meta name="twitter:player:height" content="512" />
             <meta name="twitter:player:stream" content={`https://s3-eu-west-1.amazonaws.com/gif.whatthestreet.moovellab.com/${this.props.city.get('slug')}/${this.props.activeVehicle}/${this.props.streetId}.mp4`} />
             <meta name="twitter:player:stream:content_type" content="video/mp4" />
+            <meta name="google-site-verification" content="N5xXk8yKMY4JqJ2jVVyjiEOkOx5MFYRxixauUDzYO3Q" />
           </Head>
         }
         <div className="desktop">
