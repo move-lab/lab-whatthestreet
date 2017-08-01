@@ -17,6 +17,14 @@ app.prepare()
   server.use(bodyParser.json());
   server.use(compression());
 
+  // Redirect to HTTPS
+  server.use(function(req, res, next) {
+    if (req.headers['x-forwarded-proto'] !== 'https' && req.hostname !== "localhost") {
+      return res.redirect(301, ['https://', req.get('Host'), req.url].join(''));
+    }
+    return next();
+  });
+
   server.get('/about', (req, res) => {
     console.log('handled by /about');
     return app.render(req, res, '/about', req.query);

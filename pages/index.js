@@ -11,13 +11,15 @@ import Header from '../app/shared/components/Header';
 import { CityActions, GuessActions } from '../app/statemanagement/actions';
 import { setBaseUrl, initRouterWatcher } from '../app/statemanagement/AppStateManagement';
 
+import { getBaseUrl } from '../app/shared/utils/url';
+
 class Index extends Component {
 
   static async getInitialProps (params) {
     const { store, isServer, req } = params;
     console.log('Index page render');
     if (isServer) {
-      const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
+      const baseUrl = getBaseUrl(req);
       await store.dispatch(setBaseUrl(baseUrl));
       await store.dispatch(CityActions.loadCities());
       // We may render from city/:cityName and select that city by default

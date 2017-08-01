@@ -10,12 +10,14 @@ import Header from '../app/shared/components/Header';
 import { CityActions } from '../app/statemanagement/actions';
 import { setBaseUrl, initRouterWatcher } from '../app/statemanagement/AppStateManagement';
 
+import { getBaseUrl } from '../app/shared/utils/url';
+
 class About extends Component {
 
   static async getInitialProps (params) {
     const { store, isServer, req } = params;
     if (isServer) {
-      const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
+      const baseUrl = getBaseUrl(req);
       await store.dispatch(setBaseUrl(baseUrl));
       await store.dispatch(CityActions.loadCities());
     }

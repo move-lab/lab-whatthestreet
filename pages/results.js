@@ -10,6 +10,8 @@ import ResultsPage from '../app/results/ResultsPage';
 import { CityActions, GuessActions } from '../app/statemanagement/actions';
 import { setBaseUrl, initRouterWatcher } from '../app/statemanagement/AppStateManagement';
 
+import { getBaseUrl } from '../app/shared/utils/url';
+
 class Results extends Component {
 
   static async getInitialProps (params) {
@@ -17,7 +19,7 @@ class Results extends Component {
     console.log('Results page render');
     // If not Server Side rendered, do not need to fetch everything again
     if (isServer) {
-      const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
+      const baseUrl = getBaseUrl(req);
       await store.dispatch(setBaseUrl(baseUrl));
       await store.dispatch(CityActions.loadCities());
       // Select city from url

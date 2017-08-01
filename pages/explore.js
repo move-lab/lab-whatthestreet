@@ -11,6 +11,8 @@ import { CityActions, GuessActions } from '../app/statemanagement/actions';
 import { setBaseUrl, initRouterWatcher } from '../app/statemanagement/AppStateManagement';
 import { selectVehicle } from '../app/statemanagement/VehiclesStateManagement';
 
+import { getBaseUrl } from '../app/shared/utils/url';
+
 class Explore extends PureComponent {
 
   static async getInitialProps (params) {
@@ -18,7 +20,7 @@ class Explore extends PureComponent {
     console.log('Explore page render');
     // If not Server Side rendered, do not need to fetch everything again
     if (isServer) {
-      const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
+      const baseUrl = getBaseUrl(req);
       await store.dispatch(setBaseUrl(baseUrl));
       await store.dispatch(CityActions.loadCities());
       // Select city from url
