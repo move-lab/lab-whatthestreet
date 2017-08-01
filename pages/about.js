@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import withRedux from 'next-redux-wrapper';
 import { initStore } from '../app/statemanagement/store';
@@ -20,6 +21,23 @@ class About extends Component {
       const baseUrl = getBaseUrl(req);
       await store.dispatch(setBaseUrl(baseUrl));
       await store.dispatch(CityActions.loadCities());
+      // We may render from city/:cityName and select that city by default
+      if(req && req.params.cityName) {
+        await store.dispatch(CityActions.selectCity(req.params.cityName));
+      } else {
+        const clientIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+        // Try to get closest city from api
+        await axios.post(`${baseUrl}/api/v1/nearestCity`,{
+          ip: clientIP
+        }).then((response) => {
+          console.log('closest city is')
+          return store.dispatch(CityActions.selectCity(response.data.slug));
+        }, (error) => {
+          // default to berlin
+          console.log('default to berlin')
+          return store.dispatch(CityActions.selectCity("berlin"));
+        });
+      }
     }
     return;
   }
