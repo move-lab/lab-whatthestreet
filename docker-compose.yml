@@ -16,6 +16,7 @@ services:
       context: . 
     networks:
       - webnet
+    restart: on-failure
     depends_on:
       - db
     ports:
