@@ -1,0 +1,14 @@
+[
+    {
+        "ParameterKey": "CostCenterTag",
+        "ParameterValue": "7000"
+    },
+    {
+        "ParameterKey": "SquadTag",
+        "ParameterValue": "Lab"
+    },
+    {
+        "ParameterKey": "ServiceName",
+        "ParameterValue": "lab-whatthestreet-repo"
+    }
+]

@@ -67,8 +67,8 @@ app.prepare()
     return handle(req, res)
   })
 
-  server.listen(process.env.PORT || 4000, (err) => {
+  server.listen(process.env.PORT || 80, (err) => {
     if (err) throw err
-    console.log(`> Ready on http://localhost:${process.env.PORT || 4000}`)
+    console.log(`> Ready on http://localhost:${process.env.PORT || 80}`)
   })
 })

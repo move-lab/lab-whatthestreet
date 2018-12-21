@@ -1,0 +1,22 @@
+[
+    {
+        "ParameterKey": "DockerImage",
+        "ParameterValue": "nginxdemos/hello"
+    },
+    {
+        "ParameterKey": "Host",
+        "ParameterValue": "lab-whatthestreet.lab.moovel.com"
+    },
+    {
+        "ParameterKey": "LoadBalancerStackName",
+        "ParameterValue": "lab-public-alb"
+    },
+    {
+        "ParameterKey": "ServiceName",
+        "ParameterValue": "lab-whatthestreet"
+    },
+    {
+        "ParameterKey": "PathName",
+        "ParameterValue": ""
+    }
+]

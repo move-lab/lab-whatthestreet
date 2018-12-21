@@ -33,7 +33,7 @@ COPY --from=builder /usr/src/app/gifgallery.json /usr/src/app/
 COPY --from=builder /usr/src/app/package.json /usr/src/app/
 COPY --from=builder /usr/src/app/docker-entrypoint.sh /usr/src/app/
 
-EXPOSE 4000
+EXPOSE 80
 
 ENTRYPOINT ["/usr/src/app/docker-entrypoint.sh"]
 
