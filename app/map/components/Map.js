@@ -1,20 +1,20 @@
 import React, { Component } from "react";
 import ReactMapboxGl, { ScaleControl, ZoomControl } from "react-mapbox-gl";
-import TWEEN from 'tween.js';
-import { bbox } from '@turf/turf';
-import rotate from '@turf/transform-rotate';
-import Config from '../../../config.json';
-import * as d3geo from 'd3-geo';
+import TWEEN from "tween.js";
+import { bbox } from "@turf/turf";
+import rotate from "@turf/transform-rotate";
+import Config from "../../../config.json";
+import * as d3geo from "d3-geo";
 
-import MapActions from './MapActions';
+import MapActions from "./MapActions";
 
-import { unfold } from '../../shared/utils/unfold';
+import { unfold } from "../../shared/utils/unfold";
 import {
   calculateBendWay,
   getLongestTranslation,
   getZoomLevel
-} from '../../shared/utils/geoutils';
-import * as identifiers from '../../statemanagement/constants/identifiersConstants';
+} from "../../shared/utils/geoutils";
+import * as identifiers from "../../statemanagement/constants/identifiersConstants";
 
 const containerStyle = {
   display: "flex",
@@ -25,14 +25,13 @@ const containerStyle = {
 const unfolder = unfold();
 
 class Map extends Component {
-
   static propTypes = {
     activeVehicle: React.PropTypes.string,
     areaType: React.PropTypes.string,
     laneData: React.PropTypes.object,
     parkingData: React.PropTypes.object,
     onMapLoaded: React.PropTypes.func
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -45,34 +44,37 @@ class Map extends Component {
     this.computingGeojson = false;
     this.renderingOnCanvas = false;
     this.geojson = {
-      "type": "FeatureCollection",
-      "properties": {
-        "name": "data"
+      type: "FeatureCollection",
+      properties: {
+        name: "data"
       },
-      "features": []
+      features: []
     };
 
     this.emptyGeoJson = this.geojson;
 
     this.state = {
       activeLayer: identifiers.satelliteLayer
-    }
+    };
   }
 
   componentWillReceiveProps(newProps) {
     if (newProps.isVisible === true) {
-      if (newProps.areaType === 'lanes' &&
-          newProps.laneData !== null) {
+      if (newProps.areaType === "lanes" && newProps.laneData !== null) {
         this.renderData(newProps);
       }
-      if (newProps.areaType === 'parking' &&
-          newProps.activeVehicle !== 'rail' &&
-          newProps.parkingData !== null) {
+      if (
+        newProps.areaType === "parking" &&
+        newProps.activeVehicle !== "rail" &&
+        newProps.parkingData !== null
+      ) {
         this.renderData(newProps);
       }
-      if (newProps.areaType === 'parking' &&
-          newProps.activeVehicle === 'rail' &&
-          newProps.laneData !== null) {
+      if (
+        newProps.areaType === "parking" &&
+        newProps.activeVehicle === "rail" &&
+        newProps.laneData !== null
+      ) {
         this.renderData(newProps);
       }
     } else {
@@ -86,18 +88,23 @@ class Map extends Component {
     const self = this;
     this.transform = d3geo.geoTransform({
       point: function(lon, lat) {
-        const pointOnCanvas = self.map.project([lon,lat]);
+        const pointOnCanvas = self.map.project([lon, lat]);
         this.stream.point(pointOnCanvas.x, pointOnCanvas.y);
       }
     });
     this.context = this.d3canvas.getContext("2d");
     this.d3canvas.width = window.innerWidth;
     this.d3canvas.height = window.innerHeight;
-    this.path = d3geo.geoPath().context(this.context).projection(this.transform);
+    this.path = d3geo
+      .geoPath()
+      .context(this.context)
+      .projection(this.transform);
   }
 
   clearCanvas() {
-    this.d3canvas.getContext("2d").clearRect(0, 0, this.d3canvas.width, this.d3canvas.height);
+    this.d3canvas
+      .getContext("2d")
+      .clearRect(0, 0, this.d3canvas.width, this.d3canvas.height);
   }
 
   renderOnCanvas(geojson) {
@@ -107,8 +114,8 @@ class Map extends Component {
     context.beginPath();
     this.path(geojson);
     context.lineWidth = 5;
-    context.strokeStyle = '#FF6819';
-    context.lineCap = 'round';
+    context.strokeStyle = "#FF6819";
+    context.lineCap = "round";
     context.stroke();
     this.renderingOnCanvas = false;
   }
@@ -116,7 +123,7 @@ class Map extends Component {
   onMapLoaded(map) {
     this.map = map;
     // Set up event handler for style switching
-    this.map.on('style.load', () => {
+    this.map.on("style.load", () => {
       this.addBaseLayer();
     });
     this.addBaseLayer();
@@ -128,10 +135,10 @@ class Map extends Component {
   addBaseLayer() {
     // Add a layer we will use to draw animation and streets
     this.map.addLayer({
-      id: 'data',
-      type: 'line',
+      id: "data",
+      type: "line",
       source: {
-        type: 'geojson',
+        type: "geojson",
         data: this.geojson
       },
       paint: {
@@ -146,29 +153,29 @@ class Map extends Component {
   }
 
   zoomIn() {
-    if(this.map) {
+    if (this.map) {
       this.map.zoomTo(this.map.getZoom() + 0.5);
     }
   }
 
   zoomOut() {
-    if(this.map) {
+    if (this.map) {
       this.map.zoomTo(this.map.getZoom() - 0.5);
     }
   }
 
   toggleLayer() {
-    if(this.animating) {
+    if (this.animating) {
       return;
     }
-    if(this.state.activeLayer === identifiers.satelliteLayer) {
+    if (this.state.activeLayer === identifiers.satelliteLayer) {
       const streetLayer = identifiers.streetLayer;
       this.setState({
         activeLayer: streetLayer
       });
       this.map.setStyle(`mapbox://styles/${streetLayer}`, true);
     } else {
-      const satelliteLayer = identifiers.satelliteLayer
+      const satelliteLayer = identifiers.satelliteLayer;
       this.setState({
         activeLayer: satelliteLayer
       });
@@ -177,12 +184,12 @@ class Map extends Component {
   }
 
   animate(startingAnimation) {
-    if(startingAnimation) {
+    if (startingAnimation) {
       this.animating = true;
     }
     return window.requestAnimationFrame(() => {
       TWEEN.update();
-      if(this.animating) {
+      if (this.animating) {
         this.animate();
       }
     });
@@ -194,8 +201,7 @@ class Map extends Component {
 
   renderParking(props) {
     const self = this;
-    if(this.map) {
-
+    if (this.map) {
       // Special case for small polygon (bike), display a marker
       // const firstCoordinate = props.parkingData.coordinates[0];
       // const differentValue = props.parkingData.coordinates.filter((value) => {
@@ -225,25 +231,27 @@ class Map extends Component {
       //   return;
       // }
 
-
       // parking final geojson
       const parkingFinal = {
-        type: 'Feature',
+        type: "Feature",
         properties: {
-          "name": "..."
+          name: "..."
         },
         geometry: {
-          type: 'Polygon',
-          coordinates: [props.parkingData.coordinates],
+          type: "Polygon",
+          coordinates: [props.parkingData.coordinates]
         }
-      }
+      };
 
       // initial parking geojson (like it is in the scroll experience)
-      const parkingRotatedStart = rotate(parkingFinal, props.parkingData.rotation);
+      const parkingRotatedStart = rotate(
+        parkingFinal,
+        props.parkingData.rotation
+      );
 
       // Init map and fit to initial parking geojson
-      this.map.getSource('data').setData(parkingRotatedStart);
-      this.map.setLayoutProperty('data', 'visibility', 'visible');
+      this.map.getSource("data").setData(parkingRotatedStart);
+      this.map.setLayoutProperty("data", "visibility", "visible");
       // Clear previous canvas if any
       this.clearCanvas();
       const parkingRotatedStartBbox = bbox(parkingRotatedStart);
@@ -256,15 +264,17 @@ class Map extends Component {
       });
 
       // Start animating from props.parkingData.rotation to rotation = 0, in 1.6 s
-      const rotationTween = new TWEEN.Tween({rotation: props.parkingData.rotation})
-                                      .to({rotation: 0}, 1600)
-                                      .easing(TWEEN.Easing.Bounce.Out)
-                                      .delay(2100);
+      const rotationTween = new TWEEN.Tween({
+        rotation: props.parkingData.rotation
+      })
+        .to({ rotation: 0 }, 1600)
+        .easing(TWEEN.Easing.Bounce.Out)
+        .delay(2100);
       rotationTween.onStart(() => {
         //Clear geojson of mapbox to render on the overlaying canvas
         self.renderOnCanvas(parkingRotatedStart);
-        self.map.getSource('data').setData(this.emptyGeoJson);
-        self.map.setLayoutProperty('data', 'visibility', 'none');
+        self.map.getSource("data").setData(this.emptyGeoJson);
+        self.map.setLayoutProperty("data", "visibility", "none");
       });
       rotationTween.onUpdate(function() {
         const parkingRotated = rotate(parkingFinal, this.rotation);
@@ -277,12 +287,12 @@ class Map extends Component {
         // Clean listener because it can trigger onComplete afterwise if not
         TWEEN.removeAll();
         // Clear canvas and render geojson on the mapbox canvas
-        self.map.getSource('data').setData(this.geojson);
-        self.map.setLayoutProperty('data', 'visibility', 'visible');
+        self.map.getSource("data").setData(this.geojson);
+        self.map.setLayoutProperty("data", "visibility", "visible");
         setTimeout(() => {
           self.clearCanvas();
         }, 200);
-      })
+      });
 
       rotationTween.start();
       this.animate(true);
@@ -296,7 +306,6 @@ class Map extends Component {
           duration: 1000
         });
       }, 1000);
-
     }
   }
 
@@ -316,15 +325,18 @@ class Map extends Component {
 
   renderLane(props) {
     const self = this;
-    if(this.map) {
+    if (this.map) {
       // Center map on coiler line coord
       let center = [
         props.laneData.properties.origin.lon,
         props.laneData.properties.origin.lat
-      ]
+      ];
       // Get max zoom lvl
       const meterPerPixel = 1.2672955975;
-      const initZoom = getZoomLevel(props.laneData.properties.origin.lat, meterPerPixel);
+      const initZoom = getZoomLevel(
+        props.laneData.properties.origin.lat,
+        meterPerPixel
+      );
 
       // Init map at the position of the street
       this.map.jumpTo({
@@ -364,13 +376,14 @@ class Map extends Component {
           linear: true,
           duration: 1000
         });
-      }, 1000)
+      }, 1000);
 
       // This depends on how much movement is in the street geometry
       // NOTE @tdurand: I didn't investivate how calculateBendWay is computed and why
       // we multiply by magic number 200000
       // constrain it between 1.3s and 5s
-      let timeUnfold = calculateBendWay(props.laneData.original.vectors) * 200000;
+      let timeUnfold =
+        calculateBendWay(props.laneData.original.vectors) * 200000;
       timeUnfold = timeUnfold > 5000 ? 5000 : timeUnfold;
       timeUnfold = timeUnfold < 1300 ? 1300 : timeUnfold;
       // This depends on how long the biggest translation is (when a street consists of multiple segments)
@@ -378,7 +391,11 @@ class Map extends Component {
       // NOTE @mszell: I tested this a bit and found the right limits. Before it always capped at 1s, now it is 2s for long translations which looks better.
       // we multiply by magic number 200000
       // constrain it between 1s and 2s
-      let timeUnstitch = (getLongestTranslation(props.laneData.original.vectors) * 200000 - 199) * 9090 - 7000
+      let timeUnstitch =
+        (getLongestTranslation(props.laneData.original.vectors) * 200000 -
+          199) *
+          9090 -
+        7000;
       timeUnstitch = timeUnstitch > 2000 ? 2000 : timeUnstitch;
       timeUnstitch = timeUnstitch < 1000 ? 1000 : timeUnstitch;
       let unstitchDelay = 600;
@@ -387,36 +404,37 @@ class Map extends Component {
       let unfoldDelay = 3000;
 
       // Draw the first frame
-      this.map.getSource('data').setData(geoJsonFolded);
-      this.map.setLayoutProperty('data', 'visibility', 'visible');
+      this.map.getSource("data").setData(geoJsonFolded);
+      this.map.setLayoutProperty("data", "visibility", "visible");
       // Clear previous canvas if any
       this.clearCanvas();
 
-      const unfoldTween = new TWEEN.Tween({progress: 0})
-                                  .to({ progress: 1 }, timeUnfold)
-                                  .easing(TWEEN.Easing.Quadratic.Out)
-                                  .delay(unfoldDelay);
-      const stitchTween = new TWEEN.Tween({progress: 0})
-                                  .to({ progress: 1 }, timeUnstitch)
-                                  .easing(TWEEN.Easing.Bounce.Out)
-                                  .delay(unstitchDelay);
+      const unfoldTween = new TWEEN.Tween({ progress: 0 })
+        .to({ progress: 1 }, timeUnfold)
+        .easing(TWEEN.Easing.Quadratic.Out)
+        .delay(unfoldDelay);
+      const stitchTween = new TWEEN.Tween({ progress: 0 })
+        .to({ progress: 1 }, timeUnstitch)
+        .easing(TWEEN.Easing.Bounce.Out)
+        .delay(unstitchDelay);
       unfoldTween.chain(stitchTween);
       unfoldTween.onStart(() => {
         //Clear geojson of mapbox to render on the overlaying canvas
         this.renderOnCanvas(this.geoJsonFolded);
-        this.map.getSource('data').setData(this.emptyGeoJson);
-        this.map.setLayoutProperty('data', 'visibility', 'none');
+        this.map.getSource("data").setData(this.emptyGeoJson);
+        this.map.setLayoutProperty("data", "visibility", "none");
       });
-      unfoldTween.onUpdate((progressUnfold) => {
+      unfoldTween.onUpdate(progressUnfold => {
         // WARNING onUpdate is called at 60 FPS or more, what goes here should be super optimized
         // calling map.setData is the most expensive task, followed by calling unfold
         // we make sure we do not queue setData updates and do not overload
         // the mapbox gl buffer, otherwise FPS drop drasticly
         // We do that by making sure previous setData has been loaded and
         // that we are not in the middle of a unfold computation
-        if(this.renderingOnCanvas === false &&
-          this.computingGeojson === false) {
-
+        if (
+          this.renderingOnCanvas === false &&
+          this.computingGeojson === false
+        ) {
           this.computingGeojson = true;
           const geojson = this.unfold(props.laneData, progressUnfold, 0);
           this.renderOnCanvas(geojson);
@@ -425,15 +443,17 @@ class Map extends Component {
           // Skip frame, we were not ready to handle it
         }
       });
-      stitchTween.onUpdate((progressStitch) => {
+      stitchTween.onUpdate(progressStitch => {
         // WARNING onUpdate is called at 60 FPS or more, what goes here should be super optimized
         // calling map.setData is the most expensive task, followed by calling unfold
         // we make sure we do not queue setData updates and do not overload
         // the mapbox gl buffer, otherwise FPS drop drasticly
         // We do that by making sure previous setData has been loaded and
         // that we are not in the middle of a unfold computation
-        if(this.renderingOnCanvas === false &&
-          this.computingGeojson === false) {
+        if (
+          this.renderingOnCanvas === false &&
+          this.computingGeojson === false
+        ) {
           this.computingGeojson = true;
           const geojson = this.unfold(props.laneData, 1, progressStitch);
           this.renderOnCanvas(geojson);
@@ -447,14 +467,14 @@ class Map extends Component {
         // Register geojson final in case we stich layers
         this.geojson = geoJsonUnfolded;
         // Clear canvas and render geojson on the mapbox canvas
-        this.map.getSource('data').setData(this.geojson);
-        this.map.setLayoutProperty('data', 'visibility', 'visible');
+        this.map.getSource("data").setData(this.geojson);
+        this.map.setLayoutProperty("data", "visibility", "visible");
         setTimeout(() => {
           this.clearCanvas();
         }, 200);
         // Clean listener because it can trigger onComplete afterwise if not
         TWEEN.removeAll();
-      })
+      });
 
       // NOTE: maybe a room for improvement would be to make sure tiles
       // of viewport are loaded before starting to animate
@@ -464,14 +484,14 @@ class Map extends Component {
   }
 
   renderData(props) {
-    if (props.areaType === 'parking' && this.props.activeVehicle !== 'rail') {
-      if(!props.parkingData) {
+    if (props.areaType === "parking" && this.props.activeVehicle !== "rail") {
+      if (!props.parkingData) {
         return;
       }
       this.renderParking(props);
       this.lastComputedId = props.parkingData.id;
     } else {
-      if(!props.laneData) {
+      if (!props.laneData) {
         return;
       }
       this.renderLane(props);
@@ -483,20 +503,19 @@ class Map extends Component {
     return (
       <ReactMapboxGl
         style={`mapbox://styles/${this.state.activeLayer}`}
-        accessToken={Config.mapboxToken}
+        accessToken={Config.mapboxToken || process.env.env_mapbox_token}
         containerStyle={containerStyle}
         onStyleLoad={this.onMapLoaded}
         dragRotate={false}
       >
-        <ScaleControl/>
+        <ScaleControl />
         <MapActions
           activeLayer={this.state.activeLayer}
           zoomIn={this.zoomIn}
           zoomOut={this.zoomOut}
           toggleLayer={this.toggleLayer}
         />
-        <canvas
-          ref={(el) => this.d3canvas = el} className="d3"></canvas>
+        <canvas ref={el => (this.d3canvas = el)} className="d3" />
         <div className="MapAttribution">
           Map Data: © OpenStreetMap contributors
         </div>
@@ -517,7 +536,7 @@ class Map extends Component {
             left: 3px;
             padding: 3px;
             font-size: 12px;
-            background-color: hsla(0,0%,100%,.7);
+            background-color: hsla(0, 0%, 100%, 0.7);
             overflow: hidden;
             border-radius: 3px;
             z-index: 2;
