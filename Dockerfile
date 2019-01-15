@@ -18,9 +18,14 @@ FROM node:8
 
 WORKDIR /usr/src/app
 
-# Install mongodb
+# Install mongodb on Debian 8 (jessie)
 RUN apt-get update
+# Install old package so the service config will be present in /etc/init.d/
 RUN apt-get install -y mongodb
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
+RUN echo "deb http://repo.mongodb.org/apt/debian jessie/mongodb-org/4.0 main" | tee /etc/apt/sources.list.d/mongodb-org-4.0.list
+RUN apt-get update
+RUN apt-get install -y mongodb-org
 RUN mkdir -p /data/db
 
 COPY --from=builder /usr/src/app/.next /usr/src/app/.next

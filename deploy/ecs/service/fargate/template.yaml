@@ -46,17 +46,17 @@ Parameters:
     Type: String
 
   ListenerRulePathPriority:
-    Default: 99
+    Default: 124
     Description: The service's listener rule prio on the ALB (has to be unique on every ALB)
     Type: Number
 
   ListenerRuleHostPriority:
-    Default: 101
+    Default: 123
     Description: The service's listener rule prio on the ALB (has to be unique on every ALB)
     Type: Number
 
   ListenerRulePriority:
-    Default: 100
+    Default: 122
     Description: The service's listener rule priority on the ALB (has to be unique on every ALB)
     Type: Number
 
