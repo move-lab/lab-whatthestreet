@@ -25,7 +25,7 @@ class Layout extends Component {
 
   componentDidMount() {
     require("smoothscroll-polyfill").polyfill();
-    ReactGA.initialize(Config.gaID || process.env.env_ga_id);
+    ReactGA.initialize(process.env.env_ga_id);
     ReactGA.set({ page: Router.pathname });
     ReactGA.pageview(Router.pathname);
   }

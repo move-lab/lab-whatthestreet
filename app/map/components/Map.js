@@ -503,7 +503,7 @@ class Map extends Component {
     return (
       <ReactMapboxGl
         style={`mapbox://styles/${this.state.activeLayer}`}
-        accessToken={Config.mapboxToken || process.env.env_mapbox_token}
+        accessToken={process.env.env_mapbox_token}
         containerStyle={containerStyle}
         onStyleLoad={this.onMapLoaded}
         dragRotate={false}
