@@ -4,6 +4,12 @@ LABEL description="Landingpage for 'what the street'"
 LABEL project="lab-whatthestreet"
 LABEL maintainer="florian.porada@moovel.com"
 
+# Map args to env vars during build
+ARG mapbox_token
+ENV env_mapbox_token=$mapbox_token
+ARG ga_id
+ENV env_ga_id=$ga_id
+
 WORKDIR /usr/src/app
 
 COPY package*.json ./
@@ -15,12 +21,6 @@ COPY . .
 RUN npm run build
 
 FROM node:9
-
-# Map args to env vars during build
-ARG mapbox_token
-ENV env_mapbox_token=$mapbox_token
-ARG ga_id
-ENV env_ga_id=$ga_id
 
 WORKDIR /usr/src/app
 

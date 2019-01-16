@@ -81,8 +81,6 @@ app.prepare().then(() => {
 
   server.listen(process.env.PORT || 80, err => {
     if (err) throw err;
-    console.log(process.env.env_ga_id);
-    console.log(process.env.env_mapbox_token);
 
     console.log(`> Ready on http://localhost:${process.env.PORT || 80}`);
   });
