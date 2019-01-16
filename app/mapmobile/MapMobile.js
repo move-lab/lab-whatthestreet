@@ -87,7 +87,7 @@ class Map extends Component {
     this.setState({
       showMap: true
     });
-    L.mapbox.accessToken = process.env.env_mapbox_token;
+    L.mapbox.accessToken = env_mapbox_token || Config.mapboxToken;
     this.map = L.mapbox.map("map", null, { zoomControl: false });
     this.styleLayer = L.mapbox
       .styleLayer("mapbox://styles/moovellab/cj3puddkq00002skevihhyt07")

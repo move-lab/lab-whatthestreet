@@ -16,13 +16,13 @@ RUN npm run build
 
 FROM node:9
 
-WORKDIR /usr/src/app
-
 # Map args to env vars during build
 ARG mapbox_token
 ENV env_mapbox_token=$mapbox_token
 ARG ga_id
 ENV env_ga_id=$ga_id
+
+WORKDIR /usr/src/app
 
 # Install mongodb on Debian 8 (jessie)
 RUN apt-get update
