@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import LetterCounter from './LetterCounter';
@@ -7,7 +8,7 @@ import * as COLORS from '../../shared/style/colors';
 class LongestStreetNames extends React.PureComponent {
 
   static propTypes = {
-    streets: React.PropTypes.arrayOf(React.PropTypes.string),
+    streets: PropTypes.arrayOf(PropTypes.string),
   }
 
   render = () => (

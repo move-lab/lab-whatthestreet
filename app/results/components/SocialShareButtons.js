@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 const FacebookIcon = '/static/icons/Icon_Social_Facebook.svg';
@@ -6,8 +7,8 @@ const TwitterIcon = '/static/icons/Icon_Social_Twitter.svg';
 class SocialShareButtons extends React.PureComponent {
 
   static propTypes = {
-    result: React.PropTypes.string,
-    suggestion: React.PropTypes.string,
+    result: PropTypes.string,
+    suggestion: PropTypes.string,
   }
 
   twitterUrl(result) {

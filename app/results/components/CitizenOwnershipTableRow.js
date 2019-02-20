@@ -1,11 +1,12 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 class CitizenOwnershipTableRow extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
   static propTypes = {
-    name: React.PropTypes.string,
-    amount: React.PropTypes.number,
-    unit: React.PropTypes.string,
+    name: PropTypes.string,
+    amount: PropTypes.number,
+    unit: PropTypes.string,
   }
 
   render() {

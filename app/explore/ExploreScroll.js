@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -25,11 +26,11 @@ import { selectVehicle } from '../statemanagement/VehiclesStateManagement';
 class ExploreScroll extends React.PureComponent {
 
   static propTypes = {
-    availableVehicles: React.PropTypes.object,
-    ownGuess: React.PropTypes.object,
-    activeVehicle: React.PropTypes.string,
-    citySlug: React.PropTypes.string,
-    url: React.PropTypes.object
+    availableVehicles: PropTypes.object,
+    ownGuess: PropTypes.object,
+    activeVehicle: PropTypes.string,
+    citySlug: PropTypes.string,
+    url: PropTypes.object
   }
 
   constructor(props) {

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import CitizenOwnershipTableRow from './CitizenOwnershipTableRow';
@@ -10,8 +11,8 @@ import * as COLORS from '../../shared/style/colors';
 class CitizenOwnership extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
   static propTypes = {
-    city: React.PropTypes.string,
-    data: React.PropTypes.object,
+    city: PropTypes.string,
+    data: PropTypes.object,
   }
 
   roundTo2Decimals(number) {

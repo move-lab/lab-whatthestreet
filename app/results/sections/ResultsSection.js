@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -18,12 +19,12 @@ import { CitySelectors, GuessSelectors } from '../../statemanagement/selectors';
 class ResultsPage extends React.PureComponent {
 
   static propTypes = {
-    own: React.PropTypes.objectOf(React.PropTypes.number),
-    others: React.PropTypes.arrayOf(React.PropTypes.object),
-    actual: React.PropTypes.object,
-    city: React.PropTypes.object,
-    suggestion: React.PropTypes.object,
-    isLoading: React.PropTypes.bool,
+    own: PropTypes.objectOf(PropTypes.number),
+    others: PropTypes.arrayOf(PropTypes.object),
+    actual: PropTypes.object,
+    city: PropTypes.object,
+    suggestion: PropTypes.object,
+    isLoading: PropTypes.bool,
   }
 
   constructor(props) {

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 // Components
@@ -16,7 +17,7 @@ import * as COLORS from '../../shared/style/colors';
 class VersusTable extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
   static propTypes = {
-    tableData: React.PropTypes.object,
+    tableData: PropTypes.object,
   }
 
   render() {

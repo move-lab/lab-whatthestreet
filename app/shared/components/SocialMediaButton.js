@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 // Images
@@ -7,7 +8,7 @@ const TwitterIcon = '/static/icons/Icon_Social_Twitter.svg';
 class SocialMediaButton extends React.PureComponent {
 
   static propTypes = {
-    provider: React.PropTypes.string,
+    provider: PropTypes.string,
   };
 
   constructor() {

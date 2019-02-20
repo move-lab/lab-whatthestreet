@@ -1,11 +1,12 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 class DeviderImage extends React.PureComponent {
 
   static propTypes = {
-    alt: React.PropTypes.string,
-    background: React.PropTypes.string,
-    foreground: React.PropTypes.string,
+    alt: PropTypes.string,
+    background: PropTypes.string,
+    foreground: PropTypes.string,
   }
 
   render = () => (

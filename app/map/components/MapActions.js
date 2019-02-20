@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -7,10 +8,10 @@ import * as COLORS from '../../shared/style/colors';
 class MapActions extends React.PureComponent {
 
   static propTypes = {
-    activeLayer: React.PropTypes.string,
-    zoomIn: React.PropTypes.func,
-    zoomOut: React.PropTypes.func,
-    toggleLayer: React.PropTypes.func
+    activeLayer: PropTypes.string,
+    zoomIn: PropTypes.func,
+    zoomOut: PropTypes.func,
+    toggleLayer: PropTypes.func
   }
 
   render() {

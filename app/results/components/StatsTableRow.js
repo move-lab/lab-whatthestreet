@@ -1,11 +1,12 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 class StatsTableRow extends React.PureComponent {
 
   static propTypes = {
-    position: React.PropTypes.number,
-    name: React.PropTypes.string,
-    length: React.PropTypes.number,
+    position: PropTypes.number,
+    name: PropTypes.string,
+    length: PropTypes.number,
   }
 
   render() {

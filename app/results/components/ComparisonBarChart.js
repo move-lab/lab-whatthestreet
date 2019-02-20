@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 // Components
@@ -16,11 +17,11 @@ import * as METRICS from '../../shared/style/metrics';
 class ComparisonBarChart extends React.PureComponent {
 
   static propTypes = {
-    city: React.PropTypes.string,
-    own: React.PropTypes.object,
-    others: React.PropTypes.array,
-    actual: React.PropTypes.object,
-    guessStrength: React.PropTypes.number,
+    city: PropTypes.string,
+    own: PropTypes.object,
+    others: PropTypes.array,
+    actual: PropTypes.object,
+    guessStrength: PropTypes.number,
   }
 
   positionOthersArrow() {

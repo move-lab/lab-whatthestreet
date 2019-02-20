@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 // Images
@@ -6,9 +7,9 @@ const ArrowOtherGuess = '/static/icons/Arrow_OtherCity.svg';
 class OthersGuessesArrow extends React.PureComponent {
 
   static propTypes = {
-    data: React.PropTypes.array,
-    position: React.PropTypes.string,
-    offset: React.PropTypes.number,
+    data: PropTypes.array,
+    position: PropTypes.string,
+    offset: PropTypes.number,
   }
 
   getSortedData = (data) => data.sort((a, b) => {

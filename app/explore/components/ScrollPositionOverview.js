@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -8,9 +9,9 @@ import { computeSvgHeights } from '../../shared/utils/svgHeights';
 class ScrollPositionOverview extends React.PureComponent {
 
   static propTypes = {
-    activeVehicle: React.PropTypes.string,
-    scrollPosition: React.PropTypes.number,
-    svgHeights: React.PropTypes.object,
+    activeVehicle: PropTypes.string,
+    scrollPosition: PropTypes.number,
+    svgHeights: PropTypes.object,
   };
 
   constructor(props) {

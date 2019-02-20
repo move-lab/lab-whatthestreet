@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 // Images
@@ -9,10 +10,10 @@ import * as COLORS from '../../shared/style/colors';
 class ActualValueArrow extends React.PureComponent {
 
   static propTypes = {
-    data: React.PropTypes.number,
-    city: React.PropTypes.string,
-    position: React.PropTypes.string,
-    offset: React.PropTypes.number,
+    data: PropTypes.number,
+    city: PropTypes.string,
+    position: PropTypes.string,
+    offset: PropTypes.number,
   }
 
   renderAbove = () => (

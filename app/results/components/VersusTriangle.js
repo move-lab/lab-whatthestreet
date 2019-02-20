@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 // Components
@@ -13,8 +14,8 @@ const IconBike = '/static/icons/Icon_SpaceAllocation_Bike.svg';
 class VersusTriangle extends React.PureComponent {
 
   static propTypes = {
-    currentCity: React.PropTypes.object,
-    triangleData: React.PropTypes.array
+    currentCity: PropTypes.object,
+    triangleData: PropTypes.array
   }
 
   render() {

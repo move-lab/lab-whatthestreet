@@ -32,12 +32,12 @@ import VehicleSlideEndOfParkingSummary from './VehicleSlideEndOfParkingSummary';
 class VehicleSlide extends React.PureComponent {
 
   static propTypes = {
-    vehicle: React.PropTypes.string,
-    citySlug: React.PropTypes.string,
-    actualVehicle: React.PropTypes.string,
-    parkingLoaded: React.PropTypes.bool,
-    showMap: React.PropTypes.func,
-    onLoaded: React.PropTypes.func
+    vehicle: PropTypes.string,
+    citySlug: PropTypes.string,
+    actualVehicle: PropTypes.string,
+    parkingLoaded: PropTypes.bool,
+    showMap: PropTypes.func,
+    onLoaded: PropTypes.func
   }
 
   constructor(props) {

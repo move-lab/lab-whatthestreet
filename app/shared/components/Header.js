@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -20,15 +21,15 @@ import * as COLORS from '../style/colors';
 class Header extends React.PureComponent {
 
   static propTypes = {
-    title: React.PropTypes.string,
-    activeVehicle: React.PropTypes.string,
-    cityName: React.PropTypes.string,
-    parkingSpace: React.PropTypes.object,
-    laneRailParking: React.PropTypes.object,
-    lane: React.PropTypes.object,
-    cityLandmark: React.PropTypes.object,
-    onSearchButtonClick: React.PropTypes.func,
-    mode: React.PropTypes.oneOf(['explore', 'normal'])
+    title: PropTypes.string,
+    activeVehicle: PropTypes.string,
+    cityName: PropTypes.string,
+    parkingSpace: PropTypes.object,
+    laneRailParking: PropTypes.object,
+    lane: PropTypes.object,
+    cityLandmark: PropTypes.object,
+    onSearchButtonClick: PropTypes.func,
+    mode: PropTypes.oneOf(['explore', 'normal'])
   }
 
   static defaultProps = {

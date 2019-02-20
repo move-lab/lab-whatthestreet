@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import * as COLORS from '../../shared/style/colors';
@@ -6,9 +7,9 @@ import * as METRICS from '../../shared/style/metrics';
 class Bar extends React.Component {
 
   static propTypes = {
-    guess: React.PropTypes.number,
-    actual: React.PropTypes.number,
-    others: React.PropTypes.array,
+    guess: PropTypes.number,
+    actual: PropTypes.number,
+    others: PropTypes.array,
   }
 
   renderResultBar = () => (

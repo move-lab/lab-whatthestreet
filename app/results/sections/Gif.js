@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import Router from 'next/router';
 import _find from 'lodash.find';
@@ -14,8 +15,8 @@ import GifData from '../../../gifgallery.json';
 class GifSection extends React.PureComponent {
 
   static propTypes = {
-    city: React.PropTypes.object,
-    ownGuess: React.PropTypes.object
+    city: PropTypes.object,
+    ownGuess: PropTypes.object
   }
   
   constructor(props) {

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import TWEEN from "tween.js";
@@ -26,10 +27,10 @@ let ReactMapboxGl;
 
 class Map extends Component {
   static propTypes = {
-    activeVehicle: React.PropTypes.string,
-    areaType: React.PropTypes.string,
-    laneData: React.PropTypes.object,
-    parkingData: React.PropTypes.object
+    activeVehicle: PropTypes.string,
+    areaType: PropTypes.string,
+    laneData: PropTypes.object,
+    parkingData: PropTypes.object
   };
 
   constructor(props) {

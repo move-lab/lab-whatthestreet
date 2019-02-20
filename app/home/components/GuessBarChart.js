@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import * as identifiers from '../../statemanagement/constants/identifiersConstants';
@@ -14,8 +15,8 @@ import * as COLORS from '../../shared/style/colors';
 class GuessBarChart extends React.Component {
 
   static propTypes = {
-    guess: React.PropTypes.object.isRequired,
-    onChange: React.PropTypes.func,
+    guess: PropTypes.object.isRequired,
+    onChange: PropTypes.func,
   }
 
   constructor(props) {

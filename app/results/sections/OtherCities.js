@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import * as COLORS from '../../shared/style/colors';
@@ -6,8 +7,8 @@ import * as METRICS from '../../shared/style/metrics';
 class OtherCities extends React.Component {
 
   static propTypes = {
-    cities: React.PropTypes.arrayOf(React.PropTypes.object),
-    city: React.PropTypes.object,
+    cities: PropTypes.arrayOf(PropTypes.object),
+    city: PropTypes.object,
   }
 
   renderCityLink = (city, index) => (

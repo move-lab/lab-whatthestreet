@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import * as METRICS from '../style/metrics';
@@ -10,13 +11,13 @@ const IconDownload = '/static/icons/Icon_Download.svg';
 class ShareBtn extends React.PureComponent {
 
   static propTypes = {
-    bottom: React.PropTypes.number,
-    small: React.PropTypes.bool,
-    urlToShare: React.PropTypes.string,
-    urlToDownload: React.PropTypes.string,
-    textToShare: React.PropTypes.string,
-    onMouseOut: React.PropTypes.func,
-    onMouseOver: React.PropTypes.func
+    bottom: PropTypes.number,
+    small: PropTypes.bool,
+    urlToShare: PropTypes.string,
+    urlToDownload: PropTypes.string,
+    textToShare: PropTypes.string,
+    onMouseOut: PropTypes.func,
+    onMouseOver: PropTypes.func
   }
 
   constructor(props) {

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect'
@@ -15,9 +16,9 @@ import * as COLORS from '../../shared/style/colors';
 class SearchModal extends React.PureComponent {
 
   static propTypes = {
-    close: React.PropTypes.func,
-    onSelectResult: React.PropTypes.func,
-    city: React.PropTypes.string,
+    close: PropTypes.func,
+    onSelectResult: PropTypes.func,
+    city: PropTypes.string,
   }
 
   constructor() {

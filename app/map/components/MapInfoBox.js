@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -16,12 +17,12 @@ import GifData from '../../../gifgallery.json';
 class MapInfoBox extends React.PureComponent {
 
   static propTypes = {
-    areaType: React.PropTypes.string,
-    parkingData: React.PropTypes.object,
-    laneData: React.PropTypes.object,
-    activeVehicle: React.PropTypes.string,
-    citySlug: React.PropTypes.string,
-    cityName: React.PropTypes.string
+    areaType: PropTypes.string,
+    parkingData: PropTypes.object,
+    laneData: PropTypes.object,
+    activeVehicle: PropTypes.string,
+    citySlug: PropTypes.string,
+    cityName: PropTypes.string
   }
 
   constructor(props) {

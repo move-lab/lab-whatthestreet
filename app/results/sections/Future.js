@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -23,8 +24,8 @@ const ArrowEmptyParkingLots = '/static/icons/Arrow_EmptyParkingLots.svg';
 class FuturePage extends React.Component {
 
   static propTypes = {
-    city: React.PropTypes.object,
-    data: React.PropTypes.any,
+    city: PropTypes.object,
+    data: PropTypes.any,
   }
 
   getNumberOfCars() {

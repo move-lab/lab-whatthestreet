@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -16,9 +17,9 @@ const curlIcon = '/static/icons/Curl.svg';
 class VehicleSpaceComparisonGraph extends React.Component {
 
   static propTypes = {
-    mode: React.PropTypes.oneOf(["parking", "lanes"]),
-    activeVehicle: React.PropTypes.string,
-    svgHeights: React.PropTypes.object
+    mode: PropTypes.oneOf(["parking", "lanes"]),
+    activeVehicle: PropTypes.string,
+    svgHeights: PropTypes.object
   }
 
   constructor(props) {

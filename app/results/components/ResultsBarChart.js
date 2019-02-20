@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import * as identifiers from '../../statemanagement/constants/identifiersConstants';
@@ -19,12 +20,12 @@ import * as METRICS from '../../shared/style/metrics';
 class ResultsBarChart extends React.PureComponent {
 
   static propTypes = {
-    city: React.PropTypes.string,
-    guessStrength: React.PropTypes.number,
-    suggestion: React.PropTypes.object,
-    own: React.PropTypes.objectOf(React.PropTypes.number),
-    others: React.PropTypes.arrayOf(React.PropTypes.objectOf(React.PropTypes.number)),
-    actual: React.PropTypes.objectOf(React.PropTypes.number).isRequired,
+    city: PropTypes.string,
+    guessStrength: PropTypes.number,
+    suggestion: PropTypes.object,
+    own: PropTypes.objectOf(PropTypes.number),
+    others: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.number)),
+    actual: PropTypes.objectOf(PropTypes.number).isRequired,
   }
 
   renderText = (guessStrength) => {

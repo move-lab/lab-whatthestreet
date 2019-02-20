@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from "react";
 import ReactMapboxGl, { ScaleControl, ZoomControl } from "react-mapbox-gl";
 import TWEEN from "tween.js";
@@ -26,11 +27,11 @@ const unfolder = unfold();
 
 class Map extends Component {
   static propTypes = {
-    activeVehicle: React.PropTypes.string,
-    areaType: React.PropTypes.string,
-    laneData: React.PropTypes.object,
-    parkingData: React.PropTypes.object,
-    onMapLoaded: React.PropTypes.func
+    activeVehicle: PropTypes.string,
+    areaType: PropTypes.string,
+    laneData: PropTypes.object,
+    parkingData: PropTypes.object,
+    onMapLoaded: PropTypes.func
   };
 
   constructor(props) {

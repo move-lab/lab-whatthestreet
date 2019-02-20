@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import * as COLORS from '../../shared/style/colors';
@@ -5,10 +6,10 @@ import * as COLORS from '../../shared/style/colors';
 class GuessBar extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
   static propTypes = {
-    guess: React.PropTypes.number.isRequired,
-    onChange: React.PropTypes.func,
-    id: React.PropTypes.string,
-    positionChanged: React.PropTypes.func,
+    guess: PropTypes.number.isRequired,
+    onChange: PropTypes.func,
+    id: PropTypes.string,
+    positionChanged: PropTypes.func,
   }
 
   componentDidMount = () => {

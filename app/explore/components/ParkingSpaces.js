@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -13,14 +14,14 @@ import Loader from '../../shared/components/Loader';
 class ParkingSpaces extends React.PureComponent {
 
   static propTypes = {
-    vehicle: React.PropTypes.string,
-    city: React.PropTypes.string,
-    onPolygonSelected: React.PropTypes.func,
-    onItemSelected: React.PropTypes.func,
-    onLoaded: React.PropTypes.func,
-    scrollParent: React.PropTypes.string,
-    onPathClicked: React.PropTypes.func,
-    registerItemsForSearch: React.PropTypes.func,
+    vehicle: PropTypes.string,
+    city: PropTypes.string,
+    onPolygonSelected: PropTypes.func,
+    onItemSelected: PropTypes.func,
+    onLoaded: PropTypes.func,
+    scrollParent: PropTypes.string,
+    onPathClicked: PropTypes.func,
+    registerItemsForSearch: PropTypes.func,
   }
 
   constructor(props) {

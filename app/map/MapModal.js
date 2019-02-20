@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Router from 'next/router';
@@ -13,15 +14,15 @@ let Map;
 class MapModal extends PureComponent {
 
   static propTypes = {
-    onDismiss: React.PropTypes.func,
-    isVisible: React.PropTypes.bool,
-    citySlug: React.PropTypes.string,
-    cityName: React.PropTypes.string,
-    activeVehicle: React.PropTypes.string,
-    ownGuess: React.PropTypes.object,
-    itemId: React.PropTypes.number,
-    areaType: React.PropTypes.string,
-    isFetchingLaneData: React.PropTypes.bool
+    onDismiss: PropTypes.func,
+    isVisible: PropTypes.bool,
+    citySlug: PropTypes.string,
+    cityName: PropTypes.string,
+    activeVehicle: PropTypes.string,
+    ownGuess: PropTypes.object,
+    itemId: PropTypes.number,
+    areaType: PropTypes.string,
+    isFetchingLaneData: PropTypes.bool
   }
 
   constructor (props) {

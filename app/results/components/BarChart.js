@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import * as identifiers from '../../statemanagement/constants/identifiersConstants';
@@ -14,9 +15,9 @@ import * as METRICS from '../../shared/style/metrics';
 class BarChart extends React.PureComponent {
 
   static propTypes = {
-    own: React.PropTypes.objectOf(React.PropTypes.number),
-    others: React.PropTypes.arrayOf(React.PropTypes.object),
-    actual: React.PropTypes.objectOf(React.PropTypes.number).isRequired,
+    own: PropTypes.objectOf(PropTypes.number),
+    others: PropTypes.arrayOf(PropTypes.object),
+    actual: PropTypes.objectOf(PropTypes.number).isRequired,
   }
 
   renderResult = (key) => (

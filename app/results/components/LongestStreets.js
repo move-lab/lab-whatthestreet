@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import * as COLORS from '../../shared/style/colors';
@@ -7,8 +8,8 @@ import StatsTableRow from './StatsTableRow';
 class LongestStreets extends React.PureComponent {
 
   static propTypes = {
-    city: React.PropTypes.string,
-    streets: React.PropTypes.arrayOf(React.PropTypes.object),
+    city: PropTypes.string,
+    streets: PropTypes.arrayOf(PropTypes.object),
   }
 
   renderTableRows = (street, index) => (<StatsTableRow key={index} position={index + 1} name={street.name} length={street.length} />)

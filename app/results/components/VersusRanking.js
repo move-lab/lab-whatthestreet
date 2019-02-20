@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import * as COLORS from '../../shared/style/colors';
@@ -5,8 +6,8 @@ import * as COLORS from '../../shared/style/colors';
 class VersusRanking extends React.PureComponent {
 
   static propTypes = {
-    rankings: React.PropTypes.arrayOf(React.PropTypes.string),
-    currentCity: React.PropTypes.string,
+    rankings: PropTypes.arrayOf(PropTypes.string),
+    currentCity: PropTypes.string,
   }
 
   cleanedRankings(rankings) {

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 const logoResidencyProgram = '/static/icons/Logo_ResidencyProgram.svg';
@@ -8,7 +9,7 @@ import * as METRICS from '../../shared/style/metrics';
 class Legal extends React.Component {
 
   static propTypes = {
-    cities: React.PropTypes.arrayOf(React.PropTypes.object),
+    cities: PropTypes.arrayOf(PropTypes.object),
   }
 
   render() {
