@@ -1,11 +1,11 @@
 import React from 'react';
 
-// Images
-const logoMoovelLab = '/static/icons/Logo_LabFooter.svg';
-
 import * as METRICS from '../../shared/style/metrics';
 import * as COLORS from '../../shared/style/colors';
+import { prefixURL } from '../../../utils/url';
 
+// Images
+const logoMoovelLab = prefixURL('/static/icons/Logo_LabFooter.svg');
 
 class FooterBar extends React.PureComponent {
 
@@ -16,7 +16,7 @@ class FooterBar extends React.PureComponent {
           <div className="row">
             <div className="col-sm-6">
               <a href="http://lab.moovel.com" target="_blank">
-                <img src="/static/images/moovellab-logo.png" alt="moovel-lab" className="logo" />
+                <img src={prefixURL("/static/images/moovellab-logo.png")} alt="moovel-lab" className="logo" />
               </a>
             </div>
             <div className="col-sm-3">
@@ -39,7 +39,7 @@ class FooterBar extends React.PureComponent {
               <p>
                 <a href="https://twitter.com/moovelLab" target="_blank" className="icn-grp">
                   <span className="icn-grp-icn">
-                    <img src="/static/images/twitter-logo.png" alt="twitter" className="icn icn-twttr-logo" />
+                    <img src={prefixURL("/static/images/twitter-logo.png")} alt="twitter" className="icn icn-twttr-logo" />
                   </span>
                   <span className="icn-grp-lbl alt">Follow us on Twitter</span>
                 </a>

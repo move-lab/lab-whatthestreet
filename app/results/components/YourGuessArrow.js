@@ -1,11 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-// Images
-const ArrowYourGuess = '/static/icons/Arrow_YourGuess.svg';
-
 import * as METRICS from '../../shared/style/metrics';
 import * as COLORS from '../../shared/style/colors';
+import { prefixURL } from '../../../utils/url';
+
+// Images
+const ArrowYourGuess = prefixURL('/static/icons/Arrow_YourGuess.svg');
+
+
 
 /**
  * Renders a Arrow that indecates Guessposition

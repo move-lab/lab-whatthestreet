@@ -1,9 +1,9 @@
 import React from 'react';
-
-const CatImage = '/static/images/Illustration_Cat@2x.png';
-
 import * as COLORS from '../../shared/style/colors';
 import * as METRICS from '../../shared/style/metrics';
+import { prefixURL } from '../../../utils/url';
+
+const CatImage = prefixURL('/static/images/Illustration_Cat@2x.png');
 
 class Demand extends React.PureComponent {
 

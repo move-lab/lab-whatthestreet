@@ -11,6 +11,7 @@ import GifItem from '../components/GifItem';
 import RoundedButton from '../../shared/components/RoundedButton';
 
 import GifData from '../../../gifgallery.json';
+import { getRootURL } from '../../../utils/url';
 
 class GifSection extends React.PureComponent {
 
@@ -41,7 +42,7 @@ class GifSection extends React.PureComponent {
   }
 
   getShareUrl(staffPickData) {
-   return `https://whatthestreet.moovellab.com/${staffPickData.citySlug}/explore/car/lanes/${staffPickData.id}`; 
+   return `https://${getRootURL()}/${staffPickData.citySlug}/explore/car/lanes/${staffPickData.id}`; 
   }
 
   getShareText(staffPickData) {
@@ -118,7 +119,7 @@ class GifSection extends React.PureComponent {
                       pathname: '/explore',
                       query: this.props.ownGuess
                     },{
-                      pathname: `/${this.props.city.slug}/explore`,
+                      pathname: prefixURL(`/${this.props.city.slug}/explore`),
                       query: this.props.ownGuess
                     });
                   }}

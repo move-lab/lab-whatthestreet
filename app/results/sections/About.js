@@ -2,6 +2,7 @@ import React from 'react';
 
 import * as COLORS from '../../shared/style/colors';
 import * as METRICS from '../../shared/style/metrics';
+import { prefixURL } from '../../../utils/url';
 
 class AboutSection extends React.PureComponent {
 
@@ -26,7 +27,7 @@ class AboutSection extends React.PureComponent {
               <a href="http://lab.moovel.com/blog/about-what-the-street" target="_blank">http://lab.moovel.com/blog/about-what-the-street</a>
             </p>
             <p className="Text">
-              <a href="/static/presskit/WhatTheStreet_presskit.zip" target="_blank">Download the Press Kit</a>
+              <a href={prefixURL("/static/presskit/WhatTheStreet_presskit.zip")} target="_blank">Download the Press Kit</a>
             </p>
           </div>
         </div>

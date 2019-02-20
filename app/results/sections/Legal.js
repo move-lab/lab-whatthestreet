@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const logoResidencyProgram = '/static/icons/Logo_ResidencyProgram.svg';
-
 import * as COLORS from '../../shared/style/colors';
 import * as METRICS from '../../shared/style/metrics';
+import { prefixURL } from '../../../utils/url';
+
+const logoResidencyProgram = prefixURL('/static/icons/Logo_ResidencyProgram.svg');
 
 class Legal extends React.Component {
 

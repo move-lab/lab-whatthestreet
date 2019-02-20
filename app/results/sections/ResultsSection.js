@@ -9,12 +9,15 @@ import ResultsBarChart from '../components/ResultsBarChart';
 import ComparisonBarChart from '../components/ComparisonBarChart';
 import DeviderImage from '../components/DeviderImage';
 
-// Images
-const SnapDeviderBackground = '/static/images/Background_Highway.jpg';
-const IllustrationSnap = '/static/icons/Illustration_Snap.svg';
-
 // Selectors
 import { CitySelectors, GuessSelectors } from '../../statemanagement/selectors';
+import { prefixURL } from '../../../utils/url';
+
+// Images
+const SnapDeviderBackground = prefixURL('/static/images/Background_Highway.jpg');
+const IllustrationSnap = prefixURL('/static/icons/Illustration_Snap.svg');
+
+
 
 class ResultsPage extends React.PureComponent {
 

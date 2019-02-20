@@ -7,6 +7,10 @@ import rotate from "@turf/transform-rotate";
 import Config from "../../../config.json";
 import * as d3geo from "d3-geo";
 
+import getConfig from 'next/config'
+const { publicRuntimeConfig } = getConfig()
+const { env_mapbox_token } = publicRuntimeConfig
+
 import MapActions from "./MapActions";
 
 import { unfold } from "../../shared/utils/unfold";

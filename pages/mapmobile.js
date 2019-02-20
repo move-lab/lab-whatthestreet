@@ -12,6 +12,7 @@ import { setBaseUrl, initRouterWatcher } from '../app/statemanagement/AppStateMa
 import { fetchLaneData } from '../app/statemanagement/MapStateManagement';
 import { selectVehicle } from '../app/statemanagement/VehiclesStateManagement';
 import { getBaseUrl } from '../app/shared/utils/url';
+import { prefixURL, getRootURL } from '../utils/url';
 
 class Explore extends Component {
 
@@ -70,11 +71,11 @@ class Explore extends Component {
           <meta charset='utf-8' />
           <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
           <meta name="description" content="Who owns the city? Explore the distribution of mobility space amongst urban traffic. Discover every parking lot or street of 23 metropolises." />
-          <link rel="apple-touch-icon" href="/static/favicon/apple-touch-icon.png" />
-          <link rel="icon" type="image/png" href="/static/favicon/favicon.png" />
+          <link rel="apple-touch-icon" href={prefixURL("/static/favicon/apple-touch-icon.png")} />
+          <link rel="icon" type="image/png" href={prefixURL("/static/favicon/favicon.png")} />
           <meta property="og:title" content="What the Street!? - moovel lab" />
-          <meta property="og:url" content="https://whatthestreet.moovellab.com" />
-          <meta property="og:image" content="https://whatthestreet.moovellab.com/static/images/wts-meta@2x.png" />
+          <meta property="og:url" content={`https://${getRootURL()}`} />
+          <meta property="og:image" content={`https://${getRootURL()}${prefixURL('static/images/wts-meta@2x.png')}`} />
           <meta property="og:description" content="Who owns the city? Explore the distribution of mobility space amongst urban traffic. Discover every parking lot or street of 23 metropolises." />
           <meta property="og:type" content="website" />
           <meta property="og:site_name" content="moovel lab" />
@@ -82,7 +83,7 @@ class Explore extends Component {
           <meta name="twitter:site" content="@moovelLab" />
           <meta name="twitter:title" content="What the Street!? - moovel lab" />
           <meta name="twitter:description" content="Who owns the city? Explore the distribution of mobility space amongst urban traffic. Discover every parking lot or street of 23 metropolises." />
-          <meta name="twitter:image" content="https://whatthestreet.moovellab.com/static/images/wts-meta@2x.png" />
+          <meta name="twitter:image" content={`https://${getRootURL()}${prefixURL('static/images/wts-meta@2x.png')}`} />
           <link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
         </Head>
         <MapMobile

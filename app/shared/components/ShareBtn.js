@@ -3,10 +3,11 @@ import React from 'react';
 
 import * as METRICS from '../style/metrics';
 import * as COLORS from '../style/colors';
+import { prefixURL } from '../../../utils/url';
 
-const FacebookIconWhite = '/static/icons/Icon_Social_Facebook_White.svg';
-const TwitterIconWhite = '/static/icons/Icon_Social_Twitter_White.svg';
-const IconDownload = '/static/icons/Icon_Download.svg';
+const FacebookIconWhite = prefixURL('/static/icons/Icon_Social_Facebook_White.svg');
+const TwitterIconWhite = prefixURL('/static/icons/Icon_Social_Twitter_White.svg');
+const IconDownload = prefixURL('/static/icons/Icon_Download.svg');
 
 class ShareBtn extends React.PureComponent {
 
@@ -42,7 +43,7 @@ class ShareBtn extends React.PureComponent {
         onMouseOver={this.props.onMouseOver}
         onMouseOut={this.props.onMouseOut}
       >
-        <img className="ShareIcon" src="/static/icons/Icon_Share.svg" />
+        <img className="ShareIcon" src={prefixURL("/static/icons/Icon_Share.svg")} />
         <div className="List">
           <a className="Button" href={this.twitterUrl()} target="_blank">
             <img alt="TwitterIconWhite" src={TwitterIconWhite} />

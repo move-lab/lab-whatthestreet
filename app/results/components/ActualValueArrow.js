@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-
-// Images
-const ArrowActualData = '/static/icons/Arrow_ActualData.svg';
-
 import * as METRICS from '../../shared/style/metrics';
 import * as COLORS from '../../shared/style/colors';
+import { prefixURL } from '../../../utils/url';
+
+// Images
+const ArrowActualData = prefixURL('/static/icons/Arrow_ActualData.svg');
 
 class ActualValueArrow extends React.PureComponent {
 

@@ -8,6 +8,7 @@ import MapInfoBox from './components/MapInfoBox';
 import MapActions from './components/MapActions';
 
 import * as COLORS from '../shared/style/colors';
+import { prefixURL } from '../../utils/url';
 
 let Map;
 
@@ -55,7 +56,7 @@ class MapModal extends PureComponent {
           vehicleType: this.props.activeVehicle
         }
       },{
-        pathname: `/${this.props.citySlug}/explore/${this.props.activeVehicle}`,
+        pathname: prefixURL(`/${this.props.citySlug}/explore/${this.props.activeVehicle}`),
         query: this.props.ownGuess.toJS()
       });
     }
@@ -81,7 +82,7 @@ class MapModal extends PureComponent {
           cityName={this.props.cityName}
         />
         <div className="BtnCloseMap" onClick={this.closeModal}>
-          <img src="/static/icons/Icon_Cross.svg" alt="close map"/>
+          <img src={prefixURL("/static/icons/Icon_Cross.svg")} alt="close map"/>
         </div>
         <div className={`LoaderWrapper ${!this.state.mapLoaded || this.props.isFetchingLaneData ? 'visible' : 'hidden'}`}>
           <Loader />

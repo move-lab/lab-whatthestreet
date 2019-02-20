@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { prefixURL } from '../../../utils/url';
 
 // Images
-const ArrowOtherGuess = '/static/icons/Arrow_OtherCity.svg';
+const ArrowOtherGuess = prefixURL('/static/icons/Arrow_OtherCity.svg');
 
 class OthersGuessesArrow extends React.PureComponent {
 

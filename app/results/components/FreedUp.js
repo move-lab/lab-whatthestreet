@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const IllustrationRocks = '/static/icons/Illustration_Rocks.svg';
-const FreedUpImg = '/static/icons/Arrow_FreedUp.svg';
-
 import * as COLORS from '../../shared/style/colors';
 import * as METRICS from '../../shared/style/metrics';
+import { prefixURL } from '../../../utils/url';
+
+const IllustrationRocks = prefixURL('/static/icons/Illustration_Rocks.svg');
+const FreedUpImg = prefixURL('/static/icons/Arrow_FreedUp.svg');
 
 class FreedUp extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 

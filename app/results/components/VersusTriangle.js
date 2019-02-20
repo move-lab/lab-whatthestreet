@@ -4,12 +4,13 @@ import React from 'react';
 // Components
 import VersusIconSmall from './VersusIconSmall';
 import VersusIcon from './VersusIcon';
+import { prefixURL } from '../../../utils/url';
 
 // Images
-const IconTriangle = '/static/icons/Icon_Triangle.svg';
-const IconCar = '/static/icons/Icon_SpaceAllocation_Car.svg';
-const IconRail = '/static/icons/Icon_SpaceAllocation_Rail.svg';
-const IconBike = '/static/icons/Icon_SpaceAllocation_Bike.svg';
+const IconTriangle = prefixURL('/static/icons/Icon_Triangle.svg');
+const IconCar = prefixURL('/static/icons/Icon_SpaceAllocation_Car.svg');
+const IconRail = prefixURL('/static/icons/Icon_SpaceAllocation_Rail.svg');
+const IconBike = prefixURL('/static/icons/Icon_SpaceAllocation_Bike.svg');
 
 class VersusTriangle extends React.PureComponent {
 

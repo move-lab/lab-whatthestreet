@@ -7,6 +7,10 @@ import rotate from "@turf/transform-rotate";
 import Config from "../../config.json";
 import * as d3geo from "d3-geo";
 
+import getConfig from 'next/config'
+const { publicRuntimeConfig } = getConfig()
+const { env_mapbox_token } = publicRuntimeConfig
+
 import { unfold } from "../shared/utils/unfold";
 import {
   calculateBendWay,
@@ -14,6 +18,7 @@ import {
   getZoomLevel
 } from "../shared/utils/geoutils";
 import * as identifiers from "../statemanagement/constants/identifiersConstants";
+import { prefixURL } from '../../utils/url.js';
 
 const containerStyle = {
   display: "flex",
@@ -450,7 +455,7 @@ class Map extends Component {
           <div id="map" />
           <canvas ref={el => (this.d3canvas = el)} className="d3" />
           <div className="LabelContainer">
-            <img src="/static/recorder/label.jpg" />
+            <img src={prefixURL("/static/recorder/label.jpg")} />
           </div>
         </div>
         <style jsx>{`

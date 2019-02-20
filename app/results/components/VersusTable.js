@@ -3,11 +3,12 @@ import React from 'react';
 
 // Components
 import VersusRanking from './VersusRanking';
+import { prefixURL } from '../../../utils/url';
 
 // Images
-const IconCar = '/static/icons/Icon_SpaceAllocation_Car.svg';
-const IconRail = '/static/icons/Icon_SpaceAllocation_Rail.svg';
-const IconBike = '/static/icons/Icon_SpaceAllocation_Bike.svg';
+const IconCar = prefixURL('/static/icons/Icon_SpaceAllocation_Car.svg');
+const IconRail = prefixURL('/static/icons/Icon_SpaceAllocation_Rail.svg');
+const IconBike = prefixURL('/static/icons/Icon_SpaceAllocation_Bike.svg');
 
 import * as COLORS from '../../shared/style/colors';
 

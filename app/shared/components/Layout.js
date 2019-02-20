@@ -7,8 +7,13 @@ import Config from "../../../config.json";
 import ReactGA from "react-ga";
 import Footer from "./Footer";
 
+import getConfig from 'next/config'
+const { publicRuntimeConfig } = getConfig()
+const { env_ga_id } = publicRuntimeConfig
+
 import * as METRICS from "../style/metrics";
 import * as COLORS from "../style/colors";
+import { prefixURL, getRootURL } from "../../../utils/url.js";
 
 class Layout extends Component {
   static propTypes = {
@@ -47,12 +52,12 @@ class Layout extends Component {
             />
             <link
               rel="apple-touch-icon"
-              href="/static/favicon/apple-touch-icon.png"
+              href={prefixURL("/static/favicon/apple-touch-icon.png")}
             />
             <link
               rel="icon"
               type="image/png"
-              href="/static/favicon/favicon.png"
+              href={prefixURL("/static/favicon/favicon.png")}
             />
             <meta
               property="og:title"
@@ -60,11 +65,11 @@ class Layout extends Component {
             />
             <meta
               property="og:url"
-              content="https://whatthestreet.moovellab.com"
+              content={`https://${getRootURL()}`}
             />
             <meta
               property="og:image"
-              content="https://whatthestreet.moovellab.com/static/images/wts-meta@2x.png"
+              content={`https://${getRootURL()}${prefixURL('static/images/wts-meta@2x.png')}`}
             />
             <meta
               property="og:description"
@@ -84,7 +89,7 @@ class Layout extends Component {
             />
             <meta
               name="twitter:image"
-              content="https://whatthestreet.moovellab.com/static/images/wts-meta@2x.png"
+              content={`https://${getRootURL()}${prefixURL('static/images/wts-meta@2x.png')}`}
             />
           </Head>
         )}
@@ -104,12 +109,12 @@ class Layout extends Component {
             />
             <link
               rel="apple-touch-icon"
-              href="/static/favicon/apple-touch-icon.png"
+              href={prefixURL("/static/favicon/apple-touch-icon.png")}
             />
             <link
               rel="icon"
               type="image/png"
-              href="/static/favicon/favicon.png"
+              href={prefixURL("/static/favicon/favicon.png")}
             />
             <meta
               property="og:title"
@@ -117,13 +122,13 @@ class Layout extends Component {
             />
             <meta
               property="og:url"
-              content={`https://whatthestreet.moovellab.com/berlin/explore/${
+              content={`https://${getRootURL()}${prefixURL(`berlin/explore/${
                 this.props.activeVehicle
-              }/lanes/${this.props.streetId}`}
+              }/lanes/${this.props.streetId}`)}`}
             />
             <meta
               property="og:image"
-              content="https://whatthestreet.moovellab.com/static/recorder/firstframe.jpg"
+              content={`https://${getRootURL()}${prefixURL("static/recorder/firstframe.jpg")}`}
             />
             <meta
               property="og:description"
@@ -162,7 +167,7 @@ class Layout extends Component {
             />
             <meta
               name="twitter:image"
-              content="https://whatthestreet.moovellab.com/static/recorder/firstframe.jpg"
+              content={`https://${getRootURL()}${prefixURL("static/recorder/firstframe.jpg")}`}
             />
             <meta
               name="twitter:player"
@@ -254,30 +259,30 @@ class Layout extends Component {
           }
           @font-face {
             font-family: "Larsseit";
-            src: url("/static/fonts/Larsseit/Larsseit-Medium.eot");
-            src: url("/static/fonts/Larsseit/Larsseit-Medium.ttf");
-            src: url("/static/fonts/Larsseit/Larsseit-Medium.woff");
-            src: url("/static/fonts/Larsseit/Larsseit-Medium.woff2");
+            src: url(${prefixURL("/static/fonts/Larsseit/Larsseit-Medium.eot")});
+            src: url(${prefixURL("/static/fonts/Larsseit/Larsseit-Medium.ttf")});
+            src: url(${prefixURL("/static/fonts/Larsseit/Larsseit-Medium.woff")});
+            src: url(${prefixURL("/static/fonts/Larsseit/Larsseit-Medium.woff2")});
             font-weight: 500;
           }
 
           @font-face {
             font-family: "Larsseit";
-            src: url("/static/fonts/Larsseit/Larsseit-Light.eot");
-            src: url("/static/fonts/Larsseit/Larsseit-Light.ttf");
-            src: url("/static/fonts/Larsseit/Larsseit-Light.woff");
-            src: url("/static/fonts/Larsseit/Larsseit-Light.woff2");
+            src: url(${prefixURL("/static/fonts/Larsseit/Larsseit-Light.eot")});
+            src: url(${prefixURL("/static/fonts/Larsseit/Larsseit-Light.ttf")});
+            src: url(${prefixURL("/static/fonts/Larsseit/Larsseit-Light.woff")});
+            src: url(${prefixURL("/static/fonts/Larsseit/Larsseit-Light.woff2")});
             font-weight: 300;
           }
 
           @font-face {
             font-family: "Sign-Painter";
-            src: url("/static/fonts/Sign_Painter_House_Brush/SignPainter_HouseBrush.ttf");
+            src: url(${prefixURL("/static/fonts/Sign_Painter_House_Brush/SignPainter_HouseBrush.ttf")});
           }
 
           @font-face {
             font-family: "Circular";
-            src: url("/static/fonts/Circular/CircularStd-Medium.otf");
+            src: url(${prefixURL("/static/fonts/Circular/CircularStd-Medium.otf")});
           }
 
           progress,

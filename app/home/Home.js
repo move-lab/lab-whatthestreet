@@ -20,6 +20,7 @@ import GuessBarChart from './components/GuessBarChart';
 // Styles
 import * as METRICS from '../shared/style/metrics';
 import * as COLORS from '../shared/style/colors';
+import { prefixURL } from '../../utils/url';
 
 /**
  * Renders the Home page
@@ -57,7 +58,7 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
       pathname: '/',
       query: this.props.ownGuess
     }, {
-      pathname: `/${this.props.city.slug}`,
+      pathname: prefixURL(`/${this.props.city.slug}`),
       query: this.props.ownGuess
     }, { shallow: true });
 
@@ -73,7 +74,7 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
       pathname: '/',
       query: this.props.ownGuess
     }, {
-      pathname: `/${citySlug}`,
+      pathname: prefixURL(`/${citySlug}`),
       query: this.props.ownGuess
     }, { shallow: true });
   }
@@ -85,7 +86,7 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
       pathname: '/',
       query: guess
     },{
-      pathname: `/${this.props.city.slug}`,
+      pathname: prefixURL(`/${this.props.city.slug}`),
       query: guess
     });
   }
@@ -102,7 +103,7 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
       pathname: '/explore',
       query: this.props.ownGuess
     },{
-      pathname: `/${this.props.city.slug}/explore`,
+      pathname: prefixURL(`/${this.props.city.slug}/explore`),
       query: this.props.ownGuess
     });
   }

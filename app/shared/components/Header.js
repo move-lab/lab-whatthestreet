@@ -10,13 +10,13 @@ import Link from 'next/link';
 import SocialMediaButtons from './SocialMediaButtons';
 import VehicleIcon from './VehicleIcon';
 
-const searchIcon = '/static/icons/Icon_Search.svg';
-const homeIcon = '/static/icons/Icon_Home.svg';
-
-import { showSearch } from '../../statemanagement/ExploreStateManagement';
-
 import * as METRICS from '../style/metrics';
 import * as COLORS from '../style/colors';
+import { prefixURL } from '../../../utils/url';
+import { showSearch } from '../../statemanagement/ExploreStateManagement';
+
+const searchIcon = prefixURL('/static/icons/Icon_Search.svg');
+const homeIcon = prefixURL('/static/icons/Icon_Home.svg');
 
 class Header extends React.PureComponent {
 
@@ -177,7 +177,7 @@ class Header extends React.PureComponent {
       pathname: '/',
       query: this.props.ownGuess.toJS()
     }, {
-      pathname: `/${this.props.citySlug}`,
+      pathname: prefixURL(`/${this.props.citySlug}`),
       query: this.props.ownGuess.toJS()
     }, { shallow: true });
   }
@@ -192,7 +192,7 @@ class Header extends React.PureComponent {
           {this.props.mode === 'normal' &&
             <div className="Content">
               <Link prefetch href="/" as={{
-                  pathname: `/${this.props.citySlug}`,
+                  pathname: prefixURL(`/${this.props.citySlug}`),
                   query: this.props.ownGuess.toJS()
                 }}
               >
@@ -202,7 +202,7 @@ class Header extends React.PureComponent {
                   {this.props.title}
                 </a>
               </Link>
-              <Link prefetch href="/about">
+              <Link prefetch href="/about" as={prefixURL("/about")}>
                 <a
                   className="AboutLink Link"
                 >

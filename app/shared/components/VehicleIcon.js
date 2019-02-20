@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { prefixURL } from '../../../utils/url';
 
-const bikeIcon = '/static/icons/Icon_Diagram_Bike.svg';
-const tramIcon = '/static/icons/Icon_Diagram_Rail.svg';
-const carIcon = '/static/icons/Icon_Diagram_Car.svg';
+const bikeIcon = prefixURL('/static/icons/Icon_Diagram_Bike.svg');
+const tramIcon = prefixURL('/static/icons/Icon_Diagram_Rail.svg');
+const carIcon = prefixURL('/static/icons/Icon_Diagram_Car.svg');
 
 class VehicleIcon extends React.PureComponent {
 
