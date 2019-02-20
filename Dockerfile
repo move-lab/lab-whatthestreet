@@ -46,10 +46,10 @@ ARG mapbox_token
 ENV env_mapbox_token=$mapbox_token
 ARG ga_id
 ENV env_ga_id=$ga_id
-#eg: /project/flightstorome
+#example: /project/whatthestreet
 ARG URL_PREFIX="" 
 ENV URL_PREFIX $URL_PREFIX
-#eg: whatthestreet.moovellab.com
+#example: whatthestreet.moovellab.com
 ARG ROOT_URL=""
 ENV ROOT_URL $ROOT_URL
 
