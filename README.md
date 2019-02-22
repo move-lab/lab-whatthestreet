@@ -133,7 +133,7 @@ It will output the video file in the `recorder/data/${city}` folder.
 
 The core of the script is [https://github.com/moovel/lab-what-the-street/blob/master/recorder/record.js](https://github.com/moovel/lab-what-the-street/blob/master/recorder/record.js), the principle of recording an animation with phantom are:
 
-- Implement the animation with a slowdow factor because phantomjs can't get frames at 30 FPS (the separate implementation can be found here: [https://github.com/moovel/lab-what-the-street/blob/master/app/mapmobile/MapMobile.js](https://github.com/moovel/lab-what-the-street/blob/master/app/mapmobile/MapMobile.js), and here [you can see it](https://whatthestreet.moovellab.com/berlin/mapmobile/car/lanes/41?bike=0.33&rail=0.33&car=0.33))
+- Implement the animation with a slowdown factor because phantomjs can't get frames at 30 FPS (the separate implementation can be found here: [https://github.com/moovel/lab-what-the-street/blob/master/app/mapmobile/MapMobile.js](https://github.com/moovel/lab-what-the-street/blob/master/app/mapmobile/MapMobile.js), and here [you can see it](https://whatthestreet.moovellab.com/berlin/mapmobile/car/lanes/41?bike=0.33&rail=0.33&car=0.33))
 
 - Notify phantom when we are ready to animate ([https://github.com/moovel/lab-what-the-street/blob/master/app/mapmobile/MapMobile.js#L281](https://github.com/moovel/lab-what-the-street/blob/master/app/mapmobile/MapMobile.js#L281))
 
