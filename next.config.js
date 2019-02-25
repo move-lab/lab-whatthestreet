@@ -1,14 +1,18 @@
 const resolve = require("path").resolve;
-const webpack = require("webpack");
 
 module.exports = {
+
+  assetPrefix: process.env.URL_PREFIX || "",
+
+  publicRuntimeConfig: {
+    URL_PREFIX: process.env.URL_PREFIX || "",
+    ROOT_URL: process.env.ROOT_URL || "",
+    env_mapbox_token: process.env.env_mapbox_token,
+    env_ga_id: process.env.env_ga_id
+  },
+
   webpack: (config, { dev }) => {
-    config.plugins.push(
-      new webpack.DefinePlugin({
-        env_mapbox_token: JSON.stringify(process.env.env_mapbox_token),
-        env_ga_id: JSON.stringify(process.env.env_ga_id)
-      })
-    );
+
     config.module["noParse"] = /(mapbox-gl)\.js$/;
 
     // Rules for mapbox gl

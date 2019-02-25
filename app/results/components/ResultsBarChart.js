@@ -1,6 +1,12 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import * as identifiers from '../../statemanagement/constants/identifiersConstants';
+
+import * as COLORS from '../../shared/style/colors';
+import * as METRICS from '../../shared/style/metrics';
+import { prefixURL } from '../../../utils/url';
+
 
 // Components
 import BarChart from './BarChart';
@@ -9,22 +15,21 @@ import YourGuessArrow from './YourGuessArrow';
 import SocialShareButtons from './SocialShareButtons';
 
 // Images
-const ShockedEmoji = '/static/icons/Emoji_Shocked.svg';
-const UpsideDownEmoji = '/static/icons/Emoji_UpsideDown.svg';
-const GrinningEmoji = '/static/icons/Emoji_Grinning.svg';
+const ShockedEmoji = prefixURL('/static/icons/Emoji_Shocked.svg');
+const UpsideDownEmoji = prefixURL('/static/icons/Emoji_UpsideDown.svg');
+const GrinningEmoji = prefixURL('/static/icons/Emoji_Grinning.svg');
 
-import * as COLORS from '../../shared/style/colors';
-import * as METRICS from '../../shared/style/metrics';
+
 
 class ResultsBarChart extends React.PureComponent {
 
   static propTypes = {
-    city: React.PropTypes.string,
-    guessStrength: React.PropTypes.number,
-    suggestion: React.PropTypes.object,
-    own: React.PropTypes.objectOf(React.PropTypes.number),
-    others: React.PropTypes.arrayOf(React.PropTypes.objectOf(React.PropTypes.number)),
-    actual: React.PropTypes.objectOf(React.PropTypes.number).isRequired,
+    city: PropTypes.string,
+    guessStrength: PropTypes.number,
+    suggestion: PropTypes.object,
+    own: PropTypes.objectOf(PropTypes.number),
+    others: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.number)),
+    actual: PropTypes.objectOf(PropTypes.number).isRequired,
   }
 
   renderText = (guessStrength) => {

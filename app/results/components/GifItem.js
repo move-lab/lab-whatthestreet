@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import * as COLORS from '../../shared/style/colors';
@@ -8,12 +9,12 @@ import ShareBtn from '../../shared/components/ShareBtn';
 class GifItem extends React.PureComponent {
 
   static propTypes = {
-    shareUrl: React.PropTypes.string,
-    videoUrl: React.PropTypes.string,
-    name: React.PropTypes.string,
-    streetName: React.PropTypes.string,
-    cityName: React.PropTypes.string,
-    big : React.PropTypes.bool
+    shareUrl: PropTypes.string,
+    videoUrl: PropTypes.string,
+    name: PropTypes.string,
+    streetName: PropTypes.string,
+    cityName: PropTypes.string,
+    big : PropTypes.bool
   }
   
   constructor(props) {

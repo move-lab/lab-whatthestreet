@@ -1,16 +1,18 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
 import * as identifiers from '../../statemanagement/constants/identifiersConstants';
 import * as COLORS from '../../shared/style/colors';
+import { prefixURL } from '../../../utils/url';
 
 class MapActions extends React.PureComponent {
 
   static propTypes = {
-    activeLayer: React.PropTypes.string,
-    zoomIn: React.PropTypes.func,
-    zoomOut: React.PropTypes.func,
-    toggleLayer: React.PropTypes.func
+    activeLayer: PropTypes.string,
+    zoomIn: PropTypes.func,
+    zoomOut: PropTypes.func,
+    toggleLayer: PropTypes.func
   }
 
   render() {
@@ -40,13 +42,13 @@ class MapActions extends React.PureComponent {
               className="ZoomControl ZoomControlIn"
               onClick={this.props.zoomIn}
             >
-              <img src="/static/icons/Icon_Plus.svg" alt="close map"/>
+              <img src={prefixURL("/static/icons/Icon_Plus.svg")} alt="close map"/>
             </div>
             <div
               className="ZoomControl ZoomControlOut"
               onClick={this.props.zoomOut}
             >
-              <img src="/static/icons/Icon_Minus.svg" alt="close map"/>
+              <img src={prefixURL("/static/icons/Icon_Minus.svg")} alt="close map"/>
             </div>
         </div>
         <style jsx>{`
@@ -74,7 +76,7 @@ class MapActions extends React.PureComponent {
           }
 
           .LayerSwitch.satellite {
-            background-image: url("/static/images/layer-road.jpg");
+            background-image: url(${prefixURL("/static/images/layer-road.jpg")});
           }
 
           .LayerSwitch.street .LayerSwitchText {
@@ -82,7 +84,7 @@ class MapActions extends React.PureComponent {
           }
 
           .LayerSwitch.street {
-            background-image: url("/static/images/layer-satellite.jpg");
+            background-image: url(${prefixURL("/static/images/layer-satellite.jpg")});
           }
 
           .LayerSwitchText {

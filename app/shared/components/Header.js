@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -9,26 +10,26 @@ import Link from 'next/link';
 import SocialMediaButtons from './SocialMediaButtons';
 import VehicleIcon from './VehicleIcon';
 
-const searchIcon = '/static/icons/Icon_Search.svg';
-const homeIcon = '/static/icons/Icon_Home.svg';
-
-import { showSearch } from '../../statemanagement/ExploreStateManagement';
-
 import * as METRICS from '../style/metrics';
 import * as COLORS from '../style/colors';
+import { prefixURL } from '../../../utils/url';
+import { showSearch } from '../../statemanagement/ExploreStateManagement';
+
+const searchIcon = prefixURL('/static/icons/Icon_Search.svg');
+const homeIcon = prefixURL('/static/icons/Icon_Home.svg');
 
 class Header extends React.PureComponent {
 
   static propTypes = {
-    title: React.PropTypes.string,
-    activeVehicle: React.PropTypes.string,
-    cityName: React.PropTypes.string,
-    parkingSpace: React.PropTypes.object,
-    laneRailParking: React.PropTypes.object,
-    lane: React.PropTypes.object,
-    cityLandmark: React.PropTypes.object,
-    onSearchButtonClick: React.PropTypes.func,
-    mode: React.PropTypes.oneOf(['explore', 'normal'])
+    title: PropTypes.string,
+    activeVehicle: PropTypes.string,
+    cityName: PropTypes.string,
+    parkingSpace: PropTypes.object,
+    laneRailParking: PropTypes.object,
+    lane: PropTypes.object,
+    cityLandmark: PropTypes.object,
+    onSearchButtonClick: PropTypes.func,
+    mode: PropTypes.oneOf(['explore', 'normal'])
   }
 
   static defaultProps = {
@@ -176,7 +177,7 @@ class Header extends React.PureComponent {
       pathname: '/',
       query: this.props.ownGuess.toJS()
     }, {
-      pathname: `/${this.props.citySlug}`,
+      pathname: prefixURL(`/${this.props.citySlug}`),
       query: this.props.ownGuess.toJS()
     }, { shallow: true });
   }
@@ -191,7 +192,7 @@ class Header extends React.PureComponent {
           {this.props.mode === 'normal' &&
             <div className="Content">
               <Link prefetch href="/" as={{
-                  pathname: `/${this.props.citySlug}`,
+                  pathname: prefixURL(`/${this.props.citySlug}`),
                   query: this.props.ownGuess.toJS()
                 }}
               >
@@ -201,7 +202,7 @@ class Header extends React.PureComponent {
                   {this.props.title}
                 </a>
               </Link>
-              <Link prefetch href="/about">
+              <Link prefetch href="/about" as={prefixURL("/about")}>
                 <a
                   className="AboutLink Link"
                 >

@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 
 import * as METRICS from '../style/metrics';
 import * as COLORS from '../style/colors';
+import { prefixURL } from '../../../utils/url';
 
-const loadingIcon = '/static/icons/Icon_Loading_spin.svg';
+const loadingIcon = prefixURL('/static/icons/Icon_Loading_spin.svg');
 
 class RoundedButton extends React.PureComponent {
 
@@ -38,7 +39,7 @@ class RoundedButton extends React.PureComponent {
         { this.props.children }
         </span>
         {!this.props.hideIcon && !this.props.loading &&
-          <img alt="Icon" className="Icon" src="/static/icons/Icon_ButtonArrow.svg" />
+          <img alt="Icon" className="Icon" src={prefixURL("/static/icons/Icon_ButtonArrow.svg")} />
         }
         {!this.props.hideIcon && this.props.loading &&
           <img alt="Icon" className="Icon" src={loadingIcon} />

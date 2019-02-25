@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -13,16 +14,16 @@ import Loader from '../../shared/components/Loader';
 class Lanes extends React.PureComponent {
 
   static propTypes = {
-    vehicle: React.PropTypes.string,
-    city: React.PropTypes.string,
-    baseUrl: React.PropTypes.string,
-    selectedResult: React.PropTypes.object,
-    modeParking: React.PropTypes.bool,
-    onItemSelected: React.PropTypes.func,
-    onLoaded: React.PropTypes.func,
-    onLaneSelected: React.PropTypes.func,
-    onPathClicked: React.PropTypes.func,
-    registerItemsForSearch: React.PropTypes.func
+    vehicle: PropTypes.string,
+    city: PropTypes.string,
+    baseUrl: PropTypes.string,
+    selectedResult: PropTypes.object,
+    modeParking: PropTypes.bool,
+    onItemSelected: PropTypes.func,
+    onLoaded: PropTypes.func,
+    onLaneSelected: PropTypes.func,
+    onPathClicked: PropTypes.func,
+    registerItemsForSearch: PropTypes.func
   }
 
   constructor(props) {

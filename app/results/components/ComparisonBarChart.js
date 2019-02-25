@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 // Components
@@ -6,21 +7,24 @@ import ActualValueArrow from './ActualValueArrow';
 import YourGuessArrow from './YourGuessArrow';
 import OthersGuessesArrow from './OthersGuessesArrow';
 
-// Images
-const HappyEmoji = '/static/icons/Emoji_Happy.svg';
-const GrinningEmoji = '/static/icons/Emoji_Grinning.svg';
-
 import * as COLORS from '../../shared/style/colors';
 import * as METRICS from '../../shared/style/metrics';
+import { prefixURL } from '../../../utils/url';
+
+// Images
+const HappyEmoji = prefixURL('/static/icons/Emoji_Happy.svg');
+const GrinningEmoji = prefixURL('/static/icons/Emoji_Grinning.svg');
+
+
 
 class ComparisonBarChart extends React.PureComponent {
 
   static propTypes = {
-    city: React.PropTypes.string,
-    own: React.PropTypes.object,
-    others: React.PropTypes.array,
-    actual: React.PropTypes.object,
-    guessStrength: React.PropTypes.number,
+    city: PropTypes.string,
+    own: PropTypes.object,
+    others: PropTypes.array,
+    actual: PropTypes.object,
+    guessStrength: PropTypes.number,
   }
 
   positionOthersArrow() {

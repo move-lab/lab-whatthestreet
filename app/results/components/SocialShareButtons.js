@@ -1,13 +1,15 @@
+import PropTypes from 'prop-types';
 import React from 'react';
+import { prefixURL, getRootURL } from '../../../utils/url';
 
-const FacebookIcon = '/static/icons/Icon_Social_Facebook.svg';
-const TwitterIcon = '/static/icons/Icon_Social_Twitter.svg';
+const FacebookIcon = prefixURL('/static/icons/Icon_Social_Facebook.svg');
+const TwitterIcon = prefixURL('/static/icons/Icon_Social_Twitter.svg');
 
 class SocialShareButtons extends React.PureComponent {
 
   static propTypes = {
-    result: React.PropTypes.string,
-    suggestion: React.PropTypes.string,
+    result: PropTypes.string,
+    suggestion: PropTypes.string,
   }
 
   twitterUrl(result) {
@@ -27,7 +29,7 @@ class SocialShareButtons extends React.PureComponent {
         break;
     }
     text += ' … according to ';
-    const website = 'https://whatthestreet.moovellab.com';
+    const website = 'https://' + getRootURL();
 
     return `https://twitter.com/intent/tweet?text=${encodeURI(text)}&url=${encodeURI(website)}`;
   }
@@ -46,7 +48,7 @@ class SocialShareButtons extends React.PureComponent {
         break;
     }
     text += ' … according to ';
-    const website = 'https://whatthestreet.moovellab.com';
+    const website = 'https://' + getRootURL();
 
     return `https://www.facebook.com/sharer.php?u=${encodeURI(website)}`;
   }

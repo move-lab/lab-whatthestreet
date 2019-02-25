@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import * as COLORS from '../../shared/style/colors';
@@ -5,7 +6,7 @@ import * as COLORS from '../../shared/style/colors';
 class LetterCounter extends React.PureComponent {
 
   static propTypes = {
-    streets: React.PropTypes.arrayOf(React.PropTypes.string),
+    streets: PropTypes.arrayOf(PropTypes.string),
   }
 
   renderChar = (char, index) => char === ' ' ? (<div className="EmptyChar" key={index} />) : (<div className="Char" key={index}>{char === 'ß' ? char : char.toUpperCase()}</div>)

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -21,15 +22,16 @@ import { closeSearch } from '../statemanagement/ExploreStateManagement';
 import { selectResult, resetSelectedResult } from '../statemanagement/SearchableStreetsStateManagement';
 
 import { selectVehicle } from '../statemanagement/VehiclesStateManagement';
+import { prefixURL } from '../../utils/url';
 
 class ExploreScroll extends React.PureComponent {
 
   static propTypes = {
-    availableVehicles: React.PropTypes.object,
-    ownGuess: React.PropTypes.object,
-    activeVehicle: React.PropTypes.string,
-    citySlug: React.PropTypes.string,
-    url: React.PropTypes.object
+    availableVehicles: PropTypes.object,
+    ownGuess: PropTypes.object,
+    activeVehicle: PropTypes.string,
+    citySlug: PropTypes.string,
+    url: PropTypes.object
   }
 
   constructor(props) {
@@ -86,7 +88,7 @@ class ExploreScroll extends React.PureComponent {
         ...this.props.ownGuess.toJS()
       }
     },{
-      pathname: `/${data.citySlug}/explore/${data.actualVehicle}/${data.areaType}/${data.id}`,
+      pathname: prefixURL(`/${data.citySlug}/explore/${data.actualVehicle}/${data.areaType}/${data.id}`),
       query: this.props.ownGuess.toJS()
     },
     { shallow: true }
@@ -98,7 +100,7 @@ class ExploreScroll extends React.PureComponent {
       pathname: '/explore',
       query: this.props.ownGuess.toJS()
     }, {
-      pathname: `/${this.props.citySlug}/explore/${this.props.activeVehicle}`,
+      pathname: prefixURL(`/${this.props.citySlug}/explore/${this.props.activeVehicle}`),
       query: this.props.ownGuess.toJS()
     }, { shallow: true });
   }
@@ -146,7 +148,7 @@ class ExploreScroll extends React.PureComponent {
         ...this.props.ownGuess.toJS()
       }
     },{
-      pathname: `/${this.props.citySlug}/explore/${vehicle}`,
+      pathname: prefixURL(`/${this.props.citySlug}/explore/${vehicle}`),
       query: this.props.ownGuess.toJS()
     });
   }
@@ -156,7 +158,7 @@ class ExploreScroll extends React.PureComponent {
       pathname: '/results',
       query: this.props.ownGuess.toJS()
     }, {
-      pathname: `/${this.props.citySlug}/results`,
+      pathname: prefixURL(`/${this.props.citySlug}/results`),
       query: this.props.ownGuess.toJS()
     }).then(() => {
       // Hack because of chrome and firefox not behaving the same way

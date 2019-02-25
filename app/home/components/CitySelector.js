@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import * as METRICS from '../../shared/style/metrics';
 import * as COLORS from '../../shared/style/colors';
+import { prefixURL } from '../../../utils/url';
 
 class CitySelector extends React.PureComponent {
 
@@ -34,7 +35,7 @@ class CitySelector extends React.PureComponent {
   }
 
   renderCheckMarkIcon = () => (
-    <img alt="" src="/static/icons/Icon_Tick.svg" />
+    <img alt="" src={prefixURL("/static/icons/Icon_Tick.svg")} />
   )
 
   renderCityItem = (city, index) => (
@@ -56,7 +57,7 @@ class CitySelector extends React.PureComponent {
         onClick={() => this.props.onButtonClick()}
       >
         {this.props.city.name} ?
-        <img alt="" src="/static/icons/Icon_CityDropdown.svg" />
+        <img alt="" src={prefixURL("/static/icons/Icon_CityDropdown.svg")} />
       </button>
       {this.props.selectorOpen &&
         <div className="CitySelectionModal">

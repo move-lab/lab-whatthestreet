@@ -1,23 +1,25 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect'
 import { getSearchSelectors } from 'redux-search';
 import debounce from 'lodash.debounce';
 
-const SearchIcon = '/static/icons/Icon_Search.svg';
-
-import { search, setData } from '../../statemanagement/SearchableStreetsStateManagement';
-
 // Styles
 import * as METRICS from '../../shared/style/metrics';
 import * as COLORS from '../../shared/style/colors';
+import { prefixURL } from '../../../utils/url';
+
+const SearchIcon = prefixURL('/static/icons/Icon_Search.svg');
+
+import { search, setData } from '../../statemanagement/SearchableStreetsStateManagement';
 
 class SearchModal extends React.PureComponent {
 
   static propTypes = {
-    close: React.PropTypes.func,
-    onSelectResult: React.PropTypes.func,
-    city: React.PropTypes.string,
+    close: PropTypes.func,
+    onSelectResult: PropTypes.func,
+    city: PropTypes.string,
   }
 
   constructor() {
@@ -128,7 +130,7 @@ class SearchModal extends React.PureComponent {
           className="CloseBtn"
           onClick={() => this.props.close()}
         >
-          <img src="/static/icons/Icon_Cross.svg" alt=""/>
+          <img src={prefixURL("/static/icons/Icon_Cross.svg")} alt=""/>
         </div>
         <form
           onSubmit={(event) => { event.preventDefault(); }}

@@ -1,14 +1,16 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import * as COLORS from '../../shared/style/colors';
+import { prefixURL } from '../../../utils/url';
 
 class GuessBar extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
   static propTypes = {
-    guess: React.PropTypes.number.isRequired,
-    onChange: React.PropTypes.func,
-    id: React.PropTypes.string,
-    positionChanged: React.PropTypes.func,
+    guess: PropTypes.number.isRequired,
+    onChange: PropTypes.func,
+    id: PropTypes.string,
+    positionChanged: PropTypes.func,
   }
 
   componentDidMount = () => {
@@ -61,7 +63,7 @@ class GuessBar extends React.PureComponent { // eslint-disable-line react/prefer
     <div>
       <div className="Container" id={`bar-${this.props.id}`}>
         <div className="GuessBar" ref={(element) => { this.element = element; }} style={{ height: `${this.props.guess > 0 ? this.props.guess * 320 : 0}px` }} >
-          <div className="DragPanel"><img alt="DragIcon" src="/static/icons/Slider.svg" /></div>
+          <div className="DragPanel"><img alt="DragIcon" src={prefixURL("/static/icons/Slider.svg")} /></div>
         </div>
       </div>
       <style jsx>{`

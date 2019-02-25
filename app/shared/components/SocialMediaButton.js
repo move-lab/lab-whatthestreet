@@ -1,13 +1,15 @@
+import PropTypes from 'prop-types';
 import React from 'react';
+import { prefixURL } from '../../../utils/url';
 
 // Images
-const FacebookIcon = '/static/icons/Icon_Social_Facebook.svg';
-const TwitterIcon = '/static/icons/Icon_Social_Twitter.svg';
+const FacebookIcon = prefixURL('/static/icons/Icon_Social_Facebook.svg');
+const TwitterIcon = prefixURL('/static/icons/Icon_Social_Twitter.svg');
 
 class SocialMediaButton extends React.PureComponent {
 
   static propTypes = {
-    provider: React.PropTypes.string,
+    provider: PropTypes.string,
   };
 
   constructor() {

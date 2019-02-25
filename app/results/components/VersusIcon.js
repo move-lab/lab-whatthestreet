@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import * as COLORS from '../../shared/style/colors';
@@ -9,8 +10,8 @@ const TRIANGLE_H_LENGTH = 555;
 class VersusIcon extends React.PureComponent {
 
   static propTypes = {
-    currentCity: React.PropTypes.object,
-    triangleData: React.PropTypes.array
+    currentCity: PropTypes.object,
+    triangleData: PropTypes.array
   }
 
   toRadians(degrees) {

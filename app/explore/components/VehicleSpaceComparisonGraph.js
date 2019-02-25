@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -5,20 +6,21 @@ import * as METRICS from '../../shared/style/metrics';
 import * as COLORS from '../../shared/style/colors';
 
 import { computeSvgHeights } from '../../shared/utils/svgHeights';
+import { prefixURL } from '../../../utils/url';
 
 // Images
-const tramIcon = '/static/icons/Icon_Diagram_Rail.svg';
-const bikeIcon = '/static/icons/Icon_Diagram_Bike.svg';
-const carIcon = '/static/icons/Icon_Diagram_Car.svg';
-const curlIcon = '/static/icons/Curl.svg';
+const tramIcon = prefixURL('/static/icons/Icon_Diagram_Rail.svg');
+const bikeIcon = prefixURL('/static/icons/Icon_Diagram_Bike.svg');
+const carIcon = prefixURL('/static/icons/Icon_Diagram_Car.svg');
+const curlIcon = prefixURL('/static/icons/Curl.svg');
 
 
 class VehicleSpaceComparisonGraph extends React.Component {
 
   static propTypes = {
-    mode: React.PropTypes.oneOf(["parking", "lanes"]),
-    activeVehicle: React.PropTypes.string,
-    svgHeights: React.PropTypes.object
+    mode: PropTypes.oneOf(["parking", "lanes"]),
+    activeVehicle: PropTypes.string,
+    svgHeights: PropTypes.object
   }
 
   constructor(props) {

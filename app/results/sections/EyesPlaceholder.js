@@ -1,9 +1,10 @@
 import React from 'react';
 
-// Images
-const IllustrationEyes = '/static/images/Illustration_Eyes.svg';
-
 import * as COLORS from '../../shared/style/colors';
+import { prefixURL } from '../../../utils/url';
+
+// Images
+const IllustrationEyes = prefixURL('/static/images/Illustration_Eyes.svg');
 
 class EyesPlaceholder extends React.PureComponent {
 

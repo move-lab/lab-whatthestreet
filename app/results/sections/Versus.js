@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -16,8 +17,8 @@ import * as METRICS from '../../shared/style/metrics';
 class VersusPage extends React.Component {
 
   static propTypes = {
-    city: React.PropTypes.object,
-    triangleData: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+    city: PropTypes.object,
+    triangleData: PropTypes.arrayOf(PropTypes.object).isRequired,
   }
 
   getBikeRanking = (rawData) => {

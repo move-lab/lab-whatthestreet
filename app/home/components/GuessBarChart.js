@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import * as identifiers from '../../statemanagement/constants/identifiersConstants';
@@ -5,17 +6,20 @@ import * as identifiers from '../../statemanagement/constants/identifiersConstan
 import Bar from './GuessBar';
 import VehicleIcon from '../../shared/components/VehicleIcon';
 
-const ArrowIcon = '/static/icons/Arrow_Landing.svg';
-
 // Styles
 import * as METRICS from '../../shared/style/metrics';
 import * as COLORS from '../../shared/style/colors';
+import { prefixURL } from '../../../utils/url';
+
+const ArrowIcon = prefixURL('/static/icons/Arrow_Landing.svg');
+
+
 
 class GuessBarChart extends React.Component {
 
   static propTypes = {
-    guess: React.PropTypes.object.isRequired,
-    onChange: React.PropTypes.func,
+    guess: PropTypes.object.isRequired,
+    onChange: PropTypes.func,
   }
 
   constructor(props) {

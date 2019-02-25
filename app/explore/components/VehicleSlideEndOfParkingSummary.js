@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import Router from 'next/router';
@@ -12,11 +13,11 @@ import * as COLORS from '../../shared/style/colors';
 class VehicleSlideEndOfParkingSummary extends React.PureComponent {
 
   static propTypes = {
-    availableVehicles: React.PropTypes.object,
-    activeVehicle: React.PropTypes.string,
-    goToNextVehicle: React.PropTypes.func,
-    cityLandmark: React.PropTypes.object,
-    cumulativeArea: React.PropTypes.number
+    availableVehicles: PropTypes.object,
+    activeVehicle: PropTypes.string,
+    goToNextVehicle: PropTypes.func,
+    cityLandmark: PropTypes.object,
+    cumulativeArea: PropTypes.number
   }
 
   constructor() {

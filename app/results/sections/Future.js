@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -11,20 +12,21 @@ import FreedUp from '../components/FreedUp';
 
 import * as COLORS from '../../shared/style/colors';
 import * as METRICS from '../../shared/style/metrics';
+import { prefixURL } from '../../../utils/url';
 
 // Images
-const IconStreet = '/static/icons/Icon_Street.svg';
-const IconCarOnParkingSpace = '/static/icons/Icon_CarOnParkingSpace.svg';
-const IconAutonomousCarOnParkingSpace = '/static/icons/Icon_AutonomousCarOnParkingSpace.svg';
-const IconParkingSpace = '/static/icons/Icon_ParkingSpace.svg';
-const ArrowOnTheRoad = '/static/icons/Arrow_OnTheRoad.svg';
-const ArrowEmptyParkingLots = '/static/icons/Arrow_EmptyParkingLots.svg';
+const IconStreet = prefixURL('/static/icons/Icon_Street.svg');
+const IconCarOnParkingSpace = prefixURL('/static/icons/Icon_CarOnParkingSpace.svg');
+const IconAutonomousCarOnParkingSpace = prefixURL('/static/icons/Icon_AutonomousCarOnParkingSpace.svg');
+const IconParkingSpace = prefixURL('/static/icons/Icon_ParkingSpace.svg');
+const ArrowOnTheRoad = prefixURL('/static/icons/Arrow_OnTheRoad.svg');
+const ArrowEmptyParkingLots = prefixURL('/static/icons/Arrow_EmptyParkingLots.svg');
 
 class FuturePage extends React.Component {
 
   static propTypes = {
-    city: React.PropTypes.object,
-    data: React.PropTypes.any,
+    city: PropTypes.object,
+    data: PropTypes.any,
   }
 
   getNumberOfCars() {
@@ -190,7 +192,7 @@ class FuturePage extends React.Component {
                   <div
                     className="Landmark"
                   >
-                    <img src={`/static/cityLandmarks/Landmark_${this.props.city.slug}.png`} />
+                    <img src={prefixURL(`/static/cityLandmarks/Landmark_${this.props.city.slug}.png`)} />
                   </div>
                 </div>
               </section>

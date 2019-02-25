@@ -1,22 +1,24 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import * as METRICS from '../style/metrics';
 import * as COLORS from '../style/colors';
+import { prefixURL } from '../../../utils/url';
 
-const FacebookIconWhite = '/static/icons/Icon_Social_Facebook_White.svg';
-const TwitterIconWhite = '/static/icons/Icon_Social_Twitter_White.svg';
-const IconDownload = '/static/icons/Icon_Download.svg';
+const FacebookIconWhite = prefixURL('/static/icons/Icon_Social_Facebook_White.svg');
+const TwitterIconWhite = prefixURL('/static/icons/Icon_Social_Twitter_White.svg');
+const IconDownload = prefixURL('/static/icons/Icon_Download.svg');
 
 class ShareBtn extends React.PureComponent {
 
   static propTypes = {
-    bottom: React.PropTypes.number,
-    small: React.PropTypes.bool,
-    urlToShare: React.PropTypes.string,
-    urlToDownload: React.PropTypes.string,
-    textToShare: React.PropTypes.string,
-    onMouseOut: React.PropTypes.func,
-    onMouseOver: React.PropTypes.func
+    bottom: PropTypes.number,
+    small: PropTypes.bool,
+    urlToShare: PropTypes.string,
+    urlToDownload: PropTypes.string,
+    textToShare: PropTypes.string,
+    onMouseOut: PropTypes.func,
+    onMouseOver: PropTypes.func
   }
 
   constructor(props) {
@@ -41,7 +43,7 @@ class ShareBtn extends React.PureComponent {
         onMouseOver={this.props.onMouseOver}
         onMouseOut={this.props.onMouseOut}
       >
-        <img className="ShareIcon" src="/static/icons/Icon_Share.svg" />
+        <img className="ShareIcon" src={prefixURL("/static/icons/Icon_Share.svg")} />
         <div className="List">
           <a className="Button" href={this.twitterUrl()} target="_blank">
             <img alt="TwitterIconWhite" src={TwitterIconWhite} />

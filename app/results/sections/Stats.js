@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -16,8 +17,8 @@ import * as METRICS from '../../shared/style/metrics';
 class Stats extends React.Component {
 
   static propTypes = {
-    cityMetaData: React.PropTypes.object.isRequired,
-    longestStreets: React.PropTypes.arrayOf(React.PropTypes.object),
+    cityMetaData: PropTypes.object.isRequired,
+    longestStreets: PropTypes.arrayOf(PropTypes.object),
   }
 
   getBackground = (city) => (`/api/v1/citiesBackground/${city.replace(/\s+/g, '')}`)

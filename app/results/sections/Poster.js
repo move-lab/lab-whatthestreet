@@ -5,6 +5,7 @@ import RoundedButton from '../../shared/components/RoundedButton';
 
 import * as COLORS from '../../shared/style/colors';
 import * as METRICS from '../../shared/style/metrics';
+import { prefixURL } from '../../../utils/url';
 
 class PosterSection extends React.PureComponent {
   
@@ -70,7 +71,7 @@ class PosterSection extends React.PureComponent {
       <div className="BtnShopping"
         onClick={() => this.goToPosterShopItem(shopLink)}
       >
-          <img src="/static/icons/Icon_ShoppingCart.svg" />
+          <img src={prefixURL("/static/icons/Icon_ShoppingCart.svg")} />
       </div>
     )
   }
@@ -81,7 +82,7 @@ class PosterSection extends React.PureComponent {
         className={`Poster ${classPosition}`}
         onClick={() => this.goToPosterShopItem(posterData.shopLink)}
       >
-        <img src={`/static/poster/WTS_${posterData.city}.jpeg`} />
+        <img src={prefixURL(`/static/poster/WTS_${posterData.city}.jpeg`)} />
         {this.renderShoppingBtn(posterData.shopLink)}
       </div>
     )

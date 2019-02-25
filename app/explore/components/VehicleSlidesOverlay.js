@@ -8,10 +8,11 @@ import * as COLORS from '../../shared/style/colors';
 import RoundedButton from '../../shared/components/RoundedButton';
 import VehicleIcon from '../../shared/components/VehicleIcon';
 import ScrollPositionOverview from './ScrollPositionOverview';
+import { prefixURL } from '../../../utils/url';
 
-const angle = '/static/icons/Icon_ButtonArrow_Blue.svg';
-const IconArrowRight = '/static/icons/Icon_ArrowRight.svg';
-const IconArrowLeft = '/static/icons/Icon_ArrowLeft.svg';
+const angle = prefixURL('/static/icons/Icon_ButtonArrow_Blue.svg');
+const IconArrowRight = prefixURL('/static/icons/Icon_ArrowRight.svg');
+const IconArrowLeft = prefixURL('/static/icons/Icon_ArrowLeft.svg');
 
 class VehicleSlidesOverlay extends React.PureComponent {
 
