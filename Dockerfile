@@ -26,7 +26,6 @@ COPY --from=builder /usr/src/app/config.json /usr/src/app/
 COPY --from=builder /usr/src/app/next.config.js /usr/src/app/
 COPY --from=builder /usr/src/app/gifgallery.json /usr/src/app/
 COPY --from=builder /usr/src/app/package.json /usr/src/app/
-COPY --from=builder /usr/src/app/docker-entrypoint.sh /usr/src/app/
 
 # We need to env var only at runtime with whatthestreet
 ARG mapbox_token
