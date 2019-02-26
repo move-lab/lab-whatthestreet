@@ -1,21 +1,10 @@
-AWSTemplateFormatVersion: '2010-09-09'
-
-Description: Fargate Sevice Template for internet-facing services
+---
+Description: >
+  Simple ECS service using a public Docker image
 
 Parameters:
   ClusterStackName:
-    Default: 'lab-ecs-cluster'
-    Description: The Stack of the ECS Cluster that this service should run on
-    Type: String
-
-  ContainerCPU:
-    Default: '.25 vCPU'
-    Description: The CPU value for the Fargate task
-    Type: String
-
-  ContainerMemory:
-    Default: '512'
-    Description: The Memory value for the Fargate task
+    Description: Please provide the Stack of the ECS Cluster that this service should run on
     Type: String
 
   ContainerPort:
@@ -29,12 +18,17 @@ Parameters:
     Type: String
 
   DesiredCount:
-    Default: 1
-    Description: Amount of instances of this task that should run across the cluster
+    Description: How many instances of this task should we run across our cluster?
     Type: Number
+    Default: 2
+
+  DeploymentTimestamp:
+    Description: A timestamp hint
+    Type: String
+    Default: -1
 
   DockerImage:
-    Description: Full path to docker image, including tag, with version to run in the service
+    Description: The docker image, including tag, with version to run in the service, e.g. moovel/places:latest
     Type: String
 
   Host:
@@ -42,28 +36,23 @@ Parameters:
     Type: String
     Default: ''
 
-  PathName:
-    Description: Path to which the listener should redirect
-    Type: String
-    Default: ''
-
   ListenerMode:
-    Default: ''
     Description: When on private its "", when on public its "TLS"
     Type: String
+    Default: ''
 
-  ListenerRulePathPriority:
-    Default: 99
+  ListenerRuleHostPriority:
+    Default: 112
     Description: The service's listener rule prio on the ALB (has to be unique on every ALB)
     Type: Number
 
-  ListenerRuleHostPriority:
-    Default: 101
+  ListenerRulePathPriority:
+    Default: 113
     Description: The service's listener rule prio on the ALB (has to be unique on every ALB)
     Type: Number
 
   ListenerRulePriority:
-    Default: 100
+    Default: 111
     Description: The service's listener rule priority on the ALB (has to be unique on every ALB)
     Type: Number
 
@@ -76,18 +65,26 @@ Parameters:
     Description: The log group for the container logs
     Type: String
 
+  EfsMount:
+    Description: Volume that will be mounted with the EFS datastorage
+    Type: String
+    Default: ''
+
   ParentVpcStack:
-    Default: 'base-vpc'
     Description: CloudFormation stack name providing network resource IDs
     Type: String
 
   ParentZoneStack:
-    Default: 'default-pub-hz'
     Description: CloudFormation stack name providing DNS resource IDs
     Type: String
 
+  PathName:
+    Description: Path to which the listener should redirect
+    Type: String
+    Default: ''
+
   ServiceName:
-    Description: Name of the service (also represented by URL)
+    Description: The servicename
     Type: String
 
   SquadTag:
@@ -101,18 +98,20 @@ Mappings:
       Account: legacy
     '586093893509':
       Account: dev
+      JumpCloudSystemGroup: 5acc8ced45886d4a61941698
     '021902642706':
       Account: stage
+      JumpCloudSystemGroup: 5acc760a232e110820c861b6
     '488864420121':
       Account: prod
+      JumpCloudSystemGroup: 5acc8ce4232e110820c8cfd8
     '741592215129':
       Account: shared-services
-    '805389432169':
-      Account: jump
 
 Conditions:
   HasHost: !Not [!Equals [!Ref Host, '']]
   HasPathName: !Not [!Equals [!Ref PathName, '']]
+  HasEfsMount: !Not [!Equals [!Ref EfsMount, '']]
 
 Resources:
   ServiceDNSRecord:
@@ -138,7 +137,6 @@ Resources:
     Properties:
       Cluster:
         Fn::ImportValue: !Sub ${ClusterStackName}-ECSClusterArn
-      LaunchType: FARGATE
       DesiredCount: !Ref DesiredCount
       TaskDefinition: !Ref TaskDefinition
       LoadBalancers:
@@ -146,42 +144,76 @@ Resources:
           ContainerPort: !Ref ContainerPort
           TargetGroupArn: !Ref TargetGroup
       HealthCheckGracePeriodSeconds: 120
-      NetworkConfiguration:
-        AwsvpcConfiguration:
-          AssignPublicIp: DISABLED
-          SecurityGroups:
-            - Fn::ImportValue: shared-sgs-EcsCommonSg
-            - Fn::ImportValue: domain-general-sgs-EcsDomainSg
-          Subnets: !Split
-            - ','
-            - Fn::ImportValue: !Sub ${ParentVpcStack}-SubnetsPrivate
+      # NetworkConfiguration:
+      #   AwsvpcConfiguration:
+      #     AssignPublicIp: DISABLED
+      #     SecurityGroups:
+      #       - Fn::ImportValue: shared-sgs-EcsCommonSg
+      #       - Fn::ImportValue: domain-general-sgs-EcsDomainSg
+      #     Subnets: !Split
+      #       - ','
+      #       - Fn::ImportValue: !Sub ${ParentVpcStack}-SubnetsPrivate
 
   TaskDefinition:
     Type: AWS::ECS::TaskDefinition
     Properties:
       TaskRoleArn: !Ref TaskRole
-      Cpu: !Ref ContainerCPU
-      Memory: !Ref ContainerMemory
-      NetworkMode: awsvpc
-      RequiresCompatibilities:
-        - FARGATE
+      # NetworkMode: awsvpc
       ExecutionRoleArn: !ImportValue managed-roles-ecs-task-execution-role-Arn
+      Volumes:
+        - Name: efs
+          Host:
+            SourcePath: !Sub /mnt/efs/${AWS::StackName}
       ContainerDefinitions:
         - Name: !Ref ServiceName
           Essential: true
           Image: !Ref DockerImage
-          Memory: !Ref ContainerMemory
+          Memory: 256
+          Environment:
+            - Name: SPRING_PROFILES_ACTIVE
+              Value:
+                !FindInMap [ParamsByAccount, !Ref 'AWS::AccountId', Account]
+            - Name: DEPLOYMENT_TIMESTAMP
+              Value: !Ref DeploymentTimestamp
+            - Name: ENV
+              Value: production
+            - Name: MONGODB_HOST
+              Value: !Sub ${ServiceName}-db
           PortMappings:
             - ContainerPort: !Ref ContainerPort
+          Links:
+            - !Sub ${ServiceName}-db
           LogConfiguration:
             LogDriver: awslogs
             Options:
               awslogs-group: !Ref LogGroup
               awslogs-region: !Ref AWS::Region
               awslogs-stream-prefix: !Ref AWS::StackName
+      ContainerDefinitions:
+        - Name: !Sub ${ServiceName}-db
+          Essential: true
+          Image: mongo:3:6
+          Memory: 256
           Environment:
+            - Name: SPRING_PROFILES_ACTIVE
+              Value:
+                !FindInMap [ParamsByAccount, !Ref 'AWS::AccountId', Account]
+            - Name: DEPLOYMENT_TIMESTAMP
+              Value: !Ref DeploymentTimestamp
             - Name: ENV
               Value: production
+          PortMappings:
+            - ContainerPort: 27017
+          MountPoints:
+            - SourceVolume: efs
+              ContainerPath: !Ref EfsMount
+              ReadOnly: false
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-group: !Ref LogGroup
+              awslogs-region: !Ref AWS::Region
+              awslogs-stream-prefix: !Ref AWS::StackName
 
   TargetGroup:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
@@ -200,7 +232,7 @@ Resources:
       TargetGroupAttributes:
         - Key: deregistration_delay.timeout_seconds
           Value: '10'
-      TargetType: ip
+      TargetType: instance
       Tags:
         - Key: CostCenter
           Value: !Ref CostCenterTag
@@ -256,6 +288,9 @@ Resources:
         - TargetGroupArn: !Ref TargetGroup
           Type: forward
 
+  # This IAM Role grants the service access to register/unregister with the
+  # Application Load Balancer (ALB). It is based on the default documented here:
+  # http://docs.aws.amazon.com/AmazonECS/latest/developerguide/service_IAM_role.html
   ServiceRole:
     Type: AWS::IAM::Role
     Properties:
@@ -285,7 +320,6 @@ Resources:
                   - elasticloadbalancing:DescribeTargetHealth
                   - elasticloadbalancing:RegisterTargets
                 Resource: '*'
-
   TaskRole:
     Type: AWS::IAM::Role
     Properties:
