@@ -192,7 +192,7 @@ Resources:
         - Name: !Sub ${ServiceName}-db
           Essential: true
           Image: mongo:3.6
-          Memory: 256
+          Memory: 2048
           Environment:
             - Name: SPRING_PROFILES_ACTIVE
               Value:
