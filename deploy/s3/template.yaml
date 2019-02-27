@@ -1,0 +1,107 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: PublicRead S3 bucket for lab ressources
+
+Parameters:
+  AccessControl:
+    Description: A canned access control list (ACL) that grants predefined permissions to the bucket.
+    Type: String
+
+  ServiceName:
+    Description: A name for the bucket. The bucket name must contain only lowercase letters, numbers, periods (.), and dashes (-).
+    Type: String
+
+  CostCenterTag:
+    Description: The cost center for created resources
+    Type: String
+
+  SudoArnEquals:
+    Description: Arn to the ressource which has sudo rights on the bucket.
+    Type: String
+
+  SquadTag:
+    Description: The name of the squad owning the resources
+    Type: String
+
+Mappings:
+  ParamsByAccount:
+    '330561757506':
+      Account: legacy
+    '586093893509':
+      Account: dev
+      JumpCloudSystemGroup: 5acc8ced45886d4a61941698
+    '021902642706':
+      Account: stage
+      JumpCloudSystemGroup: 5acc760a232e110820c861b6
+    '488864420121':
+      Account: prod
+      JumpCloudSystemGroup: 5acc8ce4232e110820c8cfd8
+    '741592215129':
+      Account: shared-services
+    '805389432169':
+      Account: moovel-jump
+
+Resources:
+  Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref ServiceName
+      AccessControl: !Ref AccessControl
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: 404.html
+      Tags:
+        - Key: CostCenter
+          Value: !Ref CostCenterTag
+        - Key: Squad
+          Value: !Ref SquadTag
+        - Key: Account
+          Value: !FindInMap [ParamsByAccount, !Ref 'AWS::AccountId', Account]
+  BucketPolicy:
+    Type: 'AWS::S3::BucketPolicy'
+    Properties:
+      Bucket: !Ref 'Bucket'
+      PolicyDocument:
+        Statement:
+          - Sid: PublicReadGetObject
+            Effect: Allow
+            Principal: '*'
+            Action:
+              - s3:GetObject
+            Resource: !Sub
+              - ${arn}/*
+              - { arn: !GetAtt Bucket.Arn }
+          - Sid: IPAllow
+            Effect: Allow
+            Principal: '*'
+            Action: s3:*
+            Resource: !Sub
+              - ${arn}/*
+              - { arn: !GetAtt Bucket.Arn }
+            Condition:
+              ArnEquals:
+                aws:SourceArn: { 'Fn::ImportValue': !Sub '${SudoArnEquals}' }
+          - Sid: AddPerm
+            Effect: Allow
+            Principal: '*'
+            Action:
+              - s3:GetObject
+            Resource: !Sub
+              - ${arn}/*
+              - { arn: !GetAtt Bucket.Arn }
+
+Outputs:
+  StackName:
+    Description: Stack name
+    Value: !Sub ${AWS::StackName}
+
+  WebsiteURL:
+    Description: url where the bucket is reachable
+    Value: !GetAtt Bucket.WebsiteURL
+    Export:
+      Name: !Sub ${AWS::StackName}-WebsiteURL
+
+  BucketName:
+    Description: Name of the bucket
+    Value: !Ref ServiceName
+    Export:
+      Name: !Sub ${AWS::StackName}-BucketName

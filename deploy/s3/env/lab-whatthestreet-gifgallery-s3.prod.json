@@ -1,0 +1,22 @@
+[
+  {
+    "ParameterKey": "CostCenterTag",
+    "ParameterValue": "7000"
+  },
+  {
+    "ParameterKey": "SquadTag",
+    "ParameterValue": "Lab"
+  },
+  {
+    "ParameterKey": "ServiceName",
+    "ParameterValue": "lab-whatthestreet-gifgallery-s3"
+  },
+  {
+    "ParameterKey": "AccessControl",
+    "ParameterValue": "PublicRead"
+  },
+  {
+    "ParameterKey": "SudoArnEquals",
+    "ParameterValue": "lab-whatthestreet-ServiceArn"
+  }
+]
