@@ -38,6 +38,9 @@ ENV URL_PREFIX $URL_PREFIX
 #example: whatthestreet.moovellab.com
 ARG ROOT_URL=""
 ENV ROOT_URL $ROOT_URL
+#example: https://s3-eu-west-1.amazonaws.com/gif.whatthestreet.moovellab.com
+ARG S3_GIF_BUCKET="https://s3-eu-west-1.amazonaws.com/gif.whatthestreet.moovellab.com"
+ENV ROOT_URL $S3_GIF_BUCKET
 
 EXPOSE 80
 

@@ -11,7 +11,7 @@ import GifItem from '../components/GifItem';
 import RoundedButton from '../../shared/components/RoundedButton';
 
 import GifData from '../../../gifgallery.json';
-import { getRootURL } from '../../../utils/url';
+import { getRootURL, getS3GIFUrl } from '../../../utils/url';
 
 class GifSection extends React.PureComponent {
 
@@ -38,7 +38,7 @@ class GifSection extends React.PureComponent {
   }
 
   getVideoUrl(staffPickData) {
-   return `${GifData.baseUrl}/${staffPickData.citySlug}/car/${staffPickData.id}.mp4`; 
+   return `${getS3GIFUrl()}/${staffPickData.citySlug}/car/${staffPickData.id}.mp4`; 
   }
 
   getShareUrl(staffPickData) {

@@ -13,7 +13,7 @@ const { env_ga_id } = publicRuntimeConfig
 
 import * as METRICS from "../style/metrics";
 import * as COLORS from "../style/colors";
-import { prefixURL, getRootURL } from "../../../utils/url.js";
+import { prefixURL, getRootURL, getS3GIFUrl } from "../../../utils/url.js";
 
 class Layout extends Component {
   static propTypes = {
@@ -140,13 +140,13 @@ class Layout extends Component {
             <meta property="og:site_name" content="moovel lab" />
             <meta
               property="og:video"
-              content={`https://s3-eu-west-1.amazonaws.com/gif.whatthestreet.moovellab.com/${this.props.city.get(
+              content={`${getS3GIFUrl()}/${this.props.city.get(
                 "slug"
               )}/${this.props.activeVehicle}/${this.props.streetId}.mp4`}
             />
             <meta
               property="og:video:secure_url"
-              content={`https://s3-eu-west-1.amazonaws.com/gif.whatthestreet.moovellab.com/${this.props.city.get(
+              content={`${getS3GIFUrl()}/${this.props.city.get(
                 "slug"
               )}/${this.props.activeVehicle}/${this.props.streetId}.mp4`}
             />
@@ -181,7 +181,7 @@ class Layout extends Component {
             <meta name="twitter:player:height" content="512" />
             <meta
               name="twitter:player:stream"
-              content={`https://s3-eu-west-1.amazonaws.com/gif.whatthestreet.moovellab.com/${this.props.city.get(
+              content={`${getS3GIFUrl()}/${this.props.city.get(
                 "slug"
               )}/${this.props.activeVehicle}/${this.props.streetId}.mp4`}
             />

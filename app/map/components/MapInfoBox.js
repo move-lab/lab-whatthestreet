@@ -12,6 +12,7 @@ import VehicleIcon from '../../shared/components/VehicleIcon';
 import ShareBtn from '../../shared/components/ShareBtn';
 
 import GifData from '../../../gifgallery.json';
+import { getS3GIFUrl } from '../../../utils/url';
 
 
 class MapInfoBox extends React.PureComponent {
@@ -92,7 +93,7 @@ class MapInfoBox extends React.PureComponent {
   componentWillReceiveProps(newProps) {
     if(newProps.laneData !== null) {
       // Check if gif exists before displaying it
-      const urlVideoUncoil = `${GifData.baseUrl}/${this.props.citySlug}/${this.props.activeVehicle}/${newProps.laneData.get('_id')}.mp4`;
+      const urlVideoUncoil = `${getS3GIFUrl()}/${this.props.citySlug}/${this.props.activeVehicle}/${newProps.laneData.get('_id')}.mp4`;
       axios.head(urlVideoUncoil).then(() => {
         this.setState({
           displayVideo: true,
