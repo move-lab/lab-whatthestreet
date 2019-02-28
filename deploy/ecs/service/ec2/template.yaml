@@ -180,7 +180,7 @@ Resources:
             - Name: MONGODB_HOST
               Value: !Sub ${ServiceName}-db
             - Name: S3_GIF_BUCKET
-              Value: !ImportValue lab-whatthestreet-gifgallery-s3-WebsiteUrlSsl
+              Value: ''
           PortMappings:
             - ContainerPort: !Ref ContainerPort
           Links:
