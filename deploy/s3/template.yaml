@@ -94,6 +94,12 @@ Outputs:
     Description: Stack name
     Value: !Sub ${AWS::StackName}
 
+  WebsiteUrlSsl:
+    Description: secure url where the bucket is reachable
+    Value: !Sub https://${ServiceName}.s3.amazonaws.com/
+    Export:
+      Name: !Sub ${AWS::StackName}-WebsiteUrlSsl
+
   WebsiteURL:
     Description: url where the bucket is reachable
     Value: !GetAtt Bucket.WebsiteURL
