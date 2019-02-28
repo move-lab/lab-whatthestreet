@@ -96,7 +96,7 @@ Outputs:
 
   WebsiteUrlSsl:
     Description: secure url where the bucket is reachable
-    Value: !Sub https://${ServiceName}.s3.amazonaws.com/
+    Value: !Sub https://${ServiceName}.s3.amazonaws.com
     Export:
       Name: !Sub ${AWS::StackName}-WebsiteUrlSsl
 
