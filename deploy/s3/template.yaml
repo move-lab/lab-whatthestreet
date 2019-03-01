@@ -46,6 +46,14 @@ Resources:
     Properties:
       BucketName: !Ref ServiceName
       AccessControl: !Ref AccessControl
+      CorsConfiguration:
+        CorsRules:
+        - AllowedHeaders: ['*']
+          AllowedMethods: [GET]
+          AllowedMethods: [HEAD]
+          AllowedOrigins: ['*']
+          AllowedOrigins: ['https://*']
+          MaxAge: '3600'
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: 404.html
