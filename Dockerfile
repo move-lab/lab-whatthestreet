@@ -1,4 +1,4 @@
-FROM node:9 as builder
+FROM node:10.18 as builder
 
 LABEL description="Landingpage for 'what the street'"
 LABEL project="lab-whatthestreet"
@@ -14,7 +14,7 @@ COPY . .
 
 RUN npm run build
 
-FROM node:9
+FROM node:10.18
 
 WORKDIR /usr/src/app
 
