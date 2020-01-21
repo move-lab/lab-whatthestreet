@@ -2,7 +2,7 @@ FROM node:9 as builder
 
 LABEL description="Landingpage for 'what the street'"
 LABEL project="lab-whatthestreet"
-LABEL maintainer="florian.porada@moovel.com"
+LABEL maintainer="florian.porada@free-now.com"
 
 WORKDIR /usr/src/app
 
@@ -27,19 +27,24 @@ COPY --from=builder /usr/src/app/next.config.js /usr/src/app/
 COPY --from=builder /usr/src/app/gifgallery.json /usr/src/app/
 COPY --from=builder /usr/src/app/package.json /usr/src/app/
 
+# Get documentDB cert
+RUN wget https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem -P /usr/src/app
+
+RUN ls /usr/src/app
+
 # We need to env var only at runtime with whatthestreet
 ARG mapbox_token
-ENV env_mapbox_token=$mapbox_token
+ENV MAPBOX_ACCESS_TOKEN=$mapbox_token
 ARG ga_id
-ENV env_ga_id=$ga_id
+ENV GA_ID=$ga_id
 #example: /project/whatthestreet
-ARG URL_PREFIX="" 
+ARG URL_PREFIX=""
 ENV URL_PREFIX $URL_PREFIX
 #example: whatthestreet.moovellab.com
 ARG ROOT_URL=""
 ENV ROOT_URL $ROOT_URL
 #example: https://s3-eu-west-1.amazonaws.com/gif.whatthestreet.moovellab.com
-ARG S3_GIF_BUCKET="https://s3-eu-west-1.amazonaws.com/gif.whatthestreet.moovellab.com"
+ARG S3_GIF_BUCKET="https://lab-whatthestreet-gifgallery-s3.s3.amazonaws.com"
 ENV ROOT_URL $S3_GIF_BUCKET
 
 EXPOSE 80

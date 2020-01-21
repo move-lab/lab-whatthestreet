@@ -1,13 +1,13 @@
 exports.getAllGuesses = (request, response) => {
-  request.db.open((err, db) => {
-    const collection = db.collection('guesses').aggregate(
-      [ { $sample: { size: 500 } } ]
-    ).toArray((error, items) => {
-      if(!items) {
+  const collection = request.db
+    .collection('guesses')
+    .aggregate([{ $sample: { size: 500 } }])
+    .toArray((error, items) => {
+      if (!items) {
         response.json([]);
         db.close();
       } else {
-        const result = items.map((item) => (item.guess));
+        const result = items.map(item => item.guess);
         const d = {};
         const out = [];
 
@@ -21,36 +21,36 @@ exports.getAllGuesses = (request, response) => {
           }
         }
 
-        response.json(out.map((item) => ({ car: item[0], bike: item[1], rail: item[2] })));
+        response.json(out.map(item => ({ car: item[0], bike: item[1], rail: item[2] })));
         db.close();
       }
     });
-  });
 };
 
 exports.insertGuess = (request, response) => {
-  request.db.open((err, db) => {
-    const collection = db.collection('guesses');
-    let savedValue = {};
-    if(request.body.guess) {
-      savedValue = [request.body.guess.car, request.body.guess.bike, request.body.guess.rail];
-    } else {
-      response.json({ message: 'incorrect format' });
-      db.close();
-    }
+  const collection = request.db.collection('guesses');
+  let savedValue = {};
+  if (request.body.guess) {
+    savedValue = [request.body.guess.car, request.body.guess.bike, request.body.guess.rail];
+  } else {
+    response.json({ message: 'incorrect format' });
+    db.close();
+  }
 
-    var clientIP = request.headers['x-forwarded-for'] || request.connection.remoteAddress;
+  var clientIP = request.headers['x-forwarded-for'] || request.connection.remoteAddress;
 
-    collection.insertOne({ 
+  collection.insertOne(
+    {
       guess: savedValue,
       clientIP: clientIP
-    }, (error, result) => {
+    },
+    (error, result) => {
       if (error) {
         response.json({ message: 'faild saved', error });
         db.close();
-      };
-      response.json({ message: 'sucsessfull saved', result });+
+      }
+      response.json({ message: 'sucsessfull saved', result });
       db.close();
-    });
-  });
+    }
+  );
 };

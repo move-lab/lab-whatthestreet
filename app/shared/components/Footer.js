@@ -28,7 +28,7 @@ class FooterBar extends React.PureComponent {
             </div>
             <div className="col-sm-3">
               <ul>
-                <li><a target="_blank" href="https://www.moovel.com/en/DE/privacy-policy">Privacy Statement</a></li>
+                <li><a target="_blank" href="https://www.moovel.com/en/legal/privacy-policy">Privacy Statement</a></li>
                 <li><a target="_blank" href="http://lab.moovel.com/provider">Provider</a></li>
                 <li><a target="_blank" href="http://lab.moovel.com/residency">Residency</a></li>
               </ul>
