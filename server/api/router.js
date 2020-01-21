@@ -15,18 +15,19 @@ router.get('/', require('./routes/rootRoute'));
 
 // load documentDB cert + options
 let ca;
-let mongoOptions;
+let mongoOptions = { useUnifiedTopology: true };
 let mongoHost = process.env.MONGODB_HOST || 'localhost';
 let mongoPort = process.env.MONGODB_PORT || 27017;
 
 if (process.env.ENV === 'production') {
   // 'mongodb://<dbusername>:<dbpassword>@mycluster.node.us-east-1.docdb.amazonaws.com:27017/test?ssl=true&replicaSet=rs0&readPreference=secondaryPreferred'
-  ca = [fs.readFileSync('../../rds-combined-ca-bundle.pem')];
-  mongoOptions = {
-    ssl: true,
-    sslValidate: true,
-    sslCA: ca
-  };
+  // ca = [fs.readFileSync('../../rds-combined-ca-bundle.pem')];
+  // mongoOptions = {
+  //   ...mongoOptions,
+  //   ssl: true,
+  //   sslValidate: true,
+  //   sslCA: ca
+  // };
 }
 
 // NearestCity route
@@ -46,6 +47,7 @@ router.use('/cities/:city', (request, response, next) => {
 
       db = client.db(`${request.params.city}_coiled_2`);
       request.db = db;
+      request.mongoClient = client;
       request.limit = parseInt(request.query.limit, 10) || 10;
       request.params.city = request.params.city.toLowerCase();
       next();

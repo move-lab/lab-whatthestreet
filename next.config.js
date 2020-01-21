@@ -13,14 +13,24 @@ module.exports = {
     env_ga_id: process.env.GA_ID
   },
 
-  webpack: (config, { dev }) => {
+  webpack: (config, { dev, defaultLoaders }) => {
     config.module['noParse'] = /(mapbox-gl)\.js$/;
-
+    config.module.rules.push({
+      test: /\.css$/,
+      use: [
+        defaultLoaders.babel,
+        {
+          loader: require('styled-jsx/webpack').loader,
+          options: {
+            type: 'scoped'
+          }
+        }
+      ]
+    });
     // Rules for mapbox gl
-    config.resolve = {
-      alias: {
-        'mapbox-gl$': resolve('./node_modules/mapbox-gl/dist/mapbox-gl.js')
-      }
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'mapbox-gl$': resolve('./node_modules/mapbox-gl/dist/mapbox-gl.js')
     };
 
     return config;

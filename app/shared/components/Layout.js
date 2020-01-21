@@ -1,19 +1,21 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import Head from "next/head";
-import Router from "next/router";
-import PropTypes from "prop-types";
-import Config from "../../../config.json";
-import ReactGA from "react-ga";
-import Footer from "./Footer";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import Head from 'next/head';
+import Router from 'next/router';
+import PropTypes from 'prop-types';
+import Config from '../../../config.json';
+import ReactGA from 'react-ga';
+import Footer from './Footer';
 
-import getConfig from 'next/config'
-const { publicRuntimeConfig } = getConfig()
-const { env_ga_id } = publicRuntimeConfig
+import getConfig from 'next/config';
+const { publicRuntimeConfig } = getConfig();
+const { env_ga_id } = publicRuntimeConfig;
 
-import * as METRICS from "../style/metrics";
-import * as COLORS from "../style/colors";
-import { prefixURL, getRootURL, getS3GIFUrl } from "../../../utils/url.js";
+import * as METRICS from '../style/metrics';
+import * as COLORS from '../style/colors';
+import { prefixURL, getRootURL, getS3GIFUrl } from '../../../utils/url.js';
+
+const breakPoint = '1279px';
 
 class Layout extends Component {
   static propTypes = {
@@ -25,11 +27,11 @@ class Layout extends Component {
   };
 
   static defaultProps = {
-    title: "What the Street!?"
+    title: 'What the Street!?'
   };
 
   componentDidMount() {
-    require("smoothscroll-polyfill").polyfill();
+    require('smoothscroll-polyfill').polyfill();
     ReactGA.initialize(env_ga_id || Config.gaID);
     ReactGA.set({ page: Router.pathname });
     ReactGA.pageview(Router.pathname);
@@ -42,31 +44,15 @@ class Layout extends Component {
           <Head>
             <title>What the Street!? - moovel lab</title>
             <meta charset="utf-8" />
-            <meta
-              name="viewport"
-              content="width=device-width,initial-scale=1,user-scalable=no"
-            />
+            <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
             <meta
               name="description"
               content="Who owns the city? Explore the distribution of mobility space amongst urban traffic. Discover every parking lot or street of 23 metropolises."
             />
-            <link
-              rel="apple-touch-icon"
-              href={prefixURL("/static/favicon/apple-touch-icon.png")}
-            />
-            <link
-              rel="icon"
-              type="image/png"
-              href={prefixURL("/static/favicon/favicon.png")}
-            />
-            <meta
-              property="og:title"
-              content="What the Street!? - moovel lab"
-            />
-            <meta
-              property="og:url"
-              content={`https://${getRootURL()}`}
-            />
+            <link rel="apple-touch-icon" href={prefixURL('/static/favicon/apple-touch-icon.png')} />
+            <link rel="icon" type="image/png" href={prefixURL('/static/favicon/favicon.png')} />
+            <meta property="og:title" content="What the Street!? - moovel lab" />
+            <meta property="og:url" content={`https://${getRootURL()}`} />
             <meta
               property="og:image"
               content={`https://${getRootURL()}${prefixURL('static/images/wts-meta@2x.png')}`}
@@ -79,10 +65,7 @@ class Layout extends Component {
             <meta property="og:site_name" content="moovel lab" />
             <meta name="twitter:card" content="summary" />
             <meta name="twitter:site" content="@moovelLab" />
-            <meta
-              name="twitter:title"
-              content="What the Street!? - moovel lab"
-            />
+            <meta name="twitter:title" content="What the Street!? - moovel lab" />
             <meta
               name="twitter:description"
               content="Who owns the city? Explore the distribution of mobility space amongst urban traffic. Discover every parking lot or street of 23 metropolises."
@@ -97,98 +80,77 @@ class Layout extends Component {
           <Head>
             <title>What the Street!? - moovel lab</title>
             <meta charset="utf-8" />
-            <meta
-              name="viewport"
-              content="width=device-width,initial-scale=1,user-scalable=no"
-            />
+            <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
             <meta
               name="description"
-              content={`👉🚗 👀  ${
-                this.props.streetName
-              } in ${this.props.city.get("name")}! #WhatTheStreet`}
+              content={`👉🚗 👀  ${this.props.streetName} in ${this.props.city.get(
+                'name'
+              )}! #WhatTheStreet`}
             />
-            <link
-              rel="apple-touch-icon"
-              href={prefixURL("/static/favicon/apple-touch-icon.png")}
-            />
-            <link
-              rel="icon"
-              type="image/png"
-              href={prefixURL("/static/favicon/favicon.png")}
-            />
-            <meta
-              property="og:title"
-              content="What the Street!? - moovel lab"
-            />
+            <link rel="apple-touch-icon" href={prefixURL('/static/favicon/apple-touch-icon.png')} />
+            <link rel="icon" type="image/png" href={prefixURL('/static/favicon/favicon.png')} />
+            <meta property="og:title" content="What the Street!? - moovel lab" />
             <meta
               property="og:url"
-              content={`https://${getRootURL()}${prefixURL(`berlin/explore/${
-                this.props.activeVehicle
-              }/lanes/${this.props.streetId}`)}`}
+              content={`https://${getRootURL()}${prefixURL(
+                `berlin/explore/${this.props.activeVehicle}/lanes/${this.props.streetId}`
+              )}`}
             />
             <meta
               property="og:image"
-              content={`https://${getRootURL()}${prefixURL("static/recorder/firstframe.jpg")}`}
+              content={`https://${getRootURL()}${prefixURL('static/recorder/firstframe.jpg')}`}
             />
             <meta
               property="og:description"
-              content={`👉🚗 👀  ${
-                this.props.streetName
-              } in ${this.props.city.get("name")}! #WhatTheStreet`}
+              content={`👉🚗 👀  ${this.props.streetName} in ${this.props.city.get(
+                'name'
+              )}! #WhatTheStreet`}
             />
             <meta property="og:type" content="video" />
             <meta property="og:site_name" content="moovel lab" />
             <meta
               property="og:video"
-              content={`${getS3GIFUrl()}/${this.props.city.get(
-                "slug"
-              )}/${this.props.activeVehicle}/${this.props.streetId}.mp4`}
+              content={`${getS3GIFUrl()}/${this.props.city.get('slug')}/${
+                this.props.activeVehicle
+              }/${this.props.streetId}.mp4`}
             />
             <meta
               property="og:video:secure_url"
-              content={`${getS3GIFUrl()}/${this.props.city.get(
-                "slug"
-              )}/${this.props.activeVehicle}/${this.props.streetId}.mp4`}
+              content={`${getS3GIFUrl()}/${this.props.city.get('slug')}/${
+                this.props.activeVehicle
+              }/${this.props.streetId}.mp4`}
             />
             <meta property="og:video:type" content="video/mp4" />
             <meta property="og:video:width" content="512" />
             <meta property="og:video:height" content="512" />
             <meta name="twitter:card" content="player" />
             <meta name="twitter:site" content="@moovellab" />
-            <meta
-              name="twitter:title"
-              content="What the Street!? - moovel lab"
-            />
+            <meta name="twitter:title" content="What the Street!? - moovel lab" />
             <meta
               name="twitter:description"
-              content={`👉🚗 👀  ${
-                this.props.streetName
-              } in ${this.props.city.get("name")}! #WhatTheStreet`}
+              content={`👉🚗 👀  ${this.props.streetName} in ${this.props.city.get(
+                'name'
+              )}! #WhatTheStreet`}
             />
             <meta
               name="twitter:image"
-              content={`https://${getRootURL()}${prefixURL("static/recorder/firstframe.jpg")}`}
+              content={`https://${getRootURL()}${prefixURL('static/recorder/firstframe.jpg')}`}
             />
             <meta
               name="twitter:player"
-              content={`https://lab.moovel.com/wts-card-video.php?id=${
-                this.props.streetId
-              }&type=${this.props.activeVehicle}&city=${this.props.city.get(
-                "slug"
-              )}`}
+              content={`https://lab.moovel.com/wts-card-video.php?id=${this.props.streetId}&type=${
+                this.props.activeVehicle
+              }&city=${this.props.city.get('slug')}`}
             />
             <meta name="twitter:player:width" content="512" />
             <meta name="twitter:player:height" content="512" />
             <meta
               name="twitter:player:stream"
-              content={`${getS3GIFUrl()}/${this.props.city.get(
-                "slug"
-              )}/${this.props.activeVehicle}/${this.props.streetId}.mp4`}
+              content={`${getS3GIFUrl()}/${this.props.city.get('slug')}/${
+                this.props.activeVehicle
+              }/${this.props.streetId}.mp4`}
             />
-            <meta
-              name="twitter:player:stream:content_type"
-              content="video/mp4"
-            />
+            <meta name="twitter:player:stream:content_type" content="video/mp4" />
             <meta
               name="google-site-verification"
               content="N5xXk8yKMY4JqJ2jVVyjiEOkOx5MFYRxixauUDzYO3Q"
@@ -198,18 +160,16 @@ class Layout extends Component {
         <div className="desktop">{this.props.children}</div>
         <div className="mobile">
           <p>
-            What the Street!? is unfortunately not working in this resolution
-            😢. Sorry! Please visit us again with your desktop browser or
-            increase your window size (min. 1280px).
+            What the Street!? is unfortunately not working in this resolution 😢. Sorry! Please
+            visit us again with your desktop browser or increase your window size (min. 1280px).
           </p>
 
           <p>
-            In the meantime you might want to read the{" "}
+            In the meantime you might want to read the{' '}
             <a href="https://lab.moovel.com/blog/about-what-the-street">
               About What the Street!? blog post
-            </a>{" "}
-            or watch a speedy screen recording walkthrough of What The Street
-            project. Hold tight 👊{" "}
+            </a>{' '}
+            or watch a speedy screen recording walkthrough of What The Street project. Hold tight 👊{' '}
           </p>
 
           <div className="videoWrapper">
@@ -248,7 +208,7 @@ class Layout extends Component {
             height: 100%;
           }
 
-          @media screen and (max-width: 1279px) {
+          @media screen and (max-width: ${breakPoint}) {
             .desktop {
               display: none;
             }
@@ -258,31 +218,33 @@ class Layout extends Component {
             }
           }
           @font-face {
-            font-family: "Larsseit";
-            src: url(${prefixURL("/static/fonts/Larsseit/Larsseit-Medium.eot")});
-            src: url(${prefixURL("/static/fonts/Larsseit/Larsseit-Medium.ttf")});
-            src: url(${prefixURL("/static/fonts/Larsseit/Larsseit-Medium.woff")});
-            src: url(${prefixURL("/static/fonts/Larsseit/Larsseit-Medium.woff2")});
+            font-family: 'Larsseit';
+            src: url(${prefixURL('/static/fonts/Larsseit/Larsseit-Medium.eot')});
+            src: url(${prefixURL('/static/fonts/Larsseit/Larsseit-Medium.ttf')});
+            src: url(${prefixURL('/static/fonts/Larsseit/Larsseit-Medium.woff')});
+            src: url(${prefixURL('/static/fonts/Larsseit/Larsseit-Medium.woff2')});
             font-weight: 500;
           }
 
           @font-face {
-            font-family: "Larsseit";
-            src: url(${prefixURL("/static/fonts/Larsseit/Larsseit-Light.eot")});
-            src: url(${prefixURL("/static/fonts/Larsseit/Larsseit-Light.ttf")});
-            src: url(${prefixURL("/static/fonts/Larsseit/Larsseit-Light.woff")});
-            src: url(${prefixURL("/static/fonts/Larsseit/Larsseit-Light.woff2")});
+            font-family: 'Larsseit';
+            src: url(${prefixURL('/static/fonts/Larsseit/Larsseit-Light.eot')});
+            src: url(${prefixURL('/static/fonts/Larsseit/Larsseit-Light.ttf')});
+            src: url(${prefixURL('/static/fonts/Larsseit/Larsseit-Light.woff')});
+            src: url(${prefixURL('/static/fonts/Larsseit/Larsseit-Light.woff2')});
             font-weight: 300;
           }
 
           @font-face {
-            font-family: "Sign-Painter";
-            src: url(${prefixURL("/static/fonts/Sign_Painter_House_Brush/SignPainter_HouseBrush.ttf")});
+            font-family: 'Sign-Painter';
+            src: url(${prefixURL(
+              '/static/fonts/Sign_Painter_House_Brush/SignPainter_HouseBrush.ttf'
+            )});
           }
 
           @font-face {
-            font-family: "Circular";
-            src: url(${prefixURL("/static/fonts/Circular/CircularStd-Medium.otf")});
+            font-family: 'Circular';
+            src: url(${prefixURL('/static/fonts/Circular/CircularStd-Medium.otf')});
           }
 
           progress,
@@ -295,8 +257,8 @@ class Layout extends Component {
           input {
             overflow: visible;
           }
-          [type="checkbox"],
-          [type="radio"],
+          [type='checkbox'],
+          [type='radio'],
           legend {
             padding: 0;
           }
@@ -457,10 +419,10 @@ class Layout extends Component {
           select {
             text-transform: none;
           }
-          [type="submit"],
-          [type="reset"],
+          [type='submit'],
+          [type='reset'],
           button,
-          html [type="button"] {
+          html [type='button'] {
             -webkit-appearance: button;
           }
           ::-moz-focus-inner {
@@ -488,7 +450,7 @@ class Layout extends Component {
           ::-webkit-outer-spin-button {
             height: auto;
           }
-          [type="search"] {
+          [type='search'] {
             -webkit-appearance: textfield;
             outline-offset: -2px;
           }
@@ -504,7 +466,7 @@ class Layout extends Component {
             -webkit-appearance: button;
             font: inherit;
           }
-          [aria-busy="true"] {
+          [aria-busy='true'] {
             cursor: progress;
           }
           [aria-controls] {
@@ -521,12 +483,12 @@ class Layout extends Component {
             -ms-touch-action: manipulation;
             touch-action: manipulation;
           }
-          [hidden][aria-hidden="false"] {
+          [hidden][aria-hidden='false'] {
             clip: rect(0, 0, 0, 0);
             display: inherit;
             position: absolute;
           }
-          [hidden][aria-hidden="false"]:focus {
+          [hidden][aria-hidden='false']:focus {
             clip: auto;
           }
 
@@ -543,14 +505,14 @@ class Layout extends Component {
           }
 
           body {
-            font-family: "Larsseit", sans-serif;
+            font-family: 'Larsseit', sans-serif;
             color: ${COLORS.ColorForegroundText};
             line-height: 1;
             font-weight: 300;
           }
 
           button {
-            font-family: "Larsseit", sans-serif;
+            font-family: 'Larsseit', sans-serif;
             cursor: pointer;
           }
 
@@ -587,9 +549,9 @@ class Layout extends Component {
 
 export default connect(state => {
   return {
-    city: state.city.get("actual_city"),
-    activeVehicle: state.vehicles.get("vehicle"),
-    streetId: state.map.getIn(["laneData", "_id"]),
-    streetName: state.map.getIn(["laneData", "properties", "name"])
+    city: state.city.get('actual_city'),
+    activeVehicle: state.vehicles.get('vehicle'),
+    streetId: state.map.getIn(['laneData', '_id']),
+    streetName: state.map.getIn(['laneData', 'properties', 'name'])
   };
 })(Layout);

@@ -96,15 +96,17 @@ exports.getInfo = (request, response) => {
  * Gets Streets
  */
 exports.getStreets = (request, response) => {
-  const collection = request.db.collection('streets');
+  const mongoClient = request.mongoClient;
+  const db = request.db;
+  const collection = db.collection('streets');
 
   collection.find({}, { limit: request.limit }).toArray((error, docs) => {
     if (error) {
       console.log(error);
-      request.db.close();
+      mongoClient.close();
     }
     response.json(docs);
-    request.db.close();
+    mongoClient.close();
   });
 };
 
@@ -112,7 +114,8 @@ exports.getStreets = (request, response) => {
  * Gets Street by ID
  */
 exports.getStreetByID = (request, response) => {
-  // request.db.open((err, db) => {
+  const mongoClient = request.mongoClient;
+  const db = request.db;
   const collections = {
     bike: 'biketracks',
     rail: 'railtracks',
@@ -120,15 +123,15 @@ exports.getStreetByID = (request, response) => {
     car: 'streets'
   };
 
-  const collection = request.db.collection(collections[request.params.vehicle]);
+  const collection = db.collection(collections[request.params.vehicle]);
 
   collection.findOne({ _id: parseInt(request.params.id, 10) }, {}, (error, docs) => {
     if (error) {
       console.log(error);
-      request.db.close();
+      mongoClient.close();
     }
     response.json(docs);
-    request.db.close();
+    mongoClient.close();
   });
   // });
 };

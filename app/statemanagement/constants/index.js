@@ -7,6 +7,7 @@ import * as GUESS from './guessConstants';
 import * as PAGE from './pageConstants';
 import * as MAP from './mapConstants';
 import * as SEARCH from './searchConstants';
+import * as SCROLL from './scrollConstants';
 
 export {
   SET_PARKINGSPACE,
@@ -15,8 +16,9 @@ export {
   VERSUS,
   LANES,
   GUESS,
-  // PAGE,
+  PAGE,
   MAP,
   CITY,
-  // SEARCH,
+  SEARCH,
+  SCROLL
 };
