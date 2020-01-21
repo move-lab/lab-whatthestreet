@@ -30,8 +30,6 @@ COPY --from=builder /usr/src/app/package.json /usr/src/app/
 # Get documentDB cert
 RUN wget https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem -P /usr/src/app
 
-RUN ls /usr/src/app
-
 # We need to env var only at runtime with whatthestreet
 ARG mapbox_token
 ENV MAPBOX_ACCESS_TOKEN=$mapbox_token
