@@ -2,6 +2,16 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: PublicRead S3 bucket for lab ressources
 
 Parameters:
+  CostCenterTag:
+    Description: The cost center for created resources
+    Type: String
+    Default: "3037"
+
+  OwnerTag:
+    Description: The name of the squad owning the resources
+    Type: String
+    Default: "Lab"
+
   AccessControl:
     Description: A canned access control list (ACL) that grants predefined permissions to the bucket.
     Type: String
@@ -9,36 +19,12 @@ Parameters:
   ServiceName:
     Description: A name for the bucket. The bucket name must contain only lowercase letters, numbers, periods (.), and dashes (-).
     Type: String
-
-  CostCenterTag:
-    Description: The cost center for created resources
-    Type: String
-
-  SudoArnEquals:
-    Description: Arn to the ressource which has sudo rights on the bucket.
-    Type: String
-
-  SquadTag:
-    Description: The name of the squad owning the resources
-    Type: String
+    Default: "Lab"
 
 Mappings:
   ParamsByAccount:
-    '330561757506':
-      Account: legacy
-    '586093893509':
-      Account: dev
-      JumpCloudSystemGroup: 5acc8ced45886d4a61941698
-    '021902642706':
-      Account: stage
-      JumpCloudSystemGroup: 5acc760a232e110820c861b6
-    '488864420121':
-      Account: prod
-      JumpCloudSystemGroup: 5acc8ce4232e110820c8cfd8
-    '741592215129':
-      Account: shared-services
-    '805389432169':
-      Account: moovel-jump
+    "457137511234":
+      Account: movelab
 
 Resources:
   Bucket:
@@ -60,10 +46,8 @@ Resources:
       Tags:
         - Key: CostCenter
           Value: !Ref CostCenterTag
-        - Key: Squad
-          Value: !Ref SquadTag
-        - Key: Account
-          Value: !FindInMap [ParamsByAccount, !Ref 'AWS::AccountId', Account]
+        - Key: Owner
+          Value: !Ref OwnerTag
   BucketPolicy:
     Type: 'AWS::S3::BucketPolicy'
     Properties:
@@ -78,16 +62,6 @@ Resources:
             Resource: !Sub
               - ${arn}/*
               - { arn: !GetAtt Bucket.Arn }
-          - Sid: IPAllow
-            Effect: Allow
-            Principal: '*'
-            Action: s3:*
-            Resource: !Sub
-              - ${arn}/*
-              - { arn: !GetAtt Bucket.Arn }
-            Condition:
-              ArnEquals:
-                aws:SourceArn: { 'Fn::ImportValue': !Sub '${SudoArnEquals}' }
           - Sid: AddPerm
             Effect: Allow
             Principal: '*'
