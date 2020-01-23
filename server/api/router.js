@@ -14,20 +14,26 @@ const guessRoute = require('./routes/guessRoute');
 router.get('/', require('./routes/rootRoute'));
 
 // load documentDB cert + options
-let ca;
-let mongoOptions = { useUnifiedTopology: true };
-let mongoHost = process.env.MONGODB_HOST || 'localhost';
-let mongoPort = process.env.MONGODB_PORT || 27017;
+let mongoOptions = { useUnifiedTopology: true, useNewUrlParser: true };
+let mongoUrl = process.env.MONGODB_URL || 'mongodb://localhost:27017';
 
 if (process.env.ENV === 'production') {
-  // 'mongodb://<dbusername>:<dbpassword>@mycluster.node.us-east-1.docdb.amazonaws.com:27017/test?ssl=true&replicaSet=rs0&readPreference=secondaryPreferred'
-  // ca = [fs.readFileSync('../../rds-combined-ca-bundle.pem')];
-  // mongoOptions = {
-  //   ...mongoOptions,
-  //   ssl: true,
-  //   sslValidate: true,
-  //   sslCA: ca
-  // };
+  if (process.env.MONGODB_USER && process.env.MONGODB_PASSWORD) {
+    mongoUrl = `mongodb://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@${
+      mongoUrl.split('//')[1]
+    }`;
+  }
+
+  if (process.env.MONGODB_SSL) {
+    const ca = [fs.readFileSync('./rds-combined-ca-bundle.pem')];
+
+    mongoOptions = {
+      ...mongoOptions,
+      ssl: true,
+      sslValidate: true,
+      sslCA: ca
+    };
+  }
 }
 
 // NearestCity route
@@ -42,7 +48,7 @@ router.route('/cities/').get(require('./routes/cityRoute').getAllCities);
 // Select Database and Validate Params
 router.use('/cities/:city', (request, response, next) => {
   if (Object.keys(data).find(city => request.params.city === city)) {
-    MongoClient.connect(`mongodb://${mongoHost}:${mongoPort}`, mongoOptions, (err, client) => {
+    MongoClient.connect(mongoUrl, mongoOptions, (err, client) => {
       assert.strictEqual(null, err);
 
       db = client.db(`${request.params.city}_coiled_2`);

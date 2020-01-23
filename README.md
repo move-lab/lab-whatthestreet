@@ -108,8 +108,10 @@ npm run start (will listen on the PORT variable or on 80 if not set)
 You can customize those env variable to change the default:
 
 ```
-MONGODB_HOST (default: localhost)
-MONGODB_PORT (default: 27017)
+MONGODB_URL (mongodb://localhost:27017)
+MONGODB_USER (optional) works only if password is also set
+MONGODB_PASSWORD (optional) works only if user is also set
+MONGODB_SSL (optional) enables SSL for documentDB connection
 PORT (default: 80 , port the http server is listening to)
 ```
 
