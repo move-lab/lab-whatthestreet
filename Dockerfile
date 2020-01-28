@@ -37,13 +37,13 @@ ARG ga_id
 ENV GA_ID=$ga_id
 #example: /project/whatthestreet
 ARG URL_PREFIX=""
-ENV URL_PREFIX $URL_PREFIX
+ENV URL_PREFIX=$URL_PREFIX
 #example: whatthestreet.moovellab.com
 ARG ROOT_URL=""
-ENV ROOT_URL $ROOT_URL
+ENV ROOT_URL=$ROOT_URL
 #example: https://s3-eu-west-1.amazonaws.com/gif.whatthestreet.moovellab.com
-ARG S3_GIF_BUCKET="https://lab-whatthestreet-gifgallery-s3.s3.amazonaws.com"
-ENV ROOT_URL $S3_GIF_BUCKET
+ARG S3_GIF_BUCKET="https://lab-whatthestreet-gifgallery.s3.amazonaws.com"
+ENV S3_GIF_BUCKET=$S3_GIF_BUCKET
 
 EXPOSE 80
 
