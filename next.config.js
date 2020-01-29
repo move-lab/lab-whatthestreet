@@ -31,7 +31,6 @@ module.exports = {
       ...config.resolve.alias,
       'mapbox-gl$': resolve('./node_modules/mapbox-gl/dist/mapbox-gl.js')
     };
-
     return config;
   }
 };
