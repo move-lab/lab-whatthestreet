@@ -1,0 +1,31 @@
+---
+version: 1
+service:
+  name: '{{ env "bamboo_deploy_environment" }}-{{ env "bamboo_shortPlanName" }}'
+  shortname: ""
+  owner: lab
+deployment:
+  strategy: blueGreen
+health:
+  delayseconds: 0
+  path: "/"
+  port: 80
+environment:
+  - name: ENV
+    value: production
+  - name: MONGODB_URL
+    value: '{{ env "bamboo_mongodb_url" }}'
+  - name: MONGODB_USER
+    value: '{{ env "bamboo_mongodb_user" }}'
+  - name: MONGODB_PASSWORD
+    value: '{{ env "bamboo_mongodb_password" }}'
+  - name: S3_GIF_BUCKET
+    value: "https://lab-whatthestreet-gifgallery.s3.amazonaws.com"
+ports:
+  - 80
+ingress:
+  hosts:
+    - host: '{{ env "bamboo_deploy_host" }}'
+      path: /project/whatthestreet/
+      public: true
+      stripPrefix: /project/whatthestreet/
