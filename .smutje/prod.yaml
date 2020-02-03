@@ -8,7 +8,7 @@ deployment:
   strategy: blueGreen
 health:
   delayseconds: 0
-  path: "/"
+  path: "/ready"
   port: 80
 environment:
   - name: ENV

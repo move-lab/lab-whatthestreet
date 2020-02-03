@@ -34,6 +34,11 @@ app.prepare().then(() => {
   //   return next();
   // });
 
+  server.get('/ready', (req, res) => {
+    // console.log("handled by /:cityName/results");
+    return res.send('ready...');
+  });
+
   server.get('/about', (req, res) => {
     // console.log("handled by /about");
     return app.render(req, res, '/about', req.query);
