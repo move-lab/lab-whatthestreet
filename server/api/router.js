@@ -17,7 +17,7 @@ router.get('/', require('./routes/rootRoute'));
 let mongoOptions = { useUnifiedTopology: true, useNewUrlParser: true };
 let mongoUrl = process.env.MONGODB_URL || 'mongodb://localhost:27017';
 
-if (process.env.ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
   if (process.env.MONGODB_USER && process.env.MONGODB_PASSWORD) {
     mongoUrl = `mongodb://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@${
       mongoUrl.split('//')[1]
