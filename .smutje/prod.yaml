@@ -21,6 +21,8 @@ environment:
     value: '{{ env "bamboo_mongodb_password" }}'
   - name: S3_GIF_BUCKET
     value: "https://lab-whatthestreet-gifgallery.s3.amazonaws.com"
+  - name: URL_PREFIX
+    value: '{{ env "bamboo_url_prefix" }}'
 ports:
   - 80
 ingress:
