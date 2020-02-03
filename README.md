@@ -1,8 +1,9 @@
 # The Mobility Space Report: What the Street!?
 
-| PROD                                                                                                                                                                                                          |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [![](<https://teamcity.tools.moovel.com/app/rest/builds/buildType:(id:Lab_WebsiteWhatthestreet_Prod)/statusIcon>)](https://teamcity.tools.moovel.com/viewType.html?buildTypeId=Lab_WebsiteWhatthestreet_Prod) |
+| PROD                                                                                                           |
+| -------------------------------------------------------------------------------------------------------------- |
+| ![Build Status](https://bamboo.intapps.it/plugins/servlet/wittified/build-status/LAB-LABBEATTHETRAFFICWEBSITE) |
+| ![prod Deployment](https://bamboo.intapps.it/plugins/servlet/wittified/deploy-status/95978085)                 |
 
 **Part 2: Front & Backend**
 
