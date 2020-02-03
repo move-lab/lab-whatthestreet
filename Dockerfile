@@ -36,14 +36,14 @@ ENV MAPBOX_ACCESS_TOKEN=$mapbox_token
 ARG ga_id
 ENV GA_ID=$ga_id
 #example: /project/whatthestreet
-ARG URL_PREFIX=""
-ENV URL_PREFIX=$URL_PREFIX
+ARG url_prefix=""
+ENV URL_PREFIX=$url_prefix
 #example: whatthestreet.moovellab.com
-ARG ROOT_URL=""
-ENV ROOT_URL=$ROOT_URL
+ARG root_url=""
+ENV ROOT_URL=$root_url
 #example: https://s3-eu-west-1.amazonaws.com/gif.whatthestreet.moovellab.com
-ARG S3_GIF_BUCKET="https://lab-whatthestreet-gifgallery.s3.amazonaws.com"
-ENV S3_GIF_BUCKET=$S3_GIF_BUCKET
+ARG s3_gif_bucket="https://lab-whatthestreet-gifgallery.s3.amazonaws.com"
+ENV S3_GIF_BUCKET=$s3_gif_bucket
 
 EXPOSE 80
 
