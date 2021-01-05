@@ -7,7 +7,7 @@
   "dependencies": {
     "@turf/transform-rotate": "^5.1.5",
     "@turf/turf": "^5.1.6",
-    "axios": "^0.19.1",
+    "axios": "^0.21.1",
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
     "cors": "^2.8.5",
