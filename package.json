@@ -45,7 +45,7 @@
     "tween.js": "^16.6.0"
   },
   "devDependencies": {
-    "aws-sdk": "^2.76.0",
+    "aws-sdk": "^2.814.0",
     "react-addons-perf": "^15.4.2",
     "webpage": "^0.3.0"
   }
